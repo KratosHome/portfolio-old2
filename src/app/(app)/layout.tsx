@@ -1,9 +1,17 @@
+import { Analytics } from '@vercel/analytics/react'
 import { ReactNode } from 'react'
 
-type Props = {
-  children: ReactNode
-}
+export const dynamic = 'force-dynamic'
 
-export default function RootLayout({ children }: Props) {
-  return children
+export default async function LocaleLayout({
+  children,
+}: {
+  children: ReactNode
+}) {
+  return (
+    <>
+      {children}
+      <Analytics />
+    </>
+  )
 }
