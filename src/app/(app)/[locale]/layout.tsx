@@ -24,8 +24,8 @@ export default async function LocaleLayout({
   //  const t = await getTranslations('HomePage')
 
   return (
-    <html lang={locale}>
-      <body className="dark:from-slate-750 bg-black">
+    <html lang={locale} suppressHydrationWarning>
+      <body className="bg-white dark:bg-emerald-800">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -36,7 +36,7 @@ export default async function LocaleLayout({
             <ScrollToTop />
             <StarsCanvas />
             <Header />
-            {children}
+            <main className="min-h-[100svh]">{children}</main>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
