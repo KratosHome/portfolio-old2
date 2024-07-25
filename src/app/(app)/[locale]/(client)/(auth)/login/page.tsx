@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 import Login from '@/components/auth/login/login'
+import { auth } from '@/server/auth/auth'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Логінізація | Платформа з Менторством та Блогом',
@@ -36,7 +38,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function LoginPage({ params: { locale } }: PageProps) {
+export default async function page({ params: { locale } }: PageProps) {
+  const session = await auth()
+
+  if (session?.user) {
+    redirect(`/${locale}/admin`)
+  }
   return (
     <>
       <Login />
