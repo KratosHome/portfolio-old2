@@ -13,6 +13,15 @@ const nextConfig = {
         },
         ],
     },
+    env: {
+        NEXT_MONGO_DB: process.env.NEXT_MONGO_DB,
+
+        NEXT_GTM_ID: process.env.NEXT_GTM_ID,
+
+        CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+        CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+        CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    }
 };
 
 export default withNextIntl(nextConfig);

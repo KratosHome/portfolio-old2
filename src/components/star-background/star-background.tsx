@@ -15,13 +15,13 @@ const StarBackground = (props: any) => {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 20
-      ref.current.rotation.y -= delta / 35
+      ref.current.rotation.x -= delta / 100
+      ref.current.rotation.y -= delta / 100
     }
   })
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
+    <group rotation={[0, 0, Math.PI / 5]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent

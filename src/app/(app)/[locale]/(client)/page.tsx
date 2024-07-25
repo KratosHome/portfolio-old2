@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Viewport } from 'next'
 import homeMetadata from '@/components/metadata/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
+import { Technologies } from '@/components/technologies/technologies'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -16,8 +17,11 @@ export async function generateMetadata({ params }: PageProps) {
 const Home: FC<PageProps> = ({ params: { locale } }) => {
   return (
     <>
+      <div className="bg-hero-pattern bg-cover bg-center">
+        <h1 className="text-white">Hello, World!</h1>
+      </div>
       <HomeSnippets locale={locale} />
-      <div>{locale}</div>
+      <Technologies />
     </>
   )
 }

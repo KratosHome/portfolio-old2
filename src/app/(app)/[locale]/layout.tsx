@@ -2,7 +2,7 @@ import '../globals.css'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { getTranslations } from 'next-intl/server'
-import { Header } from '@/components/header/Header'
+import { Header } from '@/components/header/header'
 import { ThemeProvider } from '@/components/theme-provider/theme-provider'
 import ScrollToTop from '@/components/scroll-to-top/scroll-to-top'
 import StarsCanvas from '@/components/star-background/star-background'
@@ -24,7 +24,7 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <GoogleTagManager />
       <SpeedInsights />
-      <body className="bg-white dark:bg-emerald-800">
+      <body className="bg-white font-sansation dark:bg-black">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
