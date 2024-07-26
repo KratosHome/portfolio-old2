@@ -2,6 +2,9 @@
 import { useRef, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { gsap } from 'gsap'
+import sun from '@/assets/icons/sun.svg'
+import moon from '@/assets/icons/moon.svg'
+import Image from 'next/image'
 
 const ThemeChange = () => {
   const { theme, setTheme } = useTheme()
@@ -41,13 +44,28 @@ const ThemeChange = () => {
     return null
   }
   return (
-    <div onClick={changeTheme} className="max-w-max bg-black">
+    <div onClick={changeTheme} className="max-w-max">
       <div
         ref={svgRef}
         onMouseEnter={handleMouseEnter}
         className="-mt-1 cursor-pointer fill-orange-800 dark:stroke-orange-800"
       >
-        {theme === 'light' ? <div>light</div> : <div>dark</div>}
+        {theme === 'light' ? (
+          <Image
+            src={sun}
+            alt={'switch to dark  theme'}
+            width={28}
+            height={28}
+            className="stroke-black stroke-2 text-gray-700"
+          />
+        ) : (
+          <Image
+            src={moon}
+            alt={'switch to light theme'}
+            width={28}
+            height={28}
+          />
+        )}
       </div>
     </div>
   )

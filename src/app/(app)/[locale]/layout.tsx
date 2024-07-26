@@ -24,7 +24,7 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <GoogleTagManager />
       <SpeedInsights />
-      <body className="bg-white font-sansation dark:bg-black">
+      <body className="overflow-x-hidden bg-white font-sansation dark:bg-black">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

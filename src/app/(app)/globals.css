@@ -41,3 +41,16 @@
   font-style: italic;
 }
 
+
+@keyframes grow {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-grow {
+  animation: grow 1s ease-in-out forwards;
+}

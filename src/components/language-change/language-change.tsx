@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { useLocale } from 'use-intl'
+import Image from 'next/image'
+import arrow from '@/assets/icons/arrow.svg'
 
 const availableLocales = ['uk', 'en', 'fr', 'de']
 
@@ -36,6 +38,20 @@ export default function LanguageChange() {
 
   return (
     <div className="flex gap-2 text-lg uppercase">
+      <button className="relative flex items-center gap-[8px] rounded-[35px] border-b border-zinc-600 bg-transparent px-[15px] py-[15px] uppercase backdrop-blur-[0.5px]">
+        <span className="block">{locale}</span>
+        <Image
+          src={arrow}
+          alt={'open modal shoes language'}
+          width={20}
+          height={20}
+        />
+      </button>
+    </div>
+  )
+}
+
+/*
       {availableLocales.map((loc) => (
         <div
           key={loc}
@@ -46,6 +62,4 @@ export default function LanguageChange() {
           {loc}
         </div>
       ))}
-    </div>
-  )
-}
+ */
