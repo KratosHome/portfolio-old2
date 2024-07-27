@@ -22,23 +22,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <GoogleTagManager />
-      <SpeedInsights />
-      <body className="overflow-x-hidden bg-white font-sansation dark:bg-black">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextIntlClientProvider messages={messages}>
-            <ScrollToTop />
-            <StarsCanvas />
-            <Header />
-            <main className="min-h-[100svh]">{children}</main>
-          </NextIntlClientProvider>
-        </ThemeProvider>
-      </body>
+      work
     </html>
   )
 }
