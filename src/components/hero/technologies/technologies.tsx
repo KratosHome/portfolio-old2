@@ -115,7 +115,7 @@ export const Technologies = () => {
           <div
             key={index}
             ref={(el: any) => (iconRefs.current[index] = el)}
-            className="absolute flex h-[100px] w-[100px] flex-col items-center justify-center rounded-full"
+            className="absolute -m-5 flex h-[100px] w-[100px] flex-col items-center justify-center rounded-full"
           >
             <Image
               src={tech.icon}
