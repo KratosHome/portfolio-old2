@@ -27,7 +27,7 @@ const Hero = () => {
         <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
         <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
-          <h1 className="relative mt-[136px]">
+          <h1 className="relative mt-[136px] pt-10">
             <span className="overlay delay-1" />
             <span className="ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
               FRONTEND
