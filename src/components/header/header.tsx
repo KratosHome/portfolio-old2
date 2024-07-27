@@ -35,13 +35,10 @@ export const Header = async () => {
               <LanguageChange />
             </div>
           </div>
-          <div className="bg-group-pattern absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-cover bg-center opacity-[.1]" />
+          <div className="absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
         </div>
       </div>
-      <div
-        className="relative"
-        style={{ width: 'calc(90vw - ((110vw - 1542px) / 3))' }}
-      >
+      <div className="responsive-width relative">
         <div className="animate-grow absolute block h-[1px] overflow-x-hidden bg-[#FAFAFA]"></div>
       </div>
     </header>

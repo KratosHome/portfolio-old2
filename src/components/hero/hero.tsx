@@ -25,9 +25,10 @@ const Hero = () => {
     <section className="relative mx-auto max-w-[1442px]">
       <div className="flex justify-between">
         <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
-        <div className="bg-ellipse-pattern absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-contain bg-center opacity-[0.4]" />
+        <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
-          <h1 className="mt-[136px]">
+          <h1 className="relative mt-[136px]">
+            <span className="overlay delay-1" />
             <span className="ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
               FRONTEND
             </span>
@@ -37,7 +38,7 @@ const Hero = () => {
             Code as Art: Engeneering & Functional Beauty
           </div>
         </div>
-        <div className="bg-hero-pattern bg-cover bg-center" />
+        <div className="bg-hero-pattern bg-cover" />
         <Technologies />
       </div>
       <div className="relative mt-[52px] flex justify-between">
@@ -73,12 +74,15 @@ const Hero = () => {
             HIRE ME
           </button>
         </div>
-        <h2 className="text-end text-[64px] font-light leading-[1]">
+        <h2 className="relative min-w-[550px] text-end text-[64px] font-light leading-[1]">
+          <span className="overlay delay-2" />
           <span className="block text-[#0B66F5]">EXPERIENCE</span>
-          <span className="-ml-[154px] block text-start">{years} YEARS</span>
+          <span className="block text-start">{years} YEARS</span>
         </h2>
       </div>
-      <div className="bg-group-pattern absolute -bottom-[220px] left-1/2 -z-10 h-[300px] w-[300px] -translate-x-1/2 transform bg-cover bg-center opacity-[0.1]" />
+      <div className="absolute -bottom-[220px] left-1/2 -z-10 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
+      <div className="absolute -top-[600px] left-[200px] -z-10 h-[1900px] w-[1900px] transform bg-hero-pattern" />
+      <div className="absolute -top-[100px] right-[200px] -z-10 h-[1900px] w-[1900px] transform bg-hero-pattern" />
     </section>
   )
 }

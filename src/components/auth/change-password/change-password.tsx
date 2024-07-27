@@ -73,7 +73,7 @@ const ChangePassword = () => {
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [submitSuccess])
+  }, [submitSuccess, locale, router])
 
   return (
     <div>

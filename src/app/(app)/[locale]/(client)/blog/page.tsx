@@ -19,7 +19,7 @@ export default async function Page({ params: { locale }, searchParams }: any) {
           <h1>{t('title')}</h1>
           <div>
             {data.data.map((item: any) => (
-              <div>list</div>
+              <div key={item}>list</div>
             ))}
             <Pagination totalPages={totalPages} />
           </div>
