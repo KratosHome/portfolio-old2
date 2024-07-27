@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/userSchema'
-import bcrypt from 'bcryptjs'
+// import bcrypt from 'bcryptjs'
 
 export async function POST(request: NextRequest) {
   if (request.method !== 'POST')
@@ -25,13 +25,13 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       )
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
+    // const salt = await bcrypt.genSalt(10)
+    // const hashedPassword = await bcrypt.hash(password, salt)
 
     const newUser = new User({
       username,
       email: email.toLowerCase(),
-      password: hashedPassword,
+      password: '', // hashedPassword,
       img,
     })
 

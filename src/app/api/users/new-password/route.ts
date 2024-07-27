@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/userSchema'
-import bcrypt from 'bcryptjs'
+// import bcrypt from 'bcryptjs'
 
 export async function POST(request: NextRequest) {
   if (request.method !== 'POST')
@@ -21,8 +21,8 @@ export async function POST(request: NextRequest) {
     if (user.resetPasswordToken === null)
       throw new Error('Invalid or expired reset token')
 
-    const salt = await bcrypt.genSalt(10)
-    user.password = await bcrypt.hash(password, salt)
+    // const salt = await bcrypt.genSalt(10)
+    // user.password = await bcrypt.hash(password, salt)
     user.resetPasswordToken = null
     await user.save()
 

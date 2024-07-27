@@ -3,7 +3,7 @@ import GitHub from 'next-auth/providers/github'
 import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/userSchema'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
+// import bcrypt from 'bcryptjs'
 import { AdapterUser } from '@auth/core/adapters'
 import Google from '@auth/core/providers/google'
 
@@ -12,11 +12,13 @@ const login = async (credentials: any) => {
     await connectToDb()
     const user = await User.findOne({ email: credentials.email })
     if (!user) throw new Error('Wrong credentials!')
+    /*
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password,
     )
-    if (!isPasswordCorrect) throw new Error('Wrong credentials!')
+ */
+    //  if (!isPasswordCorrect) throw new Error('Wrong credentials!')
 
     return user
   } catch (err) {
