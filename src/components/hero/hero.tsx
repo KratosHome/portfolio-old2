@@ -1,4 +1,5 @@
 'use client'
+import './hero.scss'
 import { Technologies } from '@/components/hero/technologies/technologies'
 import gitHub from '@/assets/icons/github.svg'
 import gitHubLight from '@/assets/icons/githubLight.svg'
@@ -28,13 +29,14 @@ const Hero = () => {
         <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
           <h1 className="relative mt-[136px] pt-10">
-            <span className="overlay delay-1" />
-            <span className="ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
+            <span className="overlay delay-1 ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
               FRONTEND
             </span>
-            <span className="block text-[64px] font-light">DEVELOPER</span>
+            <span className="overlay delay-2 block text-[64px] font-light">
+              DEVELOPER
+            </span>
           </h1>
-          <div className="ml-[211px] text-[20px] text-[#0B66F5]">
+          <div className="overlay delay-2 ml-[211px] text-[20px] text-[#0B66F5]">
             Code as Art: Engeneering & Functional Beauty
           </div>
         </div>
@@ -72,12 +74,22 @@ const Hero = () => {
           </div>
           <button className="absolute -top-[120px] left-[310px] h-[120px] w-[120px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]">
             HIRE ME
+            <Image
+              src={ArrowRight}
+              alt={'arrow right'}
+              width={40}
+              height={40}
+            />
           </button>
         </div>
         <h2 className="relative min-w-[550px] text-end text-[64px] font-light leading-[1]">
           <span className="overlay delay-2" />
-          <span className="block text-[#0B66F5]">EXPERIENCE</span>
-          <span className="block text-start">{years} YEARS</span>
+          <span className="delay-3 overlay-blue block text-[#0B66F5]">
+            EXPERIENCE
+          </span>
+          <span className="overlay delay-3 block text-start">
+            {years} YEARS
+          </span>
         </h2>
       </div>
       <div className="absolute -bottom-[220px] left-1/2 -z-10 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />

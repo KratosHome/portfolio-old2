@@ -1,0 +1,43 @@
+.overlay {
+  background: linear-gradient(to right, white, white 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-blue {
+  background: linear-gradient(to right, #0B66F5, #0B66F5 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+
+@keyframes slideInLeftToRight {
+  from {
+    opacity: 0;
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+    opacity: 1;
+  }
+}
+
+.delay-1 {
+  animation-delay: .3s;
+}
+
+.delay-2 {
+  animation-delay: .5s;
+}
+.delay-3 {
+  animation-delay: .8s;
+}
+
