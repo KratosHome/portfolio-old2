@@ -1,9 +1,11 @@
+import './header.scss'
 import LanguageChange from '@/components/language-change/language-change'
 import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
 import { getLocale } from 'next-intl/server'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
+import { useRouter } from 'next/navigation'
 
 export const Header = async () => {
   const locale = (await getLocale()) as LanguageProps
@@ -25,8 +27,13 @@ export const Header = async () => {
                     <Link href={`/${locale}/${item.link}`}>{item.name}</Link>
                   </li>
                 ))}
-                <li className="rounded-[35px] border-b border-zinc-600 bg-[linear-gradient(153deg,_rgba(255,255,255,0.12)_2.19%,_rgba(255,255,255,0)_99.21%)] bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[15px] py-[10px] backdrop-blur-[12.5px]">
-                  <Link href={`/${locale}/login`}>Login</Link>
+                <li>
+                  <Link
+                    className="block rounded-[35px] border-b border-zinc-600 bg-[linear-gradient(153deg,_rgba(255,255,255,0.12)_2.19%,_rgba(255,255,255,0)_99.21%)] bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[15px] py-[10px] backdrop-blur-[12.5px]"
+                    href={`/${locale}/login`}
+                  >
+                    Login
+                  </Link>
                 </li>
               </ul>
             </nav>

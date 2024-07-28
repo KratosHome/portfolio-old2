@@ -92,9 +92,9 @@ const Hero = () => {
           </span>
         </h2>
       </div>
-      <div className="absolute -bottom-[220px] left-1/2 -z-10 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
-      <div className="absolute -top-[600px] left-[200px] -z-10 h-[1900px] w-[1900px] transform bg-hero-pattern" />
-      <div className="absolute -top-[100px] right-[200px] -z-10 h-[1900px] w-[1900px] transform bg-hero-pattern" />
+      <div className="absolute -bottom-[220px] left-1/2 -z-20 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
+      <div className="absolute -top-[600px] left-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
+      <div className="absolute -top-[100px] right-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
     </section>
   )
 }

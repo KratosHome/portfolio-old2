@@ -1,0 +1,34 @@
+
+@keyframes grow {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-grow {
+  animation: grow 1s ease-in-out forwards;
+}
+
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+.responsive-width {
+  width: calc(90vw - ((110vw - 110vw) / 2));
+}
+
+@media (min-width: 1442px) {
+  .responsive-width {
+    width: calc(90vw - ((110vw - 1542px) / 3));
+  }
+}

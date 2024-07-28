@@ -100,7 +100,7 @@ export const Technologies = () => {
   })
 
   return (
-    <div className="relative mt-[31px] flex h-[500px] w-[500px] items-center justify-center">
+    <div className="relative -z-10 mt-[31px] flex h-[500px] w-[500px] items-center justify-center">
       <div className="absolute h-[500px] w-[500px] rounded-full border-[1px] border-white opacity-[0.5]" />
       <div className="absolute left-1/2 top-1/2 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5]" />
       <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5]" />
