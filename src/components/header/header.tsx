@@ -18,7 +18,7 @@ export const Header = async () => {
           <div className="flex w-full items-center justify-between">
             <Link href="/" className="flex gap-[6px] text-[28px]">
               <Image src={'/logo.png'} alt={'logo'} width="40" height="40" />
-              <span className="block">{t('name')}</span>
+              <span className="block uppercase">{t('name')}</span>
             </Link>
             <nav>
               <ul className="flex items-center gap-[32px]">

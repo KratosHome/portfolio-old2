@@ -1,10 +1,10 @@
 {
   "header": {
-    "name": "Oleg Tkach",
+    "name": "Oleh Tkach",
     "login": "Login",
-    "switch-dark": "Switch to Dark Theme",
-    "switch-light": "Switch to Light Theme",
-    "switch-local": "Open Language Switch Modal"
+    "switch-dark": "Switch to dark theme",
+    "switch-light": "Switch to light theme",
+    "switch-local": "Open language switch modal"
   },
   "home-page": {
     "hero": {
@@ -12,8 +12,9 @@
       "developer": "Developer",
       "subtitle": "Code as Art: Engineering and Functional Beauty",
       "experience": "Experience",
-      "years": "Years",
-      "hire-me": "Hire Me"
+      "years": "years",
+      "hire-me": "Hire Me",
+      "arrow-right": "Arrow Right"
     }
   }
 }
