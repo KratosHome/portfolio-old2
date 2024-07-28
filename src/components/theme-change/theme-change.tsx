@@ -5,8 +5,10 @@ import { gsap } from 'gsap'
 import sun from '@/assets/icons/sun.svg'
 import moon from '@/assets/icons/moon.svg'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 const ThemeChange = () => {
+  const t = useTranslations('header')
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const svgRef = useRef(null)
@@ -53,18 +55,13 @@ const ThemeChange = () => {
         {theme === 'light' ? (
           <Image
             src={sun}
-            alt={'switch to dark  theme'}
+            alt={t('switch-dark')}
             width={28}
             height={28}
             className="stroke-black stroke-2 text-gray-700"
           />
         ) : (
-          <Image
-            src={moon}
-            alt={'switch to light theme'}
-            width={28}
-            height={28}
-          />
+          <Image src={moon} alt={t('switch-light')} width={28} height={28} />
         )}
       </div>
     </div>

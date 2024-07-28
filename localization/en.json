@@ -1,5 +1,19 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "header": {
+    "name": "Oleg Tkach",
+    "login": "Login",
+    "switch-dark": "Switch to Dark Theme",
+    "switch-light": "Switch to Light Theme",
+    "switch-local": "Open Language Switch Modal"
+  },
+  "home-page": {
+    "hero": {
+      "frontend": "Frontend",
+      "developer": "Developer",
+      "subtitle": "Code as Art: Engineering and Functional Beauty",
+      "experience": "Experience",
+      "years": "Years",
+      "hire-me": "Hire Me"
+    }
   }
 }

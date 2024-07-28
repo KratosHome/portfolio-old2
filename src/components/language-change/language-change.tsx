@@ -7,13 +7,15 @@ import arrow from '@/assets/icons/arrow.svg'
 import { localesData } from '@/data/locales-data'
 import { useGSAP } from '@gsap/react'
 import { usePathname, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 export default function LanguageChange() {
+  const t = useTranslations('header')
   const pathname = usePathname()
   const router = useRouter()
   const locale = useLocale()
-  const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   useGSAP(
     () => {
@@ -39,6 +41,7 @@ export default function LanguageChange() {
   const changeLocale = (sendLocale: string) => {
     const newPathname = `${sendLocale}/${pathname.split('/').slice(2).join('/')}`
     router.push(`${newPathname}`)
+    setIsOpen(false)
   }
 
   return (
@@ -48,15 +51,9 @@ export default function LanguageChange() {
         className="relative flex items-center gap-[8px] rounded-[35px] border-b border-zinc-600 bg-transparent px-[15px] py-[15px] uppercase backdrop-blur-[0.5px]"
       >
         <span className="block text-[20px]">{locale}</span>
-        <Image
-          src={arrow}
-          alt={'open modal shoes language'}
-          width={20}
-          height={20}
-        />
+        <Image src={arrow} alt={t('switch-local')} width={20} height={20} />
       </button>
       <div
-        ref={menuRef}
         className="absolute top-[80px] z-10 -ml-[40px] flex max-h-[210px] min-w-[175px] flex-col items-start gap-[6px] overflow-auto rounded-[8px] border-[1px] border-black bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[8px_12px] backdrop-blur-[12.5px]"
         style={{ height: 0, opacity: 0 }}
       >
@@ -75,7 +72,7 @@ export default function LanguageChange() {
                 height={20}
               />
             )}
-            <span className="text-[16px]"> {loc.name}</span>
+            <span className="text-[16px]">{loc.name}</span>
           </div>
         ))}
       </div>

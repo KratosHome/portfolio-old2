@@ -1,7 +1,6 @@
 import '../globals.css'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { getTranslations } from 'next-intl/server'
 import { Header } from '@/components/header/header'
 import { ThemeProvider } from '@/components/theme-provider/theme-provider'
 import ScrollToTop from '@/components/scroll-to-top/scroll-to-top'
@@ -18,7 +17,6 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const messages = await getMessages()
-  //  const t = await getTranslations('HomePage')
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -43,5 +41,9 @@ export default async function LocaleLayout({
   )
 }
 export function generateStaticParams() {
-  return [{ params: { locale: 'en' } }, { params: { locale: 'uk' } }]
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'uk' } },
+    { params: { locale: 'fr' } },
+  ]
 }

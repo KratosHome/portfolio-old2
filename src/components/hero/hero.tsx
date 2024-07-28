@@ -10,8 +10,10 @@ import telegramLight from '@/assets/icons/telegramLight.svg'
 import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
 
 const Hero = () => {
+  const t = useTranslations('home-page.hero')
   const { theme } = useTheme()
   const startDate = new Date('2021-10-01')
 
@@ -28,16 +30,16 @@ const Hero = () => {
         <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
         <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
-          <h1 className="relative mt-[136px] pt-10">
+          <h1 className="relative mt-[136px] pt-10 uppercase">
             <span className="overlay delay-1 ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
-              FRONTEND
+              {t('frontend')}
             </span>
-            <span className="overlay delay-2 block text-[64px] font-light">
-              DEVELOPER
+            <span className="overlay delay-2 block text-[64px] font-light uppercase">
+              {t('developer')}
             </span>
           </h1>
           <div className="overlay delay-2 ml-[211px] text-[20px] text-[#0B66F5]">
-            Code as Art: Engeneering & Functional Beauty
+            {t('subtitle')}
           </div>
         </div>
         <div className="bg-hero-pattern bg-cover" />
@@ -46,25 +48,43 @@ const Hero = () => {
       <div className="relative mt-[52px] flex justify-between">
         <div className="flex w-1/2 justify-between">
           <div className="border-r-2 border-white py-[5px] pr-[16px]">
-            <a className="">
+            <a
+              href="https://github.com/KratosHome"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              aria-label="GitHub"
+            >
               <Image
+                className="transition-transform duration-300 hover:scale-[1.2]"
                 src={theme === 'light' ? gitHubLight : gitHub}
                 alt="github"
                 width={40}
                 height={40}
               />
             </a>
-            <a className="my-[16px] block">
+            <a
+              className="my-[16px] block"
+              href="https://www.linkedin.com/in/olegtkach101/"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              aria-label="LinkedIn"
+            >
               <Image
+                className="transition-transform duration-300 hover:scale-[1.2]"
                 src={theme === 'light' ? linkedinLight : linkedin}
                 alt="linkedin"
                 width={40}
                 height={40}
-                className="fill-blue-700"
               />
             </a>
-            <a>
+            <a
+              href="https://t.me/KratosHome"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              aria-label="Telegram"
+            >
               <Image
+                className="transition-transform duration-300 hover:scale-[1.2]"
                 src={theme === 'light' ? telegramLight : telegram}
                 alt="telegram"
                 width={40}
@@ -72,23 +92,23 @@ const Hero = () => {
               />
             </a>
           </div>
-          <button className="absolute -top-[120px] left-[310px] h-[120px] w-[120px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]">
-            HIRE ME
+          <button className="absolute -top-[120px] left-[310px] flex h-[120px] w-[120px] flex-shrink-0 flex-col items-center justify-center rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] text-[20px] font-bold uppercase backdrop-blur-[12.5px]">
+            <span> {t('hire-me')}</span>
             <Image
               src={ArrowRight}
-              alt={'arrow right'}
-              width={40}
+              alt={t('arrow-right')}
+              width={70}
               height={40}
             />
           </button>
         </div>
-        <h2 className="relative min-w-[550px] text-end text-[64px] font-light leading-[1]">
+        <h2 className="relative min-w-[550px] text-end text-[64px] font-light uppercase leading-[1]">
           <span className="overlay delay-2" />
           <span className="delay-3 overlay-blue block text-[#0B66F5]">
-            EXPERIENCE
+            <span> {t('experience')}</span>
           </span>
           <span className="overlay delay-3 block text-start">
-            {years} YEARS
+            {years} <span> {t('years')}</span>
           </span>
         </h2>
       </div>

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: PageProps) {
   return homeMetadata(params.locale as LanguageProps)
 }
 
-const Home: FC<PageProps> = ({ params: { locale } }) => {
+const Home: FC<PageProps> = async ({ params: { locale } }) => {
   return (
     <>
       <HomeSnippets locale={locale} />

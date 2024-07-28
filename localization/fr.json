@@ -1,0 +1,19 @@
+{
+  "header": {
+    "name": "Oleg Tkach",
+    "login": "Se Connecter",
+    "switch-dark": "Passer au Thème Sombre",
+    "switch-light": "Passer au Thème Clair",
+    "switch-local": "Ouvrir la Modale de Changement de Langue"
+  },
+  "home-page": {
+    "hero": {
+      "frontend": "Frontend",
+      "developer": "Développeur",
+      "subtitle": "Code comme Art: Beauté Ingénierique et Fonctionnelle",
+      "experience": "Expérience",
+      "years": "Ans",
+      "hire-me": "Engagez-moi"
+    }
+  }
+}

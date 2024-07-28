@@ -2,12 +2,12 @@ import './header.scss'
 import LanguageChange from '@/components/language-change/language-change'
 import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
-import { useRouter } from 'next/navigation'
 
 export const Header = async () => {
+  const t = await getTranslations('header')
   const locale = (await getLocale()) as LanguageProps
   const menu = menuData[locale]
 
@@ -18,7 +18,7 @@ export const Header = async () => {
           <div className="flex w-full items-center justify-between">
             <Link href="/" className="flex gap-[6px] text-[28px]">
               <Image src={'/logo.png'} alt={'logo'} width="40" height="40" />
-              <span className="block">OLEG TKACH</span>
+              <span className="block">{t('name')}</span>
             </Link>
             <nav>
               <ul className="flex items-center gap-[32px]">
@@ -32,7 +32,7 @@ export const Header = async () => {
                     className="block rounded-[35px] border-b border-zinc-600 bg-[linear-gradient(153deg,_rgba(255,255,255,0.12)_2.19%,_rgba(255,255,255,0)_99.21%)] bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[15px] py-[10px] backdrop-blur-[12.5px]"
                     href={`/${locale}/login`}
                   >
-                    Login
+                    {t('login')}
                   </Link>
                 </li>
               </ul>
