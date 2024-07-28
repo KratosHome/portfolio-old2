@@ -54,6 +54,7 @@ export default function LanguageChange() {
         <Image src={arrow} alt={t('switch-local')} width={20} height={20} />
       </button>
       <div
+        ref={menuRef}
         className="absolute top-[80px] z-10 -ml-[40px] flex max-h-[210px] min-w-[175px] flex-col items-start gap-[6px] overflow-auto rounded-[8px] border-[1px] border-black bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[8px_12px] backdrop-blur-[12.5px]"
         style={{ height: 0, opacity: 0 }}
       >
