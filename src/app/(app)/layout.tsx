@@ -9,9 +9,9 @@ export default async function LocaleLayout({
   children: ReactNode
 }) {
   return (
-    <>
-      {children}
+    <html>
+      <body>{children}</body>
       <Analytics />
-    </>
+    </html>
   )
 }
