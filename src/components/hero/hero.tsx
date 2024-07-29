@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section className="relative mx-auto max-w-[1442px]">
       <div className="flex justify-between">
-        <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
+        <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/50 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
         <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
           <h1 className="relative mt-[136px] pt-10 uppercase">
