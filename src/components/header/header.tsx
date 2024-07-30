@@ -23,7 +23,10 @@ export const Header = async () => {
             <nav>
               <ul className="flex items-center gap-[32px]">
                 {menu.map((item) => (
-                  <li key={item.link} className="">
+                  <li
+                    key={item.link}
+                    className="duration-300 hover:text-[#0B66F5]"
+                  >
                     <Link href={`/${locale}/${item.link}`}>{item.name}</Link>
                   </li>
                 ))}
@@ -42,7 +45,7 @@ export const Header = async () => {
               <LanguageChange />
             </div>
           </div>
-          <div className="absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
+          <div className="animate-scale-in-out absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
         </div>
       </div>
       <div className="responsive-width relative">

@@ -42,3 +42,16 @@
 }
 
 
+@keyframes scale-in-out {
+  0%, 100% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in-out {
+  animation: scale-in-out 5s ease-in-out infinite;
+}
+

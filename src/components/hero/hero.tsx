@@ -38,7 +38,7 @@ const Hero = () => {
               {t('developer')}
             </span>
           </h1>
-          <div className="overlay delay-2 ml-[211px] text-[20px] text-[#0B66F5]">
+          <div className="overlay-blue delay-2 ml-[211px] text-[20px] text-[#0B66F5]">
             {t('subtitle')}
           </div>
         </div>
@@ -112,9 +112,10 @@ const Hero = () => {
           </span>
         </h2>
       </div>
-      <div className="absolute -bottom-[220px] left-1/2 -z-20 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
+      <div className="animate-scale-in-out absolute -bottom-[220px] left-[400px] -z-20 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
       <div className="absolute -top-[600px] left-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
       <div className="absolute -top-[100px] right-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
+      <div className="absolute -right-[75px] bottom-[190px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
     </section>
   )
 }
