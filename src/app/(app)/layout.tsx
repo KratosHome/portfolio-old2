@@ -9,8 +9,10 @@ export default async function LocaleLayout({
   children: ReactNode
 }) {
   return (
-    <html>
-      <body>{children}</body>
+    <html suppressHydrationWarning={true}>
+      <body className="overflow-x-hidden bg-white font-sansation dark:bg-black">
+        {children}
+      </body>
       <Analytics />
     </html>
   )

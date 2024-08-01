@@ -1,4 +1,5 @@
 'use client'
+import './language-change.scss'
 import { useRef, useState } from 'react'
 import { useLocale } from 'use-intl'
 import Image from 'next/image'
@@ -45,14 +46,23 @@ export default function LanguageChange() {
   }
 
   return (
-    <div className="flex gap-2 text-lg">
+    <div className="group flex gap-2 text-lg">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center gap-[8px] rounded-[35px] border-b border-zinc-600 bg-transparent px-[15px] py-[15px] uppercase backdrop-blur-[0.5px]"
+        className="custom-language relative flex transform items-center gap-[8px] rounded-[35px] border-b border-zinc-600 bg-transparent px-[15px] py-[15px] uppercase backdrop-blur-[0.5px]"
       >
-        <span className="block text-[20px]">{locale}</span>
-        <Image src={arrow} alt={t('switch-local')} width={20} height={20} />
+        <span className="block text-[20px] duration-300 group-hover:scale-105">
+          {locale}
+        </span>
+        <Image
+          className="block duration-300 group-hover:scale-125"
+          src={arrow}
+          alt={t('switch-local')}
+          width={20}
+          height={20}
+        />
       </button>
+
       <div
         ref={menuRef}
         className="absolute top-[80px] z-10 -ml-[40px] flex max-h-[210px] min-w-[175px] flex-col items-start gap-[6px] overflow-auto rounded-[8px] border-[1px] border-black bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[8px_12px] backdrop-blur-[12.5px]"

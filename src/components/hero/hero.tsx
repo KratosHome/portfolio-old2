@@ -11,6 +11,7 @@ import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
+import { ButtonCircle } from '@/components/button-circle/button-circle'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -27,7 +28,7 @@ const Hero = () => {
   return (
     <section className="relative mx-auto max-w-[1442px]">
       <div className="flex justify-between">
-        <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/50 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
+        <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
         <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div>
           <h1 className="relative mt-[136px] pt-10 uppercase">
@@ -92,15 +93,9 @@ const Hero = () => {
               />
             </a>
           </div>
-          <button className="absolute -top-[120px] left-[310px] flex h-[120px] w-[120px] flex-shrink-0 flex-col items-center justify-center rounded-[280px] border-[1px] border-black bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] text-[20px] font-bold uppercase backdrop-blur-[12.5px]">
-            <span> {t('hire-me')}</span>
-            <Image
-              src={ArrowRight}
-              alt={t('arrow-right')}
-              width={70}
-              height={40}
-            />
-          </button>
+          <div className="absolute -top-[120px] left-[310px]">
+            <ButtonCircle title={t('hire-me')} />
+          </div>
         </div>
         <h2 className="relative min-w-[550px] text-end text-[64px] font-light uppercase leading-[1]">
           <span className="overlay delay-2" />

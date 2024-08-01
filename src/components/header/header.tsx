@@ -30,12 +30,15 @@ export const Header = async () => {
                     <Link href={`/${locale}/${item.link}`}>{item.name}</Link>
                   </li>
                 ))}
-                <li>
+                <li className="group">
                   <Link
-                    className="block rounded-[35px] border-b border-zinc-600 bg-[linear-gradient(153deg,_rgba(255,255,255,0.12)_2.19%,_rgba(255,255,255,0)_99.21%)] bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[15px] py-[10px] backdrop-blur-[12.5px]"
+                    className="custom-login block rounded-[35px] border-b border-zinc-600 bg-[linear-gradient(153deg,_rgba(255,255,255,0.12)_2.19%,_rgba(255,255,255,0)_99.21%)] bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[15px] py-[10px] backdrop-blur-[12.5px]"
                     href={`/${locale}/login`}
                   >
-                    {t('login')}
+                    <span className="block duration-300 group-hover:scale-[1.1]">
+                      {' '}
+                      {t('login')}
+                    </span>
                   </Link>
                 </li>
               </ul>
