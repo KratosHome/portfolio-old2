@@ -41,3 +41,38 @@
   animation-delay: .8s;
 }
 
+
+@keyframes pulse {
+  0%, 20%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.planet {
+  animation: pulse 5s ease-in-out infinite;
+}
+
+@keyframes circle {
+  0%, 20%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.circle {
+  animation: circle 5s ease-in-out infinite;
+  animation-delay: 2s;
+}

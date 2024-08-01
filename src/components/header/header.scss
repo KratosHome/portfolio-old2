@@ -50,6 +50,7 @@
   height: 500%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.00) 70%);
   animation: gradientAnimation 8s infinite;
+  animation-delay: 2s;
 }
 
 .custom-login:hover::before {

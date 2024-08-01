@@ -41,6 +41,18 @@ const config: Config = {
           'background-position': 'center',
           'background-size': 'contain',
         },
+        '.bg-planet-first': {
+          'background-image': "url('/assets/hero/round.png')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
+        '.bg-orbit': {
+          'background-image': "url('/assets/hero/torus.png')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
       })
     }),
   ],

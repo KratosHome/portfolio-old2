@@ -1,51 +1,51 @@
 export const localesData = [
   {
-    icon: '/assets/flags/usa.svg',
+    icon: '/assets/flags/en.png',
     name: 'English',
     locale: 'en',
   },
   {
-    icon: '/assets/flags/uk.svg',
+    icon: '/assets/flags/uk.png',
     name: 'Ukrainian',
     locale: 'uk',
   },
   {
-    icon: '/assets/flags/fr.svg',
+    icon: '/assets/flags/fr.png',
     name: 'French',
     locale: 'fr',
   },
   {
-    icon: '/assets/flags/zh.svg',
+    icon: '/assets/flags/zh.png',
     name: 'China',
     locale: 'zh',
   },
   {
-    icon: '/assets/flags/de.svg',
+    icon: '/assets/flags/de.png',
     name: 'Germany',
     locale: 'de',
   },
   {
-    icon: '/assets/flags/it.svg',
+    icon: '/assets/flags/it.png',
     name: 'Italy',
     locale: 'it',
   },
   {
-    icon: '/assets/flags/es.svg',
+    icon: '/assets/flags/es.png',
     name: 'Spain',
     locale: 'es',
   },
   {
-    icon: '/assets/flags/ar.svg',
+    icon: '/assets/flags/ar.png',
     name: 'Saudi Arabia',
     locale: 'ar',
   },
   {
-    icon: '/assets/flags/ja.svg',
+    icon: '/assets/flags/ja.png',
     name: 'Japan',
     locale: 'ja',
   },
   {
-    icon: '/assets/flags/he.svg',
+    icon: '/assets/flags/he.png',
     name: 'Israel',
     locale: 'he',
   },
@@ -53,10 +53,5 @@ export const localesData = [
     icon: '/assets/flags/sv.png',
     name: 'Swedish',
     locale: 'sv',
-  },
-  {
-    icon: '/assets/flags/fr-ch.webp',
-    name: 'Swiss',
-    locale: 'fr-ch',
   },
 ]
