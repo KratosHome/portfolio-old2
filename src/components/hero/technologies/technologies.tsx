@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
@@ -26,6 +26,31 @@ gsap.registerPlugin(MotionPathPlugin)
 export const Technologies = () => {
   const { theme } = useTheme()
 
+  const technologiesMob = [
+    { name: 'HTML', icon: HTML, x: 60, y: 40 },
+    { name: 'SCSS', icon: SCSS, x: 90, y: 50 },
+    { name: 'Redux', icon: ReduxLgo, x: 40, y: 50 },
+    { name: 'GSAP', icon: GSAPLogo, x: 70, y: 70 },
+    { name: 'Strapi', icon: Strapi, x: 30, y: 50 },
+    {
+      name: 'Astro',
+      icon: theme === 'light' ? Astro : AstroWhite,
+      x: 80,
+      y: 40,
+    },
+    { name: 'Vue', icon: VueLogo, x: 50, y: 40 },
+    { name: 'React', icon: ReactLogo, x: 100, y: 60 },
+    {
+      name: 'Next.js',
+      icon: theme === 'light' ? NextLogo : NextLogoW,
+      x: 70,
+      y: 90,
+    },
+    { name: 'TailwindCss', icon: tailwindcssLogo, x: 20, y: 60 },
+    { name: 'JavaScript', icon: JavaScriptLogo, x: 90, y: 80 },
+    { name: 'TypeScript', icon: TypeScriptLogo, x: 30, y: 80 },
+  ]
+
   const technologies = [
     { name: 'HTML', icon: HTML, x: 60, y: 10 },
     { name: 'SCSS', icon: SCSS, x: 90, y: 30 },
@@ -51,6 +76,18 @@ export const Technologies = () => {
     { name: 'TypeScript', icon: TypeScriptLogo, x: 30, y: 80 },
   ]
 
+  const [isMobile, setIsMobile] = useState(false)
+  const [currentTechnologies, setCurrentTechnologies] = useState(
+    isMobile ? technologiesMob : technologies,
+  )
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 900)
+  }, [])
+
+  useEffect(() => {
+    setCurrentTechnologies(isMobile ? technologiesMob : technologies)
+  }, [isMobile])
+
   const containerRef = useRef<HTMLDivElement>(null)
   const iconRefs = useRef<HTMLDivElement[]>([])
 
@@ -60,7 +97,7 @@ export const Technologies = () => {
 
     const { width, height } = container.getBoundingClientRect()
 
-    const positions = technologies.map((tech) => ({
+    const positions = currentTechnologies.map((tech) => ({
       x: (tech.x / 100) * width - 50,
       y: (tech.y / 100) * height - 50,
     }))
@@ -68,7 +105,7 @@ export const Technologies = () => {
     const animateIcons = () => {
       const shuffledPositions = positions
         .slice()
-        .sort(() => Math.random() - 0.5)
+        .sort(() => Math.random() - 0.2)
       iconRefs.current.forEach((ref, index) => {
         gsap.to(ref, {
           x: shuffledPositions[index].x,
@@ -103,7 +140,7 @@ export const Technologies = () => {
     })
 
     animateIcons()
-  }, [technologies])
+  }, [currentTechnologies])
 
   return (
     <div className="relative -z-10 mt-[31px] flex size-[300px] items-center justify-center sm:size-[400px] lg:size-[500px]">
@@ -117,11 +154,11 @@ export const Technologies = () => {
       <div className="absolute left-1/2 top-1/2 hidden size-[30px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:block sm:size-[100px] lg:size-[150px]" />
       <div className="absolute left-1/2 top-1/2 hidden size-[10px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:block sm:size-[50px] lg:size-[100px]" />
       <div ref={containerRef} className="relative h-[500px] w-[500px]">
-        {technologies.map((tech, index) => (
+        {currentTechnologies.map((tech, index) => (
           <div
             key={index}
             ref={(el: any) => (iconRefs.current[index] = el)}
-            className="absolute -m-5 flex h-[100px] w-[100px] flex-col items-center justify-center rounded-full"
+            className="absolute -m-5 flex size-[30px] flex-col items-center justify-center rounded-full lg:size-[100px]"
           >
             <Image
               src={tech.icon}

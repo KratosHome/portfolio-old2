@@ -3,6 +3,7 @@ import { Viewport } from 'next'
 import homeMetadata from '@/components/metadata/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
 import Hero from '@/components/hero/hero'
+import { MyServices } from '@/components/my-services/my-services'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -19,6 +20,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
     <>
       <HomeSnippets locale={locale} />
       <Hero />
+      <MyServices />
     </>
   )
 }
