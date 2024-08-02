@@ -27,7 +27,7 @@ const Hero = () => {
   const years = calculateYears(startDate, new Date())
 
   return (
-    <section className="-mt-[300px]">
+    <section className="relative -mt-[300px] min-h-[1500px] overflow-x-hidden lg:overflow-visible">
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="absolute right-[28px] z-10 mt-[15px] block lg:hidden">
           <ThemeChange />
@@ -114,14 +114,14 @@ const Hero = () => {
             </span>
           </h2>
         </div>
-        <div className="animate-scale-in-out absolute -bottom-[20px] left-[500px] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:-bottom-[220px] lg:left-[400px] lg:size-[300px]" />
-        <div className="absolute -top-[600px] left-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
-        <div className="absolute -top-[100px] right-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
-        <div className="absolute -top-[500px] left-[0px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
+        <div className="animate-scale-in-out absolute -bottom-[20px] left-[75vw] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:-bottom-[220px] lg:left-[400px] lg:size-[300px]" />
+        <div className="absolute -top-[600px] left-[200px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
+        <div className="absolute -right-[400px] -top-[400px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern lg:-top-[100px] lg:right-[200px]" />
+        <div className="absolute -top-[500px] left-[0px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <div className="absolute -right-[75px] bottom-[190px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />
-      <div className="mx-auto -mt-[120px] flex w-full max-w-[1445px] justify-end">
+      <div className="absolute -right-[250px] mx-auto flex w-full max-w-[1445px] rotate-[25deg] justify-end lg:-right-[50px] lg:-mt-[290px]">
         <div className="relative max-h-[500px] max-w-[500px]">
           <div className="circle absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />
           <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[250px] rounded-full bg-black" />
