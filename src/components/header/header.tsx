@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
+import { MobileMenu } from '@/components/header/mobile-menu'
 
 export const Header = async () => {
   const t = await getTranslations('header')
@@ -12,15 +13,18 @@ export const Header = async () => {
   const menu = menuData[locale]
 
   return (
-    <header className="mt-[20px] py-[20px]">
-      <div className="mx-auto max-w-[1442px] text-[28px] font-normal">
-        <div className="relative mb-[10px] max-w-[90%]">
+    <header className="max-w-screen overflow-x-hidden pb-[300px] pt-[20px]">
+      <div className="mx-auto max-w-[1442px] px-[24px] text-[10px] font-normal sm:text-[20px] lg:text-[28px]">
+        <div className="relative mb-[10px] lg:max-w-[90%]">
           <div className="flex w-full items-center justify-between">
-            <Link href="/" className="flex gap-[6px] text-[28px]">
-              <Image src={'/logo.png'} alt={'logo'} width="40" height="40" />
+            <Link
+              href="/"
+              className="flex items-center gap-[6px] text-[20px] lg:text-[28px]"
+            >
+              <Image src={'/logo.svg'} alt={'logo'} width="40" height="40" />
               <span className="block uppercase">{t('name')}</span>
             </Link>
-            <nav>
+            <nav className="hidden lg:block">
               <ul className="flex items-center gap-[32px]">
                 {menu.map((item) => (
                   <li
@@ -43,10 +47,11 @@ export const Header = async () => {
                 </li>
               </ul>
             </nav>
-            <div className="flex items-center gap-[15px]">
+            <div className="hidden items-center gap-[15px] lg:flex">
               <ThemeChange />
               <LanguageChange />
             </div>
+            <MobileMenu menu={menu} />
           </div>
           <div className="animate-scale-in-out absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
         </div>

@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { ButtonCircle } from '@/components/button-circle/button-circle'
+import ThemeChange from '@/components/theme-change/theme-change'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -26,30 +27,35 @@ const Hero = () => {
   const years = calculateYears(startDate, new Date())
 
   return (
-    <section>
-      <div className="relative mx-auto max-w-[1442px]">
-        <div className="flex justify-between">
-          <div className="absolute -top-[50px] -z-10 h-[280px] w-[280px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]" />
-          <div className="absolute -left-[80px] top-[70px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
-          <div>
-            <h1 className="relative mt-[136px] pt-10 uppercase">
-              <span className="overlay delay-1 ml-[158px] block text-[80px] font-extrabold leading-[0.5]">
+    <section className="-mt-[300px]">
+      <div className="relative mx-auto max-w-[1442px] px-[24px]">
+        <div className="absolute right-[28px] z-10 mt-[15px] block lg:hidden">
+          <ThemeChange />
+        </div>
+        <div className="flex flex-col items-center justify-between lg:flex-row">
+          <div className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px] lg:-top-[50px] lg:left-[20px] lg:size-[280px]" />
+          <div className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4] lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]" />
+          <div className="w-full max-w-[400px] lg:max-w-[600px]">
+            <h1 className="relative mt-[55px] flex w-full max-w-[300px] flex-col uppercase lg:-mt-[50px] lg:max-w-full">
+              <span className="overlay delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] lg:text-[80px]">
                 {t('frontend')}
               </span>
-              <span className="overlay delay-2 block text-[64px] font-light uppercase">
+              <span className="overlay delay-2 -mt-[10px] inline-block text-[36px] font-light uppercase lg:text-[64px]">
                 {t('developer')}
               </span>
             </h1>
-            <div className="overlay-blue delay-2 ml-[211px] text-[20px] text-[#0B66F5]">
+            <span className="overlay-blue delay-2 !-mt-[25px] block w-full text-end text-[12px] text-[#0B66F5] lg:!-mt-[5px] lg:ml-12 lg:text-[20px]">
               {t('subtitle')}
-            </div>
+            </span>
           </div>
           <div className="bg-hero-pattern bg-cover" />
-          <Technologies />
+          <div className="">
+            <Technologies />
+          </div>
         </div>
-        <div className="relative mt-[52px] flex justify-between">
-          <div className="flex w-1/2 justify-between">
-            <div className="border-r-2 border-white py-[5px] pr-[16px]">
+        <div className="relative mt-[52px] flex flex-col-reverse items-end justify-between lg:flex-row">
+          <div className="flex justify-between lg:w-1/2">
+            <div className="border--stone-500/30 flex min-w-[160px] flex-row justify-between border-t-2 py-[5px] pr-[16px] lg:min-w-[0px] lg:flex-col lg:border-r-2 lg:border-t-0">
               <a
                 href="https://github.com/KratosHome"
                 target="_blank"
@@ -65,7 +71,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                className="my-[16px] block"
+                className="block lg:my-[16px]"
                 href="https://www.linkedin.com/in/olegtkach101/"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
@@ -94,21 +100,21 @@ const Hero = () => {
                 />
               </a>
             </div>
-            <div className="absolute -top-[120px] left-[310px]">
+            <div className="absolute left-0 lg:-top-[120px] lg:left-[310px]">
               <ButtonCircle title={t('hire-me')} />
             </div>
           </div>
-          <h2 className="relative min-w-[550px] text-end text-[64px] font-light uppercase leading-[1]">
+          <h2 className="relative min-w-[190px] text-end text-[24px] font-light uppercase leading-[1] lg:min-w-[550px] lg:text-[64px]">
             <span className="overlay delay-2" />
             <span className="delay-3 overlay-blue block text-[#0B66F5]">
               <span> {t('experience')}</span>
             </span>
-            <span className="overlay delay-3 block text-start">
+            <span className="overlay delay-3 -mt-3 block text-start lg:mt-0">
               {years} <span> {t('years')}</span>
             </span>
           </h2>
         </div>
-        <div className="animate-scale-in-out absolute -bottom-[220px] left-[400px] -z-20 h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1]" />
+        <div className="animate-scale-in-out absolute -bottom-[220px] left-[400px] -z-20 hidden h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:block" />
         <div className="absolute -top-[600px] left-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
         <div className="absolute -top-[100px] right-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
         <div className="absolute -top-[500px] left-[0px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />

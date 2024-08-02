@@ -41,7 +41,6 @@
   font-style: italic;
 }
 
-
 @keyframes scale-in-out {
   0%, 100% {
     transform: scale(0.8);

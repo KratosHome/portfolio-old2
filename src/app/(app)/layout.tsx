@@ -10,7 +10,7 @@ export default async function LocaleLayout({
 }) {
   return (
     <html suppressHydrationWarning={true}>
-      <body className="overflow-x-hidden bg-white font-sansation dark:bg-black">
+      <body className="max-w-screen overflow-x-hidden bg-white font-sansation dark:bg-black">
         {children}
       </body>
       <Analytics />

@@ -21,6 +21,7 @@ const config: Config = {
     },
   },
   plugins: [
+    require('tailwind-hamburgers'),
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.bg-hero-pattern': {
