@@ -114,7 +114,7 @@ const Hero = () => {
             </span>
           </h2>
         </div>
-        <div className="animate-scale-in-out absolute -bottom-[220px] left-[400px] -z-20 hidden h-[300px] w-[300px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:block" />
+        <div className="animate-scale-in-out absolute -bottom-[20px] left-[500px] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:-bottom-[220px] lg:left-[400px] lg:size-[300px]" />
         <div className="absolute -top-[600px] left-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
         <div className="absolute -top-[100px] right-[200px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />
         <div className="absolute -top-[500px] left-[0px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern" />

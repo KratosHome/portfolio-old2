@@ -17,7 +17,6 @@ export default function DropdownItems({
   items,
   onItemClick,
   icon,
-  children,
 }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
 
