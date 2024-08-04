@@ -18,7 +18,7 @@ export const Header = async () => {
         <div className="relative mb-[10px] lg:max-w-[90%]">
           <div className="flex w-full items-center justify-between">
             <Link
-              href="/"
+              href={`/${locale}`}
               className="flex items-center gap-[6px] text-[20px] lg:text-[28px]"
             >
               <Image src={'/logo.svg'} alt={'logo'} width="40" height="40" />
@@ -57,7 +57,7 @@ export const Header = async () => {
         </div>
       </div>
       <div className="responsive-width relative">
-        <div className="animate-grow absolute block h-[1px] overflow-x-hidden bg-[#FAFAFA]"></div>
+        <div className="animate-grow inabsolute block h-[1px] overflow-x-hidden bg-[#FAFAFA]"></div>
       </div>
     </header>
   )

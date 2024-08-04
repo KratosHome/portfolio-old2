@@ -16,5 +16,8 @@
       "hire-me": "Hire Me",
       "arrow-right": "Arrow Right"
     }
+  },
+  "services": {
+    "services": "Services"
   }
 }

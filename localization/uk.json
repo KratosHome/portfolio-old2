@@ -16,5 +16,8 @@
      "hire-me": "Найняти",
      "arrow-right": "Cтрілка вправо"
     }
+  },
+  "services": {
+    "services": "Services"
   }
 }

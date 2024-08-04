@@ -3,7 +3,8 @@ import { Viewport } from 'next'
 import homeMetadata from '@/components/metadata/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
 import Hero from '@/components/hero/hero'
-import { MyServices } from '@/components/my-services/my-services'
+import { Services } from '@/components/services/services'
+import { servicesData } from '@/data/services'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -16,11 +17,12 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
+  const services = servicesData[locale]
   return (
     <>
       <HomeSnippets locale={locale} />
       <Hero />
-      <MyServices />
+      <Services services={services} />
     </>
   )
 }

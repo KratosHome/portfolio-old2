@@ -16,5 +16,8 @@
       "hire-me": "Embauchez-moi",
       "arrow-right": "Flèche droite"
     }
+  },
+  "services": {
+    "services": "Services"
   }
 }
