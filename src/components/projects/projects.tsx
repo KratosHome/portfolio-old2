@@ -13,11 +13,8 @@ export const Projects: FC<any> = ({ projects }) => {
         <div className="mt-[73px] flex flex-wrap justify-center">
           <div className="h-[552px] w-[398px]" />
           {projects.map((project: any, index: number) => (
-            <a href={project.link} target="_blank">
-              <div
-                key={index}
-                className="relative m-4 flex h-[552px] w-[398px] flex-col justify-between rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px]"
-              >
+            <a key={index} href={project.link} target="_blank">
+              <div className="relative m-4 flex h-[552px] w-[398px] flex-col justify-between rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px]">
                 <div
                   className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
                   style={{
@@ -30,7 +27,7 @@ export const Projects: FC<any> = ({ projects }) => {
                   {project.title}
                 </h3>
                 <div className="text-[20px] font-bold text-[#0B66F5]">
-                  cooperation with: "{project.company}"
+                  cooperation with: &quot;{project.company}&quot;
                 </div>
                 <div className="flex justify-between border-t-[1px] border-amber-50">
                   <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></div>

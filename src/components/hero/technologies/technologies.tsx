@@ -86,6 +86,7 @@ export const Technologies = () => {
 
   useEffect(() => {
     setCurrentTechnologies(isMobile ? technologiesMob : technologies)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile])
 
   const containerRef = useRef<HTMLDivElement>(null)
