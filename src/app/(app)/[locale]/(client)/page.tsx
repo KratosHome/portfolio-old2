@@ -5,6 +5,8 @@ import HomeSnippets from '@/components/snippets/home-snippets'
 import Hero from '@/components/hero/hero'
 import { Services } from '@/components/services/services'
 import { servicesData } from '@/data/services'
+import { Projects } from '@/components/projects/projects'
+import { projectsData } from '@/data/projects-data'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -18,11 +20,13 @@ export async function generateMetadata({ params }: PageProps) {
 
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
+  const projects = projectsData[locale]
   return (
     <>
       <HomeSnippets locale={locale} />
       <Hero />
       <Services services={services} />
+      <Projects projects={projects} />
     </>
   )
 }

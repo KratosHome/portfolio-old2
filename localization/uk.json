@@ -19,5 +19,8 @@
   },
   "services": {
     "services": "Services"
+  },
+  "project": {
+    "project": "projects"
   }
 }

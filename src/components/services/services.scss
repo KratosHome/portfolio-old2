@@ -21,3 +21,14 @@
 .services-card:hover::before {
   opacity: 1;
 }
+
+.wrapper-services-mob {
+  display: flex;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+}
+
+.panel {
+  will-change: transform;
+}
