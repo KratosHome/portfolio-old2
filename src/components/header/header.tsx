@@ -6,6 +6,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
 import { MobileMenu } from '@/components/header/mobile-menu'
+import arrow from '@/assets/icons/arrow-small.svg'
 
 export const Header = async () => {
   const t = await getTranslations('header')
@@ -29,9 +30,33 @@ export const Header = async () => {
                 {menu.map((item) => (
                   <li
                     key={item.link}
-                    className="duration-300 hover:text-[#0B66F5]"
+                    className="group relative duration-300 hover:text-[#0B66F5]"
                   >
-                    <Link href={`/${locale}/${item.link}`}>{item.name}</Link>
+                    <Link href={`/${locale}/${item.link}`} className="flex">
+                      <span>{item.name}</span>
+                      {item.subMenu.length > 0 && (
+                        <Image
+                          src={arrow}
+                          alt={t('arrow-menu')}
+                          width="30"
+                          height="30"
+                        />
+                      )}
+                    </Link>
+                    {item.subMenu.length > 0 && (
+                      <ul className="absolute left-0 top-full z-20 hidden bg-white shadow-lg group-hover:block">
+                        {item.subMenu.map((subItem) => (
+                          <li key={subItem.link} className="hover:bg-gray-100">
+                            <Link
+                              href={`/${locale}/${subItem.link}`}
+                              className="block px-4 py-2"
+                            >
+                              {subItem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
                 <li className="group">

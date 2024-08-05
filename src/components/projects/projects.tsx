@@ -5,7 +5,7 @@ import { FC } from 'react'
 export const Projects: FC<any> = ({ projects }) => {
   const t = useTranslations('project')
   return (
-    <section>
+    <section aria-label="projects" id="projects">
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] px-[24px]">
         <h2 className="mr-[90px] text-right text-[40px] font-light uppercase lg:text-[96px]">
           {t('project')}

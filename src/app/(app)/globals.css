@@ -41,6 +41,11 @@
   font-style: italic;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 @keyframes scale-in-out {
   0%, 100% {
     transform: scale(0.8);

@@ -2,7 +2,32 @@ export const menuDataEn = [
   {
     name: 'Home',
     link: '/',
-    subMenu: [],
+    subMenu: [
+      {
+        name: 'services',
+        link: '#services',
+      },
+      {
+        name: 'projects',
+        link: '#projects',
+      },
+      {
+        name: 'experience',
+        link: '#experience',
+      },
+      {
+        name: 'reviews',
+        link: '#reviews',
+      },
+      {
+        name: 'faq',
+        link: '#faq',
+      },
+      {
+        name: 'Contact',
+        link: '#contact',
+      },
+    ],
   },
   {
     name: 'Blog',
@@ -16,44 +41,8 @@ export const menuDataEn = [
   },
 ]
 
-export const menuDataUk = [
-  {
-    name: 'Головна',
-    link: '/',
-    subMenu: [],
-  },
-  {
-    name: 'Блог',
-    link: 'blog',
-    subMenu: [],
-  },
-  {
-    name: 'Менторство',
-    link: 'mentoring',
-    subMenu: [],
-  },
-]
-
-export const menuDataFr = [
-  {
-    name: 'Accueil',
-    link: '/',
-    subMenu: [],
-  },
-  {
-    name: 'Blog',
-    link: 'blog',
-    subMenu: [],
-  },
-  {
-    name: 'Mentorat',
-    link: 'mentoring',
-    subMenu: [],
-  },
-]
-
 export const menuData = {
   en: menuDataEn,
-  uk: menuDataUk,
-  fr: menuDataFr,
+  uk: menuDataEn,
+  fr: menuDataEn,
 }

@@ -78,7 +78,7 @@ export const Services: FC<any> = ({ services }) => {
             <div className="bg-orbit-services absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] opacity-[0.7]" />
      */
   return (
-    <section>
+    <section aria-label="services" id="services">
       <div className="relative mx-auto -mt-[400px] mb-[140px] max-w-[1442px] px-[24px]">
         <h2 className="hidden text-[40px] font-light uppercase lg:ml-[90px] lg:block lg:text-[96px]">
           {t('services')}
@@ -161,7 +161,7 @@ export const Services: FC<any> = ({ services }) => {
                 </p>
                 <ul className="flex flex-wrap gap-3">
                   <li className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></li>
-                  {item.icon.length >= 1 &&
+                  {item.icon.length > 0 &&
                     item.icon.map((icon: any, iconIndex: number) => (
                       <li
                         key={icon.id}

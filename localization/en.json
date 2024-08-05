@@ -4,7 +4,8 @@
     "login": "Login",
     "switch-dark": "Switch to dark theme",
     "switch-light": "Switch to light theme",
-    "switch-local": "Open language switch modal"
+    "switch-local": "Open language switch modal",
+    "arrow-menu": "Arrow Menu"
   },
   "home-page": {
     "hero": {
