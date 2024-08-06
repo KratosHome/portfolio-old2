@@ -143,15 +143,16 @@ export const Services: FC<any> = ({ services }) => {
             <h2 className="absolute block pt-[50px] text-[40px] font-light uppercase lg:ml-[90px] lg:hidden lg:text-[96px]">
               {t('services')}
             </h2>
-            <div className="absolute -right-[100px] mt-[80px]">
-              <div className="ml-[100px] text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
-                {t('scroll')}
+            <div className="absolute -right-[50px] mt-[30px]">
+              <div className="ml-[10px] flex flex-col items-center text-[20px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
+                <div>see more</div>
+                <div>scroll to</div>
               </div>
-              <div className="-mt-[165px] rotate-90">
+              <div className="-mt-[105px] rotate-90">
                 <Image
                   src={arrowLong}
                   alt={t('scroll')}
-                  width={300}
+                  width={200}
                   height={30}
                 />
               </div>
@@ -159,7 +160,7 @@ export const Services: FC<any> = ({ services }) => {
             {services.map((item: any, index: any) => (
               <li
                 key={index}
-                className="panel services-card group relative mx-3 my-10 mt-[35vh] flex h-[500px] w-[394px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel services-card group relative mx-3 my-10 mt-[260px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div
@@ -170,7 +171,7 @@ export const Services: FC<any> = ({ services }) => {
                     opacity: '0.1 !important',
                   }}
                 />
-                <h3 className="h-[70px] text-[32px] font-bold uppercase leading-[1.1] text-[#0B66F5]">
+                <h3 className="h-[70px] text-[30px] font-bold uppercase leading-[1.1] text-[#0B66F5]">
                   {item.title}
                 </h3>
                 <p className="block text-[20px] font-light">
