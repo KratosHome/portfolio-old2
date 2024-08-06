@@ -27,7 +27,8 @@ const Hero = () => {
   const years = calculateYears(startDate, new Date())
 
   return (
-    <section className="relative -mt-[300px] min-h-[1500px] overflow-x-hidden lg:overflow-visible">
+    <section className="relative min-h-[1500px] overflow-x-hidden lg:overflow-visible">
+      <div className="animate-scale-in-out absolute -top-[170px] right-[40px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="absolute right-[28px] z-10 mt-[15px] block lg:hidden">
           <ThemeChange />

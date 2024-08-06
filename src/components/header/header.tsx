@@ -1,20 +1,46 @@
+'use client'
 import './header.scss'
 import LanguageChange from '@/components/language-change/language-change'
 import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
-import { getLocale, getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
 import { MobileMenu } from '@/components/header/mobile-menu'
 import arrow from '@/assets/icons/arrow-small.svg'
+import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { useLocale } from 'use-intl'
+import { useTranslations } from 'next-intl'
+import { useGSAP } from '@gsap/react'
 
-export const Header = async () => {
-  const t = await getTranslations('header')
-  const locale = (await getLocale()) as LanguageProps
+export const Header = () => {
+  const t = useTranslations('header')
+  const locale = useLocale() as LanguageProps
   const menu = menuData[locale]
+  const { contextSafe } = useGSAP()
+
+  const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
+
+  const showSubMenu = contextSafe((index: number) => {
+    gsap.to(subMenuRefs.current[index], {
+      duration: 0.7,
+      height: 'auto',
+      opacity: 1,
+      ease: 'power3.out',
+    })
+  })
+
+  const hideSubMenu = contextSafe((index: number) => {
+    gsap.to(subMenuRefs.current[index], {
+      duration: 0.5,
+      height: 0,
+      opacity: 0,
+      ease: 'power3.in',
+    })
+  })
 
   return (
-    <header className="max-w-screen overflow-x-hidden pb-[300px] pt-[20px]">
+    <header className="max-w-screen pt-[20px]">
       <div className="mx-auto max-w-[1442px] px-[24px] text-[10px] font-normal sm:text-[20px] lg:text-[28px]">
         <div className="relative mb-[10px] lg:max-w-[90%]">
           <div className="flex w-full items-center justify-between">
@@ -27,16 +53,19 @@ export const Header = async () => {
             </Link>
             <nav className="hidden lg:block">
               <ul className="flex items-center gap-[32px]">
-                {menu.map((item) => (
+                {menu.map((item: any, index: number) => (
                   <li
                     key={item.link}
                     className="group relative duration-300 hover:text-[#0B66F5]"
+                    onMouseEnter={() => showSubMenu(index)}
+                    onMouseLeave={() => hideSubMenu(index)}
                   >
                     <Link href={`/${locale}/${item.link}`} className="flex">
                       <span>{item.name}</span>
                       {item.subMenu.length > 0 && (
                         <Image
                           src={arrow}
+                          className="mt-2 rotate-180 duration-300 group-hover:rotate-0"
                           alt={t('arrow-menu')}
                           width="30"
                           height="30"
@@ -44,13 +73,17 @@ export const Header = async () => {
                       )}
                     </Link>
                     {item.subMenu.length > 0 && (
-                      <ul className="absolute left-0 top-full z-20 hidden bg-white shadow-lg group-hover:block">
-                        {item.subMenu.map((subItem) => (
-                          <li key={subItem.link} className="hover:bg-gray-100">
-                            <Link
-                              href={`/${locale}/${subItem.link}`}
-                              className="block px-4 py-2"
-                            >
+                      <ul
+                        ref={(el: any) => (subMenuRefs.current[index] = el)}
+                        className="from-white/12 lg absolute right-0 top-full z-20 overflow-hidden rounded-lg border border-stone-500/30 bg-gradient-to-br to-white/0 px-[12px] py-[8px] text-white opacity-0 backdrop-blur-[12.5px]"
+                        style={{ height: 0, opacity: 0 }}
+                      >
+                        {item.subMenu.map((subItem: any) => (
+                          <li
+                            key={subItem.link}
+                            className="mb-[8px] rounded-lg border-b border-b-[#0B66F5] bg-gradient-to-r from-[#0b66f54d] via-[#4e80ce26] to-[#ffffff00] px-[12px] py-[8px] capitalize duration-300 hover:bg-[#0B66F5]"
+                          >
+                            <Link href={`/${locale}/${subItem.link}`}>
                               {subItem.name}
                             </Link>
                           </li>
@@ -78,7 +111,6 @@ export const Header = async () => {
             </div>
             <MobileMenu menu={menu} />
           </div>
-          <div className="animate-scale-in-out absolute -right-[270px] -top-[100px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
         </div>
       </div>
       <div className="responsive-width relative">

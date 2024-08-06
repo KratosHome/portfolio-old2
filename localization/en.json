@@ -19,7 +19,8 @@
     }
   },
   "services": {
-    "services": "Services"
+    "services": "Services",
+    "scroll": "scroll to see more"
   },
   "project": {
     "project": "projects"

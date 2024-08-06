@@ -20,7 +20,7 @@ export const menuDataEn = [
         link: '#reviews',
       },
       {
-        name: 'faq',
+        name: 'FAQ',
         link: '#faq',
       },
       {

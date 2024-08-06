@@ -1,11 +1,12 @@
 'use client'
 import './services.scss'
-import { FC, useEffect, useRef } from 'react'
-import gsap from 'gsap'
+import { FC, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import arrowLong from '@/assets/icons/arrow-long.svg'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -135,14 +136,30 @@ export const Services: FC<any> = ({ services }) => {
           ))}
         </ul>
         <div className="block lg:hidden">
-          <ul className="wrapper-services-mob z-20" ref={wrapperRef}>
-            <h2 className="absolute block text-[40px] font-light uppercase lg:ml-[90px] lg:hidden lg:text-[96px]">
+          <ul
+            className="wrapper-services-mob z-20 min-h-screen"
+            ref={wrapperRef}
+          >
+            <h2 className="absolute block pt-[50px] text-[40px] font-light uppercase lg:ml-[90px] lg:hidden lg:text-[96px]">
               {t('services')}
             </h2>
+            <div className="absolute -right-[100px] mt-[80px]">
+              <div className="ml-[100px] text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
+                {t('scroll')}
+              </div>
+              <div className="-mt-[165px] rotate-90">
+                <Image
+                  src={arrowLong}
+                  alt={t('scroll')}
+                  width={300}
+                  height={30}
+                />
+              </div>
+            </div>
             {services.map((item: any, index: any) => (
               <li
                 key={index}
-                className="panel services-card group relative mx-3 my-10 mt-[106px] flex h-[400px] w-[394px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel services-card group relative mx-3 my-10 mt-[35vh] flex h-[500px] w-[394px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div
@@ -163,16 +180,7 @@ export const Services: FC<any> = ({ services }) => {
                   <li className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></li>
                   {item.icon.length > 0 &&
                     item.icon.map((icon: any, iconIndex: number) => (
-                      <li
-                        key={icon.id}
-                        ref={(el) => {
-                          if (!iconRefs.current[index]) {
-                            iconRefs.current[index] = []
-                          }
-                          iconRefs.current[index][iconIndex] = el!
-                        }}
-                        style={{ opacity: 0 }}
-                      >
+                      <li key={icon.id}>
                         <Image
                           src={icon.icon}
                           alt={icon.alt}

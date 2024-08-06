@@ -46,7 +46,7 @@ const ThemeChange = () => {
     return null
   }
   return (
-    <div onClick={changeTheme} className="max-w-max">
+    <div onClick={changeTheme} className="z-10 max-w-max">
       <div
         ref={svgRef}
         onMouseEnter={handleMouseEnter}
