@@ -144,15 +144,15 @@ export const Services: FC<any> = ({ services }) => {
               {t('services')}
             </h2>
             <div className="absolute -right-[50px] mt-[30px]">
-              <div className="ml-[10px] flex flex-col items-center text-[20px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
-                <div>see more</div>
-                <div>scroll to</div>
+              <div className="ml-[10px] flex flex-col items-center text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
+                <div>{t('scroll')}</div>
+                <div>{t('see-more')}</div>
               </div>
-              <div className="-mt-[105px] rotate-90">
+              <div className="-mt-[85px] rotate-90">
                 <Image
                   src={arrowLong}
                   alt={t('scroll')}
-                  width={200}
+                  width={150}
                   height={30}
                 />
               </div>
@@ -160,7 +160,7 @@ export const Services: FC<any> = ({ services }) => {
             {services.map((item: any, index: any) => (
               <li
                 key={index}
-                className="panel services-card group relative mx-3 my-10 mt-[260px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel group relative mx-3 my-10 mt-[200px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div
@@ -180,7 +180,7 @@ export const Services: FC<any> = ({ services }) => {
                 <ul className="flex flex-wrap gap-3">
                   <li className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></li>
                   {item.icon.length > 0 &&
-                    item.icon.map((icon: any, iconIndex: number) => (
+                    item.icon.map((icon: any) => (
                       <li key={icon.id}>
                         <Image
                           src={icon.icon}

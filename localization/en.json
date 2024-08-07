@@ -20,7 +20,8 @@
   },
   "services": {
     "services": "Services",
-    "scroll": "scroll to see more"
+    "scroll": "scroll to",
+    "see-more": "see more"
   },
   "project": {
     "project": "projects"
