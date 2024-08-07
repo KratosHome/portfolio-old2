@@ -148,7 +148,7 @@ export const Services: FC<any> = ({ services }) => {
                 <div>{t('scroll')}</div>
                 <div>{t('see-more')}</div>
               </div>
-              <div className="-mt-[85px] rotate-90">
+              <div className="-mt-[70px] rotate-90">
                 <Image
                   src={arrowLong}
                   alt={t('scroll')}
@@ -160,7 +160,7 @@ export const Services: FC<any> = ({ services }) => {
             {services.map((item: any, index: any) => (
               <li
                 key={index}
-                className="panel group relative mx-3 my-10 mt-[200px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel group relative mx-3 my-10 mt-[45%] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div

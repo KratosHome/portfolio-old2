@@ -7,6 +7,9 @@ import { Services } from '@/components/services/services'
 import { servicesData } from '@/data/services'
 import { Projects } from '@/components/projects/projects'
 import { projectsData } from '@/data/projects-data'
+import 'swiper/css'
+import 'swiper/css/grid'
+import 'swiper/css/pagination'
 
 export const viewport: Viewport = {
   themeColor: [
