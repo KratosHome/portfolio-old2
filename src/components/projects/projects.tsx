@@ -187,9 +187,9 @@ export const Projects: FC<any> = ({ projects }) => {
           <Swiper
             breakpoints={{
               0: {
-                slidesPerView: 1.2,
+                slidesPerView: 1,
               },
-              300: {
+              500: {
                 slidesPerView: 1.5,
               },
               768: {
@@ -204,7 +204,7 @@ export const Projects: FC<any> = ({ projects }) => {
               disableOnInteraction: true,
             }}
             modules={[Autoplay]}
-            spaceBetween={10}
+            spaceBetween={40}
             loop={true}
           >
             {projects
