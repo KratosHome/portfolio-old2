@@ -152,7 +152,7 @@ export const Services: FC<any> = ({ services }) => {
                 <Image
                   src={arrowLong}
                   alt={t('scroll')}
-                  width={150}
+                  width={130}
                   height={30}
                 />
               </div>
