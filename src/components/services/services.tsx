@@ -81,11 +81,14 @@ export const Services: FC<any> = ({ services }) => {
   return (
     <section aria-label="services" id="services">
       <div className="relative mx-auto -mt-[400px] mb-[140px] max-w-[1442px] px-[24px]">
+        <div className="absolute -top-[800px] left-[200px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
+        <div className="absolute right-[200px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <h2 className="hidden text-[40px] font-light uppercase lg:ml-[90px] lg:block lg:text-[96px]">
           {t('services')}
         </h2>
 
         <div className="absolute -left-[155px] top-[-100px] size-[345px] rounded-full border-r-[1px] border-stone-500/30" />
+        <div className="absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] opacity-[0.7] bg-orbit-services" />
         <ul className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">
           {services.map((service: any, index: number) => (
             <li
@@ -137,13 +140,13 @@ export const Services: FC<any> = ({ services }) => {
         </ul>
         <div className="block lg:hidden">
           <ul
-            className="wrapper-services-mob z-20 min-h-screen"
+            className="wrapper-services-mob max-w-screen z-20 flex min-h-[850px] items-end overflow-hidden"
             ref={wrapperRef}
           >
-            <h2 className="absolute block pt-[50px] text-[40px] font-light uppercase lg:ml-[90px] lg:hidden lg:text-[96px]">
+            <h2 className="absolute top-0 block pt-[50px] text-[40px] font-light uppercase lg:hidden">
               {t('services')}
             </h2>
-            <div className="absolute -right-[50px] mt-[30px]">
+            <div className="absolute -right-[50px] top-[80px] mt-[30px]">
               <div className="ml-[10px] flex flex-col items-center text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
                 <div>{t('scroll')}</div>
                 <div>{t('see-more')}</div>

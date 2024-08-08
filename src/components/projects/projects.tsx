@@ -1,7 +1,7 @@
 'use client'
 import './projects.scss'
 import { useTranslations } from 'next-intl'
-import { FC, useRef } from 'react'
+import { FC, useRef, useState } from 'react'
 import arrowAslant from '@/assets/icons/arrow-aslant.svg'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -72,14 +72,23 @@ export const Projects: FC<any> = ({ projects }) => {
     })
   })
 
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.activeIndex)
+  }
+
   return (
     <section aria-label="projects" id="projects">
-      <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] px-[24px]">
+      <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
+        <div className="clip-half-circle absolute -left-[100px] -top-[30px] size-[200px] flex-shrink-0 rounded-full border border-black border-stone-500/30 bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px] xl:-left-[200px] xl:size-[400px]"></div>
+
+        <div className="absolute right-[200px] top-[100px] -z-40 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <h2 className="my-0 mr-[20px] text-right text-[40px] font-light uppercase lg:text-[96px]">
           {t('project')}
         </h2>
         <div className="my-[32px] mr-[20px] flex flex-col items-end justify-end">
-          <div className="text-[16px] lg:text-[24px]">scroll to see more </div>
+          <div className="text-[16px] lg:text-[24px]">scroll to see more</div>
           <Image
             className="mr-1 mt-[10px] w-[120px] lg:mr-3 lg:w-[170px]"
             src={arrowLong}
@@ -114,7 +123,7 @@ export const Projects: FC<any> = ({ projects }) => {
                       ref={(el: any) => (projectsRefs.current[index] = el!)}
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={() => handleMouseLeave(index)}
-                      className="project-card group relative m-4 flex min-h-[552px] w-[398px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] duration-300 hover:justify-between"
+                      className="project-card group relative z-10 m-4 flex min-h-[552px] w-[398px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
                     >
                       <div
                         className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
@@ -125,10 +134,10 @@ export const Projects: FC<any> = ({ projects }) => {
                         }}
                       />
                       <div className="overflow-hidden">
-                        <h3 className="mb-[21px] text-[60px] font-light leading-[0.9] duration-300 group-hover:text-[32px] group-hover:text-[#0B66F5]">
+                        <h3 className="mb-[21px] text-[60px] font-light leading-[0.9] duration-700 group-hover:text-[32px] group-hover:text-[#0B66F5]">
                           {project.title}
                         </h3>
-                        <div className="text-[20px] font-bold text-[#0B66F5] duration-300 group-hover:text-right group-hover:text-white">
+                        <div className="text-[20px] font-bold text-[#0B66F5] duration-700 group-hover:text-right group-hover:text-white">
                           cooperation with: &quot;{project.company}&quot;
                         </div>
                         <div
@@ -187,15 +196,18 @@ export const Projects: FC<any> = ({ projects }) => {
           <Swiper
             breakpoints={{
               0: {
+                slidesPerView: 1.1,
+              },
+              350: {
                 slidesPerView: 1,
               },
-              500: {
+              400: {
                 slidesPerView: 1.5,
               },
-              768: {
-                slidesPerView: 2,
+              600: {
+                slidesPerView: 2.1,
               },
-              1024: {
+              840: {
                 slidesPerView: 3,
               },
             }}
@@ -206,9 +218,10 @@ export const Projects: FC<any> = ({ projects }) => {
             modules={[Autoplay]}
             spaceBetween={40}
             loop={true}
+            onSlideChange={handleSlideChange}
           >
             {projects
-              .filter((project: any) => !project.isEmptiness) // Фільтрація проектів
+              .filter((project: any) => !project.isEmptiness)
               .map((project: any, index: number) => (
                 <SwiperSlide key={index} className="custom-slide">
                   {project.isEmptiness === false ? (
@@ -222,7 +235,11 @@ export const Projects: FC<any> = ({ projects }) => {
                             opacity: '0.1 !important',
                           }}
                         />
-                        <h3 className="text-[36px] font-light leading-[0.9]">
+                        <h3
+                          className={`text-[36px] font-light leading-[0.9] ${
+                            activeIndex === index ? 'text-red-500' : ''
+                          }`}
+                        >
                           {project.title}
                         </h3>
                         <div className="text-[20px] font-bold text-[#0B66F5]">
