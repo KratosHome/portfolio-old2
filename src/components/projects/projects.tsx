@@ -17,7 +17,7 @@ export const Projects: FC<any> = ({ projects }) => {
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLLIElement[][]>([])
   const descriptionRefs = useRef<HTMLDivElement[]>([])
-  const wrapperRef = useRef<HTMLUListElement | null>(null)
+  const [mobActiveSlide, setMobActiveSlide] = useState(0)
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
@@ -72,11 +72,36 @@ export const Projects: FC<any> = ({ projects }) => {
     })
   })
 
-  const [activeIndex, setActiveIndex] = useState(0)
+  useGSAP(
+    () => {
+      gsap.to('.project-mob-wrapper', {
+        height: 'auto',
+        minHeight: '452px',
+        duration: 0.3,
+        ease: 'power2.out',
+      })
 
-  const handleSlideChange = (swiper: any) => {
-    setActiveIndex(swiper.activeIndex)
-  }
+      gsap.to('.project-mob-description', {
+        height: 'auto',
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+      })
+      gsap.to('.project-mob-description-hidden', {
+        height: '0px',
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+      })
+
+      gsap.to('.project-mob-wrapper-hidden', {
+        height: '452px',
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+    },
+    { dependencies: [mobActiveSlide] },
+  )
 
   return (
     <section aria-label="projects" id="projects">
@@ -218,7 +243,9 @@ export const Projects: FC<any> = ({ projects }) => {
             modules={[Autoplay]}
             spaceBetween={40}
             loop={true}
-            onSlideChange={handleSlideChange}
+            onSlideChangeTransitionStart={(swiper) => {
+              setMobActiveSlide(swiper.realIndex)
+            }}
           >
             {projects
               .filter((project: any) => !project.isEmptiness)
@@ -226,24 +253,33 @@ export const Projects: FC<any> = ({ projects }) => {
                 <SwiperSlide key={index} className="custom-slide">
                   {project.isEmptiness === false ? (
                     <a href={project.link} target="_blank">
-                      <div className="relative m-4 flex h-[452px] w-[300px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px]">
-                        <div
-                          className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
-                          style={{
-                            animationDelay: `${index * 0.5}s`,
-                            backgroundColor: 'transparent  !important',
-                            opacity: '0.1 !important',
-                          }}
-                        />
-                        <h3
-                          className={`text-[36px] font-light leading-[0.9] ${
-                            activeIndex === index ? 'text-red-500' : ''
-                          }`}
-                        >
-                          {project.title}
-                        </h3>
-                        <div className="text-[20px] font-bold text-[#0B66F5]">
-                          cooperation with: &quot;{project.company}&quot;
+                      <div
+                        className={`relative m-4 flex h-[452px] min-h-[452px] w-[300px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-mob-wrapper-hidden'}`}
+                      >
+                        <div className="overflow-hidden">
+                          <div
+                            className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
+                            style={{
+                              animationDelay: `${index * 0.5}s`,
+                              backgroundColor: 'transparent  !important',
+                              opacity: '0.1 !important',
+                            }}
+                          />
+                          <h3
+                            className={`text-[36px] leading-[0.9] ${mobActiveSlide === index ? 'text-[26px] text-[#0B66F5]' : ''}`}
+                          >
+                            {project.title}
+                          </h3>
+                          <div
+                            className={`mt-[21px] text-[#0B66F5] ${mobActiveSlide === index ? 'mb-[21px] text-white' : ''}`}
+                          >
+                            cooperation with: &quot;{project.company}&quot;
+                          </div>
+                          <div
+                            className={`text-[16px] font-light opacity-0 ${mobActiveSlide === index ? 'project-mob-description' : 'project-mob-description-hidden'}`}
+                          >
+                            {project.description}
+                          </div>
                         </div>
                         <div className="flex items-center justify-between border-t-[1px] border-amber-50">
                           <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">

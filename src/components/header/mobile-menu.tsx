@@ -51,7 +51,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ menu }) => {
             <ul>
               {menu.map((item: any, index: number) => (
                 <li
-                  key={item.id}
+                  key={item.name}
                   className="from-white/12 mb-[12px] rounded-lg border-b border-b-stone-500/60 bg-gradient-to-tr to-white/0 px-[12px] py-[8px] text-[16px] font-light backdrop-blur-[12.5px]"
                 >
                   <Link href={`/${locale}/${item.link}`}>{item.name}</Link>

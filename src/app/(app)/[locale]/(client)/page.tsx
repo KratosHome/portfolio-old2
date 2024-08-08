@@ -10,6 +10,7 @@ import { projectsData } from '@/data/projects-data'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
+import { getTranslations } from 'next-intl/server'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -17,8 +18,8 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
 }
-export async function generateMetadata({ params }: PageProps) {
-  return homeMetadata(params.locale as LanguageProps)
+export async function generateMetadata({ params: { locale } }: PageProps) {
+  return homeMetadata(locale)
 }
 
 const Home: FC<PageProps> = async ({ params: { locale } }) => {

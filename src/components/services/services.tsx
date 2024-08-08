@@ -75,9 +75,6 @@ export const Services: FC<any> = ({ services }) => {
     })
   })
 
-  /*
-            <div className="bg-orbit-services absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] opacity-[0.7]" />
-     */
   return (
     <section aria-label="services" id="services">
       <div className="relative mx-auto -mt-[400px] mb-[140px] max-w-[1442px] px-[24px]">
@@ -140,7 +137,7 @@ export const Services: FC<any> = ({ services }) => {
         </ul>
         <div className="block lg:hidden">
           <ul
-            className="wrapper-services-mob max-w-screen z-20 flex min-h-[850px] items-end overflow-hidden"
+            className="wrapper-services-mob max-w-screen z-20 flex overflow-hidden"
             ref={wrapperRef}
           >
             <h2 className="absolute top-0 block pt-[50px] text-[40px] font-light uppercase lg:hidden">
@@ -163,7 +160,7 @@ export const Services: FC<any> = ({ services }) => {
             {services.map((item: any, index: any) => (
               <li
                 key={index}
-                className="panel group relative mx-3 my-10 mt-[45%] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel group relative mx-3 my-10 mt-[300px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div

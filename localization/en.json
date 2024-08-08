@@ -1,4 +1,11 @@
 {
+  "metadata": {
+    "home": {
+      "title": "Developing web apps, e-commerce | codecraftmaster.com",
+      "description": "Developing websites with complex animations and interesting solutions. A platform for training young developers on real projects or startups.",
+      "keywords": "software development, web development, web app, e-commerce development, e-commerce, website creation, mobile development, Next.js, React, Mentoring, Training, Startups, Real Projects, Web Development, practice, JavaScript, mobile app development, JavaScript programming, software development, frontend development, Apple development"
+    }
+  },
   "header": {
     "name": "Oleh Tkach",
     "login": "Login",
