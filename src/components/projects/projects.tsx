@@ -299,7 +299,9 @@ export const Projects: FC<any> = ({ projects }) => {
             <ButtonCircle title={'RESUME'} />
           </div>
         </div>
+        <div className="absolute -bottom-[180px] right-0 h-[90px] w-[100px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.3]" />
       </div>
+      <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />
     </section>
   )
 }
