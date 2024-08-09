@@ -1,28 +1,40 @@
 {
   "header": {
-    "name": "Олег Ткач",
-    "login": "Увійти",
-    "switch-dark ": "переключитися на темну тему",
-    "switch-light": "переключитися на світлу тему",
-    "switch-local": "відкрита модальне вікно перемикання мови "
+    "name": "Oleh Tkach",
+    "login": "Login",
+    "switch-dark": "Switch to dark theme",
+    "switch-light": "Switch to light theme",
+    "switch-local": "Open language switch modal",
+    "arrow-menu": "Arrow Menu"
   },
   "home-page": {
-   "hero": {
-     "frontend": "Фронтенд",
-     "developer": "Розробник",
-     "subtitle": "Код як мистецтво: інженерна та функціональна краса",
-     "experience": "Досвіду",
-     "years": "років",
-     "hire-me": "Найняти",
-     "arrow-right": "Cтрілка вправо"
+    "hero": {
+      "frontend": "Frontend",
+      "developer": "Developer",
+      "subtitle": "Code as Art: Engineering and Functional Beauty",
+      "experience": "Experience",
+      "years": "years",
+      "hire-me": "Hire Me",
+      "arrow-right": "Arrow Right"
     }
   },
   "services": {
     "services": "Services",
     "scroll": "scroll to",
-    "see-more": "see more"
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more"
   },
   "project": {
-    "project": "projects"
+    "project": "projects",
+    "scroll": "scroll to",
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more",
+    "cooperation-with": "cooperation with",
+    "arrow-link": "arrow link",
+    "resume": "RESUME"
+  },
+  "experience": {
+    "experience": "experience",
+    "hire-me": "Hire Me"
   }
 }

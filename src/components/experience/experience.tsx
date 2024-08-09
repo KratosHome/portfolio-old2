@@ -23,7 +23,7 @@ export const Experience = ({
 }: {
   experience: ExperienceItem[]
 }) => {
-  const t = useTranslations('services')
+  const t = useTranslations('experience')
   const { contextSafe } = useGSAP()
   const [activeItem, setActiveItem] = useState<number | null>(null)
 
@@ -75,16 +75,12 @@ export const Experience = ({
   })
 
   return (
-    <section
-      aria-label="projects"
-      id="projects"
-      className="relative pb-[500px]"
-    >
+    <section aria-label="projects" id="projects" className="relative">
       <div className="absolute inset-0 mx-auto h-[210px] w-[210px] flex-shrink-0 rotate-[-89.637deg] rounded-full bg-[linear-gradient(223deg,_rgba(223,_223,_223,_0.20)_12.99%,_rgba(0,_0,_0,_0.20)_28.97%),_linear-gradient(265deg,_#666_-44.12%,_#262626_-21.9%,_#1C1C1C_4.39%,_#000_40.18%)] lg:h-[769.29px] lg:w-[769.29px]"></div>
 
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
         <h2 className="my-0 mr-[20px] text-center text-[40px] font-light uppercase lg:text-[96px]">
-          experience
+          {t('experience')}
         </h2>
         <div className="mt-[64px] px-[25px]">
           {experience.map((item) => (
@@ -154,12 +150,11 @@ export const Experience = ({
         <div className="mt-[50px] flex w-full justify-end lg:-ml-[220px] lg:mt-[120px]">
           <div className="relative flex max-w-max items-center justify-center">
             <div className="orbit absolute -top-[250px] hidden size-[700px] bg-orbit lg:block" />
-            <ButtonCircle title={'hire-me'} />
+            <ButtonCircle title={t('hire-me')} />
           </div>
         </div>
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />
-
       <div className="absolute -top-[800px] left-[500px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       <div className="absolute -left-[500px] -top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
     </section>

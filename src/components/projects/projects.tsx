@@ -113,7 +113,9 @@ export const Projects: FC<any> = ({ projects }) => {
           {t('project')}
         </h2>
         <div className="my-[32px] mr-[20px] flex flex-col items-end justify-end">
-          <div className="text-[16px] lg:text-[24px]">scroll to see more</div>
+          <div className="text-[16px] lg:text-[24px]">
+            {t('scroll-see-more')}
+          </div>
           <Image
             className="mr-1 mt-[10px] w-[120px] lg:mr-3 lg:w-[170px]"
             src={arrowLong}
@@ -163,7 +165,7 @@ export const Projects: FC<any> = ({ projects }) => {
                           {project.title}
                         </h3>
                         <div className="text-[20px] font-bold text-[#0B66F5] duration-700 group-hover:text-right group-hover:text-white">
-                          cooperation with: &quot;{project.company}&quot;
+                          {t('cooperation-with')}: &quot;{project.company}&quot;
                         </div>
                         <div
                           ref={(el: any) =>
@@ -177,7 +179,7 @@ export const Projects: FC<any> = ({ projects }) => {
                       <div className="flex items-center justify-between border-t-[1px] border-amber-50">
                         <div className="flex flex-wrap items-center gap-4">
                           <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
-                            <Image src={arrowAslant} alt={'arrow link'} />
+                            <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
                           {project.technologies.length >= 1 &&
                             project.technologies.map(
@@ -213,7 +215,7 @@ export const Projects: FC<any> = ({ projects }) => {
             ))}
           </Swiper>
           <div className="absolute bottom-[230px] right-[150px] z-30">
-            <ButtonCircle title={'RESUME'} />
+            <ButtonCircle title={t('resume')} />
           </div>
         </div>
 
@@ -273,7 +275,8 @@ export const Projects: FC<any> = ({ projects }) => {
                           <div
                             className={`mt-[21px] text-[#0B66F5] ${mobActiveSlide === index ? 'mb-[21px] text-white' : ''}`}
                           >
-                            cooperation with: &quot;{project.company}&quot;
+                            {t('cooperation-with')}: &quot;{project.company}
+                            &quot;
                           </div>
                           <div
                             className={`text-[16px] font-light opacity-0 ${mobActiveSlide === index ? 'project-mob-description' : 'project-mob-description-hidden'}`}
@@ -283,7 +286,7 @@ export const Projects: FC<any> = ({ projects }) => {
                         </div>
                         <div className="flex items-center justify-between border-t-[1px] border-amber-50">
                           <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
-                            <Image src={arrowAslant} alt={'arrow link'} />
+                            <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
                           <div className="text-[64px] font-light text-[#0B66F5]">
                             {project.count}
@@ -296,7 +299,7 @@ export const Projects: FC<any> = ({ projects }) => {
               ))}
           </Swiper>
           <div className="mt-[41px] flex w-full justify-end">
-            <ButtonCircle title={'RESUME'} />
+            <ButtonCircle title={t('resume')} />
           </div>
         </div>
         <div className="absolute -bottom-[180px] right-0 h-[90px] w-[100px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.3]" />

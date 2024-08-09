@@ -14,8 +14,8 @@ export const Services: FC<any> = ({ services }) => {
   const t = useTranslations('services')
   const { contextSafe } = useGSAP()
   const serviceRefs = useRef<HTMLDivElement[]>([])
-  const iconRefs = useRef<HTMLLIElement[][]>([])
-  const wrapperRef = useRef<HTMLUListElement | null>(null)
+  const iconRefs = useRef<HTMLDivElement[][]>([])
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
@@ -86,9 +86,9 @@ export const Services: FC<any> = ({ services }) => {
 
         <div className="absolute -left-[155px] top-[-100px] size-[345px] rounded-full border-r-[1px] border-stone-500/30" />
         <div className="absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] opacity-[0.7] bg-orbit-services" />
-        <ul className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">
+        <div className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">
           {services.map((service: any, index: number) => (
-            <li
+            <div
               key={service.id}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
@@ -109,11 +109,11 @@ export const Services: FC<any> = ({ services }) => {
               <p className="block text-[20px] font-light">
                 {service.description}
               </p>
-              <ul className="flex flex-wrap gap-3">
-                <li className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></li>
+              <div className="flex flex-wrap gap-3">
+                <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></div>
                 {service.icon.length >= 1 &&
                   service.icon.map((icon: any, iconIndex: number) => (
-                    <li
+                    <div
                       key={icon.id}
                       ref={(el) => {
                         if (!iconRefs.current[index]) {
@@ -129,14 +129,14 @@ export const Services: FC<any> = ({ services }) => {
                         width={34}
                         height={34}
                       />
-                    </li>
+                    </div>
                   ))}
-              </ul>
-            </li>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
         <div className="block lg:hidden">
-          <ul
+          <div
             className="wrapper-services-mob max-w-screen z-20 flex overflow-hidden"
             ref={wrapperRef}
           >
@@ -158,7 +158,7 @@ export const Services: FC<any> = ({ services }) => {
               </div>
             </div>
             {services.map((item: any, index: any) => (
-              <li
+              <div
                 key={index}
                 className="panel group relative mx-3 my-10 mt-[300px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
@@ -177,23 +177,23 @@ export const Services: FC<any> = ({ services }) => {
                 <p className="block text-[20px] font-light">
                   {item.description}
                 </p>
-                <ul className="flex flex-wrap gap-3">
-                  <li className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></li>
+                <div className="flex flex-wrap gap-3">
+                  <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></div>
                   {item.icon.length > 0 &&
                     item.icon.map((icon: any) => (
-                      <li key={icon.id}>
+                      <div key={icon.id}>
                         <Image
                           src={icon.icon}
                           alt={icon.alt}
                           width={34}
                           height={34}
                         />
-                      </li>
+                      </div>
                     ))}
-                </ul>
-              </li>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />

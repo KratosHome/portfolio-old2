@@ -21,9 +21,20 @@
   "services": {
     "services": "Services",
     "scroll": "scroll to",
-    "see-more": "see more"
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more"
   },
   "project": {
-    "project": "projects"
+    "project": "projects",
+    "scroll": "scroll to",
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more",
+    "cooperation-with": "cooperation with",
+    "arrow-link": "arrow link",
+    "resume": "RESUME"
+  },
+  "experience": {
+    "experience": "experience",
+    "hire-me": "Hire Me"
   }
 }

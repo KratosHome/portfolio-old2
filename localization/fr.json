@@ -1,28 +1,40 @@
 {
   "header": {
     "name": "Oleh Tkach",
-    "login": "Connexion",
-    "switch-dark": "Passer au thème sombre",
-    "switch-light": "Passer au thème clair",
-    "switch-local": "Ouvrir la fenêtre modale de changement de langue"
+    "login": "Login",
+    "switch-dark": "Switch to dark theme",
+    "switch-light": "Switch to light theme",
+    "switch-local": "Open language switch modal",
+    "arrow-menu": "Arrow Menu"
   },
   "home-page": {
     "hero": {
       "frontend": "Frontend",
-      "developer": "Développeur",
-      "subtitle": "Le code comme art : Beauté ingénierie et fonctionnelle",
-      "experience": "Expérience",
-      "years": "ans",
-      "hire-me": "Embauchez-moi",
-      "arrow-right": "Flèche droite"
+      "developer": "Developer",
+      "subtitle": "Code as Art: Engineering and Functional Beauty",
+      "experience": "Experience",
+      "years": "years",
+      "hire-me": "Hire Me",
+      "arrow-right": "Arrow Right"
     }
   },
   "services": {
     "services": "Services",
     "scroll": "scroll to",
-    "see-more": "see more"
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more"
   },
   "project": {
-    "project": "projects"
+    "project": "projects",
+    "scroll": "scroll to",
+    "see-more": "see more",
+    "scroll-see-more": "scroll to see more",
+    "cooperation-with": "cooperation with",
+    "arrow-link": "arrow link",
+    "resume": "RESUME"
+  },
+  "experience": {
+    "experience": "experience",
+    "hire-me": "Hire Me"
   }
 }
