@@ -9,7 +9,7 @@ import { Autoplay, Grid } from 'swiper/modules'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import arrowLong from '@/assets/icons/arrow-long.svg'
-import { ButtonCircle } from '@/components/button-circle/button-circle'
+import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 
 export const Projects: FC<any> = ({ projects }) => {
   const t = useTranslations('project')

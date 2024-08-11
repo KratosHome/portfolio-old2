@@ -9,8 +9,8 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Grid } from 'swiper/modules'
 import arrowAslant from '@/assets/icons/arrow-aslant.svg'
-import { ButtonCircle } from '@/components/button-circle/button-circle'
 import { dataReviews } from '@/data/reviews'
+import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 
 export const Reviews = ({}: any) => {
   const data = dataReviews

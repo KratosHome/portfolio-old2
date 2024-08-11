@@ -44,9 +44,5 @@ export default async function page({ params: { locale } }: PageProps) {
   if (session?.user) {
     redirect(`/${locale}/admin`)
   }
-  return (
-    <>
-      <Login />
-    </>
-  )
+  return <Login />
 }

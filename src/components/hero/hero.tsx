@@ -10,8 +10,8 @@ import telegramLight from '@/assets/icons/telegramLight.svg'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-import { ButtonCircle } from '@/components/button-circle/button-circle'
 import ThemeChange from '@/components/theme-change/theme-change'
+import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')

@@ -16,25 +16,36 @@
       "years": "years",
       "hire-me": "Hire Me",
       "arrow-right": "Arrow Right"
+    },
+    "services": {
+      "services": "Services",
+      "scroll": "scroll to",
+      "see-more": "see more",
+      "scroll-see-more": "scroll to see more"
+    },
+    "project": {
+      "project": "projects",
+      "scroll": "scroll to",
+      "see-more": "see more",
+      "scroll-see-more": "scroll to see more",
+      "cooperation-with": "cooperation with",
+      "arrow-link": "arrow link",
+      "resume": "RESUME"
+    },
+    "experience": {
+      "experience": "experience",
+      "hire-me": "Hire Me"
     }
   },
-  "services": {
-    "services": "Services",
-    "scroll": "scroll to",
-    "see-more": "see more",
-    "scroll-see-more": "scroll to see more"
-  },
-  "project": {
-    "project": "projects",
-    "scroll": "scroll to",
-    "see-more": "see more",
-    "scroll-see-more": "scroll to see more",
-    "cooperation-with": "cooperation with",
-    "arrow-link": "arrow link",
-    "resume": "RESUME"
-  },
-  "experience": {
-    "experience": "experience",
-    "hire-me": "Hire Me"
+  "login": {
+    "signNow": "Sign in now",
+    "google-sing-icon": "Google sing in icon",
+    "github-sing-icon": "Github sing in icon",
+    "email": "Email",
+    "password": "Password",
+    "sign-in": "Sign in",
+    "have-account": "Don`t have an account?",
+    "sign-up": "Sign Up",
+    "forgot-password": "Forgot your Password?"
   }
 }

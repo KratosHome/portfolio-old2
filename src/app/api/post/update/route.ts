@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDb } from '@/server/connectToDb'
-import { Post } from '@/server/post/postSchema'
+import { Post } from '@/server/blog/blog-schema'
 import { revalidatePath } from 'next/cache'
 
 export async function POST(request: NextRequest) {

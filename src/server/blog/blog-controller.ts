@@ -1,6 +1,6 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
-import { Post } from '@/server/post/postSchema'
+import { Post } from '@/server/blog/blog-schema'
 import { revalidatePath } from 'next/cache'
 import { User } from '@/server/users/userSchema'
 
