@@ -117,19 +117,3 @@ export const experienceData = {
   uk: experienceDataUa,
   fr: experienceDataUa,
 }
-
-/*
-    description: [
-      {
-        id: 6,
-        text: '2020 - 2021 - Opening and development coffee shop “RobinBobbin”',
-      },
-      { id: 7, text: '2018 - 2021 - Product Owner SharmBeauty.ua' },
-      { id: 8, text: '2017 - 2021 - Working on expanding on Sharm' },
-      { id: 9, text: '2017 - 2021 - Head of the Lux department of the Shram' },
-      {
-        id: 10,
-        text: '2014 - 2019 - Improvement of conditions with suppliers',
-      },
-    ],
- */

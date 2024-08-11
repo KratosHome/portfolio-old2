@@ -14,6 +14,8 @@ import { Experience } from '@/components/experience/experience'
 import { experienceData } from '@/data/experience'
 import { Reviews } from '@/components/reviews/reviews'
 import { getReviewAction } from '@/server/reviws/gert-review.server'
+import { Faq } from '@/components/faq/faq'
+import { Contact } from '@/components/contact/contact'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -44,6 +46,8 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
       <Projects projects={projects} />
       <Experience experience={experience} />
       <Reviews data={dataReviews} />
+      <Faq />
+      <Contact />
     </>
   )
 }

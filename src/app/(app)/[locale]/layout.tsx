@@ -9,6 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ReactNode } from 'react'
 import Head from 'next/head'
 import { Header } from '@/components/header/header'
+import { Footer } from '@/components/footer/footer'
 
 export default async function LocaleLayout({
   children,
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
           <StarsCanvas />
           <Header />
           <main className="min-h-[100svh]">{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </ThemeProvider>
     </>
