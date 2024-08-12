@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Input } from '@/components/input/input'
+import { Input } from '@/components/UI/input/input'
 
 interface registerFormValues {
   username: string
