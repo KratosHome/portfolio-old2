@@ -6,7 +6,6 @@ import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import Image from 'next/image'
 import { Input } from '@/components/UI/input/input'
 import { useLocale } from 'use-intl'
-import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRef, useState } from 'react'
@@ -27,18 +26,16 @@ import { toast } from 'react-toastify'
 export const Footer = () => {
   const { theme } = useTheme()
   const locale = useLocale()
-  const router = useRouter()
   const t = useTranslations('footer')
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-  const [isVerified, setIsVerified] = useState<boolean>(false)
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<any>()
 
-  const [errorAction, setErrorAction] = useState<boolean | undefined>(false)
+  const [isVerified, setIsVerified] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean | undefined>(false)
 
   const year = new Date().getFullYear()
@@ -52,6 +49,7 @@ export const Footer = () => {
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
     const sendData = {
+      type: 'footer message',
       locale: locale,
       name: data.name,
       email: data.email,
@@ -64,6 +62,7 @@ export const Footer = () => {
         toast(`${t('The message has been sent')}`, {
           type: 'success',
         })
+        reset()
       } else {
         toast(`${t("Something happened, it's sad!")}`, {
           type: 'error',

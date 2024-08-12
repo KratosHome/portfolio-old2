@@ -11,7 +11,8 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import ThemeChange from '@/components/theme-change/theme-change'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
+import { HireMe } from '@/components/hire-me/hire-me'
+import { ModalProvider } from '@/components/UI/modal/modal'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -101,7 +102,7 @@ const Hero = () => {
               </a>
             </div>
             <div className="absolute left-0 lg:-top-[120px] lg:left-[310px]">
-              <ButtonCircle title={t('hire-me')} />
+              <HireMe title={t('hire-me')} />
             </div>
           </div>
           <h2 className="relative min-w-[190px] text-end text-[24px] font-light uppercase leading-[1] lg:min-w-[550px] lg:text-[64px]">

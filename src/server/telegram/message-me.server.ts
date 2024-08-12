@@ -15,7 +15,7 @@ export async function messageMe(formData: any) {
       `
     idUser: ще в роботі,
     Мова: ${formData.locale},
-    Тип повідомлення: message,
+    Тип повідомлення: ${formData.type},
     Дата: ${formattedDate},
     Імя: ${formData.name},
     Імейл: ${formData.email},

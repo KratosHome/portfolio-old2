@@ -1967,7 +1967,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0, clsx@npm:^2.1.0":
+"clsx@npm:^2.0.0, clsx@npm:^2.1.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
@@ -3113,6 +3113,26 @@ __metadata:
     combined-stream: "npm:^1.0.6"
     mime-types: "npm:^2.1.12"
   checksum: 10c0/706ef1e5649286b6a61e5bb87993a9842807fd8f149cd2548ee807ea4fb882247bdf7f6e64ac4720029c0cd5c80343de0e22eee1dc9e9882e12db9cc7bc016a4
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^11.3.24":
+  version: 11.3.24
+  resolution: "framer-motion@npm:11.3.24"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/5322fce366b4ea0836bb7c684f5eb834beaab20db7c09b8661f1a7903739df6090b154bed396da930affff3def949cfe9da5288828824bb0c73cf1efb00ab33a
   languageName: node
   linkType: hard
 
@@ -5617,10 +5637,12 @@ __metadata:
     "@vercel/speed-insights": "npm:^1.0.12"
     bcryptjs: "npm:^2.4.3"
     cloudinary: "npm:^2.3.1"
+    clsx: "npm:^2.1.1"
     eslint: "npm:^8.57.0"
     eslint-config-next: "npm:14.2.5"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.2.1"
+    framer-motion: "npm:^11.3.24"
     gsap: "npm:^3.12.5"
     mongoose: "npm:^8.5.1"
     next: "npm:14.2.5"
@@ -5642,6 +5664,7 @@ __metadata:
     sass: "npm:^1.77.8"
     swiper: "npm:^11.1.9"
     tailwind-hamburgers: "npm:^1.3.5"
+    tailwind-merge: "npm:^2.5.1"
     tailwindcss: "npm:^3.4.7"
     three: "npm:^0.167.0"
     typescript: "npm:^5.5.4"
@@ -5720,12 +5743,12 @@ __metadata:
   linkType: hard
 
 "postcss-selector-parser@npm:^6.0.11, postcss-selector-parser@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "postcss-selector-parser@npm:6.1.1"
+  version: 6.1.2
+  resolution: "postcss-selector-parser@npm:6.1.2"
   dependencies:
     cssesc: "npm:^3.0.0"
     util-deprecate: "npm:^1.0.2"
-  checksum: 10c0/5608765e033fee35d448e1f607ffbaa750eb86901824a8bc4a911ea8bc137cb82f29239330787427c5d3695afd90d8721e190f211dbbf733e25033d8b3100763
+  checksum: 10c0/523196a6bd8cf660bdf537ad95abd79e546d54180f9afb165a4ab3e651ac705d0f8b8ce6b3164fb9e3279ce482c5f751a69eb2d3a1e8eb0fd5e82294fb3ef13e
   languageName: node
   linkType: hard
 
@@ -6915,6 +6938,13 @@ __metadata:
   version: 1.3.5
   resolution: "tailwind-hamburgers@npm:1.3.5"
   checksum: 10c0/1007899e23e626428cb9c2d389bb0fe837689106c67005880eec1677741d1ddf7245b5e720b00145514f284f76a32ecef81986229b41dd92fa68d4b1a2471920
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "tailwind-merge@npm:2.5.1"
+  checksum: 10c0/a1fe1276b12642f1badb41be26357883e041e4134dfe75ba77f58f65068e41fbde5d2be4d799c2cf645a3b69956a1f28186436beb08b7975ded9d98ebb2dcc4a
   languageName: node
   linkType: hard
 

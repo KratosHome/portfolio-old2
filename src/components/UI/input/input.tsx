@@ -17,6 +17,7 @@ interface myInputProps {
   onChange?: (e: any) => void
   disabled?: boolean
   password?: string
+  className?: string
 }
 
 export const Input: FC<myInputProps> = ({
@@ -30,6 +31,7 @@ export const Input: FC<myInputProps> = ({
   onChange,
   disabled,
   password,
+  className,
 }) => {
   const [inputType, setInputType] = useState<string>(type)
 
@@ -75,7 +77,7 @@ export const Input: FC<myInputProps> = ({
   const passwordStrengthLevel = getPasswordStrength(password || '')
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`}>
       {label && <label className="text-[28px]">{label}</label>}
       <div>
         {type === 'phone' ? (
@@ -107,7 +109,9 @@ export const Input: FC<myInputProps> = ({
           </div>
         )}
         {error ? (
-          <div className="text-[20px] font-light text-[#A80E0E]">{error}</div>
+          <div className="absolute z-30 text-[20px] font-light text-[#A80E0E]">
+            {error}
+          </div>
         ) : null}
         {inputType === 'password' && (
           <> {renderPasswordStrengthBar(passwordStrengthLevel)}</>
