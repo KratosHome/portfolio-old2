@@ -23,7 +23,7 @@ export const Experience = ({
 }: {
   experience: ExperienceItem[]
 }) => {
-  const t = useTranslations('experience')
+  const t = useTranslations('home-page.experience')
   const { contextSafe } = useGSAP()
   const [activeItem, setActiveItem] = useState<number | null>(null)
 

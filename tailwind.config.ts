@@ -21,6 +21,7 @@ const config: Config = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     require('tailwind-hamburgers'),
     plugin(function ({ addUtilities }) {
       addUtilities({

@@ -11,7 +11,7 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 gsap.registerPlugin(ScrollTrigger)
 
 export const Services: FC<any> = ({ services }) => {
-  const t = useTranslations('services')
+  const t = useTranslations('home-page.services')
   const { contextSafe } = useGSAP()
   const serviceRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLDivElement[][]>([])

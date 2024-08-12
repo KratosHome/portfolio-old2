@@ -14,7 +14,7 @@ import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 
 export const Reviews = ({}: any) => {
   const data = dataReviews
-  const t = useTranslations('project')
+  const t = useTranslations('home-page.project')
   const { contextSafe } = useGSAP()
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLLIElement[][]>([])

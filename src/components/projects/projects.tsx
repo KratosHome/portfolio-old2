@@ -12,7 +12,7 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 
 export const Projects: FC<any> = ({ projects }) => {
-  const t = useTranslations('project')
+  const t = useTranslations('home-page.project')
   const { contextSafe } = useGSAP()
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLLIElement[][]>([])
