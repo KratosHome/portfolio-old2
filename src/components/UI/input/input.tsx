@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import eyesClose from '@/assets/icons/eyes-close.svg'
 import eyesOpen from '@/assets/icons/eyes-open.svg'
 import Image from 'next/image'
+import InputMask from 'react-input-mask'
 
 interface myInputProps {
   label?: string
@@ -77,16 +78,25 @@ export const Input: FC<myInputProps> = ({
     <div className="relative">
       {label && <label className="text-[28px]">{label}</label>}
       <div>
-        <input
-          className="mt-[12px] h-[48px] w-[400px] rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA]"
-          name={name}
-          type={inputType}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          {...register}
-        />
+        {type === 'phone' ? (
+          <InputMask
+            className={`mt-[12px] h-[48px] w-[400px] rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            mask="+99 (999) 999-9999"
+            placeholder={placeholder}
+            {...register}
+          />
+        ) : (
+          <input
+            className={`mt-[12px] h-[48px] w-[400px] rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            name={name}
+            type={inputType}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+            {...register}
+          />
+        )}
         {type === 'password' && (
           <div onClick={toggleShowPassword}>
             <Image
@@ -96,7 +106,9 @@ export const Input: FC<myInputProps> = ({
             />
           </div>
         )}
-        {error ? <div className="absolute bg-red-400">{error}</div> : null}
+        {error ? (
+          <div className="text-[20px] font-light text-[#A80E0E]">{error}</div>
+        ) : null}
         {inputType === 'password' && (
           <> {renderPasswordStrengthBar(passwordStrengthLevel)}</>
         )}

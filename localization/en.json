@@ -7,6 +7,27 @@
     "switch-local": "Open language switch modal",
     "arrow-menu": "Arrow Menu"
   },
+  "footer": {
+    "any-questions": "Any questions?",
+    "Just fill out the form below": "Just fill out the form below",
+    "arrow down": "Arrow Down",
+    "Oleg-Tkach": "Oleg Tkach",
+    "contact-and": "Contact Me and",
+    "watch your ideas turn into beautifully coded realities": "watch your ideas turn into beautifully coded realities.",
+    "name": "name",
+    "This field is required": "This field is required",
+    "Minimum number of characters": "Minimum number of characters",
+    "Maximum number of characters": "Maximum number of characters",
+    "email": "email",
+    "This is not an email": "This is not an email",
+    "phone": "phone number",
+    "message": "message",
+    "let-connect": "Let's Connect",
+    "arrow-right": "Arrow Right",
+    "Invalid phone number format": "Invalid phone number format",
+    "send": "Send",
+    "Privacy Policy": "Privacy Policy"
+  },
   "home-page": {
     "hero": {
       "frontend": "Frontend",
