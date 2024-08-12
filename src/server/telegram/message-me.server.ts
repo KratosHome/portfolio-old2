@@ -23,8 +23,9 @@ export async function messageMe(formData: any) {
     Повідомлення: ${formData.message},
     `,
     )
+    return { success: true }
   } catch (error) {
-    return { error: true }
+    return { success: false }
   }
 }
 // Todo: Add id user to message

@@ -10,6 +10,8 @@ import { ReactNode } from 'react'
 import Head from 'next/head'
 import { Header } from '@/components/header/header'
 import { Footer } from '@/components/footer/footer'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 export default async function LocaleLayout({
   children,
@@ -38,6 +40,7 @@ export default async function LocaleLayout({
           <Header />
           <main className="min-h-[100svh]">{children}</main>
           <Footer />
+          <ToastContainer />
         </NextIntlClientProvider>
       </ThemeProvider>
     </>
