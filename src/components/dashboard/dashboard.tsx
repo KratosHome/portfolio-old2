@@ -20,12 +20,15 @@ const icons = {
   FaUserSecret,
 }
 
-type DashboardItem = {
+type IconKey = keyof typeof icons
+
+interface DashboardItem {
   id: number
-  icon: keyof typeof icons
-  link: string
   title: string
-  tabs: any
+  link: string
+  icon: IconKey
+  roles: string[]
+  tabs?: any
 }
 
 interface DashboardProps {

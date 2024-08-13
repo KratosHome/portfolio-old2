@@ -11,7 +11,7 @@ export default async function LocaleLayout({
   children: ReactNode
   params: { locale: LanguageProps }
 }) {
-  const dashboard = adminDashboardData[locale]
+  const dashboard: any = adminDashboardData[locale]
   const session = await auth()
 
   return (

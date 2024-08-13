@@ -1,9 +1,3 @@
-import { MdOutlineWorkHistory } from 'react-icons/md'
-import { FaTasks } from 'react-icons/fa'
-import { GrBlog } from 'react-icons/gr'
-import { PiStudentBold } from 'react-icons/pi'
-import { FaUserSecret } from 'react-icons/fa'
-
 export const adminDashboardUa = [
   {
     id: 1,

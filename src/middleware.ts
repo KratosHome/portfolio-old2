@@ -12,7 +12,6 @@ export default async function middleware(req: NextRequest) {
     throw new Error('AUTH_SECRET is not defined')
   }
   const session = await getToken({ req, secret })
-  console.log('session', session)
 
   const { pathname } = req.nextUrl
   const locale = pathname.split('/')[1]
