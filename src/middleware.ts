@@ -1,17 +1,13 @@
-import { getToken } from 'next-auth/jwt'
 import createMiddleware from 'next-intl/middleware'
 import { NextRequest, NextResponse } from 'next/server'
+import { auth } from '@/server/auth/auth.server'
 
 const adminPages = ['/admin', '/settings']
 const userPages = ['/admin/user', 'admin/students', 'admin/project']
 const loginPage = '/login'
 
 export default async function middleware(req: NextRequest) {
-  const secret = process.env.AUTH_SECRET
-  if (!secret) {
-    throw new Error('AUTH_SECRET is not defined')
-  }
-  const session = await getToken({ req, secret })
+  const session = await auth()
 
   const { pathname } = req.nextUrl
   const locale = pathname.split('/')[1]
@@ -24,7 +20,6 @@ export default async function middleware(req: NextRequest) {
     const isUserPage = userPages.some((page) =>
       pathname.startsWith(`/${locale}${page}`),
     )
-    console.log('isUserPage', isUserPage)
     if (isUserPage) {
       return NextResponse.redirect(new URL(`/${locale}`, req.url))
     }
