@@ -44,7 +44,6 @@ const Login = () => {
       router.refresh()
     }
   }
-
   return (
     <div>
       {loading && <Loader />}

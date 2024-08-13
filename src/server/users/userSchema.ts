@@ -27,8 +27,36 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'mentor', 'manager', 'admin', 'super-admin'],
+      enum: ['frontend', 'backend', 'mentor', 'manager'],
       default: 'user',
+    },
+    transactions: {
+      type: Array,
+      default: [],
+    },
+    telegramLink: {
+      type: String,
+    },
+    gitHubLink: {
+      type: String,
+    },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    resume: {
+      type: String,
+    },
+    portfolio: {
+      type: String,
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
     resetPasswordToken: String,
   },

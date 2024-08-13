@@ -19,9 +19,14 @@ export const Header = () => {
   const menu = menuData[locale]
   const { contextSafe } = useGSAP()
 
+  const subMenuTimers = useRef<Array<NodeJS.Timeout | null>>([])
   const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
 
   const showSubMenu = contextSafe((index: number) => {
+    if (subMenuTimers.current[index]) {
+      clearTimeout(subMenuTimers.current[index] as NodeJS.Timeout) // Видалити таймер, якщо мишка повернулась на пункт меню
+    }
+
     gsap.to(subMenuRefs.current[index], {
       duration: 0.7,
       height: 'auto',
@@ -31,12 +36,14 @@ export const Header = () => {
   })
 
   const hideSubMenu = contextSafe((index: number) => {
-    gsap.to(subMenuRefs.current[index], {
-      duration: 0.5,
-      height: 0,
-      opacity: 0,
-      ease: 'power3.in',
-    })
+    subMenuTimers.current[index] = setTimeout(() => {
+      gsap.to(subMenuRefs.current[index], {
+        duration: 0.5,
+        height: 0,
+        opacity: 0,
+        ease: 'power3.in',
+      })
+    }, 200)
   })
 
   return (

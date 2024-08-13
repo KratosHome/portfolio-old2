@@ -14,16 +14,11 @@ export default async function LocaleLayout({
   const dashboard = adminDashboardData[locale]
   const session = await auth()
 
-  console.log('session', session?.user)
-
-  if (session?.user === undefined) {
-    redirect(`/${locale}`)
-  }
   return (
     <>
-      <div className="relative mx-[24px] mx-auto flex max-w-[1442px] border border-red-400 bg-neutral-700">
+      <div className="relative mx-auto flex max-w-[1442px] rounded-lg bg-neutral-800">
         <Dashboard dashboard={dashboard} />
-        <main className="min-h-[100svh] w-full">{children}</main>
+        <main className="min-h-[90svh] w-full">{children}</main>
       </div>
     </>
   )
