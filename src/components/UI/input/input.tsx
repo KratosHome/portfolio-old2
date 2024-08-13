@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import eyesClose from '@/assets/icons/eyes-close.svg'
 import eyesOpen from '@/assets/icons/eyes-open.svg'
 import Image from 'next/image'
-import InputMask from 'react-input-mask'
+import MaskedInput from 'react-text-mask'
 
 interface myInputProps {
   label?: string
@@ -81,15 +81,37 @@ export const Input: FC<myInputProps> = ({
       {label && <label className="text-[28px]">{label}</label>}
       <div>
         {type === 'phone' ? (
-          <InputMask
-            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
-            mask="+99 (999) 999-9999"
+          <MaskedInput
+            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            mask={[
+              '+',
+              /\d/,
+              /\d/,
+              ' ',
+              '(',
+              /\d/,
+              /\d/,
+              /\d/,
+              ')',
+              ' ',
+              /\d/,
+              /\d/,
+              /\d/,
+              '-',
+              /\d/,
+              /\d/,
+              /\d/,
+              /\d/,
+            ]}
             placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
             {...register}
           />
         ) : (
           <input
-            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
             name={name}
             type={inputType}
             placeholder={placeholder}
@@ -109,7 +131,7 @@ export const Input: FC<myInputProps> = ({
           </div>
         )}
         {error ? (
-          <div className="absolute z-30 text-[20px] font-light text-[#A80E0E]">
+          <div className="z-30 text-[20px] font-light text-[#A80E0E]">
             {error}
           </div>
         ) : null}

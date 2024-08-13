@@ -12,7 +12,6 @@ import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import ThemeChange from '@/components/theme-change/theme-change'
 import { HireMe } from '@/components/hire-me/hire-me'
-import { ModalProvider } from '@/components/UI/modal/modal'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')

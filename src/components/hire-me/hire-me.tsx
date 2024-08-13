@@ -10,10 +10,11 @@ import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { useLocale } from 'use-intl'
 import { Modal } from '@/components/UI/modal/modal'
+import { Loader } from '@/components/UI/loader/loader'
 
 export const HireMe: FC<any> = ({ title }) => {
   const locale = useLocale()
-  const t = useTranslations('HireMe')
+  const t = useTranslations('home-page.HireMe')
 
   const {
     register,
@@ -62,32 +63,22 @@ export const HireMe: FC<any> = ({ title }) => {
 
   return (
     <>
-      <div onClick={() => setClose(true)}>
-        <ButtonCircle title={title} />
+      {loading && <Loader />}
+      <div onClick={() => setClose(true)} className="!z-50 cursor-pointer">
+        <ButtonCircle title={title} className="!z-30" />
       </div>
-      <Modal isOpen={open} onClose={() => setClose(false)}>
-        fvsdfvd
-      </Modal>
-    </>
-  )
-}
-
-/*
-      <ModalBody className="flex flex-col justify-end bg-[linear-gradient(127deg,rgba(11,102,245,0.30)_49.23%,rgba(78,128,206,0.15)_83.27%,rgba(255,255,255,0)_102.62%)] px-3 backdrop-blur-[12.5px] lg:px-8">
-        <ModalContent className="p-0" key="unique-modal-key">
+      <Modal
+        isOpen={open}
+        onClose={() => setClose(false)}
+        className="bg-[linear-gradient(127deg, rgba(11, 102, 245, 0.30) 49.23%, rgba(78, 128, 206, 0.15) 83.27%, rgba(255, 255, 255, 0.00) 102.62%)] flex flex-col justify-end px-3 backdrop-blur-[12.5px] lg:px-8"
+      >
+        <div className="w-[400px]">
           <h2 className="text-center text-[40px] font-bold uppercase text-[#0B66F5]">
-            Contact Me
+            {t('Contact Me')}
           </h2>
-          <button
-            onClick={() => contextType.setOpen(false)}
-            className="right-0 top-0 bg-red-400 p-3"
-          >
-            asdvs
-          </button>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <Input
-                className="pb-5"
                 type={'text'}
                 placeholder={t('name')}
                 name={'name'}
@@ -107,7 +98,6 @@ export const HireMe: FC<any> = ({ title }) => {
                 error={errors.name?.message}
               />
               <Input
-                className="pb-5"
                 type={'text'}
                 placeholder={t('email')}
                 name={'email'}
@@ -123,7 +113,6 @@ export const HireMe: FC<any> = ({ title }) => {
                 error={errors.email?.message}
               />
               <Input
-                className="pb-5"
                 type={'phone'}
                 placeholder={t('phone')}
                 name={'phone'}
@@ -139,25 +128,25 @@ export const HireMe: FC<any> = ({ title }) => {
                 error={errors.phone?.message}
               />
               <textarea
-                className={`mt-[12px] h-[125px] w-full resize-none rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA]`}
+                className={`mt-[12px] h-[125px] w-full resize-none rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA]`}
                 placeholder={t('message')}
                 {...register('message', {
                   required: false,
                 })}
               />
             </div>
-            <div className="mt-[20px] flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <ReCAPTCHA
                 className="recaptcha"
                 sitekey={`${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
                 ref={recaptchaRef}
                 onChange={handleCaptchaSubmission}
               />
-              <div className="mt-[20px]">
-                <ButtonCircle title={t('send')} />
-              </div>
+              <ButtonCircle title={t('send')} className="mt-3" />
             </div>
           </form>
-        </ModalContent>
-      </ModalBody>
- */
+        </div>
+      </Modal>
+    </>
+  )
+}
