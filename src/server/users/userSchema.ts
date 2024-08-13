@@ -7,23 +7,28 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
       min: 3,
-      max: 20,
+      max: 120,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      max: 50,
+      max: 150,
+    },
+    isEmailVerified: {
+      type: Boolean,
+      default: false,
     },
     password: {
       type: String,
     },
-    img: {
+    userLogo: {
       type: String,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    role: {
+      type: String,
+      enum: ['user', 'mentor', 'manager', 'admin', 'super-admin'],
+      default: 'user',
     },
     resetPasswordToken: String,
   },

@@ -139,7 +139,7 @@ export const Input: FC<myInputProps> = ({
             {error}
           </div>
         ) : null}
-        {inputType === 'password' && (
+        {type === 'password' && (
           <> {renderPasswordStrengthBar(passwordStrengthLevel)}</>
         )}
       </div>

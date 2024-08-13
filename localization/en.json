@@ -88,6 +88,14 @@
     "This field is required": "This field is required",
     "This is not an email": "This is not an email",
     "Minimum number of characters": "Minimum number of characters",
-    "Maximum number of characters": "Maximum number of characters"
+    "Maximum number of characters": "Maximum number of characters",
+    "sign up now": "Sign up now",
+    "Confirm password": "Confirm password",
+    "name": "name",
+    "Already have an account?" : "Already have an account?",
+    "Sign In": "Sign In",
+    "Enter your email account to reset your password": "Enter your email account to reset your password",
+    "You have registered successfully!": "You have registered successfully!",
+    "Passwords do not match!": "Passwords do not match!"
   }
 }

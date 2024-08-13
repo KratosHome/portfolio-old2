@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Dashboard } from '@/components/dashboard/dashboard'
 import { adminDashboardData } from '@/data/admin-dashboard'
 import { redirect } from 'next/navigation'
-import { auth } from '@/server/auth/auth'
+import { auth } from '@/server/auth/auth.server'
 
 export default async function LocaleLayout({
   children,

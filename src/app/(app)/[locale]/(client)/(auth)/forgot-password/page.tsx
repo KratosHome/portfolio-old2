@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth/auth'
+import { auth } from '@/server/auth/auth.server'
 import { redirect } from 'next/navigation'
 import ForgotPassword from '@/components/auth/forgot-password/forgot-password'
 

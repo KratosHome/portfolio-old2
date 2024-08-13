@@ -1,6 +1,6 @@
-import { auth } from '@/server/auth/auth'
+import { auth } from '@/server/auth/auth.server'
 import { redirect } from 'next/navigation'
-import Login from '@/components/auth/login/login'
+import { SignUp } from '@/components/auth/sign-up/sign-up'
 
 export default async function page({ params: { locale } }: PageProps) {
   const session = await auth()
@@ -10,7 +10,7 @@ export default async function page({ params: { locale } }: PageProps) {
   }
   return (
     <>
-      <Login />
+      <SignUp />
     </>
   )
 }

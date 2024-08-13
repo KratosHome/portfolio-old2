@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth/auth'
+import { auth } from '@/server/auth/auth.server'
 import { redirect } from 'next/navigation'
 
 export default async function Page({ params: { locale } }: PageProps) {
