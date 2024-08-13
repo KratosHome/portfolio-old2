@@ -5,6 +5,7 @@ import eyesClose from '@/assets/icons/eyes-close.svg'
 import eyesOpen from '@/assets/icons/eyes-open.svg'
 import Image from 'next/image'
 import MaskedInput from 'react-text-mask'
+import { cn } from '@/utils/cn'
 
 interface myInputProps {
   label?: string
@@ -78,11 +79,11 @@ export const Input: FC<myInputProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      {label && <label className="text-[28px]">{label}</label>}
+      {label && <label className="text-[20px] lg:text-[28px]">{label}</label>}
       <div>
         {type === 'phone' ? (
           <MaskedInput
-            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[20px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
             mask={[
               '+',
               /\d/,
@@ -111,7 +112,10 @@ export const Input: FC<myInputProps> = ({
           />
         ) : (
           <input
-            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
+            className={cn(
+              `lg:text-[16px]" mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[20px] text-[white] placeholder-[#FAFAFA] lg:text-[16px]`,
+              `${error ? 'border border-[#A80E0E]' : ''}`,
+            )}
             name={name}
             type={inputType}
             placeholder={placeholder}
@@ -124,7 +128,7 @@ export const Input: FC<myInputProps> = ({
         {type === 'password' && (
           <div onClick={toggleShowPassword}>
             <Image
-              className="absolute right-[15px] top-[72px] h-[18px] w-[18px] cursor-pointer"
+              className="absolute right-[15px] top-[60px] h-[18px] w-[18px] cursor-pointer lg:top-[72px]"
               src={inputType === 'password' ? eyesClose : eyesOpen}
               alt="eyes"
             />
