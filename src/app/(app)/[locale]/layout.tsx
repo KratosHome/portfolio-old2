@@ -12,6 +12,7 @@ import { Header } from '@/components/header/header'
 import { Footer } from '@/components/footer/footer'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import { auth } from '@/server/auth/auth.server'
 
 export default async function LocaleLayout({
   children,
@@ -21,7 +22,9 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const messages = await getMessages()
+  const session = await auth()
 
+  console.log('messages vsdfvfd@gmail.com', session)
   return (
     <>
       <Head>

@@ -9,7 +9,7 @@ import Google from '@auth/core/providers/google'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   theme: {
-    logo: '/logo.png',
+    logo: '/logo.svg',
   },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [

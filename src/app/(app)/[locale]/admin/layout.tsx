@@ -14,6 +14,7 @@ export default async function LocaleLayout({
   const dashboard: any = adminDashboardData[locale]
   const session = await auth()
 
+  if (!session) redirect('/')
   return (
     <>
       <div className="relative mx-auto flex max-w-[1442px] rounded-lg bg-neutral-800">

@@ -9,7 +9,9 @@ const withMDX = NextMdx.default({
     },
 });
 
+
 const nextConfig = {
+    runtime: 'nodejs',
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
     images: {
         formats: ["image/webp"],
