@@ -2,7 +2,7 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 import { revalidatePath } from 'next/cache'
-import { User } from '@/server/users/userSchema'
+import { User } from '@/server/users/user-schema'
 
 export const getPosts = async (
   page: string = '1',

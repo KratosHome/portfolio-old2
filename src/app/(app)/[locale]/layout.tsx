@@ -13,6 +13,7 @@ import { Footer } from '@/components/footer/footer'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { auth } from '@/server/auth/auth.server'
+import { SessionProvider } from 'next-auth/react'
 
 export default async function LocaleLayout({
   children,
@@ -40,9 +41,11 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
           <StarsCanvas />
-          <Header />
-          <main className="min-h-[100svh]">{children}</main>
-          <Footer />
+          <SessionProvider>
+            <Header />
+            <main className="min-h-[100svh]">{children}</main>
+            <Footer />
+          </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>
       </ThemeProvider>

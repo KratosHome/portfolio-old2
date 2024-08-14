@@ -1,7 +1,7 @@
 'use server'
 import bcrypt from 'bcryptjs'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/userSchema'
+import { User } from '@/server/users/user-schema'
 
 interface singUpData {
   username: string

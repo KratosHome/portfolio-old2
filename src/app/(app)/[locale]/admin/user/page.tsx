@@ -1,16 +1,26 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Input } from '@/components/UI/input/input'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { useTranslations } from 'next-intl'
+import { updateUser } from '@/server/users/update-user.server'
+import { useSession } from 'next-auth/react'
+import { AdminButton } from '@/components/UI/admin-button/admin-button'
+
+export interface UserTypes {
+  _id: string
+  isEmailVerified: boolean
+  name?: string
+  email?: string
+}
 
 const Page = () => {
+  const { data: session }: any = useSession()
   const t = useTranslations('footer')
-
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState<boolean | undefined>(false)
-
+  const [image, setImage] = useState<any>(null)
   const {
     register,
     handleSubmit,
@@ -21,7 +31,32 @@ const Page = () => {
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
 
+    const sendData = {
+      id: session?.user?._id,
+      ...data,
+    }
+
+    const response = await updateUser(sendData)
+    if (response.success) {
+      toast.success('User updated')
+      setLoading(false)
+    } else {
+      toast.error('User not updated')
+    }
+
     setLoading(false)
+  }
+
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0]
+    if (file && file.type.startsWith('image/')) {
+      setImage(file)
+    } else {
+      toast.error(t('Only image files are allowed'))
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '' // Скинути вибір файлу, якщо це не зображення
+      }
+    }
   }
 
   return (
@@ -29,9 +64,18 @@ const Page = () => {
       <h1 className="text-center text-[50px] font-light">
         Personal information
       </h1>
+      <div className="flex items-center gap-4">
+        <div>{!session?.user?.isEmailVerified && <>Confirm your email:</>}</div>
+        <AdminButton>send a letter</AdminButton>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-[50px]">
-        <div>Avatar</div>
-        <div>Is email validate</div>
+        <input
+          className="file-input__create-post"
+          type="file"
+          ref={fileInputRef}
+          accept="image/*"
+          onChange={handleImageChange}
+        />
         <Input
           label={t('name')}
           type={'text'}
@@ -58,6 +102,7 @@ const Page = () => {
         <div>gitHubLink</div>
         <div>resume</div>
         <div>protfolio</div>
+        <AdminButton>Save</AdminButton>
       </form>
     </div>
   )
