@@ -21,19 +21,25 @@ const Page = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState<boolean | undefined>(false)
   const [image, setImage] = useState<any>(null)
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<any>({
+    defaultValues: {
+      name: session?.user.username || '',
+    },
+  })
 
+  console.log('session', session?.user.username)
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
     const formData = new FormData()
 
     formData.append('id', session?.user?._id)
-    formData.append('name', data.name)
+    formData.append('username', data.name)
     if (image) {
       formData.append('image', image)
     }
@@ -83,6 +89,7 @@ const Page = () => {
           type={'text'}
           placeholder={t('name')}
           name={'name'}
+          value={session?.user.username || ''}
           register={{
             ...register('name', {
               required: `${t('This field is required')}`,
