@@ -7,6 +7,10 @@ import { useTranslations } from 'next-intl'
 import { updateUser } from '@/server/users/update-user.server'
 import { useSession } from 'next-auth/react'
 import { AdminButton } from '@/components/UI/admin-button/admin-button'
+import {
+  confirmEmailServer,
+  sendEmailTokenServer,
+} from '@/server/auth/confirm-email.server'
 
 export interface UserTypes {
   _id: string
@@ -33,7 +37,20 @@ const Page = () => {
     },
   })
 
-  console.log('session', session?.user.username)
+  const confirmEmail = async () => {
+    setLoading(true)
+    const data = {
+      id: session?.user._id,
+    }
+    const sendToken = await sendEmailTokenServer(data)
+    if (sendToken.success) {
+      toast.success('Check your email')
+    } else {
+      toast.error('Error')
+    }
+    setLoading(false)
+  }
+
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
     const formData = new FormData()
@@ -62,7 +79,7 @@ const Page = () => {
     } else {
       toast.error(t('Only image files are allowed'))
       if (fileInputRef.current) {
-        fileInputRef.current.value = '' // Скинути вибір файлу, якщо це не зображення
+        fileInputRef.current.value = ''
       }
     }
   }
@@ -72,10 +89,12 @@ const Page = () => {
       <h1 className="text-center text-[50px] font-light">
         Personal information
       </h1>
-      <div className="flex items-center gap-4">
-        <div>{!session?.user?.isEmailVerified && <>Confirm your email:</>}</div>
-        <AdminButton>send a letter</AdminButton>
-      </div>
+      {!session?.user?.isEmailVerified && (
+        <div className="flex items-center gap-4">
+          <div>Confirm your email:</div>
+          <AdminButton onClick={confirmEmail}>send a letter</AdminButton>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="mt-[50px]">
         <input
           className="file-input__create-post"

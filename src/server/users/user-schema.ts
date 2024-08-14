@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isEmailVerifiedToken: {
+      type: String,
+    },
     password: {
       redirect: true,
       type: String,
