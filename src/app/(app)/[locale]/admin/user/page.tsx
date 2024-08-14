@@ -30,13 +30,15 @@ const Page = () => {
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
+    const formData = new FormData()
 
-    const sendData = {
-      id: session?.user?._id,
-      ...data,
+    formData.append('id', session?.user?._id)
+    formData.append('name', data.name)
+    if (image) {
+      formData.append('image', image)
     }
 
-    const response = await updateUser(sendData)
+    const response = await updateUser(formData)
     if (response.success) {
       toast.success('User updated')
       setLoading(false)
