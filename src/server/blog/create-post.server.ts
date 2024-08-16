@@ -10,7 +10,7 @@ export const createPostServer = async ({ data, image }: any) => {
 
   try {
     await connectToDb()
-    const postId = uuidv4() // спільний postId для всіх локалізацій
+    const postId = uuidv4()
     let imageUrl = ''
 
     if (image) {
@@ -22,17 +22,23 @@ export const createPostServer = async ({ data, image }: any) => {
     }
 
     const savedPosts = await Promise.all(
-      Object.entries(data).map(async ([locale, localizedData]) => {
-        const newPost = {
-          ...localizedData,
-          postId, // спільний postId для зв'язку між локалізаціями
-          img: imageUrl,
-        }
+      Object.entries(data).map(
+        async ([locale, localizedData]: [string, any]) => {
+          if (typeof localizedData !== 'object' || localizedData === null) {
+            throw new Error(`Invalid data for locale ${locale}`)
+          }
 
-        const savedPost = await new Post(newPost).save()
+          const newPost = {
+            ...localizedData,
+            postId,
+            img: imageUrl,
+          }
 
-        return savedPost
-      }),
+          const savedPost = await new Post(newPost).save()
+
+          return savedPost
+        },
+      ),
     )
 
     if (savedPosts.length === Object.keys(data).length) {
