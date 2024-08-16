@@ -1,27 +1,33 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { sendEmailTokenServer } from '@/server/auth/confirm-email.server'
+import { confirmEmailToken } from '@/server/auth/confirm-email.server'
 import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 
 const Page = () => {
   const params = useParams()
   const router = useRouter()
+  const session: any = useSession()
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await sendEmailTokenServer(params.token)
-      if (response.success) {
-        toast.success('Email token sent successfully!')
-        router.push('/')
-      } else {
-        toast.error('Failed to send email token.')
-        router.push('/')
+    if (session.data?.user._id) {
+      const fetchData = async () => {
+        const response = await confirmEmailToken(
+          session.data?.user._id,
+          params.token.toString(),
+        )
+        if (response.success) {
+          toast.success('Email token sent successfully!')
+          router.push('/')
+        } else {
+          toast.error('Failed to send email token.')
+          router.push('/')
+        }
       }
+      fetchData()
     }
-
-    fetchData()
-  }, [params.token])
+  }, [params.token, session])
 
   return <div />
 }

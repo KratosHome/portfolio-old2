@@ -5,12 +5,14 @@ import nodemailer from 'nodemailer'
 import { v4 as uuidv4 } from 'uuid'
 import { verifyEmailTemplate } from '@/components/emails/verify-email'
 
-export const confirmEmailServer = async (id: string, token: string) => {
+export const confirmEmailToken = async (
+  id: string | undefined,
+  token: string,
+) => {
   'use server'
   try {
     await connectToDb()
     const user = await User.findById(id)
-
     if (!user) return { success: false, message: 'User not found' }
 
     if (user.isEmailVerifiedToken !== token)

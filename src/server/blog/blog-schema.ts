@@ -2,6 +2,11 @@ import mongoose from 'mongoose'
 
 const blogSchema = new mongoose.Schema(
   {
+    postId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      index: true,
+    },
     title: {
       type: String,
       required: true,
@@ -45,4 +50,4 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true },
 )
 
-export const Post = mongoose.models?.Post || mongoose.model('Blog', blogSchema)
+export const Post = mongoose.models?.Post || mongoose.model('Post', blogSchema)

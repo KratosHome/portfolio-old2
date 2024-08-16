@@ -42,11 +42,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user, account, profile }) {
       return true
     },
-    async session({ session, token, user }) {
+    async session({ session, token, user, trigger }) {
       session.user = token.user as AdapterUser
       return session
     },
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger }) {
       if (user) {
         token.user = user
       }

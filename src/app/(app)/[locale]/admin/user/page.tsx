@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Input } from '@/components/UI/input/input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
@@ -8,9 +8,10 @@ import { updateUser } from '@/server/users/update-user.server'
 import { useSession } from 'next-auth/react'
 import { AdminButton } from '@/components/UI/admin-button/admin-button'
 import {
-  confirmEmailServer,
+  confirmEmailToken,
   sendEmailTokenServer,
 } from '@/server/auth/confirm-email.server'
+import useFetchUser from '@/hooks/useFetchUser'
 
 export interface UserTypes {
   _id: string
@@ -21,6 +22,8 @@ export interface UserTypes {
 
 const Page = () => {
   const { data: session }: any = useSession()
+  const userData = useFetchUser(session)
+
   const t = useTranslations('footer')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState<boolean | undefined>(false)
@@ -29,18 +32,25 @@ const Page = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
+    reset,
   } = useForm<any>({
     defaultValues: {
-      name: session?.user.username || '',
+      username: userData?.user.username || '',
     },
   })
+
+  console.log('userData', userData)
+  useEffect(() => {
+    if (userData?.user.username) {
+      reset({ username: userData.user.username })
+    }
+  }, [userData, reset])
 
   const confirmEmail = async () => {
     setLoading(true)
     const data = {
-      id: session?.user._id,
+      id: userData?.user._id,
     }
     const sendToken = await sendEmailTokenServer(data)
     if (sendToken.success) {
@@ -55,8 +65,8 @@ const Page = () => {
     setLoading(true)
     const formData = new FormData()
 
-    formData.append('id', session?.user?._id)
-    formData.append('username', data.name)
+    formData.append('id', userData?.user?._id)
+    formData.append('username', data.username)
     if (image) {
       formData.append('image', image)
     }
@@ -84,15 +94,18 @@ const Page = () => {
     }
   }
 
+  if (!userData) return null
   return (
     <div className="mx-auto h-full w-full p-5">
       <h1 className="text-center text-[50px] font-light">
         Personal information
       </h1>
-      {!session?.user?.isEmailVerified && (
+      {!userData?.user?.isEmailVerified && (
         <div className="flex items-center gap-4">
           <div>Confirm your email:</div>
-          <AdminButton onClick={confirmEmail}>send a letter</AdminButton>
+          <AdminButton disabled={loading} onClick={confirmEmail}>
+            send a letter
+          </AdminButton>
         </div>
       )}
       <form onSubmit={handleSubmit(onSubmit)} className="mt-[50px]">
@@ -108,9 +121,8 @@ const Page = () => {
           type={'text'}
           placeholder={t('name')}
           name={'name'}
-          value={session?.user.username || ''}
           register={{
-            ...register('name', {
+            ...register('username', {
               required: `${t('This field is required')}`,
               minLength: {
                 value: 4,

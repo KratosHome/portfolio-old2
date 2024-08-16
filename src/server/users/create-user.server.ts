@@ -12,16 +12,13 @@ export const createUsers = async (session: any) => {
         username: session.user.name,
         email: session.user.email.toLowerCase(),
         userLogo: session.user.image,
+        isEmailVerified: true,
       })
       await newUser.save()
-      return {
-        success: true,
-      }
+      return { success: true }
     }
   } catch (err) {
     console.log('err createUsers', err)
-    return {
-      success: false,
-    }
+    return { success: false }
   }
 }
