@@ -34,9 +34,9 @@ interface PostData {
   title: string
   keywords: string[]
   category: string[]
-  shortDescription: string
-  description: string
-  link: string
+  subTitle: string
+  desc: string
+  url: string
   local: LanguageProps
 }
 
@@ -47,6 +47,8 @@ export const NewPost = () => {
   const [image, setImage] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
   const [activeLanguage, setActiveLanguage] = useState<LanguageProps>('uk')
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
   const [postsData, setPostsData] = useState<{
     [key in LanguageProps]: PostData
   }>({
@@ -55,9 +57,9 @@ export const NewPost = () => {
       title: '',
       keywords: [],
       category: [],
-      shortDescription: '',
-      description: '',
-      link: '',
+      subTitle: '',
+      desc: '',
+      url: '',
       local: 'uk',
     },
     en: {
@@ -65,9 +67,9 @@ export const NewPost = () => {
       title: '',
       keywords: [],
       category: [],
-      shortDescription: '',
-      description: '',
-      link: '',
+      subTitle: '',
+      desc: '',
+      url: '',
       local: 'en',
     },
     fr: {
@@ -75,9 +77,9 @@ export const NewPost = () => {
       title: '',
       keywords: [],
       category: [],
-      shortDescription: '',
-      description: '',
-      link: '',
+      subTitle: '',
+      desc: '',
+      url: '',
       local: 'fr',
     },
   })
@@ -111,7 +113,7 @@ export const NewPost = () => {
           [field]: value.split(',').map((item) => item.trim()),
         },
       }))
-    } else if (field === 'link') {
+    } else if (field === 'url') {
       setPostsData((prev) => {
         const updatedPostsData = { ...prev }
         Object.keys(updatedPostsData).forEach((lang) => {
@@ -135,7 +137,7 @@ export const NewPost = () => {
       ...prev,
       [activeLanguage]: {
         ...prev[activeLanguage],
-        description: value,
+        desc: value,
       },
     }))
   }
@@ -146,7 +148,32 @@ export const NewPost = () => {
     }
   }
 
-  const sendPost = async () => {
+  const validateAllFields = () => {
+    for (const lang of ['uk', 'en', 'fr'] as LanguageProps[]) {
+      const postData = postsData[lang]
+      if (
+        !postData.title ||
+        !postData.keywords.length ||
+        !postData.category.length ||
+        !postData.subTitle ||
+        !postData.desc ||
+        !postData.url
+      ) {
+        return `Всі поля повинні бути заповнені для локалізації ${lang.toUpperCase()}`
+      }
+    }
+    return null
+  }
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault() // Запобігаємо перезавантаженню сторінки
+
+    const error = validateAllFields()
+    if (error) {
+      setErrorMessage(error)
+      return
+    }
+
     setLoading(true)
 
     let imageBase64 = null
@@ -154,13 +181,22 @@ export const NewPost = () => {
       imageBase64 = await convertToBase64(image)
     }
 
+    // Додаємо локалізацію до URL перед відправкою даних, якщо її ще немає
+    const updatedPostsData = { ...postsData }
+    Object.keys(updatedPostsData).forEach((lang) => {
+      const currentUrl = updatedPostsData[lang as LanguageProps].url
+      if (!currentUrl.endsWith(`-${lang}`)) {
+        updatedPostsData[lang as LanguageProps].url += `-${lang}`
+      }
+    })
+
     const result = await createPostServer({
-      data: postsData,
+      data: updatedPostsData,
       image: imageBase64,
     })
 
     if (result.success) {
-      toast(`Пост створено`, {
+      toast(`Пост створено, очікуйте на перевірку`, {
         type: 'success',
       })
     } else {
@@ -174,68 +210,77 @@ export const NewPost = () => {
 
   return (
     <div>
-      <input
-        placeholder="посилання"
-        className="mb-4 w-full rounded border p-2"
-        value={postsData[activeLanguage].link}
-        onChange={(e) => handleInputChange(e, 'link')}
-      />
-      <input
-        className="file-input__create-post"
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-      />
+      {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
+      <form onSubmit={onSubmit}>
+        <input
+          placeholder="посилання"
+          className="mb-4 w-full rounded border p-2"
+          value={postsData[activeLanguage].url}
+          onChange={(e) => handleInputChange(e, 'url')}
+        />
+        <input
+          className="file-input__create-post"
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
 
-      <div className="mb-4 flex space-x-4">
-        {(['uk', 'en', 'fr'] as LanguageProps[]).map((lang) => (
-          <button
-            key={lang}
-            onClick={() => handleLanguageChange(lang)}
-            className={`rounded px-4 py-2 ${
-              activeLanguage === lang ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-          >
-            {lang.toUpperCase()}
-          </button>
-        ))}
-      </div>
-      <CustomToolbar />
-      <input
-        placeholder="Заголовок"
-        className="mb-4 w-full rounded border p-2"
-        value={postsData[activeLanguage].title}
-        onChange={(e) => handleInputChange(e, 'title')}
-      />
-      <input
-        placeholder="Ключові слова"
-        className="mb-4 w-full rounded border p-2"
-        value={postsData[activeLanguage].keywords.join(', ')}
-        onChange={(e) => handleInputChange(e, 'keywords')}
-      />
-      <input
-        placeholder="Категорії"
-        className="mb-4 w-full rounded border p-2"
-        value={postsData[activeLanguage].category.join(', ')}
-        onChange={(e) => handleInputChange(e, 'category')}
-      />
-      <input
-        placeholder="Короткий заголовок"
-        className="mb-4 w-full rounded border p-2"
-        value={postsData[activeLanguage].shortDescription}
-        onChange={(e) => handleInputChange(e, 'shortDescription')}
-      />
-      <ReactQuill
-        theme="snow"
-        placeholder="Стаття"
-        value={postsData[activeLanguage].description}
-        onChange={handleContentChange}
-        modules={{ toolbar: { container: '#toolbar' } }}
-        className="h-full w-full rounded-b-lg border border-gray-300 bg-white p-2 text-black shadow-sm"
-      />
-      <AdminButton onClick={sendPost} disabled={loading}>
-        Зберегти
-      </AdminButton>
+        <div className="mb-4 flex space-x-4">
+          {(['uk', 'en', 'fr'] as LanguageProps[]).map((lang) => (
+            <button
+              key={lang}
+              type="button" // Додано type="button" щоб запобігти сабміту форми
+              onClick={() => handleLanguageChange(lang)}
+              className={`rounded px-4 py-2 ${
+                activeLanguage === lang
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200'
+              }`}
+            >
+              {lang.toUpperCase()}
+            </button>
+          ))}
+        </div>
+        <input
+          placeholder="Заголовок"
+          className="mb-4 w-full rounded border p-2"
+          value={postsData[activeLanguage].title}
+          onChange={(e) => handleInputChange(e, 'title')}
+        />
+        <input
+          placeholder="Ключові слова"
+          className="mb-4 w-full rounded border p-2"
+          value={postsData[activeLanguage].keywords.join(', ')}
+          onChange={(e) => handleInputChange(e, 'keywords')}
+        />
+        <input
+          placeholder="Категорії"
+          className="mb-4 w-full rounded border p-2"
+          value={postsData[activeLanguage].category.join(', ')}
+          onChange={(e) => handleInputChange(e, 'category')}
+        />
+        <input
+          placeholder="Короткий заголовок"
+          className="mb-4 w-full rounded border p-2"
+          value={postsData[activeLanguage].subTitle}
+          onChange={(e) => handleInputChange(e, 'subTitle')}
+        />
+        <div className="min-h-[200px]">
+          <CustomToolbar />
+          <ReactQuill
+            theme="snow"
+            placeholder="Стаття"
+            value={postsData[activeLanguage].desc}
+            onChange={handleContentChange}
+            modules={{ toolbar: { container: '#toolbar' } }}
+            style={{ height: '300px' }}
+            className="min-h-[300px] w-full rounded-b-lg border-gray-300 bg-white p-2 text-black shadow-sm"
+          />
+        </div>
+        <AdminButton type="submit" disabled={loading}>
+          Зберегти
+        </AdminButton>
+      </form>
     </div>
   )
 }

@@ -1,14 +1,10 @@
 'use client'
 import { useState } from 'react'
-import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useSession } from 'next-auth/react'
-import useFetchUser from '@/hooks/useFetchUser'
 import { NewPost } from '@/components/blog/new-post'
+import { Donat } from '@/components/UI/donat/donat'
 
 const Page = () => {
-  const { data: session }: any = useSession()
-  const userData = useFetchUser(session)
   const [activeTab, setActiveTab] = useState<'newPost' | 'myPosts'>('newPost')
 
   return (
@@ -30,8 +26,8 @@ const Page = () => {
       {activeTab === 'newPost' && <NewPost />}
 
       {activeTab === 'myPosts' && (
-        <div>
-          <p>Список ваших постів...</p>
+        <div className="h-full">
+          <Donat />
         </div>
       )}
     </div>

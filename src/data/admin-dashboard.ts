@@ -1,95 +1,52 @@
 export const adminDashboardUa = [
   {
     id: 1,
-    title: 'Проект',
-    link: 'project',
-    icon: 'MdOutlineWorkHistory',
-    tabs: [
-      {
-        id: 1,
-        title: 'Оголошення',
-        link: 'announcements',
-      },
-      {
-        id: 2,
-        title: 'Календар',
-        link: 'calendar',
-      },
-      {
-        id: 3,
-        title: 'Команда',
-        link: 'team',
-      },
-      {
-        id: 4,
-        title: 'Документи',
-        link: 'documents',
-      },
-      {
-        id: 5,
-        title: 'Завдання',
-        link: 'tasks',
-      },
-      {
-        id: 6,
-        title: 'Комунікації',
-        link: 'communications',
-      },
-    ],
-    roles: ['all'],
+    title: 'Оголошення',
+    link: 'announcements',
+    icon: 'GrAnnounce',
+    roles: ['isInProject'],
   },
   {
     id: 2,
     title: 'Задачі',
     link: 'tasks',
     icon: 'FaTasks',
-    roles: ['all'],
+    roles: ['isInProject'],
   },
   {
     id: 3,
+    title: 'Документи',
+    link: 'documents',
+    icon: 'IoDocuments',
+    roles: ['isInProject'],
+  },
+  {
+    id: 4,
+    title: 'Проект',
+    link: 'project',
+    icon: 'MdOutlineWorkHistory',
+    roles: ['isInProject'],
+  },
+  {
+    id: 5,
+    title: 'Команда',
+    link: 'team',
+    icon: 'RiTeamLine',
+    roles: ['isInProject'],
+  },
+  {
+    id: 6,
+    title: 'Статистика',
+    link: 'statistics',
+    icon: 'FcStatistics',
+    roles: ['isInProject'],
+  },
+  {
+    id: 7,
     title: 'Блоґ',
     link: 'blog',
     icon: 'GrBlog',
     roles: ['all'],
-    tabs: [
-      {
-        id: 1,
-        title: 'Мої статті',
-        link: 'my-articles',
-      },
-
-      {
-        id: 2,
-        title: 'Створити статтю',
-        link: 'create-article',
-      },
-      {
-        id: 3,
-        title: 'Не опубліковані',
-        link: 'unpublished',
-        roles: ['admin'],
-      },
-      {
-        id: 4,
-        title: 'Нові статті',
-        link: 'all-articles',
-        roles: ['admin'],
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Студенти',
-    link: 'students',
-    icon: 'PiStudentBold',
-    roles: ['admin'],
-  },
-  {
-    id: 5,
-    title: 'Користувачі',
-    link: 'users',
-    icon: 'FaUserSecret',
-    roles: ['admin'],
   },
 ]
 

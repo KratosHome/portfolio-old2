@@ -3,12 +3,15 @@ import mongoose from 'mongoose'
 const blogSchema = new mongoose.Schema(
   {
     postId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
-      index: true,
     },
     title: {
       type: String,
+      required: true,
+    },
+    category: {
+      type: [String],
       required: true,
     },
     subTitle: {
@@ -33,7 +36,7 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    userId: {
+    authorId: {
       type: String,
       required: true,
     },

@@ -33,8 +33,10 @@ export const createPostServer = async ({ data, image }: any) => {
             postId,
             img: imageUrl,
           }
+          console.log('newPost', newPost)
 
           const savedPost = await new Post(newPost).save()
+          console.log('savedPost', savedPost)
 
           return savedPost
         },

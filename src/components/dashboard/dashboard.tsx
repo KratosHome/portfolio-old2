@@ -1,16 +1,19 @@
 'use client'
-import { FC, useRef, useEffect } from 'react'
+import { FC, useRef } from 'react'
 import Link from 'next/link'
 import { RxAvatar } from 'react-icons/rx'
 import { MdOutlineWorkHistory } from 'react-icons/md'
 import { FaTasks } from 'react-icons/fa'
-import { GrBlog } from 'react-icons/gr'
+import { GrAnnounce, GrBlog } from 'react-icons/gr'
 import { PiStudentBold } from 'react-icons/pi'
 import { FaUserSecret } from 'react-icons/fa'
 import { useLocale } from 'use-intl'
 import LogOut from '@/components/auth/log-out/log-out'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { IoDocuments } from 'react-icons/io5'
+import { RiTeamLine } from 'react-icons/ri'
+import { FcStatistics } from 'react-icons/fc'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -18,6 +21,10 @@ const icons = {
   GrBlog,
   PiStudentBold,
   FaUserSecret,
+  GrAnnounce,
+  IoDocuments,
+  RiTeamLine,
+  FcStatistics,
 }
 
 type IconKey = keyof typeof icons
@@ -39,16 +46,30 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   const locale = useLocale()
   const dashboardRef = useRef<HTMLDivElement>(null)
   const { contextSafe } = useGSAP()
+  const animationDelay = 500 // затримка у мілісекундах
+  let enterTimeout: ReturnType<typeof setTimeout> | null = null
 
   const handleMouseEnter = contextSafe(() => {
-    if (dashboardRef.current) {
-      gsap.to(dashboardRef.current, { width: '300px', duration: 0.5 })
-    }
+    enterTimeout = setTimeout(() => {
+      if (dashboardRef.current) {
+        gsap.to(dashboardRef.current, {
+          width: '300px',
+          duration: 0.5,
+        })
+      }
+    }, animationDelay)
   })
 
   const handleMouseLeave = contextSafe(() => {
+    if (enterTimeout) {
+      clearTimeout(enterTimeout)
+      enterTimeout = null
+    }
     if (dashboardRef.current) {
-      gsap.to(dashboardRef.current, { width: '80px', duration: 0.5 })
+      gsap.to(dashboardRef.current, {
+        width: '80px',
+        duration: 0.5,
+      })
     }
   })
 
