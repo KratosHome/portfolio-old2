@@ -1,7 +1,12 @@
-import React from 'react'
+import { getTranslations } from 'next-intl/server'
+import { getPost } from '@/server/blog/get-post.server'
 
-const Page = () => {
+export default async function Page({ params: { locale, postId } }: any) {
+  const t = await getTranslations('page.blog')
+
+  const post = await getPost(postId, locale)
+
+  console.log('posvsfvfdvsdfvt', post)
+
   return <div>vv</div>
 }
-
-export default Page
