@@ -1,17 +1,18 @@
 'use server'
 import { unstable_noStore as noStore } from 'next/cache'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { Project } from '@/server/project/project-scheme.server'
 
-export const getUser = async (email: string) => {
+export const getProject = async (userId: string) => {
   noStore()
   try {
     await connectToDb()
-    const user = await User.findOne({ email: email.toLowerCase() })
+
+    const projects = await Project.find({ team: { $in: [userId] } })
 
     return {
       success: true,
-      user,
+      projects,
     }
   } catch (err) {
     console.log(err)

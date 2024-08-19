@@ -21,7 +21,7 @@ export default async function LocaleLayout({
     <>
       <div className="relative mx-auto flex max-w-[1442px] rounded-lg bg-neutral-800">
         <Dashboard dashboard={dashboard} />
-        <main className="min-h-[90svh] w-full">{children}</main>
+        <main className="z-20 min-h-[90svh] w-full">{children}</main>
       </div>
     </>
   )

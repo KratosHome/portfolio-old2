@@ -7,10 +7,7 @@ import { useTranslations } from 'next-intl'
 import { updateUser } from '@/server/users/update-user.server'
 import { useSession } from 'next-auth/react'
 import { AdminButton } from '@/components/UI/admin-button/admin-button'
-import {
-  confirmEmailToken,
-  sendEmailTokenServer,
-} from '@/server/auth/confirm-email.server'
+import { sendEmailTokenServer } from '@/server/auth/confirm-email.server'
 import useFetchUser from '@/hooks/useFetchUser'
 
 export interface UserTypes {

@@ -1,5 +1,5 @@
 'use client'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { RxAvatar } from 'react-icons/rx'
 import { MdOutlineWorkHistory } from 'react-icons/md'
@@ -14,6 +14,9 @@ import { useGSAP } from '@gsap/react'
 import { IoDocuments } from 'react-icons/io5'
 import { RiTeamLine } from 'react-icons/ri'
 import { FcStatistics } from 'react-icons/fc'
+import { useStore } from '@/store/user'
+import { useSession } from 'next-auth/react'
+import { projectStore } from '@/store/project'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -48,6 +51,24 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   const { contextSafe } = useGSAP()
   const animationDelay = 500 // затримка у мілісекундах
   let enterTimeout: ReturnType<typeof setTimeout> | null = null
+
+  const { data: session }: any = useSession()
+  const { user, fetchUser } = useStore()
+  const { fetchProjects } = projectStore()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchUser(session)
+    }
+    fetchData()
+  }, [fetchUser, session])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchProjects(user._id)
+    }
+    fetchData()
+  }, [fetchProjects, user])
 
   const handleMouseEnter = contextSafe(() => {
     enterTimeout = setTimeout(() => {

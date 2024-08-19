@@ -1,4 +1,3 @@
-'use client'
 import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import eyesClose from '@/assets/icons/eyes-close.svg'
@@ -9,9 +8,9 @@ import { cn } from '@/utils/cn'
 
 interface myInputProps {
   label?: string
-  type: 'text' | 'password' | 'email' | 'phone'
+  type: 'text' | 'password' | 'email' | 'phone' | 'number' | 'textarea'
   placeholder: string
-  name: string
+  name?: string
   register?: ReturnType<typeof useForm>['register'] | any
   error?: string | any
   value?: string | number | boolean
@@ -19,6 +18,8 @@ interface myInputProps {
   disabled?: boolean
   password?: string
   className?: string
+  min?: number
+  max?: number
 }
 
 export const Input: FC<myInputProps> = ({
@@ -33,6 +34,8 @@ export const Input: FC<myInputProps> = ({
   disabled,
   password,
   className,
+  min,
+  max,
 }) => {
   const [inputType, setInputType] = useState<string>(type)
 
@@ -110,12 +113,27 @@ export const Input: FC<myInputProps> = ({
             disabled={disabled}
             {...register}
           />
+        ) : type === 'textarea' ? (
+          <textarea
+            className={cn(
+              `mt-[12px] min-h-[148px] w-full resize-none rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[20px] text-[white] placeholder-[#FAFAFA] lg:text-[16px]`,
+              `${error ? 'border-[#A80E0E]' : ''}`,
+            )}
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
+            {...register}
+          />
         ) : (
           <input
             className={cn(
               `lg:text-[16px]" mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[20px] text-[white] placeholder-[#FAFAFA] lg:text-[16px]`,
               `${error ? 'border border-[#A80E0E]' : ''}`,
             )}
+            min={min}
+            max={max}
             name={name}
             type={inputType}
             placeholder={placeholder}

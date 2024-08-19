@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
     userLogo: {
       type: String,
     },
+    projectsId: {
+      type: String,
+      default: [],
+    },
     role: {
       required: true,
       type: String,
