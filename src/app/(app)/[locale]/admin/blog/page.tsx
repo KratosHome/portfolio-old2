@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import 'react-quill/dist/quill.snow.css'
 import { NewPost } from '@/components/blog/new-post'
 import { Donat } from '@/components/UI/donat/donat'
 

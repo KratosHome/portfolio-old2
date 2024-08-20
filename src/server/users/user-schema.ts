@@ -31,7 +31,11 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     projectsId: {
-      type: String,
+      type: [String],
+      default: [],
+    },
+    newProjectsId: {
+      type: [String],
       default: [],
     },
     role: {

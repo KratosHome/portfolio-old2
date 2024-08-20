@@ -73,7 +73,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="relative z-10 lg:-mt-[150px] lg:pt-[250px]">
+    <footer className="relative lg:pt-[250px]">
       {loading && <Loader />}
       <div className="absolute -top-[600px] left-[200px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       <div className="absolute -right-[400px] -top-[400px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:-top-[100px] lg:right-[200px] lg:block" />

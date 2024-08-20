@@ -20,7 +20,6 @@ export const projectStore = create<StoreState>((set) => ({
         },
       )
 
-      console.log('response', response)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }

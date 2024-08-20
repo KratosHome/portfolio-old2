@@ -42,7 +42,7 @@ export default async function LocaleLayout({
           <StarsCanvas />
           <SessionProvider>
             <Header />
-            <main className="z-20 min-h-[100svh]">{children}</main>
+            <main className="min-h-[100svh]">{children}</main>
             <Footer />
           </SessionProvider>
           <ToastContainer />

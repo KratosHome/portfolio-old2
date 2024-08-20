@@ -1,5 +1,5 @@
 interface ProjectTypes {
-  _id?: string
+  _id: string
   name: string
   description: string
   technologies: string[]
@@ -7,6 +7,7 @@ interface ProjectTypes {
     text: string
     completed: boolean
   }[]
+  isPublic?: boolean
   lookingInTeam?: string[]
   percentageProjectCompletion: number
   deployLink?: string

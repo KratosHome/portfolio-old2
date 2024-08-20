@@ -11,7 +11,6 @@ export async function GET(request: NextRequest) {
 
   try {
     await connectToDb()
-    console.log('projects NextResponse work')
     const projects = await Project.find({
       team: { $in: [userId] },
     })

@@ -33,6 +33,11 @@ const projectSchema = new mongoose.Schema(
       type: [String],
       required: false,
     },
+    isPublic: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     percentageProjectCompletion: {
       type: Number,
       required: true,
