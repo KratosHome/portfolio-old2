@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { NewPost } from '@/components/blog/new-post'
 import { Donat } from '@/components/UI/donat/donat'
+import { NewPost } from '@/components/admin/new-post/new-post'
 
 const Page = () => {
   const [activeTab, setActiveTab] = useState<'newPost' | 'myPosts'>('newPost')
