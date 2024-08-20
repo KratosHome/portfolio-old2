@@ -1,49 +1,66 @@
 'use client'
-import { useState } from 'react'
-import { loginAction } from '@/server/auth/login.server'
-import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { GitHub } from '@/components/auth/git-hub/git-hub'
-import { Google } from '@/components/auth/google/google'
-import { BigLuna } from '@/components/UI/big-luna/big-luna'
 import { Input } from '@/components/UI/input/input'
+import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
+import { BigLuna } from '@/components/UI/big-luna/big-luna'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import Link from 'next/link'
-import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
+import { Loader } from '@/components/UI/loader/loader'
+import { singUp } from '@/server/auth/sing-up.server'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
+import { GitHub } from '@/components/client/auth/git-hub/git-hub'
+import { Google } from '@/components/client/auth/google/google'
 
-interface LoginFormValues {
+interface registerFormValues {
+  username: string
   email: string
   password: string
+  passwordRepeat: string
 }
 
-function Loader() {
-  return null
-}
-
-const Login = () => {
+export const SignUp = () => {
   const router = useRouter()
   const t = useTranslations('auth')
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
     watch,
-  } = useForm<LoginFormValues>()
+  } = useForm<registerFormValues>()
   const password = watch('password')
+  const passwordRepeat = watch('passwordRepeat')
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async (data: any) => {
+  const onSubmit: SubmitHandler<registerFormValues> = async (data) => {
     setLoading(true)
-    const result = await loginAction(data)
-    setLoading(false)
-
-    if (result?.success) {
-      router.refresh()
+    if (password !== passwordRepeat) {
+      toast(`${t('Passwords do not match!')}`, {
+        type: 'error',
+      })
+      setLoading(false)
+      return
     }
+    const response = await singUp(data)
+
+    if (response.success) {
+      reset()
+      toast(`${t('You have registered successfully!')}`, {
+        type: 'success',
+      })
+      setLoading(false)
+      router.push('/login')
+      return
+    }
+
+    setLoading(false)
   }
+
   return (
     <div>
       {loading && <Loader />}
@@ -57,10 +74,10 @@ const Login = () => {
           <ButtonBeck />
         </div>
         <div className="relative mt-[139px]">
-          <BigLuna />
+          <BigLuna className={'lg:size-[1000px]'} />
           <div className="flex flex-col items-center justify-center pt-[67px]">
             <h1 className="text-[40px] font-light uppercase lg:text-[60px] lg:capitalize">
-              {t('signNow')}
+              {t('sign up now')}
             </h1>
             <div className="mt-[40px] flex gap-[26px] text-[21px] font-bold">
               <GitHub />
@@ -70,6 +87,28 @@ const Login = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="mt-[40px] gap-[24px]"
             >
+              <Input
+                label={t('name')}
+                className="mx-5 w-[300px]"
+                type={'text'}
+                placeholder={t('name')}
+                name={'name'}
+                register={{
+                  ...register('username', {
+                    required: `${t('This field is required')}`,
+                    minLength: {
+                      value: 4,
+                      message: `${t('Minimum number of characters')} 4`,
+                    },
+                    maxLength: {
+                      value: 50,
+                      message: `${t('Maximum number of characters')} 50`,
+                    },
+                  }),
+                }}
+                error={errors.username?.message}
+              />
+              <span className="mt-[24px] block" />
               <Input
                 className="mx-5 w-[300px]"
                 type={'text'}
@@ -110,6 +149,28 @@ const Login = () => {
                 }}
                 error={errors.password?.message}
               />
+              <Input
+                className="mx-5 w-[300px]"
+                type={'password'}
+                label={t('Confirm password')}
+                placeholder={t('Confirm password')}
+                name={'password'}
+                password={password}
+                register={{
+                  ...register('passwordRepeat', {
+                    required: `${t('This field is required')}`,
+                    minLength: {
+                      value: 4,
+                      message: `${t('Minimum number of characters')} 4`,
+                    },
+                    maxLength: {
+                      value: 50,
+                      message: `${t('Maximum number of characters')} 50`,
+                    },
+                  }),
+                }}
+                error={errors.passwordRepeat?.message}
+              />
               <div className="mt-[48px] flex w-full items-center justify-center">
                 <ButtonCircle title={t('sign-in')} className="capitalize" />
               </div>
@@ -117,21 +178,15 @@ const Login = () => {
             <div className="mt-[70px] flex flex-col items-center text-[20px] lg:items-start">
               <div>
                 <span className="mr-[12px] text-[20px]">
-                  {t('have-account')}
+                  {t('Already have an account?')}
                 </span>
                 <Link
-                  href={'sign-up'}
+                  href={'login'}
                   className="text-blue-700 duration-300 hover:underline"
                 >
-                  {t('sign-up')}
+                  {t('Sign In')}
                 </Link>
               </div>
-              <Link
-                href={'forgot-password'}
-                className="text-blue-700 duration-300 hover:underline"
-              >
-                {t('forgot-password')}
-              </Link>
             </div>
           </div>
         </div>
@@ -139,5 +194,3 @@ const Login = () => {
     </div>
   )
 }
-
-export default Login

@@ -2,9 +2,11 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 
-export const createProject = async (data: any) => {
+export const createProject = async (id: any, data: any) => {
   try {
     await connectToDb()
+
+    data.team = id
 
     const project = new Project(data)
     await project.save()

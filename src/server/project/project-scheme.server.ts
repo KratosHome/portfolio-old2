@@ -58,6 +58,10 @@ const projectSchema = new mongoose.Schema(
       type: [String],
       required: false,
     },
+    status: {
+      type: String,
+      enum: ['new', 'in progress', 'deploy', 'completed', 'archived'],
+    },
     logo: {
       type: String,
     },

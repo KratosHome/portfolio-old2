@@ -64,6 +64,9 @@ const Page = () => {
             <h1>Ви не доєднані до жодного проекту</h1>
             <Link href="/mentoring">Доєднатись до проєкту</Link>
           </div>
+          {activeTab === 'створити-проєкт' && (
+            <ProjectItem project={[]} isCrate={true} />
+          )}
         </>
       )}
     </div>

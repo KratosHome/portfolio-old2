@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
-import { Dashboard } from '@/components/dashboard/dashboard'
 import { adminDashboardData } from '@/data/admin-dashboard'
 import { redirect } from 'next/navigation'
 import { auth } from '@/server/auth/auth.server'
 import { createUsers } from '@/server/users/create-user.server'
 import 'react-quill/dist/quill.snow.css'
+import { Dashboard } from '@/components/dashboard/dashboard'
 
 export default async function LocaleLayout({
   children,

@@ -19,4 +19,5 @@ interface ProjectTypes {
   resetPasswordToken?: string
   createdAt?: string
   updatedAt?: string
+  status: 'new' | 'in progress' | 'deploy' | 'completed' | 'archived'
 }

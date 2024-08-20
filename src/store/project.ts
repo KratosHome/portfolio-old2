@@ -3,6 +3,7 @@ import { create } from 'zustand'
 interface StoreState {
   projects: ProjectTypes[]
   fetchProjects: (id: string) => Promise<void>
+  clearProjects: () => void
 }
 
 export const projectStore = create<StoreState>((set) => ({
@@ -35,4 +36,5 @@ export const projectStore = create<StoreState>((set) => ({
       console.error('Error fetching projects:', error)
     }
   },
+  clearProjects: () => set({ projects: [] }),
 }))

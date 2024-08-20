@@ -6,6 +6,7 @@ interface StoreState {
   fetchUser: (session: any) => Promise<void>
   saveUser: (newUser: Partial<UserTypes>) => void
   updateUser: (newUser: Partial<UserTypes>) => void
+  clearUser: () => void
 }
 
 export const useStore = create<StoreState>((set) => ({
@@ -43,6 +44,7 @@ export const useStore = create<StoreState>((set) => ({
         username: response.user.username,
         _id: response.user._id,
       }
+
       set({ user })
     }
   },
@@ -50,4 +52,22 @@ export const useStore = create<StoreState>((set) => ({
     set((state) => ({ user: { ...state.user, ...newUser } })),
   updateUser: (newUser: Partial<UserTypes>) =>
     set((state) => ({ user: { ...state.user, ...newUser } })),
+  clearUser: () =>
+    set({
+      user: {
+        createdAt: '',
+        email: '',
+        isAdmin: false,
+        isBlocked: false,
+        isEmailVerified: false,
+        isEmailVerifiedToken: '',
+        password: '',
+        rating: 0,
+        role: '',
+        transactions: [],
+        updatedAt: '',
+        username: '',
+        _id: '',
+      },
+    }),
 }))

@@ -10,6 +10,8 @@ import { toast } from 'react-toastify'
 import { Loader } from '@/components/UI/loader/loader'
 import { useTranslations } from 'next-intl'
 import ReactQuill from 'react-quill'
+import { useStore } from '@/store/user'
+import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 
 interface PlanItem {
   text: string
@@ -21,28 +23,11 @@ interface ProjectItemProps {
   isCrate?: boolean
 }
 
-const CustomToolbar = () => (
-  <div id="toolbar" className="flex space-x-2 rounded-t-lg !bg-gray-100 p-2">
-    <button className="ql-bold">B</button>
-    <button className="ql-italic">I</button>
-    <button className="ql-underline">U</button>
-    <button className="ql-list" value="ordered"></button>
-    <button className="ql-list" value="bullet"></button>
-    <select className="ql-header">
-      <option value="1"></option>
-      <option value="2"></option>
-      <option value="3"></option>
-      <option value="4"></option>
-      <option value="5"></option>
-      <option value="6"></option>
-      <option value=""></option>
-    </select>
-    <button className="ql-image"></button>
-  </div>
-)
-
 export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
+  const status = ['new', 'in progress', 'deploy', 'completed', 'archived']
+
   const t = useTranslations('footer')
+  const { user } = useStore()
   const {
     register,
     handleSubmit,
@@ -66,6 +51,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     { text: 'міавмва', completed: false },
   ])
 
+  const [selectedStatus, setSelectedStatus] = useState(status[0])
+
   useEffect(() => {
     reset({
       name: project.name,
@@ -74,7 +61,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       contactGroupLink: project.contactGroupLink,
       gitHubLink: project.gitHubLink,
     })
-
+    setSelectedStatus(project.status)
     setDescription(project.description)
     setTechnologies(project.technologies ?? [])
     setWorkPlanPlan(project.workPlan ?? [])
@@ -133,11 +120,16 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     setLookingInTeam(updatedTeam)
   }
 
-  console.log('project', project)
+  const handleChangeStatus = (event: any) => {
+    setSelectedStatus(event.target.value)
+  }
+
   const onSubmit: SubmitHandler<any> = async (data: any, event: any) => {
     setLoading(true)
     const action = event.nativeEvent.submitter.name
     const id = project._id
+    const userId = user._id
+    const adminId = `${process.env.NEXT_PUBLIC_ADMIN_ID}`
 
     let imageBase64 = null
     if (image) {
@@ -152,14 +144,14 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       lookingInTeam: lookingInTeam,
       percentageProjectCompletion: +data.percentageProjectCompletion,
       deployLink: data.deployLink,
-      gitHubLink: data.githubLink,
+      gitHubLink: data.gitHubLink,
       contactGroupLink: data.contactGroupLink,
+      status: selectedStatus,
       // logo: imageBase64,
     }
-
     let result
     if (action === 'create') {
-      result = await createProject(sendData)
+      result = await createProject([userId, adminId], sendData)
     } else if (action === 'update') {
       result = await updateProject(id, sendData)
     }
@@ -201,7 +193,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
         />
 
         <div className="min-h-[200px]">
-          <CustomToolbar />
+          <CustomToolbarQuill />
           <ReactQuill
             theme="snow"
             placeholder={'Опис проєкту'}
@@ -241,6 +233,14 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
             Додати технологію
           </AdminButton>
         </div>
+
+        <select value={selectedStatus} onChange={handleChangeStatus}>
+          {status.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
 
         <div>
           <h2 className="text-2xl font-bold">Недалекі плани</h2>

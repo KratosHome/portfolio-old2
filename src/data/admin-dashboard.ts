@@ -4,6 +4,7 @@ export const adminDashboardUa = [
     title: 'Оголошення',
     link: 'announcements',
     icon: 'GrAnnounce',
+    isInProject: true,
     roles: ['isInProject'],
   },
   {
@@ -11,6 +12,7 @@ export const adminDashboardUa = [
     title: 'Задачі',
     link: 'tasks',
     icon: 'FaTasks',
+    isInProject: true,
     roles: ['isInProject'],
   },
   {
@@ -18,6 +20,7 @@ export const adminDashboardUa = [
     title: 'Документи',
     link: 'documents',
     icon: 'IoDocuments',
+    isInProject: true,
     roles: ['isInProject'],
   },
   {
@@ -25,6 +28,7 @@ export const adminDashboardUa = [
     title: 'Проект',
     link: 'project',
     icon: 'MdOutlineWorkHistory',
+    isInProject: false,
     roles: ['isInProject'],
   },
   {
@@ -32,12 +36,14 @@ export const adminDashboardUa = [
     title: 'Команда',
     link: 'team',
     icon: 'RiTeamLine',
+    isInProject: false,
     roles: ['isInProject'],
   },
   {
     id: 6,
     title: 'Статистика',
     link: 'statistics',
+    isInProject: true,
     icon: 'FcStatistics',
     roles: ['isInProject'],
   },
@@ -45,7 +51,24 @@ export const adminDashboardUa = [
     id: 7,
     title: 'Блоґ',
     link: 'blog',
+    isInProject: false,
     icon: 'GrBlog',
+    roles: ['all'],
+  },
+  {
+    id: 7,
+    title: 'Чат',
+    link: 'chat',
+    isInProject: true,
+    icon: 'AiOutlineWechat',
+    roles: ['all'],
+  },
+  {
+    id: 7,
+    title: 'Календар',
+    link: 'calendar',
+    isInProject: true,
+    icon: 'FaCalendarAlt',
     roles: ['all'],
   },
 ]

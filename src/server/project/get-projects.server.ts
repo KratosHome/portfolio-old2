@@ -3,12 +3,13 @@ import { unstable_noStore as noStore } from 'next/cache'
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 
-export const getProject = async (userId: string) => {
+export const getProjects = async () => {
+  'use server'
   noStore()
   try {
     await connectToDb()
 
-    const projects = await Project.find({ team: { $in: [userId] } }).lean()
+    const projects = await Project.find({ isPublic: true }).lean()
 
     return {
       success: true,

@@ -3,20 +3,18 @@ import { FC, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { RxAvatar } from 'react-icons/rx'
 import { MdOutlineWorkHistory } from 'react-icons/md'
-import { FaTasks } from 'react-icons/fa'
+import { FaCalendarAlt, FaTasks } from 'react-icons/fa'
 import { GrAnnounce, GrBlog } from 'react-icons/gr'
 import { PiStudentBold } from 'react-icons/pi'
 import { FaUserSecret } from 'react-icons/fa'
 import { useLocale } from 'use-intl'
-import LogOut from '@/components/auth/log-out/log-out'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { IoDocuments } from 'react-icons/io5'
 import { RiTeamLine } from 'react-icons/ri'
 import { FcStatistics } from 'react-icons/fc'
-import { useStore } from '@/store/user'
-import { useSession } from 'next-auth/react'
-import { projectStore } from '@/store/project'
+import LogOut from '@/components/client/auth/log-out/log-out'
+import { AiOutlineWechat } from 'react-icons/ai'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -28,6 +26,8 @@ const icons = {
   IoDocuments,
   RiTeamLine,
   FcStatistics,
+  AiOutlineWechat,
+  FaCalendarAlt,
 }
 
 type IconKey = keyof typeof icons
@@ -39,6 +39,7 @@ interface DashboardItem {
   icon: IconKey
   roles: string[]
   tabs?: any
+  isInProject: boolean
 }
 
 interface DashboardProps {
@@ -51,24 +52,6 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   const { contextSafe } = useGSAP()
   const animationDelay = 500 // затримка у мілісекундах
   let enterTimeout: ReturnType<typeof setTimeout> | null = null
-
-  const { data: session }: any = useSession()
-  const { user, fetchUser } = useStore()
-  const { fetchProjects } = projectStore()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetchUser(session)
-    }
-    fetchData()
-  }, [fetchUser, session])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetchProjects(user._id)
-    }
-    fetchData()
-  }, [fetchProjects, user])
 
   const handleMouseEnter = contextSafe(() => {
     enterTimeout = setTimeout(() => {
@@ -110,7 +93,12 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
                 href={`/${locale}/admin/${item.link}`}
                 className="mb-6 flex items-center transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-500"
               >
-                {IconComponent && <IconComponent className="size-12" />}
+                {IconComponent && (
+                  <IconComponent
+                    className={`size-12 ${item.isInProject ? 'text-red-300' : 'text-white'}`}
+                  />
+                )}
+
                 <span className="ml-5 block text-[20px]">{item.title}</span>
               </Link>
             </li>

@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema(
       min: 3,
       max: 120,
     },
+    aboutMe: {
+      type: String,
+      required: false,
+    },
     email: {
       type: String,
       required: true,
@@ -19,6 +23,10 @@ const userSchema = new mongoose.Schema(
       redirect: true,
       type: Boolean,
       default: false,
+    },
+    technologies: {
+      type: [String],
+      required: true,
     },
     isEmailVerifiedToken: {
       type: String,
@@ -42,21 +50,25 @@ const userSchema = new mongoose.Schema(
       required: true,
       type: String,
       enum: [
+        'user',
         'frontend',
         'backend',
-        'mentor',
-        'manager',
-        'QA',
+        'full stack',
+        'tester',
         'designer',
-        'user',
+        'devops',
+        'data scientist',
+        'project manager',
+        'product manager',
+        'qa engineer',
+        'ui/ux designer',
+        'mobile developer',
+        'system administrator',
+        'security analyst',
+        'mentor',
       ],
-      default: 'user',
     },
-    transactions: {
-      type: Array,
-      default: [],
-    },
-    telegramLink: {
+    contactLink: {
       type: String,
     },
     gitHubLink: {
@@ -69,14 +81,11 @@ const userSchema = new mongoose.Schema(
     resume: {
       type: String,
     },
-    portfolio: {
-      type: String,
+    portfolioLinks: {
+      type: [String],
     },
-    portfolioImage: {
-      type: String,
-    },
-    portfolioDescription: {
-      type: String,
+    workExperience: {
+      type: Number,
     },
     isBlocked: {
       type: Boolean,

@@ -7,11 +7,14 @@ import Image from 'next/image'
 import { menuData } from '@/data/menuData'
 import { MobileMenu } from '@/components/header/mobile-menu'
 import arrow from '@/assets/icons/arrow-small.svg'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 import { useGSAP } from '@gsap/react'
+import { useSession } from 'next-auth/react'
+import { useStore } from '@/store/user'
+import { projectStore } from '@/store/project'
 
 export const Header = () => {
   const t = useTranslations('header')
@@ -21,6 +24,23 @@ export const Header = () => {
 
   const subMenuTimers = useRef<Array<NodeJS.Timeout | null>>([])
   const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
+  const { data: session }: any = useSession()
+  const { user, fetchUser } = useStore()
+  const { fetchProjects } = projectStore()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchUser(session)
+    }
+    fetchData()
+  }, [fetchUser, session])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchProjects(user._id)
+    }
+    fetchData()
+  }, [fetchProjects, user])
 
   const showSubMenu = contextSafe((index: number) => {
     if (subMenuTimers.current[index]) {
