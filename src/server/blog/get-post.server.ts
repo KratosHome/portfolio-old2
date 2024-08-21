@@ -1,6 +1,6 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const getPost = async (url: any, local: string) => {
   try {

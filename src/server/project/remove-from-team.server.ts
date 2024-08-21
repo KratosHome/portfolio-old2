@@ -1,7 +1,7 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const removeFromTeamServer = async (
   userId: string,

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 import { v4 as uuidv4 } from 'uuid'
 import nodemailer from 'nodemailer'
 

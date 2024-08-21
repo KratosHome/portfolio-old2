@@ -2,7 +2,7 @@
 import { unstable_noStore as noStore } from 'next/cache'
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const getTeamProject = async (userId: string) => {
   noStore()

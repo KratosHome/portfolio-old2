@@ -1,6 +1,6 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const updateRatingUsers = async (
   userId: string,

@@ -9,7 +9,6 @@ const withMDX = NextMdx.default({
     },
 });
 
-
 const nextConfig = {
     runtime: 'nodejs',
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
@@ -19,6 +18,16 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "res.cloudinary.com",
+                port: "",
+            },
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+                port: "",
+            },
+            {
+                protocol: "https",
+                hostname: "drive.google.com",
                 port: "",
             },
         ],

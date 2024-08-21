@@ -1,20 +1,13 @@
+'use server'
 import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 import { User } from '@/server/users/user-schema.server'
 
-export const getPosts = async (
-  local: string,
-  page: number = 1,
-  limit: number = 10,
-) => {
+export const getAllPosts = async () => {
   try {
     await connectToDb()
-    const skip = (page - 1) * limit
 
-    const posts = await Post.find({ local: local }).skip(skip).limit(limit)
-    const totalPosts = await Post.countDocuments({ local: local })
-
-    const totalPages = Math.ceil(totalPosts / limit)
+    const posts = await Post.find().sort({ isPublished: 1 })
 
     const postsWithUserDetails = await Promise.all(
       posts.map(async (post) => {
@@ -23,6 +16,7 @@ export const getPosts = async (
         )
         return {
           ...post.toObject(),
+          authorId: user?._id,
           authorUsername: user?.username,
           authorUserLogo: user?.userLogo,
         }
@@ -32,8 +26,6 @@ export const getPosts = async (
     return {
       success: true,
       posts: postsWithUserDetails,
-      currentPage: page,
-      totalPages,
     }
   } catch (err) {
     console.log(err)

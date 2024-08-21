@@ -18,4 +18,8 @@ interface UserTypes {
   workExperience: number
   portfolioLinks: string[]
   technologies: string[]
+  userLogo?: string
+  linkedinLink: string
+  isPublic: boolean
+  resume: string
 }

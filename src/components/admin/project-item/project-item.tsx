@@ -28,6 +28,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
 
   const t = useTranslations('footer')
   const { user } = useStore()
+  const isSuperAdmin = user.isAdmin
+
   const {
     register,
     handleSubmit,
@@ -147,6 +149,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       gitHubLink: data.gitHubLink,
       contactGroupLink: data.contactGroupLink,
       status: selectedStatus,
+      isPublic: isSuperAdmin,
       // logo: imageBase64,
     }
     let result
@@ -192,7 +195,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           error={errors.name?.message}
         />
 
-        <div className="min-h-[200px]">
+        <div className="mt-2">
           <CustomToolbarQuill />
           <ReactQuill
             theme="snow"
@@ -234,7 +237,11 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           </AdminButton>
         </div>
 
-        <select value={selectedStatus} onChange={handleChangeStatus}>
+        <select
+          value={selectedStatus}
+          onChange={handleChangeStatus}
+          className="my-1 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
           {status.map((option, index) => (
             <option key={index} value={option}>
               {option}

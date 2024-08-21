@@ -17,6 +17,7 @@ import LogOut from '@/components/client/auth/log-out/log-out'
 import { AiOutlineWechat } from 'react-icons/ai'
 import { useStore } from '@/store/user'
 import { teamStore } from '@/store/team'
+import Image from 'next/image'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -138,7 +139,17 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
         href={`/${locale}/admin/user`}
         className="z-10 mb-4 transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-500"
       >
-        <RxAvatar className="size-12" />
+        {user.userLogo ? (
+          <Image
+            src={user.userLogo}
+            alt={`user logo  ${user.username}`}
+            width={48}
+            height={48}
+            className="size-12 rounded-full"
+          />
+        ) : (
+          <RxAvatar className="size-12" />
+        )}
       </Link>
     </div>
   )

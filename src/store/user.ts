@@ -20,6 +20,7 @@ export const useStore = create<StoreState>((set) => ({
     password: '',
     rating: 0,
     role: '',
+    userLogo: '',
     transactions: [],
     updatedAt: '',
     username: '',
@@ -30,6 +31,9 @@ export const useStore = create<StoreState>((set) => ({
     workExperience: 0,
     portfolioLinks: [],
     technologies: [],
+    linkedinLink: '',
+    isPublic: false,
+    resume: '',
   },
   fetchUser: async (email: string) => {
     const response = await getUser(email)
@@ -55,6 +59,10 @@ export const useStore = create<StoreState>((set) => ({
         workExperience: response.user.workExperience,
         portfolioLinks: response.user.portfolioLinks,
         technologies: response.user.technologies,
+        userLogo: response.user.userLogo,
+        linkedinLink: response.user.linkedinLink,
+        isPublic: response.user.isPublic,
+        resume: response.user.resume,
       }
 
       set({ user })
@@ -69,6 +77,7 @@ export const useStore = create<StoreState>((set) => ({
       user: {
         createdAt: '',
         email: '',
+        userLogo: '',
         isAdmin: false,
         isBlocked: false,
         isEmailVerified: false,
@@ -86,6 +95,9 @@ export const useStore = create<StoreState>((set) => ({
         workExperience: 0,
         portfolioLinks: [],
         technologies: [],
+        linkedinLink: '',
+        isPublic: false,
+        resume: '',
       },
     }),
 }))

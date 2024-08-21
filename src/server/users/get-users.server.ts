@@ -1,7 +1,7 @@
 'use server'
 import { unstable_noStore as noStore } from 'next/cache'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const getUser = async (email: string) => {
   noStore()

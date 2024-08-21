@@ -1,20 +1,25 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
+import cloudinary from '@/server/cloudinaryConfig'
 
 export const updateUser = async (id: string, sendData: any) => {
   try {
     await connectToDb()
 
-    console.log('id', id)
-    console.log('sendData', sendData)
+    if (sendData.userLogo) {
+      const uploadLogo = await cloudinary.uploader.upload(sendData.userLogo, {
+        folder: 'avatars',
+      })
+      sendData.userLogo = uploadLogo.secure_url
+    }
+
     const user = await User.findByIdAndUpdate(id, sendData, { new: true })
-    console.log('user', user)
     if (!user) return { success: false }
 
     return { success: true }
   } catch (error) {
-    console.error('Error updating user:', error)
+    console.error('Помилка при оновленні користувача:', error)
     return { success: false }
   }
 }

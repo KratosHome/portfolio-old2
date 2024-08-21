@@ -1,6 +1,6 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 
 export const createUsers = async (session: any) => {
   'use server'
@@ -13,7 +13,10 @@ export const createUsers = async (session: any) => {
         email: session.user.email.toLowerCase(),
         userLogo: session.user.image,
         isEmailVerified: true,
+        role: 'user',
       })
+
+      console.log('newUser', newUser)
       await newUser.save()
       return { success: true }
     }

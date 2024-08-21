@@ -3,18 +3,18 @@ import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { confirmEmailToken } from '@/server/auth/confirm-email.server'
 import { toast } from 'react-toastify'
-import { useSession } from 'next-auth/react'
+import { useStore } from '@/store/user'
 
 const Page = () => {
   const params = useParams()
   const router = useRouter()
-  const session: any = useSession()
+  const { user } = useStore()
 
   useEffect(() => {
-    if (session.data?.user._id) {
+    if (user._id) {
       const fetchData = async () => {
         const response = await confirmEmailToken(
-          session.data?.user._id,
+          user._id,
           params.token.toString(),
         )
         if (response.success) {
@@ -27,7 +27,7 @@ const Page = () => {
       }
       fetchData()
     }
-  }, [params.token, session])
+  }, [params.token, user])
 
   return <div />
 }

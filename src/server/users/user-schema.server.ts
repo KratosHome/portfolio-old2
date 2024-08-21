@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const userSchema = new mongoose.Schema(
+const userSchemaServer = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
     technologies: {
       type: [String],
       required: true,
+    },
+    isPublic: {
+      type: Boolean,
+      default: false,
     },
     projects: {
       type: [
@@ -89,6 +93,9 @@ const userSchema = new mongoose.Schema(
     gitHubLink: {
       type: String,
     },
+    linkedinLink: {
+      type: String,
+    },
     rating: {
       type: Number,
       default: 0,
@@ -115,4 +122,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 )
 
-export const User = mongoose.models?.User || mongoose.model('User', userSchema)
+export const User =
+  mongoose.models?.User || mongoose.model('User', userSchemaServer)

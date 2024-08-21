@@ -12,6 +12,8 @@ import { useStore } from '@/store/user'
 import { MdDelete } from 'react-icons/md'
 import ReactQuill from 'react-quill'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
+import { convertToBase64 } from '@/utils/convertToBase64'
+import { base64ToFile } from '@/utils/base64ToFile'
 
 const Page = () => {
   const roles = [
@@ -33,13 +35,14 @@ const Page = () => {
     'mentor',
   ]
 
-  const { user } = useStore()
+  const { user, fetchUser } = useStore()
   const t = useTranslations('footer')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState<boolean | undefined>(false)
+
+  const [selectedResume, setSelectedResume] = useState<any>(null)
   const [image, setImage] = useState<any>(null)
 
-  console.log('user', user)
   const [aboutMe, setAboutMe] = useState<string>('')
 
   const [technologyInput, setTechnologyInput] = useState<string>('')
@@ -49,20 +52,18 @@ const Page = () => {
   const [portfolio, setPortfolio] = useState<string[]>(['vcdfsv'])
   const [selectedRoles, setSelectedRoles] = useState(status[0])
 
-  /*
-      const sendData = {
-      workExperience: data.workExperience,
-      // resume: resume,
-      // userLogo: imageBase64,
-    }
+  useEffect(() => {
+    const pdfFile = base64ToFile(user.resume, 'example.pdf')
+    setSelectedResume(pdfFile)
+  }, [user])
 
-   */
   useEffect(() => {
     reset({
       username: user.username,
       gitHubLink: user.gitHubLink,
       contactLink: user.contactLink,
       workExperience: user.workExperience,
+      linkedinLink: user.linkedinLink,
     })
     setAboutMe(user.aboutMe)
     setSelectedRoles(user.role)
@@ -133,11 +134,37 @@ const Page = () => {
     }
   }
 
+  const handleResumeChange = (event: any) => {
+    const file = event.target.files[0]
+
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        alert('Будь ласка, виберіть PDF файл.')
+        return
+      }
+      const maxSize = 60 * 1024 * 1024
+      if (file.size > maxSize) {
+        alert('Розмір файлу не повинен перевищувати 60 MB.')
+        return
+      }
+
+      setSelectedResume(file)
+    }
+  }
+
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
-    const formData = new FormData()
 
-    const sendData = {
+    let imageBase64 = null
+    if (image) {
+      imageBase64 = await convertToBase64(image)
+    }
+    let selectedResumeBase64 = null
+    if (selectedResume) {
+      selectedResumeBase64 = await convertToBase64(selectedResume)
+    }
+
+    const sendData: any = {
       username: data.username,
       aboutMe: aboutMe,
       technologies: technologies,
@@ -146,14 +173,20 @@ const Page = () => {
       contactLink: data.contactLink,
       portfolioLinks: portfolio,
       workExperience: +data.workExperience,
-      // resume: resume,
-      // userLogo: imageBase64,
+      linkedinLink: data.linkedinLink,
     }
 
-    console.log('sendData', sendData)
+    if (imageBase64) {
+      sendData.userLogo = imageBase64
+    }
+    if (selectedResumeBase64) {
+      sendData.resume = selectedResumeBase64
+    }
+
     const response = await updateUser(user._id, sendData)
     if (response.success) {
       toast.success('User updated')
+      await fetchUser(user.email)
       setLoading(false)
     } else {
       toast.error('User not updated')
@@ -162,29 +195,79 @@ const Page = () => {
     setLoading(false)
   }
 
+  const handleOpenPDF = () => {
+    if (selectedResume) {
+      const fileURL = URL.createObjectURL(selectedResume)
+      window.open(fileURL, '_blank')
+    } else {
+      toast.error('Файл PDF не вибрано')
+    }
+  }
+
   if (!user) return null
   return (
     <div className="mx-auto h-full w-full p-5">
       <h1 className="text-center text-[50px] font-light">
-        Personal information
+        Персональна інформація
       </h1>
-      {!user?.isEmailVerified && (
-        <div className="flex items-center gap-4">
-          <div>Confirm your email:</div>
-          <AdminButton disabled={loading} onClick={confirmEmail}>
-            send a letter
-          </AdminButton>
+      <div className="flex gap-5">
+        {!user?.isEmailVerified && (
+          <div className="flex flex-col items-center">
+            <div>Підтвердіть ваш імейл:</div>
+            <AdminButton
+              className="mt-1"
+              disabled={loading}
+              onClick={confirmEmail}
+            >
+              send a letter
+            </AdminButton>
+          </div>
+        )}
+        <div className="flex flex-col items-start">
+          <div>
+            {user.userLogo ? <>Змінити логотип</> : <>Додати логотип</>}
+          </div>
+          <label
+            htmlFor="logo-upload"
+            className="mt-1 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Вибрати файл
+          </label>
+          <input
+            id="logo-upload"
+            type="file"
+            className="hidden"
+            ref={fileInputRef}
+            accept="image/*"
+            onChange={handleImageChange}
+          />
         </div>
-      )}
-      <div>додати аватар</div>
-      <input
-        className="file-input__create-post"
-        type="file"
-        ref={fileInputRef}
-        accept="image/*"
-        onChange={handleImageChange}
-      />
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-[50px]">
+        <div className="flex flex-col items-start">
+          <div>Додати резюме</div>
+          <label
+            htmlFor="resume-upload"
+            className="mt-1 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Вибрати файл
+          </label>
+          <input
+            id="resume-upload"
+            type="file"
+            className="hidden"
+            accept="application/pdf"
+            onChange={handleResumeChange}
+          />
+        </div>
+        {selectedResume && (
+          <button
+            className="mt-1 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            onClick={handleOpenPDF}
+          >
+            Переглянути резюме
+          </button>
+        )}
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type={'text'}
           placeholder={t('name')}
@@ -204,7 +287,7 @@ const Page = () => {
           }}
           error={errors.username?.message}
         />
-        <div className="min-h-[200px]">
+        <div className="mt-3 min-h-[200px]">
           <CustomToolbarQuill />
           <ReactQuill
             theme="snow"
@@ -237,7 +320,12 @@ const Page = () => {
           }}
           error={errors.workExperience?.message}
         />
-        <select value={selectedRoles} onChange={handleChangeRole}>
+        <div className="mt-3">Оберіть роль</div>
+        <select
+          value={selectedRoles}
+          onChange={handleChangeRole}
+          className="my-1 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
           {roles.map((option, index) => (
             <option key={index} value={option}>
               {option}
@@ -246,7 +334,7 @@ const Page = () => {
         </select>
 
         <div>
-          <h2 className="text-2xl font-bold">Технології</h2>
+          <h2 className="mt-3 font-bold">Технології</h2>
           <div className="flex flex-wrap gap-4">
             {technologies.map((tech, index) => (
               <div
@@ -311,15 +399,27 @@ const Page = () => {
           }}
           error={errors.gitHubLink?.message}
         />
-        <div>Додати резюме</div>
-        <input
-          className="file-input__create-post"
-          type="file"
-          ref={fileInputRef}
-          accept="pdf/*"
+        <Input
+          type={'text'}
+          placeholder={'linked inLink'}
+          name={'linkedinLink'}
+          register={{
+            ...register('linkedinLink', {
+              required: `${t('This field is required')}`,
+              minLength: {
+                value: 4,
+                message: `${t('Minimum number of characters')} 4`,
+              },
+              maxLength: {
+                value: 250,
+                message: `${t('Maximum number of characters')} 250`,
+              },
+            }),
+          }}
+          error={errors.linkedinLink?.message}
         />
         <div>
-          <h2 className="text-2xl font-bold">посилання на портфоліо</h2>
+          <h2 className="mt-3 font-bold">посилання на портфоліо</h2>
           <div className="flex flex-wrap gap-4">
             {portfolio.map((tech, index) => (
               <div
@@ -346,7 +446,9 @@ const Page = () => {
             Додати порфтоліо
           </AdminButton>
         </div>
-        <AdminButton type="submit">Save</AdminButton>
+        <AdminButton type="submit" className="mt-2">
+          Save
+        </AdminButton>
       </form>
     </div>
   )

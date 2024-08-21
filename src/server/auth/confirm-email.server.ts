@@ -1,6 +1,6 @@
 'use server'
 import { connectToDb } from '@/server/connectToDb'
-import { User } from '@/server/users/user-schema'
+import { User } from '@/server/users/user-schema.server'
 import nodemailer from 'nodemailer'
 import { v4 as uuidv4 } from 'uuid'
 import { verifyEmailTemplate } from '@/components/emails/verify-email'
@@ -13,8 +13,11 @@ export const confirmEmailToken = async (
   try {
     await connectToDb()
     const user = await User.findById(id)
+    console.log('user', user)
     if (!user) return { success: false, message: 'User not found' }
 
+    console.log('user.isEmailVerifiedToken', user.isEmailVerifiedToken)
+    console.log('user.isEmailVerifiedToken', token)
     if (user.isEmailVerifiedToken !== token)
       return { success: false, message: 'Invalid token' }
 
