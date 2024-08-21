@@ -1,27 +1,41 @@
 'use client'
 
-import { Donat } from '@/components/UI/donat/donat'
+import { teamStore } from '@/store/team'
 import { useEffect, useState } from 'react'
-import { getTeamProject } from '@/server/project/get-team-project.server'
-import { useStore } from '@/store/user'
+import { ProjectItem } from '@/components/admin/project-item/project-item'
+import { TeamItem } from '@/components/admin/team-item/team-item'
 
 const Page = () => {
-  const { user } = useStore()
-  const [teamProject, setTeamProject] = useState<any>([])
+  const [activeTab, setActiveTab] = useState('0')
+  const { team } = teamStore() // Цей рядок має бути всередині компонента
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId)
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getTeamProject(user._id)
-      setTeamProject(data)
-    }
-    fetchData()
-  }, [user])
+    setActiveTab(team[0]?._id)
+  }, [team])
 
-  console.log('teamProject', teamProject.projects)
   return (
     <div className="h-full">
-      <Donat />
-      <div>fff</div>
+      <div className="my-4 flex space-x-4">
+        {team.map((project) => (
+          <button
+            key={project._id}
+            className={`rounded px-4 py-2 ${activeTab === project._id ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}
+            onClick={() => handleTabChange(project._id)}
+          >
+            {project.name}
+          </button>
+        ))}
+      </div>
+      <div>
+        {team.map(
+          (item) =>
+            activeTab === item._id && <TeamItem key={item._id} item={item} />,
+        )}
+      </div>
     </div>
   )
 }

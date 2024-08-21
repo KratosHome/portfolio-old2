@@ -22,6 +22,7 @@ export const getTeamProject = async (userId: string) => {
           .lean()
 
         return {
+          _id: project._id,
           name: project.name,
           team: teamUsers,
           newUsers: newUsersList,
@@ -31,7 +32,7 @@ export const getTeamProject = async (userId: string) => {
 
     return {
       success: true,
-      projects: projectsWithUsers,
+      team: projectsWithUsers,
     }
   } catch (err) {
     console.log(err)

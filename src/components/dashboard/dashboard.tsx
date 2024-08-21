@@ -15,6 +15,8 @@ import { RiTeamLine } from 'react-icons/ri'
 import { FcStatistics } from 'react-icons/fc'
 import LogOut from '@/components/client/auth/log-out/log-out'
 import { AiOutlineWechat } from 'react-icons/ai'
+import { useStore } from '@/store/user'
+import { teamStore } from '@/store/team'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -52,6 +54,25 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   const { contextSafe } = useGSAP()
   const animationDelay = 500 // затримка у мілісекундах
   let enterTimeout: ReturnType<typeof setTimeout> | null = null
+  const { user } = useStore()
+  const { team, fetchTeam } = teamStore()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchTeam(user._id)
+    }
+    fetchData()
+  }, [user])
+
+  const team2 = [
+    { name: 'Team A', newUsers: ['User1', 'User2', 'User3'] },
+    { name: 'Team B', newUsers: ['User4', 'User5'] },
+    { name: 'Team C', newUsers: ['User6', 'User7', 'User8', 'User9'] },
+  ]
+
+  const totalNewUsers = team.reduce((total, currentTeam) => {
+    return total + currentTeam.newUsers.length
+  }, 0)
 
   const handleMouseEnter = contextSafe(() => {
     enterTimeout = setTimeout(() => {
@@ -93,13 +114,18 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
                 href={`/${locale}/admin/${item.link}`}
                 className="mb-6 flex items-center transition-all duration-300 ease-in-out hover:scale-105 hover:text-blue-500"
               >
+                {item.link === 'team' && totalNewUsers > 0 && (
+                  <span className="absolute -ml-2 -mt-8 flex size-5 items-center justify-center rounded-full bg-amber-500 text-white">
+                    {totalNewUsers}
+                  </span>
+                )}
                 {IconComponent && (
                   <IconComponent
                     className={`size-12 ${item.isInProject ? 'text-red-300' : 'text-white'}`}
                   />
                 )}
 
-                <span className="ml-5 block text-[20px]">{item.title}</span>
+                <span className="ml-5 block text-[20px]">{item.title} </span>
               </Link>
             </li>
           )

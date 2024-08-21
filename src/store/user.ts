@@ -24,9 +24,15 @@ export const useStore = create<StoreState>((set) => ({
     updatedAt: '',
     username: '',
     _id: '',
+    aboutMe: '',
+    gitHubLink: '',
+    contactLink: '',
+    workExperience: 0,
+    portfolioLinks: [],
+    technologies: [],
   },
-  fetchUser: async (session: any) => {
-    const response = await getUser(session?.user.email)
+  fetchUser: async (email: string) => {
+    const response = await getUser(email)
 
     if (response.success) {
       const user: UserTypes = {
@@ -43,6 +49,12 @@ export const useStore = create<StoreState>((set) => ({
         updatedAt: response.user.updatedAt,
         username: response.user.username,
         _id: response.user._id,
+        aboutMe: response.user.aboutMe,
+        gitHubLink: response.user.gitHubLink,
+        contactLink: response.user.contactLink,
+        workExperience: response.user.workExperience,
+        portfolioLinks: response.user.portfolioLinks,
+        technologies: response.user.technologies,
       }
 
       set({ user })
@@ -68,6 +80,12 @@ export const useStore = create<StoreState>((set) => ({
         updatedAt: '',
         username: '',
         _id: '',
+        aboutMe: '',
+        gitHubLink: '',
+        contactLink: '',
+        workExperience: 0,
+        portfolioLinks: [],
+        technologies: [],
       },
     }),
 }))

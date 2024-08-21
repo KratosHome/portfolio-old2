@@ -12,4 +12,10 @@ interface UserTypes {
   updatedAt: string
   username: string
   _id: string
+  aboutMe: string
+  gitHubLink: string
+  contactLink: string
+  workExperience: number
+  portfolioLinks: string[]
+  technologies: string[]
 }

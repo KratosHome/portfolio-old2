@@ -28,6 +28,21 @@ const userSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    projects: {
+      type: [
+        {
+          id: {
+            type: String,
+            required: true,
+          },
+          percentageWorkProject: {
+            type: Number,
+            required: true,
+            default: 0,
+          },
+        },
+      ],
+    },
     isEmailVerifiedToken: {
       type: String,
     },

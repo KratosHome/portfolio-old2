@@ -30,7 +30,7 @@ export const Header = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchUser(session)
+      await fetchUser(session.user.email)
     }
     fetchData()
   }, [fetchUser, session])

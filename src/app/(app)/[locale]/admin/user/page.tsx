@@ -13,13 +13,6 @@ import { MdDelete } from 'react-icons/md'
 import ReactQuill from 'react-quill'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 
-export interface UserTypes {
-  _id: string
-  isEmailVerified: boolean
-  name?: string
-  email?: string
-}
-
 const Page = () => {
   const roles = [
     'user',
@@ -55,6 +48,27 @@ const Page = () => {
   const [portfolioInput, setPortfolioInput] = useState<string>('')
   const [portfolio, setPortfolio] = useState<string[]>(['vcdfsv'])
   const [selectedRoles, setSelectedRoles] = useState(status[0])
+
+  /*
+      const sendData = {
+      workExperience: data.workExperience,
+      // resume: resume,
+      // userLogo: imageBase64,
+    }
+
+   */
+  useEffect(() => {
+    reset({
+      username: user.username,
+      gitHubLink: user.gitHubLink,
+      contactLink: user.contactLink,
+      workExperience: user.workExperience,
+    })
+    setAboutMe(user.aboutMe)
+    setSelectedRoles(user.role)
+    setPortfolio(user.portfolioLinks ?? [])
+    setTechnologies(user.technologies ?? [])
+  }, [user])
 
   const {
     register,
@@ -131,11 +145,12 @@ const Page = () => {
       role: selectedRoles,
       contactLink: data.contactLink,
       portfolioLinks: portfolio,
-      workExperience: data.workExperience,
+      workExperience: +data.workExperience,
       // resume: resume,
       // userLogo: imageBase64,
     }
 
+    console.log('sendData', sendData)
     const response = await updateUser(user._id, sendData)
     if (response.success) {
       toast.success('User updated')
