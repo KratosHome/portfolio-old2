@@ -1,10 +1,8 @@
-import logoCodeCraft from '@/assets/reviews/logo.svg'
-import logoRastcom from '@/assets/reviews/rastcom.svg'
-import logoAndrey from '@/assets/reviews/rastcom.svg'
-import logoEcousadba from '@/assets/reviews/rastcom.svg'
-import logoAlex from '@/assets/reviews/rastcom.svg'
+import logoRastcom from '@/assets/reviews/camran.jpeg'
+import logoAndrey from '@/assets/reviews/Andriy.png'
+import logoAlex from '@/assets/reviews/Alex.jpeg'
 import logoEtere from '@/assets/reviews/etere.webp'
-import logoJuli from '@/assets/reviews/etere.webp'
+import logoJuli from '@/assets/reviews/Juli.jpeg'
 
 export const dataReviews = [
   {
@@ -12,7 +10,7 @@ export const dataReviews = [
     userName: 'Alex',
     email: 'ecousadba@gmail.com',
     company: 'Ecousadba',
-    icon: logoEcousadba,
+    icon: logoAlex,
     link: 'https://ecousadba.in.ua',
     position: 'Product Owner',
     reviews:

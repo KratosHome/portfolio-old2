@@ -77,13 +77,12 @@ export const Services: FC<any> = ({ services }) => {
 
   return (
     <section aria-label="services" id="services">
-      <div className="relative mx-auto -mt-[400px] mb-[140px] max-w-[1442px] px-[24px]">
+      <div className="relative mx-auto -mt-[700px] mb-[140px] max-w-[1442px] px-[24px]">
         <div className="absolute -top-[800px] left-[200px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <div className="absolute right-[200px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <h2 className="hidden text-[40px] font-light uppercase lg:ml-[90px] lg:block lg:text-[96px]">
           {t('services')}
         </h2>
-
         <div className="absolute -left-[155px] top-[-100px] size-[345px] rounded-full border-r-[1px] border-stone-500/30" />
         <div className="absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] opacity-[0.7] bg-orbit-services" />
         <div className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">

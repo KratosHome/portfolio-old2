@@ -10,9 +10,11 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import arrowLong from '@/assets/icons/arrow-long.svg'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
+import { HireMe } from '@/components/client/hire-me/hire-me'
 
 export const Projects: FC<any> = ({ projects }) => {
   const t = useTranslations('home-page.project')
+
   const { contextSafe } = useGSAP()
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLLIElement[][]>([])
@@ -42,6 +44,7 @@ export const Projects: FC<any> = ({ projects }) => {
       opacity: 1,
       duration: 0.3,
       stagger: 0.1,
+      height: 'auto',
       ease: 'power2.out',
     })
   })
@@ -68,6 +71,7 @@ export const Projects: FC<any> = ({ projects }) => {
       opacity: 0,
       duration: 0.3,
       stagger: 0.1,
+      height: 0,
       ease: 'power2.out',
     })
   })
@@ -136,10 +140,11 @@ export const Projects: FC<any> = ({ projects }) => {
             pagination={{
               clickable: true,
             }}
-            modules={[Grid, Autoplay]}
+            modules={[Grid]}
             autoplay={{
               delay: 3000,
               disableOnInteraction: true,
+              pauseOnMouseEnter: true,
             }}
           >
             {projects.map((project: any, index: number) => (
@@ -176,8 +181,8 @@ export const Projects: FC<any> = ({ projects }) => {
                           {project.description}
                         </div>
                       </div>
-                      <div className="flex items-center justify-between border-t-[1px] border-amber-50">
-                        <div className="flex flex-wrap items-center gap-4">
+                      <div className="flex justify-between border-t-[1px] border-amber-50">
+                        <div className="mt-5 flex flex-wrap gap-4">
                           <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
                             <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
@@ -186,13 +191,14 @@ export const Projects: FC<any> = ({ projects }) => {
                               (icon: any, iconIndex: number) => (
                                 <li
                                   key={icon.id}
+                                  className="mt-2"
                                   ref={(el) => {
                                     if (!iconRefs.current[index]) {
                                       iconRefs.current[index] = []
                                     }
                                     iconRefs.current[index][iconIndex] = el!
                                   }}
-                                  style={{ opacity: 0 }}
+                                  style={{ opacity: 0, height: 0 }}
                                 >
                                   <Image
                                     src={icon.icon}
@@ -215,7 +221,7 @@ export const Projects: FC<any> = ({ projects }) => {
             ))}
           </Swiper>
           <div className="absolute bottom-[230px] right-[150px] z-30">
-            <ButtonCircle title={t('resume')} />
+            <HireMe title={t('resume')} modalTitle={t('resume')} />
           </div>
         </div>
 
@@ -299,7 +305,7 @@ export const Projects: FC<any> = ({ projects }) => {
               ))}
           </Swiper>
           <div className="mt-[41px] flex w-full justify-end">
-            <ButtonCircle title={t('resume')} />
+            <HireMe title={t('resume')} modalTitle={t('resume')} />
           </div>
         </div>
         <div className="absolute -bottom-[180px] right-0 h-[90px] w-[100px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.3]" />

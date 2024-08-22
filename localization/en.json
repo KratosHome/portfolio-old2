@@ -72,6 +72,13 @@
       "phone": "phone number",
       "message": "message",
       "send": "send"
+    },
+    "reviews": {
+      "reviews": "reviews",
+      "scroll": "scroll to",
+      "see-more": "see more",
+      "scroll-see-more": "scroll to see more",
+      "leave-review": "Leave review"
     }
   },
   "auth": {

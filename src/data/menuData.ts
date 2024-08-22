@@ -37,7 +37,16 @@ export const menuDataEn = [
   {
     name: 'Mentoring',
     link: 'mentoring',
-    subMenu: [],
+    subMenu: [
+      {
+        name: 'Projects',
+        link: 'projects',
+      },
+      {
+        name: 'Members',
+        link: 'members',
+      },
+    ],
   },
 ]
 

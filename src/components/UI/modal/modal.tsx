@@ -1,8 +1,9 @@
 'use client'
-import { FC, ReactNode, useEffect, useRef } from 'react'
+import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { cn } from '@/utils/cn'
 import { RxCross2 } from 'react-icons/rx'
+import { useGSAP } from '@gsap/react'
 
 interface ModalProps {
   isOpen: boolean
@@ -19,34 +20,56 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
+  const [shouldRender, setShouldRender] = useState(isOpen)
 
   useEffect(() => {
     if (isOpen) {
-      gsap.to(overlayRef.current, {
-        opacity: 1,
-        duration: 0.3,
-        pointerEvents: 'auto',
-      })
-      gsap.fromTo(
-        modalRef.current,
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-      )
+      document.body.classList.add('overflow-hidden')
     } else {
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        pointerEvents: 'none',
-      })
-      gsap.to(modalRef.current, { y: -50, opacity: 0, duration: 0.5 })
+      document.body.classList.remove('overflow-hidden')
     }
   }, [isOpen])
 
-  return (
+  useGSAP(
+    () => {
+      if (isOpen) {
+        setShouldRender(true)
+        gsap.to(overlayRef.current, {
+          opacity: 1,
+          duration: 0.3,
+          pointerEvents: 'auto',
+        })
+        gsap.fromTo(
+          modalRef.current,
+          { y: -50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+          },
+        )
+      } else if (!isOpen && shouldRender) {
+        gsap.to(overlayRef.current, {
+          opacity: 0,
+          duration: 0.3,
+          pointerEvents: 'none',
+        })
+        gsap.to(modalRef.current, {
+          y: -50,
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => setShouldRender(false),
+        })
+      }
+    },
+    { dependencies: [isOpen, shouldRender] },
+  )
+
+  return shouldRender ? (
     <>
       <div
         ref={overlayRef}
-        className="pointer-events-none fixed inset-0 z-50 bg-black bg-opacity-50 opacity-0"
+        className="fixed inset-0 z-50 bg-black bg-opacity-50 opacity-0"
         onClick={onClose}
       />
       <div
@@ -65,5 +88,5 @@ export const Modal: FC<ModalProps> = ({
         </button>
       </div>
     </>
-  )
+  ) : null
 }

@@ -14,7 +14,6 @@ export const getUser = async (email: string) => {
       user,
     }
   } catch (err) {
-    console.log(err)
     return { success: false }
   }
 }

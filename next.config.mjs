@@ -13,24 +13,7 @@ const nextConfig = {
     runtime: 'nodejs',
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
     images: {
-        formats: ["image/webp"],
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "res.cloudinary.com",
-                port: "",
-            },
-            {
-                protocol: "https",
-                hostname: "avatars.githubusercontent.com",
-                port: "",
-            },
-            {
-                protocol: "https",
-                hostname: "drive.google.com",
-                port: "",
-            },
-        ],
+        domains: ['res.cloudinary.com', "avatars.githubusercontent.com", "drive.google.com"],
     },
     env: {
         NEXT_URL: process.env.NEXT_URL,

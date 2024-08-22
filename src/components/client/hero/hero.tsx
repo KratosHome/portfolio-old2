@@ -1,6 +1,5 @@
 'use client'
 import './hero.scss'
-import { Technologies } from '@/components/hero/technologies/technologies'
 import gitHub from '@/assets/icons/github.svg'
 import gitHubLight from '@/assets/icons/githubLight.svg'
 import linkedin from '@/assets/icons/linkedin.svg'
@@ -11,7 +10,8 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import ThemeChange from '@/components/theme-change/theme-change'
-import { HireMe } from '@/components/hire-me/hire-me'
+import { Technologies } from '@/components/client/hero/technologies/technologies'
+import { HireMe } from '@/components/client/hire-me/hire-me'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -26,8 +26,7 @@ const Hero = () => {
   const years = calculateYears(startDate, new Date())
 
   return (
-    <section className="relative min-h-[1500px] overflow-x-hidden lg:overflow-visible">
-      <div className="animate-scale-in-out absolute -top-[170px] right-[40px] -z-10 h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1]" />
+    <section className="relative min-h-[1700px] overflow-x-hidden lg:overflow-visible">
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="absolute right-[28px] z-10 mt-[15px] block lg:hidden">
           <ThemeChange />
@@ -101,7 +100,7 @@ const Hero = () => {
               </a>
             </div>
             <div className="absolute left-0 lg:-top-[120px] lg:left-[310px]">
-              <HireMe title={t('hire-me')} />
+              <HireMe title={t('hire-me')} modalTitle={t('hire-me')} />
             </div>
           </div>
           <h2 className="relative min-w-[190px] text-end text-[24px] font-light uppercase leading-[1] lg:min-w-[550px] lg:text-[64px]">
@@ -114,13 +113,13 @@ const Hero = () => {
             </span>
           </h2>
         </div>
-        <div className="animate-scale-in-out absolute -bottom-[20px] left-[75vw] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:-bottom-[220px] lg:left-[400px] lg:size-[300px]" />
-        <div className="absolute -top-[600px] left-[200px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
-        <div className="absolute -right-[400px] -top-[400px] -z-20 h-[1900px] w-[1900px] transform bg-hero-pattern lg:-top-[100px] lg:right-[200px]" />
-        <div className="absolute -top-[500px] left-[0px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
+        <div className="animate-scale-in-out absolute -bottom-[20px] left-[75vw] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] xl:-bottom-[220px] xl:left-[400px] xl:size-[300px]" />
         <div className="absolute -right-[75px] bottom-[190px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
+        <div className="absolute -top-[600px] left-0 -z-20 hidden size-[1900px] transform bg-hero-pattern lg:block" />
+        <div className="absolute -right-[350px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern lg:right-[0px]" />
+        <div className="absolute -left-[100px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       </div>
-      <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />
+      <div className="mt-[124px] h-[1px] w-full bg-stone-500/0" />
       <div className="absolute -right-[250px] mx-auto flex w-full max-w-[1445px] rotate-[25deg] justify-end lg:-right-[50px] lg:-mt-[290px]">
         <div className="relative max-h-[500px] max-w-[500px]">
           <div className="circle absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />

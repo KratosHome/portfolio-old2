@@ -90,14 +90,14 @@ export const Footer = () => {
         </div>
       </div>
       <div className="mt-[155px] h-[1px] w-full bg-stone-500/30 lg:mt-[380px]" />
-      <div className="relative mx-auto mt-[55px] max-w-[1442px] px-[24px]">
-        <div className="absolute right-0 mx-auto -mt-[170px] flex w-full max-w-[1445px] rotate-[25deg] justify-end sm:-right-[250px] sm:-mt-[290px] lg:-right-[50px] lg:-mt-[450px]">
-          <div className="relative">
-            <div className="circle-footer absolute right-[100px] ml-[110px] mt-[70px] size-[55px] rounded-full bg-[rgba(255,255,255,0.3)] p-[55px] opacity-40 blur-2xl lg:size-[125px] lg:p-[135px]" />
-            <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[85px] rounded-full bg-black lg:size-[250px]" />
-            <div className="planet-footer absolute right-[100px] z-10 ml-[80px] mt-[25px] size-[80px] rounded-full bg-white opacity-40 blur-2xl lg:h-40 lg:w-40"></div>
-          </div>
+      <div className="relative h-10 min-h-max w-full">
+        <div className="absolute -top-[45px] right-[0] max-w-[1445px] rotate-[25deg] justify-end lg:-top-[80px]">
+          <div className="circle-footer absolute right-[100px] ml-[110px] mt-[70px] size-[55px] rounded-full bg-[rgba(255,255,255,0.3)] p-[55px] opacity-40 blur-2xl lg:size-[125px] lg:p-[135px]" />
+          <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[85px] rounded-full bg-black lg:size-[250px]" />
+          <div className="planet-footer absolute right-[100px] z-10 ml-[80px] mt-[25px] size-[80px] rounded-full bg-white opacity-40 blur-2xl lg:h-40 lg:w-40"></div>
         </div>
+      </div>
+      <div className="relative mx-auto mt-[55px] max-w-[1442px] px-[24px]">
         <div className="flex flex-col items-center justify-between lg:flex-row">
           <div className="lg:mr-[100px]">
             <div className="text-[34px] uppercase lg:text-[64px]">

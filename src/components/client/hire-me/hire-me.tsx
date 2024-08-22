@@ -12,7 +12,7 @@ import { useLocale } from 'use-intl'
 import { Modal } from '@/components/UI/modal/modal'
 import { Loader } from '@/components/UI/loader/loader'
 
-export const HireMe: FC<any> = ({ title }) => {
+export const HireMe: FC<any> = ({ title, modalTitle }) => {
   const locale = useLocale()
   const t = useTranslations('home-page.HireMe')
 
@@ -64,17 +64,23 @@ export const HireMe: FC<any> = ({ title }) => {
   return (
     <>
       {loading && <Loader />}
-      <div onClick={() => setClose(true)} className="!z-50 cursor-pointer">
+      <div
+        onClick={() => setClose(true)}
+        className="!z-50 cursor-pointer"
+        style={{
+          zIndex: 50,
+        }}
+      >
         <ButtonCircle title={title} className="!z-30" />
       </div>
       <Modal
         isOpen={open}
         onClose={() => setClose(false)}
-        className="bg-[linear-gradient(127deg, rgba(11, 102, 245, 0.30) 49.23%, rgba(78, 128, 206, 0.15) 83.27%, rgba(255, 255, 255, 0.00) 102.62%)] flex flex-col justify-end px-3 backdrop-blur-[12.5px] lg:px-8"
+        className="flex flex-col justify-end rounded-lg border-b border-black bg-[127deg] bg-gradient-to-r from-[rgba(11,102,245,0.30)] via-[rgba(78,128,206,0.15)] to-transparent px-3 backdrop-blur-[12.5px] lg:px-8"
       >
-        <div className="w-[400px]">
+        <div className="w-[300px] lg:w-[400px]">
           <h2 className="text-center text-[40px] font-bold uppercase text-[#0B66F5]">
-            {t('Contact Me')}
+            {modalTitle}
           </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>

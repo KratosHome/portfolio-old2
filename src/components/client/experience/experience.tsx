@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
+import { HireMe } from '@/components/client/hire-me/hire-me'
 
 interface ExperienceItem {
   id: number
@@ -87,18 +88,27 @@ export const Experience = ({
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className="experience-card relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px]"
+              className={`relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px] ${
+                activeItem === item.id ? 'cursor-pointer' : 'experience-card'
+              }`}
               onClick={() => handleClick(item.id)}
             >
               <div
                 id={`block-experience-${item.id}`}
                 className="flex items-center justify-between"
               >
-                <div className="mr[12px] text-[40px] font-light leading-[0.9] text-[#0B66F5]/50 lg:text-[96px]">
+                <div className="mr[12px] mr-[12px] hidden text-[48px] font-light leading-[0.9] text-[#0B66F5]/50 lg:mr-0 lg:block lg:text-[96px]">
                   {item.count}
                 </div>
                 <div className="flex flex-col items-center text-[24px] font-bold lg:text-[40px]">
-                  <div>{item.title}</div>
+                  <div className="flex">
+                    <div className="mr[12px] mr-[12px] mt-1 block text-[48px] font-light leading-[0.9] text-[#0B66F5]/50 lg:mr-0 lg:hidden lg:text-[96px]">
+                      {item.count}
+                    </div>
+                    <div className="text-[24px] font-normal lg:text-[40px] lg:font-bold">
+                      {item.title}
+                    </div>
+                  </div>
                   <div
                     id={`description-experience-${item.id}`}
                     className="description h-0 overflow-hidden opacity-0 lg:mx-[64px]"
@@ -128,7 +138,7 @@ export const Experience = ({
                   {item.date}
                 </div>
               </div>
-              <div className="block min-w-max text-right text-[16px] font-light lg:hidden lg:text-[24px]">
+              <div className="my-[18px] block min-w-max text-right text-[16px] font-light lg:hidden lg:text-[24px]">
                 {item.date}
               </div>
               <div
@@ -138,7 +148,7 @@ export const Experience = ({
                 {item.technologies.map((desc: any) => (
                   <div
                     key={desc}
-                    className="rounded-2xl border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[10px] text-[20px] font-bold backdrop-blur-[12.5px] lg:p-[24px]"
+                    className="rounded-2xl border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[10px] text-[20px] font-bold backdrop-blur-[12.5px] lg:mt-[40px] lg:px-[24px] lg:py-[10px]"
                   >
                     {desc}
                   </div>
@@ -150,7 +160,7 @@ export const Experience = ({
         <div className="mt-[50px] flex w-full justify-end lg:-ml-[220px] lg:mt-[120px]">
           <div className="relative flex max-w-max items-center justify-center">
             <div className="orbit absolute -top-[250px] hidden size-[700px] bg-orbit lg:block" />
-            <ButtonCircle title={t('hire-me')} />
+            <HireMe title={t('hire-me')} modalTitle={t('hire-me')} />
           </div>
         </div>
       </div>

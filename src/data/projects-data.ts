@@ -15,6 +15,9 @@ import vue from '@/assets/technologies/vue.svg'
 import nextJs from '@/assets/technologies/NextLogo.svg'
 import gsap from '@/assets/technologies/gsap-greensock.svg'
 import astro from '@/assets/technologies/astro-dark.svg'
+import tailwind from '@/assets/technologies/tailwindcss.svg'
+import chartjs from '@/assets/technologies/chartjs-logo.svg'
+import vueFlow from '@/assets/technologies/vue-flow.png'
 
 export const projectsUa: any = [
   {
@@ -23,7 +26,7 @@ export const projectsUa: any = [
   },
   {
     id: 8,
-    count: '04',
+    count: '01',
     isEmptiness: false,
     title: 'Платформа для візуального керування чат-ботами',
     company: 'Inc-Dev',
@@ -36,11 +39,31 @@ export const projectsUa: any = [
         alt: 'vue',
         icon: vue,
       },
+      {
+        id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+      {
+        id: 4,
+        alt: 'tailwind',
+        icon: tailwind,
+      },
+      {
+        id: 5,
+        alt: 'chart.js',
+        icon: chartjs,
+      },
+      {
+        id: 6,
+        alt: 'Vue Flow',
+        icon: vueFlow,
+      },
     ],
   },
   {
     id: 4,
-    count: '03',
+    count: '02',
     isEmptiness: false,
     title: 'База відпочинку',
     company: 'codecraftmaster',
@@ -55,6 +78,11 @@ export const projectsUa: any = [
       },
       {
         id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+      {
+        id: 3,
         alt: 'gsap',
         icon: gsap,
       },
@@ -62,7 +90,7 @@ export const projectsUa: any = [
   },
   {
     id: 2,
-    count: '01',
+    count: '03',
     isEmptiness: false,
     title: 'платформа для профісионалів та замовників',
     company: 'Rastcom',
@@ -86,22 +114,22 @@ export const projectsUa: any = [
         icon: reduxToolkit,
       },
       {
-        id: 3,
+        id: 4,
         alt: 'mui',
         icon: material,
       },
       {
-        id: 4,
+        id: 5,
         alt: 'Socket.io',
         icon: Socket,
       },
       {
-        id: 5,
+        id: 6,
         alt: 'braintree',
         icon: braintree,
       },
       {
-        id: 6,
+        id: 7,
         alt: 'git',
         icon: git,
       },
@@ -109,7 +137,7 @@ export const projectsUa: any = [
   },
   {
     id: 3,
-    count: '02',
+    count: '04',
     isEmptiness: false,
     title: 'meta data index',
     description:
@@ -123,31 +151,36 @@ export const projectsUa: any = [
       },
       {
         id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+      {
+        id: 3,
         alt: 'ElectronJS',
         icon: ElectronJS,
       },
       {
-        id: 3,
+        id: 4,
         alt: 'SCSS',
         icon: SCSS,
       },
       {
-        id: 4,
+        id: 5,
         alt: 'MobX',
         icon: MobX,
       },
       {
-        id: 5,
+        id: 6,
         alt: 'SOAP',
         icon: soap,
       },
       {
-        id: 6,
+        id: 7,
         alt: 'XML',
         icon: xml,
       },
       {
-        id: 7,
+        id: 8,
         alt: 'SVN',
         icon: svn,
       },
@@ -163,7 +196,7 @@ export const projectsUa: any = [
   },
   {
     id: 8,
-    count: '04',
+    count: '05',
     isEmptiness: false,
     title: 'Лендінг для Forbes Metal',
     company: 'Inc-Dev',
@@ -175,32 +208,65 @@ export const projectsUa: any = [
         alt: 'astro',
         icon: astro,
       },
+      {
+        id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
     ],
     link: 'https://forbs-landing.fly.dev/sv',
   },
   {
     id: 9,
-    count: '05',
+    count: '06',
     isEmptiness: false,
-    title: '',
-    company: '',
-    description: '',
-    technologies: [],
-    link: '',
+    title: 'Платформа',
+    company: 'Розробка внутрішньої адмінки на React для обліку компанії',
+    description:
+      'Створення внутрішньої адмінки для компанії з безліччю параметрів, що дозволяє ефективно вести облік та управління бізнес-процесами.',
+    technologies: [
+      {
+        id: 1,
+        alt: 'React',
+        icon: react,
+      },
+      {
+        id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+      {
+        id: 3,
+        alt: 'Redux',
+        icon: reduxToolkit,
+      },
+    ],
+    link: null,
   },
   {
     id: 9,
-    count: '05',
+    count: '07',
     isEmptiness: false,
-    title: '',
-    company: '',
-    description: '',
-    technologies: [],
-    link: '',
+    title: 'Сайт візитка',
+    company: 'Inc-Dev',
+    description: 'Оновлення сторінок під новий дизайн, додавання функціоналу',
+    technologies: [
+      {
+        id: 1,
+        alt: 'Next Js',
+        icon: nextJs,
+      },
+      {
+        id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+    ],
+    link: null,
   },
   {
     id: 5,
-    count: '03',
+    count: '08',
     isEmptiness: false,
     title: 'e-commerce косметики та парфюмерії',
     company: 'Sharm Beauty',
@@ -208,7 +274,23 @@ export const projectsUa: any = [
       'Як ментор та тім лід, я веду студентську команду у процесі розробки та модернізації вебсайту https://sharmbeauty.ua, забезпечуючи інтеграцію найкращих практик у дизайні, SEO та розробці за допомогою NextJS та React.',
     technologies2: 'react, NextJs, Redux Toolkit, framer motion, GSAP. Git',
     link: null,
-    technologies: [],
+    technologies: [
+      {
+        id: 1,
+        alt: 'Next Js',
+        icon: nextJs,
+      },
+      {
+        id: 2,
+        alt: 'TypeScript',
+        icon: TypeScript,
+      },
+      {
+        id: 3,
+        alt: 'tailwind',
+        icon: tailwind,
+      },
+    ],
   },
 ]
 

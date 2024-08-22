@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/server/auth/auth.server'
 import { createUsers } from '@/server/users/create-user.server'
 import 'react-quill/dist/quill.snow.css'
-import { Dashboard } from '@/components/dashboard/dashboard'
+import { Dashboard } from '@/components/admin/dashboard/dashboard'
 
 export default async function LocaleLayout({
   children,

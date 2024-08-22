@@ -2,20 +2,20 @@ import { FC } from 'react'
 import { Viewport } from 'next'
 import { homeMateData } from '@/components/metadata/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
-import Hero from '@/components/hero/hero'
-import { Services } from '@/components/services/services'
 import { servicesData } from '@/data/services'
-import { Projects } from '@/components/projects/projects'
 import { projectsData } from '@/data/projects-data'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
-import { Experience } from '@/components/experience/experience'
 import { experienceData } from '@/data/experience'
-import { Reviews } from '@/components/reviews/reviews'
 import { getReviewAction } from '@/server/reviws/gert-review.server'
-import { Faq } from '@/components/faq/faq'
-import { Contact } from '@/components/contact/contact'
+import { Services } from '@/components/client/services/services'
+import { Projects } from '@/components/client/projects/projects'
+import { Experience } from '@/components/client/experience/experience'
+import Hero from '@/components/client/hero/hero'
+import { Reviews } from '@/components/client/reviews/reviews'
+import { dataReviews } from '@/data/reviews'
+import { Faq } from '@/components/client/faq/faq'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -35,8 +35,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
   const projects = projectsData[locale]
   const experience = experienceData[locale]
-  const responseReviews = await getReviewAction()
-  const dataReviews = await responseReviews.json()
+  const dataReviewsSend = dataReviews
 
   return (
     <>
@@ -52,7 +51,6 @@ export default Home
       <Services services={services} />
       <Projects projects={projects} />
       <Experience experience={experience} />
-      <Reviews data={dataReviews} />
+      <Reviews data={dataReviewsSend} />
       <Faq />
-      <Contact />
  */
