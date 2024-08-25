@@ -79,6 +79,12 @@
       "see-more": "see more",
       "scroll-see-more": "scroll to see more",
       "leave-review": "Leave review"
+    },
+    "faq": {
+      "faq": "faq",
+      "scroll": "scroll to",
+      "see-more": "see more",
+      "scroll-see-more": "scroll to see more"
     }
   },
   "auth": {

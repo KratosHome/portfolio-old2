@@ -16,6 +16,7 @@ import Hero from '@/components/client/hero/hero'
 import { Reviews } from '@/components/client/reviews/reviews'
 import { dataReviews } from '@/data/reviews'
 import { Faq } from '@/components/client/faq/faq'
+import { gaqData } from '@/data/faq'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -36,13 +37,9 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const projects = projectsData[locale]
   const experience = experienceData[locale]
   const dataReviewsSend = dataReviews
+  const faq = gaqData[locale]
 
-  return (
-    <>
-      <HomeSnippets locale={locale} />
-      <Hero />
-    </>
-  )
+  return <></>
 }
 
 export default Home

@@ -43,7 +43,7 @@ export const Modal: FC<ModalProps> = ({
           modalRef.current,
           { y: -50, opacity: 0 },
           {
-            y: 0,
+            y: -300,
             opacity: 1,
             duration: 0.5,
           },

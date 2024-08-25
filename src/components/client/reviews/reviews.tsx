@@ -7,9 +7,7 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Grid } from 'swiper/modules'
-import arrowAslant from '@/assets/icons/arrow-aslant.svg'
 import { dataReviews } from '@/data/reviews'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 
 export const Reviews = ({}: any) => {
