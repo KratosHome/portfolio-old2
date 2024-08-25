@@ -8,7 +8,6 @@ import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
 import { experienceData } from '@/data/experience'
-import { getReviewAction } from '@/server/reviws/gert-review.server'
 import { Services } from '@/components/client/services/services'
 import { Projects } from '@/components/client/projects/projects'
 import { Experience } from '@/components/client/experience/experience'
@@ -39,15 +38,27 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const dataReviewsSend = dataReviews
   const faq = gaqData[locale]
 
-  return <></>
+  return (
+    <>
+      <HomeSnippets locale={locale} />
+      <Hero />
+      <Services services={services} />
+      <Projects projects={projects} />
+      <Experience experience={experience} />
+      <Reviews data={dataReviewsSend} />
+      <Faq data={faq} />
+    </>
+  )
 }
 
 export default Home
 
 /*
+      <HomeSnippets locale={locale} />
+      <Hero />
       <Services services={services} />
       <Projects projects={projects} />
       <Experience experience={experience} />
       <Reviews data={dataReviewsSend} />
-      <Faq />
+      <Faq data={faq} />
  */

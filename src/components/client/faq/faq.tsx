@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl'
 import { useGSAP } from '@gsap/react'
 import { useState } from 'react'
 import { gsap } from 'gsap'
-import { HireMe } from '@/components/client/hire-me/hire-me'
 
 export const Faq = ({ data }: any) => {
   const t = useTranslations('home-page.faq')
@@ -25,6 +24,10 @@ export const Faq = ({ data }: any) => {
       alignItems: 'center',
       duration: 0.5,
     })
+    gsap.to(`#icon-experience-${id}`, {
+      opacity: 1,
+      duration: 0.5,
+    })
   }
 
   const openItem = (id: number) => {
@@ -40,6 +43,10 @@ export const Faq = ({ data }: any) => {
     )
     gsap.to(`#block-experience-${id}`, {
       alignItems: 'start',
+      duration: 0.5,
+    })
+    gsap.to(`#icon-experience-${id}`, {
+      opacity: 0,
       duration: 0.5,
     })
   }
@@ -61,7 +68,7 @@ export const Faq = ({ data }: any) => {
     <section
       aria-label="projects"
       id="projects"
-      className="relative z-10 -mb-[200px]"
+      className="relative -mb-[200px]"
     >
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
         <h2 className="my-0 mr-[20px] text-right text-[40px] font-light uppercase lg:text-[96px]">
@@ -72,7 +79,7 @@ export const Faq = ({ data }: any) => {
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className={`relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px] ${
+              className={`relative z-10 mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px] ${
                 activeItem === item.id ? 'cursor-pointer' : 'experience-card'
               }`}
               onClick={() => handleClick(item.id)}
@@ -82,9 +89,17 @@ export const Faq = ({ data }: any) => {
                 className="flex items-center justify-between"
               >
                 <div className="flex flex-col items-center text-[24px] font-bold lg:text-[40px]">
-                  <div className="flex">
-                    <div className="text-[24px] font-normal lg:text-[40px] lg:font-bold">
+                  <div className="flex w-full items-center justify-start">
+                    <div
+                      id={`icon-experience-${item.id}`}
+                      className="from-white/12 mr-[32px] size-[44px] rounded-full bg-gradient-to-br via-transparent to-transparent bg-clip-border stroke-black stroke-current stroke-[1px] backdrop-blur-[12.5px]"
+                      style={{ opacity: activeItem === item.id ? 0 : 1 }}
+                    />
+                    <div className="flex w-full text-center text-[24px] font-normal lg:text-[32px] lg:font-bold">
                       {item.question}
+                    </div>
+                    <div className="text-blue-900">
+                      {activeItem === item.id ? '-' : '+'}
                     </div>
                   </div>
                   <div
@@ -101,8 +116,8 @@ export const Faq = ({ data }: any) => {
           ))}
         </div>
       </div>
-      <div className="absolute -top-[800px] left-[500px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
-      <div className="absolute -left-[500px] -top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
+      <div className="absolute -top-[800px] left-[500px] !-z-30 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
+      <div className="absolute -left-[500px] -top-[100px] !-z-30 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
     </section>
   )
 }

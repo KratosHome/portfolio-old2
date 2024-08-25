@@ -159,7 +159,7 @@ export const Experience = ({
         </div>
         <div className="mt-[50px] flex w-full justify-end lg:-ml-[220px] lg:mt-[120px]">
           <div className="relative flex max-w-max items-center justify-center">
-            <div className="orbit absolute -top-[250px] hidden size-[700px] bg-orbit lg:block" />
+            <div className="orbit absolute -top-[250px] -z-10 hidden size-[700px] bg-orbit lg:block" />
             <HireMe title={t('hire-me')} modalTitle={t('hire-me')} />
           </div>
         </div>

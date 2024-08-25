@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import ReactQuill from 'react-quill'
 import { useSession } from 'next-auth/react'
 import useFetchUser from '@/hooks/useFetchUser'
@@ -6,28 +6,8 @@ import { AdminButton } from '@/components/UI/admin-button/admin-button'
 import { createPostServer } from '@/server/blog/create-post.server'
 import { toast } from 'react-toastify'
 import { convertToBase64 } from '@/utils/convertToBase64'
-
-const CustomToolbar = () => (
-  <div id="toolbar" className="flex space-x-2 rounded-t-lg bg-gray-100 p-2">
-    <button className="ql-bold">B</button>
-    <button className="ql-italic">I</button>
-    <button className="ql-underline">U</button>
-    <button className="ql-list" value="ordered"></button>
-    <button className="ql-list" value="bullet"></button>
-    <select className="ql-header">
-      <option value="1"></option>
-      <option value="2"></option>
-      <option value="3"></option>
-      <option value="4"></option>
-      <option value="5"></option>
-      <option value="6"></option>
-      <option value=""></option>
-    </select>
-    <button className="ql-image"></button>
-  </div>
-)
-
-type LanguageProps = 'uk' | 'en' | 'fr'
+import { localesData } from '@/data/locales-data'
+import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 
 interface PostData {
   authorId: string
@@ -49,40 +29,30 @@ export const NewPost = () => {
   const [activeLanguage, setActiveLanguage] = useState<LanguageProps>('uk')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
+  const initializePostsData = (): { [key in LanguageProps]: PostData } => {
+    const initialData: any = {}
+
+    localesData.forEach((lang) => {
+      initialData[lang.locale] = {
+        authorId: '',
+        title: '',
+        keywords: [],
+        category: [],
+        subTitle: '',
+        desc: '',
+        url: '',
+        local: lang.locale,
+      }
+    })
+
+    return initialData
+  }
+
   const [postsData, setPostsData] = useState<{
     [key in LanguageProps]: PostData
-  }>({
-    uk: {
-      authorId: '',
-      title: '',
-      keywords: [],
-      category: [],
-      subTitle: '',
-      desc: '',
-      url: '',
-      local: 'uk',
-    },
-    en: {
-      authorId: '',
-      title: '',
-      keywords: [],
-      category: [],
-      subTitle: '',
-      desc: '',
-      url: '',
-      local: 'en',
-    },
-    fr: {
-      authorId: '',
-      title: '',
-      keywords: [],
-      category: [],
-      subTitle: '',
-      desc: '',
-      url: '',
-      local: 'fr',
-    },
-  })
+  }>(initializePostsData())
+
+  console.log('postsData', postsData)
 
   useEffect(() => {
     if (userData) {
@@ -166,7 +136,7 @@ export const NewPost = () => {
   }
 
   const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault() // Запобігаємо перезавантаженню сторінки
+    e.preventDefault()
 
     const error = validateAllFields()
     if (error) {
@@ -181,7 +151,6 @@ export const NewPost = () => {
       imageBase64 = await convertToBase64(image)
     }
 
-    // Додаємо локалізацію до URL перед відправкою даних, якщо її ще немає
     const updatedPostsData = { ...postsData }
     Object.keys(updatedPostsData).forEach((lang) => {
       const currentUrl = updatedPostsData[lang as LanguageProps].url
@@ -226,18 +195,18 @@ export const NewPost = () => {
         />
 
         <div className="mb-4 flex space-x-4">
-          {(['uk', 'en', 'fr'] as LanguageProps[]).map((lang) => (
+          {localesData.map((lang) => (
             <button
-              key={lang}
-              type="button" // Додано type="button" щоб запобігти сабміту форми
-              onClick={() => handleLanguageChange(lang)}
+              key={lang.locale}
+              type="button"
+              onClick={() => handleLanguageChange(lang.locale as LanguageProps)}
               className={`rounded px-4 py-2 ${
-                activeLanguage === lang
+                activeLanguage === lang.locale
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-200'
               }`}
             >
-              {lang.toUpperCase()}
+              {lang.locale.toUpperCase()}
             </button>
           ))}
         </div>
@@ -266,8 +235,9 @@ export const NewPost = () => {
           onChange={(e) => handleInputChange(e, 'subTitle')}
         />
         <div className="min-h-[200px]">
-          <CustomToolbar />
+          <CustomToolbarQuill />
           <ReactQuill
+            key={activeLanguage}
             theme="snow"
             placeholder="Стаття"
             value={postsData[activeLanguage].desc}

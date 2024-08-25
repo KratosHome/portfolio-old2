@@ -51,8 +51,19 @@ export default async function LocaleLayout({
 }
 export function generateStaticParams() {
   return [
+    { params: { locale: 'ar' } },
+    { params: { locale: 'de' } },
     { params: { locale: 'en' } },
-    { params: { locale: 'uk' } },
+    { params: { locale: 'es' } },
     { params: { locale: 'fr' } },
+    { params: { locale: 'he' } },
+    { params: { locale: 'hi' } },
+    { params: { locale: 'it' } },
+    { params: { locale: 'ja' } },
+    { params: { locale: 'ko' } },
+    { params: { locale: 'pt' } },
+    { params: { locale: 'sv' } },
+    { params: { locale: 'uk' } },
+    { params: { locale: 'zh' } },
   ]
 }

@@ -35,8 +35,8 @@ export const menuDataEn = [
     subMenu: [],
   },
   {
-    name: 'Mentoring',
-    link: 'mentoring',
+    name: 'Community',
+    link: 'community',
     subMenu: [
       {
         name: 'Projects',
@@ -45,6 +45,10 @@ export const menuDataEn = [
       {
         name: 'Members',
         link: 'members',
+      },
+      {
+        name: 'Чат',
+        link: 'chat',
       },
     ],
   },

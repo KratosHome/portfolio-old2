@@ -39,11 +39,15 @@ export const Modal: FC<ModalProps> = ({
           duration: 0.3,
           pointerEvents: 'auto',
         })
+
         gsap.fromTo(
           modalRef.current,
-          { y: -50, opacity: 0 },
           {
-            y: -300,
+            opacity: 0,
+            x: -50,
+          },
+          {
+            x: 0,
             opacity: 1,
             duration: 0.5,
           },
@@ -54,8 +58,9 @@ export const Modal: FC<ModalProps> = ({
           duration: 0.3,
           pointerEvents: 'none',
         })
+
         gsap.to(modalRef.current, {
-          y: -50,
+          x: 50,
           opacity: 0,
           duration: 0.5,
           onComplete: () => setShouldRender(false),

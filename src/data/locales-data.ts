@@ -1,4 +1,9 @@
-export const localesData = [
+interface LocaleData {
+  icon: string
+  name: string
+  locale: string
+}
+export const localesData: LocaleData[] = [
   {
     icon: '/assets/flags/en.png',
     name: 'English',
