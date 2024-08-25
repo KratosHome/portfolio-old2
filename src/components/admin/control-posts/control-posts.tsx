@@ -34,7 +34,9 @@ export const ControlPosts = () => {
       toast.error('Помилка під час видалення поста')
     }
   }
+
   console.log(posts)
+
   return (
     <div className="mx-auto p-4">
       {posts.map((post: any) => (

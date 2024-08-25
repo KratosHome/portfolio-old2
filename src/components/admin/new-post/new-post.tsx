@@ -13,7 +13,6 @@ interface PostData {
   authorId: string
   title: string
   keywords: string[]
-  category: string[]
   subTitle: string
   desc: string
   url: string
@@ -37,7 +36,6 @@ export const NewPost = () => {
         authorId: '',
         title: '',
         keywords: [],
-        category: [],
         subTitle: '',
         desc: '',
         url: '',
@@ -51,8 +49,6 @@ export const NewPost = () => {
   const [postsData, setPostsData] = useState<{
     [key in LanguageProps]: PostData
   }>(initializePostsData())
-
-  console.log('postsData', postsData)
 
   useEffect(() => {
     if (userData) {
@@ -75,7 +71,7 @@ export const NewPost = () => {
     field: keyof PostData,
   ) => {
     const value = e.target.value
-    if (field === 'keywords' || field === 'category') {
+    if (field === 'keywords') {
       setPostsData((prev) => ({
         ...prev,
         [activeLanguage]: {
@@ -124,7 +120,6 @@ export const NewPost = () => {
       if (
         !postData.title ||
         !postData.keywords.length ||
-        !postData.category.length ||
         !postData.subTitle ||
         !postData.desc ||
         !postData.url
@@ -221,12 +216,6 @@ export const NewPost = () => {
           className="mb-4 w-full rounded border p-2"
           value={postsData[activeLanguage].keywords.join(', ')}
           onChange={(e) => handleInputChange(e, 'keywords')}
-        />
-        <input
-          placeholder="Категорії"
-          className="mb-4 w-full rounded border p-2"
-          value={postsData[activeLanguage].category.join(', ')}
-          onChange={(e) => handleInputChange(e, 'category')}
         />
         <input
           placeholder="Короткий заголовок"
