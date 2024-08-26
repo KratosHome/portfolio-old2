@@ -45,11 +45,6 @@ export const localesData: LocaleData[] = [
     locale: 'it',
   },
   {
-    icon: '/assets/flags/ar.png',
-    name: 'Arabic',
-    locale: 'ar',
-  },
-  {
     icon: '/assets/flags/pt.png',
     name: 'Portuguese',
     locale: 'pt',
@@ -58,11 +53,6 @@ export const localesData: LocaleData[] = [
     icon: '/assets/flags/sv.png',
     name: 'Swedish',
     locale: 'sv',
-  },
-  {
-    icon: '/assets/flags/he.png',
-    name: 'Hebrew',
-    locale: 'he',
   },
   {
     icon: '/assets/flags/ko.png',

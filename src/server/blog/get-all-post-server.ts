@@ -3,11 +3,11 @@ import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 import { User } from '@/server/users/user-schema.server'
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (locale: string) => {
   try {
     await connectToDb()
 
-    const posts = await Post.find().sort({ isPublished: 1 })
+    const posts = await Post.find({ local: locale }).sort({ isPublished: 1 })
 
     const postsWithUserDetails = await Promise.all(
       posts.map(async (post) => {

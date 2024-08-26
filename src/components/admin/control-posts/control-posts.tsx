@@ -5,19 +5,26 @@ import { getAllPosts } from '@/server/blog/get-all-post-server'
 import { publicPost } from '@/server/blog/public-post.server'
 import { deletePostServer } from '@/server/blog/delete-post.server'
 import { toast } from 'react-toastify'
+import { Loader } from '@/components/UI/loader/loader'
+import { useLocale } from 'use-intl'
+import Link from 'next/link'
 
 export const ControlPosts = () => {
+  const locale = useLocale()
   const [posts, setPosts] = useState<any>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllPosts()
+      setLoading(true)
+      const data = await getAllPosts(locale)
       setPosts(data.posts)
+      setLoading(false)
     }
 
     fetchData()
   }, [])
-
+  // HE AR
   const togglePublishStatus = async (
     postId: string,
     currentStatus: boolean,
@@ -27,9 +34,11 @@ export const ControlPosts = () => {
   const deletePost = async (postId: string) => {
     const rs = await deletePostServer(postId)
     if (rs.success) {
+      setLoading(true)
       toast.success('Пост успішно видалено')
-      const data = await getAllPosts()
+      const data = await getAllPosts(locale)
       setPosts(data.posts)
+      setLoading(false)
     } else {
       toast.error('Помилка під час видалення поста')
     }
@@ -38,35 +47,32 @@ export const ControlPosts = () => {
   console.log(posts)
 
   return (
-    <div className="mx-auto p-4">
+    <div className="p-4">
+      {loading && <Loader />}
       {posts.map((post: any) => (
         <div
           key={post.postId}
-          className="mb-6 max-w-max rounded-lg bg-white p-6 shadow-md"
+          className="mb-6 max-w-max rounded-lg bg-white p-6 text-gray-600 shadow-md"
         >
-          <p className="mb-2 text-gray-600">
-            <strong>Локалізація:</strong> {post.local}
-          </p>
           <p className="mb-2 text-gray-600">
             <strong>Автор:</strong> {post.authorId}
           </p>
           <p className="mb-2 text-gray-600">
             <strong>URL:</strong> {post.url || 'N/A'}
           </p>
-          <p className="mb-2 text-gray-600">
-            <strong>Категорії:</strong> {post.category.join(', ')}
-          </p>
-          <p className="mb-2 text-gray-600">
-            <strong>Ключові слова:</strong> {post.keyWords.join(', ')}
-          </p>
           <h2 className="mb-2 text-2xl font-bold">{post.title}</h2>
-          <p className="mb-2 text-gray-600">{post.subTitle}</p>
-          <p className="mb-2 text-gray-800">{post.desc}</p>
+          <p className="mb-2">{post.subTitle}</p>
           <img
             src={post.img}
             alt={post.title}
-            className="mb-4 h-64 w-full rounded-lg object-cover"
+            className="mb-4 size-12 rounded-full object-cover"
           />
+          <Link
+            href={`blog/${post.postId}`}
+            className="block max-w-max rounded-lg bg-green-400 px-3 py-3 text-center"
+          >
+            детальніше
+          </Link>
           <button
             onClick={() => togglePublishStatus(post._id, post.isPublished)}
             className={`rounded px-4 py-2 ${

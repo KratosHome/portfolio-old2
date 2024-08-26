@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from 'react'
+'use client'
+import React, { useState, useEffect, ChangeEvent, FC } from 'react'
 import ReactQuill from 'react-quill'
 import { useSession } from 'next-auth/react'
 import useFetchUser from '@/hooks/useFetchUser'
@@ -8,18 +9,25 @@ import { toast } from 'react-toastify'
 import { convertToBase64 } from '@/utils/convertToBase64'
 import { localesData } from '@/data/locales-data'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
+import { updatePostServer } from '@/server/blog/updape-post.server'
 
 interface PostData {
   authorId: string
   title: string
-  keywords: string[]
+  keyWords: string[]
   subTitle: string
   desc: string
   url: string
   local: LanguageProps
 }
 
-export const NewPost = () => {
+interface NewPostProps {
+  data?: any
+}
+
+export const NewPost: FC<NewPostProps> = ({ data }) => {
+  console.log('data', data)
+
   const { data: session }: any = useSession()
   const userData = useFetchUser(session)
 
@@ -35,7 +43,7 @@ export const NewPost = () => {
       initialData[lang.locale] = {
         authorId: '',
         title: '',
-        keywords: [],
+        keyWords: [],
         subTitle: '',
         desc: '',
         url: '',
@@ -71,7 +79,7 @@ export const NewPost = () => {
     field: keyof PostData,
   ) => {
     const value = e.target.value
-    if (field === 'keywords') {
+    if (field === 'keyWords') {
       setPostsData((prev) => ({
         ...prev,
         [activeLanguage]: {
@@ -98,6 +106,29 @@ export const NewPost = () => {
     }
   }
 
+  useEffect(() => {
+    if (data?.post) {
+      const updatedPostsData = initializePostsData()
+
+      data.post.forEach((postItem: any) => {
+        const locale = postItem.local as LanguageProps
+        if (updatedPostsData[locale]) {
+          updatedPostsData[locale] = {
+            authorId: postItem.authorId || '',
+            title: postItem.title || '',
+            keyWords: postItem.keyWords || [],
+            subTitle: postItem.subTitle || '',
+            desc: postItem.desc || '',
+            url: postItem.url || '',
+            local: locale,
+          }
+        }
+      })
+
+      setPostsData(updatedPostsData)
+    }
+  }, [data])
+
   const handleContentChange = (value: string) => {
     setPostsData((prev) => ({
       ...prev,
@@ -119,7 +150,7 @@ export const NewPost = () => {
       const postData = postsData[lang]
       if (
         !postData.title ||
-        !postData.keywords.length ||
+        !postData.keyWords.length ||
         !postData.subTitle ||
         !postData.desc ||
         !postData.url
@@ -154,27 +185,46 @@ export const NewPost = () => {
       }
     })
 
-    const result = await createPostServer({
-      data: updatedPostsData,
-      image: imageBase64,
-    })
-
-    if (result.success) {
-      toast(`Пост створено, очікуйте на перевірку`, {
-        type: 'success',
+    let result
+    if (data?.post) {
+      result = await updatePostServer({
+        data: updatedPostsData,
+        image: imageBase64,
       })
     } else {
-      toast(`Помилка при створенні поста`, {
+      result = await createPostServer({
+        data: updatedPostsData,
+        image: imageBase64,
+      })
+    }
+
+    if (result.success) {
+      toast(
+        `Пост ${data?.post ? 'оновлено' : 'створено'}, очікуйте на перевірку`,
+        {
+          type: 'success',
+        },
+      )
+    } else {
+      toast(`Помилка при ${data?.post ? 'оновленні' : 'створенні'} поста`, {
         type: 'error',
       })
     }
 
     setLoading(false)
   }
-
   return (
     <div>
       {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
+      {data ? (
+        <img
+          src={data.post[0].img}
+          alt={data.post[0].title}
+          width={30}
+          height={30}
+          className="size-[230px]"
+        />
+      ) : null}
       <form onSubmit={onSubmit}>
         <input
           placeholder="посилання"
@@ -214,8 +264,8 @@ export const NewPost = () => {
         <input
           placeholder="Ключові слова"
           className="mb-4 w-full rounded border p-2"
-          value={postsData[activeLanguage].keywords.join(', ')}
-          onChange={(e) => handleInputChange(e, 'keywords')}
+          value={postsData[activeLanguage].keyWords.join(', ')}
+          onChange={(e) => handleInputChange(e, 'keyWords')}
         />
         <input
           placeholder="Короткий заголовок"

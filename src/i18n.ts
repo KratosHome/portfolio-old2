@@ -2,12 +2,10 @@ import { notFound } from 'next/navigation'
 import { getRequestConfig } from 'next-intl/server'
 
 const locales = [
-  'ar',
   'de',
   'en',
   'es',
   'fr',
-  'he',
   'hi',
   'it',
   'ja',
