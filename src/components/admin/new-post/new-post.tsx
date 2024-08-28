@@ -124,7 +124,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
           }
         }
       })
-
+      setImage(data.post[0].img)
       setPostsData(updatedPostsData)
     }
   }, [data])
