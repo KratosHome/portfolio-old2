@@ -19,23 +19,23 @@ export const updatePostServer = async ({ postId, data, image }: any) => {
       imageUrl = uploadResponse.secure_url
     }
 
-    console.log('data', data)
+    console.log('postId', postId)
 
     const updatedPosts = await Promise.all(
       Object.entries(data).map(
-        async ([locale, localizedData]: [string, any]) => {
+        async ([local, localizedData]: [string, any]) => {
           if (typeof localizedData !== 'object' || localizedData === null) {
-            throw new Error(`Invalid data for locale ${locale}`)
+            throw new Error(`Invalid data for locale ${local}`)
           }
-
+          console.log('locale', local)
           const updateData = {
             ...localizedData,
-            img: imageUrl || localizedData.img, // якщо зображення не було оновлено, зберігаємо старе
+            img: imageUrl || localizedData.img,
           }
           console.log('updateData', updateData)
 
           const updatedPost = await Post.findOneAndUpdate(
-            { postId, locale },
+            { postId, local },
             updateData,
             { new: true },
           )
@@ -45,6 +45,7 @@ export const updatePostServer = async ({ postId, data, image }: any) => {
         },
       ),
     )
+    console.log('postId', postId)
 
     console.log('updatedPosts', updatedPosts)
     if (updatedPosts.length === Object.keys(data).length) {

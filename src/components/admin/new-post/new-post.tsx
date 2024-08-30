@@ -19,6 +19,8 @@ interface PostData {
   desc: string
   url: string
   local: LanguageProps
+  isPublished: boolean
+  img: string
 }
 
 interface NewPostProps {
@@ -35,19 +37,22 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
   const [loading, setLoading] = useState(false)
   const [activeLanguage, setActiveLanguage] = useState<LanguageProps>('uk')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [isPublished, setIsPublished] = useState<boolean>(false)
 
   const initializePostsData = (): { [key in LanguageProps]: PostData } => {
     const initialData: any = {}
 
     localesData.forEach((lang) => {
-      initialData[lang.locale] = {
+      initialData[lang.local] = {
         authorId: '',
         title: '',
         keyWords: [],
         subTitle: '',
         desc: '',
         url: '',
-        local: lang.locale,
+        local: lang.local,
+        isPublished: false,
+        img: image,
       }
     })
 
@@ -121,6 +126,8 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
             desc: postItem.desc || '',
             url: postItem.url || '',
             local: locale,
+            isPublished: postItem.isPublished || false,
+            img: postItem.img || '',
           }
         }
       })
@@ -188,6 +195,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
     let result
     if (data?.post) {
       result = await updatePostServer({
+        postId: data.post[0].postId,
         data: updatedPostsData,
         image: imageBase64,
       })
@@ -213,6 +221,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
 
     setLoading(false)
   }
+
   return (
     <div>
       {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
@@ -242,16 +251,16 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
         <div className="mb-4 flex space-x-4">
           {localesData.map((lang) => (
             <button
-              key={lang.locale}
+              key={lang.local}
               type="button"
-              onClick={() => handleLanguageChange(lang.locale as LanguageProps)}
+              onClick={() => handleLanguageChange(lang.local as LanguageProps)}
               className={`rounded px-4 py-2 ${
-                activeLanguage === lang.locale
+                activeLanguage === lang.local
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-200'
               }`}
             >
-              {lang.locale.toUpperCase()}
+              {lang.local.toUpperCase()}
             </button>
           ))}
         </div>
@@ -289,6 +298,16 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
         <AdminButton type="submit" disabled={loading}>
           Зберегти
         </AdminButton>
+        {data && (
+          <button
+            onClick={() => setIsPublished(!isPublished)}
+            className={`rounded px-4 py-2 ${
+              isPublished ? 'bg-green-500' : 'bg-red-500'
+            } text-white`}
+          >
+            {isPublished ? 'Опубліковано' : 'Неопубліковано'}
+          </button>
+        )}
       </form>
     </div>
   )

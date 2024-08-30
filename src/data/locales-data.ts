@@ -1,67 +1,67 @@
 interface LocaleData {
   icon: string
   name: string
-  locale: string
+  local: string
 }
 export const localesData: LocaleData[] = [
   {
     icon: '/assets/flags/en.png',
     name: 'English',
-    locale: 'en',
+    local: 'en',
   },
   {
     icon: '/assets/flags/uk.png',
     name: 'Ukrainian',
-    locale: 'uk',
+    local: 'uk',
   },
   {
     icon: '/assets/flags/es.png',
     name: 'Spanish',
-    locale: 'es',
+    local: 'es',
   },
   {
     icon: '/assets/flags/fr.png',
     name: 'French',
-    locale: 'fr',
+    local: 'fr',
   },
   {
     icon: '/assets/flags/de.png',
     name: 'German',
-    locale: 'de',
+    local: 'de',
   },
   {
     icon: '/assets/flags/zh.png',
     name: 'Chinese',
-    locale: 'zh',
+    local: 'zh',
   },
   {
     icon: '/assets/flags/ja.png',
     name: 'Japanese',
-    locale: 'ja',
+    local: 'ja',
   },
   {
     icon: '/assets/flags/it.png',
     name: 'Italian',
-    locale: 'it',
+    local: 'it',
   },
   {
     icon: '/assets/flags/pt.png',
     name: 'Portuguese',
-    locale: 'pt',
+    local: 'pt',
   },
   {
     icon: '/assets/flags/sv.png',
     name: 'Swedish',
-    locale: 'sv',
+    local: 'sv',
   },
   {
     icon: '/assets/flags/ko.png',
     name: 'Korean',
-    locale: 'ko',
+    local: 'ko',
   },
   {
     icon: '/assets/flags/hi.png',
     name: 'Hindi',
-    locale: 'hi',
+    local: 'hi',
   },
 ]
