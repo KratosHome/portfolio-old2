@@ -94,9 +94,8 @@ export const PostItem: FC<blogListType> = ({ item }) => {
           </span>
           <div className="text-[16px] font-bold">
             <span>Category: </span>
-            {item.category.map((cat: string) => (
-              <span key={cat}>{cat}</span>
-            ))}
+            {item.category &&
+              item.category.map((cat: string) => <span key={cat}>{cat}</span>)}
           </div>
         </div>
         <div ref={userRef} className="text-[12px]">
