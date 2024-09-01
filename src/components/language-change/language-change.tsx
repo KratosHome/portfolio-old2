@@ -90,9 +90,9 @@ export default function LanguageChange({ isMobile }: any) {
           >
             {localesData.map((loc) => (
               <div
-                onClick={() => changeLocale(`/${loc.locale}`)}
+                onClick={() => changeLocale(`/${loc.local}`)}
                 key={loc.name}
-                className={`from-white/12 to-transparent/99.21 group flex w-full cursor-pointer items-center gap-2 rounded-lg border-b border-black bg-gradient-to-r px-[12px] py-[8px] normal-case backdrop-blur-[12.5px] ${locale === loc.locale ? 'font-semibold' : 'font-light'}`}
+                className={`from-white/12 to-transparent/99.21 group flex w-full cursor-pointer items-center gap-2 rounded-lg border-b border-black bg-gradient-to-r px-[12px] py-[8px] normal-case backdrop-blur-[12.5px] ${locale === loc.local ? 'font-semibold' : 'font-light'}`}
               >
                 {loc.icon && (
                   <Image
@@ -126,9 +126,9 @@ export default function LanguageChange({ isMobile }: any) {
           >
             {localesData.map((loc) => (
               <div
-                onClick={() => changeLocale(`/${loc.locale}`)}
+                onClick={() => changeLocale(`/${loc.local}`)}
                 key={loc.name}
-                className={`from-white/12 to-transparent/99.21 group flex w-full cursor-pointer items-center gap-2 rounded-lg border-b border-black bg-gradient-to-r px-[12px] py-[8px] normal-case backdrop-blur-[12.5px] ${locale === loc.locale ? 'font-semibold' : 'font-light'}`}
+                className={`from-white/12 to-transparent/99.21 group flex w-full cursor-pointer items-center gap-2 rounded-lg border-b border-black bg-gradient-to-r px-[12px] py-[8px] normal-case backdrop-blur-[12.5px] ${locale === loc.local ? 'font-semibold' : 'font-light'}`}
               >
                 {loc.icon && (
                   <Image

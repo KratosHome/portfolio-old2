@@ -23,6 +23,7 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
 }
+
 export async function generateMetadata({ params: { locale } }: PageProps) {
   console.log('locale', locale)
   const projects = homeMateData[locale]

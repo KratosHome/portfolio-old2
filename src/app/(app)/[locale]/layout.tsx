@@ -41,7 +41,6 @@ export default async function LocaleLayout({
           <SessionProvider>
             <Header />
             <main className="min-h-[100svh]">{children}</main>
-            <Footer />
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>
@@ -49,6 +48,7 @@ export default async function LocaleLayout({
     </>
   )
 }
+
 export function generateStaticParams() {
   return [
     { params: { locale: 'ar' } },
