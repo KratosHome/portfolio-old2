@@ -50,6 +50,10 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    designLink: {
+      type: String,
+      required: false,
+    },
     contactGroupLink: {
       type: String,
       required: false,
@@ -57,6 +61,29 @@ const projectSchema = new mongoose.Schema(
     team: {
       type: [String],
       required: false,
+    },
+    teams: {
+      type: [
+        {
+          userId: {
+            type: String,
+            required: true,
+          },
+          role: {
+            type: String,
+            required: true,
+            types: ['owner', 'mentor', 'designer', 'manager', 'developer'],
+          },
+          isDeleted: {
+            type: Boolean,
+            default: false,
+          },
+          deletedAt: {
+            type: Date,
+          },
+        },
+      ],
+      required: true,
     },
     status: {
       type: String,

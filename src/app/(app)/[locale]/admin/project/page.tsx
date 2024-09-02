@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl'
 import { projectStore } from '@/store/project'
 import { ProjectItem } from '@/components/admin/project-item/project-item'
 import { useStore } from '@/store/user'
-import { teamStore } from '@/store/team'
 
 const Page = () => {
   const t = useTranslations('footer')

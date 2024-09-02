@@ -15,6 +15,8 @@ export const CustomToolbarQuill = () => {
         <option value="6"></option>
         <option value=""></option>
       </select>
+      <button className="ql-link"></button>{' '}
+      {/* Додана кнопка для створення посилань */}
       <button className="ql-image"></button>
     </div>
   )

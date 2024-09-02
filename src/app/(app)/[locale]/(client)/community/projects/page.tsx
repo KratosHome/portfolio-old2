@@ -8,8 +8,11 @@ const Page = async () => {
 
   return (
     <div className="mx-auto max-w-[1442px] px-[24px]">
-      <ButtonBeck />
-      <h1 className="">Projects</h1>
+      <h1 className="">
+        This page showcases projects that are currently in development. You can
+        explore the progress of these projects, and if you're interested,
+        there's an opportunity to join the project team and contribute.
+      </h1>
       {data.projects.map((project: ProjectTypes, index: number) => (
         <ProjectItem key={project._id} project={project} index={index} />
       ))}

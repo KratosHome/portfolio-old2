@@ -62,6 +62,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       deployLink: project.deployLink,
       contactGroupLink: project.contactGroupLink,
       gitHubLink: project.gitHubLink,
+      designLink: project.designLink,
     })
     setSelectedStatus(project.status)
     setDescription(project.description)
@@ -147,6 +148,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       percentageProjectCompletion: +data.percentageProjectCompletion,
       deployLink: data.deployLink,
       gitHubLink: data.gitHubLink,
+      designLink: data.designLink,
       contactGroupLink: data.contactGroupLink,
       status: selectedStatus,
       isPublic: isSuperAdmin,
@@ -174,6 +176,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
   return (
     <div>
       {loading && <Loader />}
+      <div>Зміни може вносити: засновник, ментор</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type={'text'}
@@ -338,11 +341,10 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
         />
         <Input
           type={'text'}
-          placeholder={'Посилання на делой'}
+          placeholder={'Посилання на деплой'}
           name={'deployLink'}
           register={{
             ...register('deployLink', {
-              required: `${t('This field is required')}`,
               minLength: {
                 value: 1,
                 message: `${t('Minimum number of characters')} 1`,
@@ -355,13 +357,13 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           }}
           error={errors.deployLink?.message}
         />
+
         <Input
           type={'text'}
           placeholder={'Посилання на гітхаб'}
           name={'gitHubLink'}
           register={{
             ...register('gitHubLink', {
-              required: `${t('This field is required')}`,
               minLength: {
                 value: 1,
                 message: `${t('Minimum number of characters')} 1`,
@@ -375,6 +377,24 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           error={errors.gitHubLink?.message}
         />
 
+        <Input
+          type={'text'}
+          placeholder={'Посилання на дизайн'}
+          name={'designLink'}
+          register={{
+            ...register('designLink', {
+              minLength: {
+                value: 1,
+                message: `${t('Minimum number of characters')} 1`,
+              },
+              maxLength: {
+                value: 350,
+                message: `${t('Maximum number of characters')} 350`,
+              },
+            }),
+          }}
+          error={errors.designLink?.message}
+        />
         <Input
           type={'text'}
           placeholder={'Группа для участі: посилання (телеграм)'}
@@ -401,7 +421,6 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           accept="image/*"
           onChange={handleImageChange}
         />
-        <div>Зміни може вносити: засновник, ментор, менеджер</div>
         <AdminButton type="submit" name={isCrate ? 'create' : 'update'}>
           {isCrate ? 'Створити' : 'Save'}
         </AdminButton>
