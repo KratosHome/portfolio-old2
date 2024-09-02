@@ -1,6 +1,7 @@
-.community-dashboard-card{
+.community-dashboard-card {
   background: var(--background-block);
 }
+
 .community-dashboard-card::before {
   content: "";
   position: absolute;
@@ -16,11 +17,16 @@
 
 .community-dashboard-card:hover {
   border-radius: 12px;
-  background: none ;
+  background: none;
   transition: opacity 0.4s ease-in-out;
   border-right-color: rgba(255, 255, 255, 1);
 }
 
 .community-dashboard-card:hover::before {
   opacity: 1;
+}
+
+.community-dashboard-card.active {
+  background: var(--background-block-hover);
+  border-radius: 12px;
 }
