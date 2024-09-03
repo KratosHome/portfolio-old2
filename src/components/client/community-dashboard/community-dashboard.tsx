@@ -15,10 +15,13 @@ export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
   const pathname = usePathname()
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="relative flex flex-col justify-center pt-[119px]">
+      <div className="animate-scale-in-out absolute left-0 -z-10 hidden h-[300px] w-[300px] bg-group-pattern bg-cover bg-center opacity-[.1] lg:block" />
       <ButtonBeck />
-      <div className="text-right">Сhoose which section you want to look at</div>
-      <div className="flex flex-wrap items-center justify-center">
+      <div className="mt-[33px] text-right font-bold">
+        Сhoose which section you want to look at
+      </div>
+      <div className="mt-[91px] flex flex-wrap items-center justify-center">
         {data.map((item: any, index: number) => {
           const isActive = pathname === `/${locale}/${item.link}`
 

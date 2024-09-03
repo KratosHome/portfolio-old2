@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import { Input } from '@/components/UI/input/input'
 import { AdminButton } from '@/components/UI/admin-button/admin-button'
 import { MdDelete } from 'react-icons/md'
@@ -12,6 +12,9 @@ import { useTranslations } from 'next-intl'
 import ReactQuill from 'react-quill'
 import { useStore } from '@/store/user'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
+import Link from 'next/link'
+import Image from 'next/image'
+import { RxAvatar } from 'react-icons/rx'
 
 interface PlanItem {
   text: string
@@ -25,6 +28,7 @@ interface ProjectItemProps {
 
 export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
   const status = ['new', 'in progress', 'deploy', 'completed', 'archived']
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const t = useTranslations('footer')
   const { user } = useStore()
@@ -71,9 +75,15 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     setLookingInTeam(project.lookingInTeam ?? [])
   }, [project])
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0])
+  const handleLogoChange = (e: any) => {
+    const file = e.target.files[0]
+    if (file && file.type.startsWith('image/')) {
+      setImage(file)
+    } else {
+      toast.error(t('Only image files are allowed'))
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
     }
   }
 
@@ -152,7 +162,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       contactGroupLink: data.contactGroupLink,
       status: selectedStatus,
       isPublic: isSuperAdmin,
-      // logo: imageBase64,
+      logo: imageBase64,
     }
     let result
     if (action === 'create') {
@@ -177,6 +187,39 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     <div>
       {loading && <Loader />}
       <div>Зміни може вносити: засновник, ментор</div>
+
+      <div>
+        <div className="z-10 mb-4 transition-all duration-300 ease-in-out">
+          {project.logo ? (
+            <Image
+              src={project.logo}
+              alt={`project logo  `}
+              width={48}
+              height={48}
+              className="size-12 rounded-full"
+            />
+          ) : (
+            <RxAvatar className="size-12" />
+          )}
+        </div>
+        <div className="flex flex-col items-start">
+          <div>{project.logo ? <>Змінити логотип</> : <>Додати логотип</>}</div>
+          <label
+            htmlFor="logo-upload"
+            className="mt-1 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Вибрати файл
+          </label>
+          <input
+            id="logo-upload"
+            type="file"
+            className="hidden"
+            ref={fileInputRef}
+            accept="image/*"
+            onChange={handleLogoChange}
+          />
+        </div>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type={'text'}
@@ -413,13 +456,6 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
             }),
           }}
           error={errors.contactGroupLink?.message}
-        />
-
-        <input
-          className="file-input__create-post"
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
         />
         <AdminButton type="submit" name={isCrate ? 'create' : 'update'}>
           {isCrate ? 'Створити' : 'Save'}

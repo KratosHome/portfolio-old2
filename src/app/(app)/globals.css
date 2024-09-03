@@ -44,7 +44,7 @@
 :root {
   --text-color: dark;
   --arctical-h1-color: #0B66F5;
-  --background-block: linear-gradient(153deg, rgba(255, 255, 255, 0.12) 2.19%, rgba(255, 255, 255, 0.00) 99.21%);
+  --background-block: linear-gradient(153deg, rgba(255, 255, 255, 0.12) 10.19%, rgba(255, 255, 255, 0.00) 99.21%);
   --background-block-hover: linear-gradient(113deg, rgba(11, 102, 245, 0.30)40.76%, rgba(78, 128, 206, 0.15)70.61%, rgba(255, 255, 255, 0.00)100.49%);
 }
 [data-theme="dark"] {
