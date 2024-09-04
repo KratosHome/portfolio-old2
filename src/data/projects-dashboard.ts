@@ -7,10 +7,6 @@ const menuDataEn = [
     name: 'Members',
     link: 'community/members',
   },
-  {
-    name: 'Chat',
-    link: 'community/chat',
-  },
 ]
 
 export const projectsDashboardData = {

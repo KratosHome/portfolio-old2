@@ -1,5 +1,4 @@
 'use client'
-import './project-item.scss'
 import { FC, useState, useEffect } from 'react'
 import { Modal } from '@/components/UI/modal/modal'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -61,10 +60,10 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
   console.log('project', project)
 
   return (
-    <div className="project-item relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
-      <div>
+    <div>
+      <div className="background-item relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
         <div className="flex justify-end">
-          <div className="max-w-max rounded-[35px] border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[10px] font-bold text-[#0B66F5] backdrop-blur-[12.5px]">
+          <div className="absolute max-w-max rounded-[35px] border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[10px] font-bold text-[#0B66F5] backdrop-blur-[12.5px]">
             {project.status}
           </div>
         </div>
@@ -77,12 +76,12 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
             {project.name}
           </span>
         </div>
-        <div className="flex">
-          <div className="mt-[158px]">
+        <div className="flex h-full">
+          <div className="flex min-h-full flex-col items-end justify-end">
             <ButtonCircle
               title={'join'}
               onClick={joinProject}
-              className="bg-transparent"
+              className="bg-black/60"
             />
             <ButtonCircle
               className="mt-[22px]"
@@ -93,23 +92,27 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               }}
             />
           </div>
-          <div className="ml-[46px]">
-            <article
-              className="mb-[12px] font-light"
-              dangerouslySetInnerHTML={{ __html: truncatedContent }}
-            />
-            <div className="flex flex-wrap gap-[12px]">
-              {project.technologies.map((item: string) => (
-                <div
-                  key={item}
-                  className="max-w-max rounded-[35px] border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[10px] font-bold text-[#0B66F5] backdrop-blur-[12.5px]"
-                >
-                  {item}
-                </div>
-              ))}
-              <div className="mt-[12px] h-[1px] w-full bg-white/50" />
+          <div className="ml-[46px] flex w-full flex-col justify-between">
+            <div>
+              <article
+                className="mb-[12px] font-light"
+                dangerouslySetInnerHTML={{ __html: truncatedContent }}
+              />
+              <div className="flex flex-wrap gap-[12px]">
+                {project.technologies.map((item: string) => (
+                  <div
+                    key={item}
+                    className="max-w-max rounded-full border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[24px] font-bold backdrop-blur-[12.5px]"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-[12px] h-[1px] w-full bg-white/50" />
+            <div className="mt-[28px] flex w-full flex-col justify-between">
               <div className="flex flex-wrap items-center">
-                <div class="max-w-max rounded-2xl bg-gradient-to-tr from-[rgba(11,102,245,0.3)] via-[rgba(78,128,206,0.15)] to-transparent px-[24px] py-[12px]">
+                <div className="max-w-max rounded-2xl bg-gradient-to-tr from-[rgba(11,102,245,0.3)] via-[rgba(78,128,206,0.15)] to-transparent px-[24px] py-[12px]">
                   WE NEED:
                 </div>
                 <div className="ml-[42px] flex flex-wrap">
@@ -121,7 +124,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                   ))}
                 </div>
               </div>
-              <div className="flex w-full items-center justify-end">
+              <div className="flex w-full items-end justify-end gap-[10px] rounded-full">
                 {project.logo ? (
                   <Image
                     width={40}
@@ -131,10 +134,22 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                     className="size-[40px] rounded-full"
                   />
                 ) : null}
-                <span>completed</span>
-                <div className="text-[90px] text-[#0B66F5]">
+                <div className="bg-gradient-to-r from-[rgba(11,102,245,0.70)] via-[rgba(78,128,206,0.35)] to-[rgba(255,255,255,0.20)] bg-clip-text text-[32px] text-transparent">
+                  completed
+                </div>
+                <div className="text-[90px] leading-[0.9] text-[#0B66F5]">
                   {project.percentageProjectCompletion}%
                 </div>
+              </div>
+              <div className="relative -mt-2 h-[20px] w-full rounded-[50px] border-b border-white/30">
+                <div
+                  className="absolute left-0 top-0 h-[10px] w-[1px] border-l border-white/30"
+                  style={{ visibility: 'hidden' }}
+                />
+                <div
+                  className="absolute right-0 top-0 h-[10px] w-[1px] border-r border-white/30"
+                  style={{ visibility: 'hidden' }}
+                />
               </div>
             </div>
           </div>
