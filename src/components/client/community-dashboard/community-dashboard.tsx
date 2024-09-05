@@ -3,7 +3,6 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { useLocale } from 'use-intl'
 import { usePathname } from 'next/navigation'
-import './community-dashboard.scss'
 import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
 
 interface CommunityDashboardProps {
@@ -21,7 +20,7 @@ export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
       <div className="mt-[33px] text-right font-bold">
         Сhoose which section you want to look at
       </div>
-      <div className="mt-[91px] flex flex-wrap items-center justify-center">
+      <div className="mt-[91px] flex items-center justify-center">
         {data.map((item: any, index: number) => {
           const isActive = pathname === `/${locale}/${item.link}`
 
@@ -32,7 +31,7 @@ export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
             >
               <Link
                 href={`/${locale}/${item.link}`}
-                className={`community-dashboard-card group relative block overflow-hidden !rounded-full p-[24px] uppercase lg:p-[32px] ${isActive ? 'active' : ''}`}
+                className={`background-item group relative block overflow-hidden !rounded-full p-[24px] uppercase lg:p-[32px] ${isActive ? 'active' : ''}`}
               >
                 <span className="duration-300 group-hover:text-[#0B66F5]">
                   {item.name}

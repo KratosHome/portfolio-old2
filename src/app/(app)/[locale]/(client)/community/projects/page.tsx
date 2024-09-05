@@ -7,7 +7,7 @@ const Page = async () => {
   const data: any = await getProjects()
 
   return (
-    <div className="mx-auto max-w-[1442px] px-[24px]">
+    <div>
       <div className="flex justify-end">
         <h1 className="mt-[70px] text-right text-[#0B66F5] lg:w-[70%]">
           This page showcases projects that are currently in development. You

@@ -79,6 +79,10 @@ html {
     background: var(--background-block);
     backdrop-filter: blur(12.5px);
 }
+.background-item-no-hover {
+    background: var(--background-block);
+    backdrop-filter: blur(12.5px);
+}
 
 .background-item::before {
     content: "";
@@ -101,4 +105,9 @@ html {
 
 .background-item:hover::before {
     opacity: 1;
+}
+
+.background-item.active {
+    background: var(--background-block-hover);
+    border-radius: 12px;
 }
