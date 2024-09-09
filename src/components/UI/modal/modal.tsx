@@ -44,12 +44,17 @@ export const Modal: FC<ModalProps> = ({
           modalRef.current,
           {
             opacity: 0,
-            x: -50,
+            scale: 0.9,
+            rotate: -5,
+            boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
           },
           {
-            x: 0,
             opacity: 1,
+            scale: 1,
+            rotate: 0,
             duration: 0.5,
+            ease: 'power4.out',
+            boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
           },
         )
       } else if (!isOpen && shouldRender) {
@@ -60,10 +65,13 @@ export const Modal: FC<ModalProps> = ({
         })
 
         gsap.to(modalRef.current, {
-          x: 50,
           opacity: 0,
-          duration: 0.5,
+          scale: 0.9,
+          rotate: -5,
+          duration: 0.3,
+          ease: 'power4.in',
           onComplete: () => setShouldRender(false),
+          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.2)',
         })
       }
     },
@@ -80,7 +88,7 @@ export const Modal: FC<ModalProps> = ({
       <div
         ref={modalRef}
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white p-6 opacity-0 shadow-lg',
+          'fixed left-1/2 top-1/2 z-50 max-h-[90vh] -translate-x-1/2 -translate-y-1/2 transform rounded-lg bg-white p-6 opacity-0 shadow-lg',
           className,
         )}
       >

@@ -13,10 +13,27 @@ export const getProjects = async (isPublic: boolean) => {
     const projects = await Project.find({ isPublic: isPublic }).lean()
 
     const updatedProjects = await Promise.all(
-      projects.map(async (project) => {
-        const users = await User.find({ _id: { $in: project.teams } }).lean()
+      projects.map(async (project: any) => {
+        if (!project.teams || !Array.isArray(project.teams)) {
+          // Перевірка на існування та тип поля teams
+          project.teams = []
+        }
 
-        project.teams = users
+        // Перебираємо команди у проекті
+        const updatedTeams = await Promise.all(
+          project.teams.map(async (team: any) => {
+            // Знаходимо користувача за userId
+            if (team.userId) {
+              const user = await User.findOne({ _id: team.userId }).lean()
+              // Додаємо дані користувача до команди
+              return { ...team, user }
+            }
+            return team
+          }),
+        )
+
+        // Оновлюємо команди у проекті
+        project.teams = updatedTeams
 
         return project
       }),

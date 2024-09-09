@@ -4,7 +4,7 @@ import { getProjects } from '@/server/project/get-projects.server'
 import { ProjectItem } from '@/components/client/project-item/project-item'
 
 const Page = async () => {
-  const data: any = await getProjects()
+  const data: any = await getProjects(true)
 
   return (
     <div>

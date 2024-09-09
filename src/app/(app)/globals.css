@@ -77,12 +77,15 @@ html {
 .background-item {
     position: relative;
     background: var(--background-block);
+    -webkit-backdrop-filter: blur(12.5px);
     backdrop-filter: blur(12.5px);
 }
 .background-item-no-hover {
     background: var(--background-block);
+    -webkit-backdrop-filter: blur(12.5px);
     backdrop-filter: blur(12.5px);
 }
+
 
 .background-item::before {
     content: "";

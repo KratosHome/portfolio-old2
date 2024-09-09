@@ -13,6 +13,7 @@ interface TeamMember {
 }
 
 interface ProjectTypes {
+  _id: string
   name: string
   description: string
   technologies: string[]

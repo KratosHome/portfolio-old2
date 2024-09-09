@@ -27,8 +27,6 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
     formState: { errors },
   } = useForm<any>()
 
-  console.log('item', item)
-
   useEffect(() => {
     reset({
       percentageProjectCompletion: item.percentageWorkProject,
@@ -48,7 +46,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
   }
 
   const reject = async (userId: string) => {
-    const accept = await rejectUserProject(projectId._id, userId)
+    const accept = await rejectUserProject(projectId, userId)
     if (accept.success) {
       toast.success('Користувача успішно відхилено від проєкту')
     } else {
@@ -65,7 +63,6 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
         percentageWorkProject: data.percentageProjectCompletion,
       },
     }
-    console.log('sendData', item)
     const updateRating = await updateProjectUser(item._id, projectId, sendData)
     if (updateRating.success) {
       toast.success('Рейтинг користувача успішно оновлено')
@@ -76,7 +73,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
   }
 
   const removeFromTeam = async () => {
-    const remove = await removeFromTeamServer(user._id, projectId._id)
+    const remove = await removeFromTeamServer(item._id, projectId)
 
     if (remove.success) {
       await fetchProjects(user._id)

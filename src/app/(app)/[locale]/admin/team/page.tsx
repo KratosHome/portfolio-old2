@@ -55,7 +55,7 @@ const Page = () => {
                           <div>Нові користувачі</div>
                           <TeamItem
                             key={item2._id}
-                            projectId={item2._id}
+                            projectId={item._id}
                             item={item2}
                             isNewUser={true}
                           />

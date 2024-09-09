@@ -7,8 +7,9 @@ export const rejectUserProject = async (projectId: string, userId: string) => {
   noStore()
   try {
     await connectToDb()
-
+    console.log('projectId', projectId)
     const project = await Project.findById(projectId)
+    console.log('project', project)
 
     if (!project) return { success: false, message: 'Проект не знайдено' }
 

@@ -4,7 +4,6 @@ import { Modal } from '@/components/UI/modal/modal'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { marked } from 'marked'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
-import Link from 'next/link'
 import { useStore } from '@/store/user'
 import { joinProjects } from '@/server/project/join-project.server'
 import { toast } from 'react-toastify'
@@ -26,7 +25,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
-  const truncateText = (text: string, maxLength: number) => {
+  const truncateText = (text: any, maxLength: number) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...'
     }
@@ -59,7 +58,12 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
       router.push(`/login`)
     }
   }
-  console.log('project', project)
+  const closeModal = () => {
+    setIsOpen(false)
+    const currentParams = new URLSearchParams(searchParams.toString())
+    currentParams.delete('id')
+    router.replace(`?${currentParams.toString()}`, { scroll: false })
+  }
 
   return (
     <div>
@@ -98,10 +102,10 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               WE NEED:
             </div>
             <div className="ml-[16px] flex flex-wrap">
-              {project.lookingInTeam.map((item: string, index: number) => (
+              {project.lookingInTeam?.map((item: any, index: number) => (
                 <div key={item} className="mr-[12px] text-[#0B66F5]">
                   {item}
-                  {index < project.lookingInTeam.length - 1 && ','}
+                  {index < project.lookingInTeam!.length - 1 && ','}
                 </div>
               ))}
             </div>
@@ -188,10 +192,10 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                   WE NEED:
                 </div>
                 <div className="ml-[42px] flex flex-wrap">
-                  {project.lookingInTeam.map((item: string, index: number) => (
+                  {project.lookingInTeam?.map((item: any, index: number) => (
                     <div key={item} className="mr-[12px] text-[#0B66F5]">
                       {item}
-                      {index < project.lookingInTeam.length - 1 && ','}
+                      {index < project.lookingInTeam!.length - 1 && ','}
                     </div>
                   ))}
                 </div>
@@ -229,8 +233,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
       </div>
       <Modal
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        className="background-item-no-hover max-h-[90vh] w-[90%] overflow-auto"
+        onClose={closeModal}
+        className="background-item-no-hover w-[90%] max-w-[1442px] overflow-auto"
       >
         <div>
           <div className="flex justify-end">
@@ -274,7 +278,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               development phases
             </div>
             <div>
-              {project.workPlan.map((item: string, index: number) => (
+              {project.workPlan.map((item: any, index: number) => (
                 <div key={item.id} className="mb-[4px] flex items-center">
                   <div
                     className={cn(
@@ -302,15 +306,52 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
           <div className="mb-[24px] mt-[60px] flex">
             <div className="w-1/2 text-[20px] text-[#0B66F5]">project team</div>
             <div className="flex flex-wrap gap-[12px]">
-              {project.technologies.map((item: string) => (
-                <div
-                  key={item}
-                  className="max-w-max rounded-full border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[24px] font-bold backdrop-blur-[12.5px]"
-                >
-                  {item}
+              {project.teams.map((itemTeam: any) => (
+                <div key={itemTeam._id}>
+                  <div className="flex w-[372px] rounded-full border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[24px] py-[12px] text-[24px] font-bold capitalize backdrop-blur-[12.5px]">
+                    <div className="mr-[18px] cursor-pointer text-[#0B66F5] hover:underline">
+                      {itemTeam.user.username}
+                    </div>
+                    <div>{itemTeam.user.role}</div>
+                  </div>
+                  <div className="mr-3 text-right">
+                    project involvement {itemTeam.percentageWorkProject} %
+                  </div>
                 </div>
               ))}
             </div>
+          </div>
+          <div className="mt-[12px] h-[1px] w-full bg-white/50" />
+          <div className="my-[24px] flex items-center">
+            <div className="max-w-max rounded-2xl bg-gradient-to-tr from-[rgba(11,102,245,0.3)] via-[rgba(78,128,206,0.15)] to-transparent px-[24px] py-[16px]">
+              WE NEED:
+            </div>
+            <div className="ml-[16px] flex flex-wrap">
+              {project.lookingInTeam?.map((item: any, index: number) => (
+                <div key={item} className="mr-[12px] text-[#0B66F5]">
+                  {item}
+                  {index < project.lookingInTeam!.length - 1 && ','}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex w-full flex-wrap items-end justify-end gap-[10px] rounded-full">
+            {project.logo ? (
+              <Image
+                width={32}
+                height={32}
+                src={project.logo}
+                alt={`logo ${project.name}`}
+                className="size-[32px] rounded-full"
+              />
+            ) : null}
+            <div className="bg-gradient-to-r from-[rgba(11,102,245,0.70)] via-[rgba(78,128,206,0.35)] to-[rgba(255,255,255,0.20)] bg-clip-text text-[24px] text-transparent">
+              completed
+            </div>
+            <div className="text-[64px] leading-[0.9] text-[#0B66F5]">
+              {project.percentageProjectCompletion}%
+            </div>
+            <ButtonCircle title={'join'} onClick={joinProject} />
           </div>
         </div>
       </Modal>

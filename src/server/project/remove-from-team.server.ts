@@ -10,10 +10,13 @@ export const removeFromTeamServer = async (
   try {
     await connectToDb()
 
+    console.log('projectId', projectId)
     const project = await Project.findById(projectId)
+    console.log('project', project)
     if (!project) return { success: false, message: 'Проект не знайдено' }
+    console.log('project', project)
 
-    project.team = project.team.filter((id: any) => id !== userId)
+    project.teams = project.teams.filter((item: any) => item.userId !== userId)
     await project.save()
 
     const user = await User.findById(userId)
