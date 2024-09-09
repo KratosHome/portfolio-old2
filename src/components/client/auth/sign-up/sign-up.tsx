@@ -119,7 +119,7 @@ export const SignUp = () => {
                   ...register('email', {
                     required: `${t('This field is required')}`,
                     pattern: {
-                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                       message: `${t('This is not an email')}`,
                     },
                   }),

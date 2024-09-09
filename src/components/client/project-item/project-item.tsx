@@ -230,7 +230,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
       <Modal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="background-item-no-hover"
+        className="background-item-no-hover max-h-[90vh] w-[90%] overflow-auto"
       >
         <div>
           <div className="flex justify-end">
@@ -281,7 +281,11 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                       'mr-[12px] size-[24px] min-w-[24px] rounded-full border border-white bg-transparent',
                       item.completed && 'border-[#0B66F5]',
                     )}
-                  />
+                  >
+                    {item.completed && (
+                      <Image src={check} alt="check" className="p-1" />
+                    )}
+                  </div>
                   <div
                     className={cn(
                       '',
@@ -290,6 +294,20 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                   >
                     {item.text}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-[12px] h-[1px] w-full bg-white/50" />
+          <div className="mb-[24px] mt-[60px] flex">
+            <div className="w-1/2 text-[20px] text-[#0B66F5]">project team</div>
+            <div className="flex flex-wrap gap-[12px]">
+              {project.technologies.map((item: string) => (
+                <div
+                  key={item}
+                  className="max-w-max rounded-full border-b border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] p-[24px] font-bold backdrop-blur-[12.5px]"
+                >
+                  {item}
                 </div>
               ))}
             </div>

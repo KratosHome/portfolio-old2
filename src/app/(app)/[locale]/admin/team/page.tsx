@@ -14,7 +14,6 @@ const Page = () => {
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId)
   }
-
   useEffect(() => {
     setActiveTab(team[0]?._id)
   }, [team])
@@ -48,7 +47,36 @@ const Page = () => {
             {team.map(
               (item) =>
                 activeTab === item._id && (
-                  <TeamItem key={item._id} item={item} />
+                  <div key={item._id}>
+                    <div>{item.name}</div>
+                    {item.newUsers.length > 0 &&
+                      item.newUsers.map((item2: any) => (
+                        <div key={item2._id}>
+                          <div>Нові користувачі</div>
+                          <TeamItem
+                            key={item2._id}
+                            projectId={item2._id}
+                            item={item2}
+                            isNewUser={true}
+                          />
+                        </div>
+                      ))}
+                    {item.team.length > 0 && (
+                      <div>
+                        <div>Команда</div>
+                        {item.team.map((item2: any) => (
+                          <div key={item2._id}>
+                            <TeamItem
+                              key={item2._id}
+                              projectId={item._id}
+                              item={item2}
+                              isNewUser={false}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ),
             )}
           </div>

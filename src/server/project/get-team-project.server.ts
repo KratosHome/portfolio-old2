@@ -21,10 +21,25 @@ export const getTeamProject = async (userId: string) => {
           .select('-password -isEmailVerifiedToken -isEmailVerified -isAdmin')
           .lean()
 
+        // Додаємо інформацію з teams до відповідних користувачів
+        const teamUsersWithRoles = teamUsers.map((user) => {
+          const teamInfo = project.teams.find(
+            (teamMember) => teamMember.userId === user._id.toString(),
+          )
+          return {
+            ...user,
+            role: teamInfo?.role || null,
+            rating2: teamInfo?.rating || 0,
+            percentageWorkProject: teamInfo?.percentageWorkProject || 0,
+            isDeleted: teamInfo?.isDeleted || false,
+            deletedAt: teamInfo?.deletedAt || null,
+          }
+        })
+
         return {
           _id: project._id,
           name: project.name,
-          team: teamUsers,
+          team: teamUsersWithRoles,
           newUsers: newUsersList,
         }
       }),

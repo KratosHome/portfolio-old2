@@ -1,7 +1,8 @@
 import { create } from 'zustand'
+import { getProject } from '@/server/project/get-project.server'
 
 interface StoreState {
-  projects: ProjectTypes[]
+  projects: any[]
   fetchProjects: (id: string) => Promise<void>
   clearProjects: () => void
 }
@@ -11,24 +12,10 @@ export const projectStore = create<StoreState>((set) => ({
 
   fetchProjects: async (id: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/project?userId=${id}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
+      const response = await getProject(id)
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
-      const data = await response.json()
-
-      if (data.success) {
-        set({ projects: data.projects })
+      if (response.success) {
+        set({ projects: response.projects })
       } else {
         console.error('Error fetching projects: Invalid response format')
       }

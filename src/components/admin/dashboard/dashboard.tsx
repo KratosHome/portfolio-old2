@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { RxAvatar } from 'react-icons/rx'
 import { MdOutlineWorkHistory } from 'react-icons/md'
@@ -18,6 +18,7 @@ import { AiOutlineWechat } from 'react-icons/ai'
 import { useStore } from '@/store/user'
 import { teamStore } from '@/store/team'
 import Image from 'next/image'
+import { Loader } from '@/components/UI/loader/loader'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -58,9 +59,13 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   const { user } = useStore()
   const { team, fetchTeam } = teamStore()
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       await fetchTeam(user._id)
+      setLoading(false)
     }
     fetchData()
   }, [user])
@@ -106,6 +111,7 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
       onMouseLeave={handleMouseLeave}
       className="flex w-[80px] flex-col items-start justify-between overflow-hidden rounded-r-3xl rounded-bl-xl border border-neutral-600 pl-3"
     >
+      {loading && <Loader />}
       <ul className="mt-5">
         {dashboard.map((item, index) => {
           const IconComponent = icons[item.icon]

@@ -6,7 +6,10 @@ export const createProject = async (id: any, data: any) => {
   try {
     await connectToDb()
 
-    data.team = id
+    data.teams = {
+      userId: id,
+      role: 'owner',
+    }
 
     const project = new Project(data)
     await project.save()
@@ -20,7 +23,6 @@ export const createProject = async (id: any, data: any) => {
 
     return { success: true, project: projectJSON }
   } catch (err) {
-    console.log('err createProject', err)
-    return { success: false }
+    return { success: false, message: "Can't create project" }
   }
 }

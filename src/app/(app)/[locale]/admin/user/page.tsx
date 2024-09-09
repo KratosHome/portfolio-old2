@@ -44,6 +44,7 @@ const Page = () => {
   const [image, setImage] = useState<any>(null)
 
   const [aboutMe, setAboutMe] = useState<string>('')
+  const [isPublic, setIsPublic] = useState<boolean>(false)
 
   const [technologyInput, setTechnologyInput] = useState<string>('')
   const [technologies, setTechnologies] = useState<string[]>(['NextJS'])
@@ -53,9 +54,15 @@ const Page = () => {
   const [selectedRoles, setSelectedRoles] = useState(status[0])
 
   useEffect(() => {
-    const pdfFile = base64ToFile(user.resume, 'example.pdf')
-    setSelectedResume(pdfFile)
+    if (user.resume) {
+      const pdfFile = base64ToFile(user.resume, 'example.pdf')
+      setSelectedResume(pdfFile)
+    }
   }, [user])
+
+  const handlePublicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsPublic(event.target.checked)
+  }
 
   useEffect(() => {
     reset({
@@ -66,6 +73,7 @@ const Page = () => {
       linkedinLink: user.linkedinLink,
     })
     setAboutMe(user.aboutMe)
+    setIsPublic(user.isPublic)
     setSelectedRoles(user.role)
     setPortfolio(user.portfolioLinks ?? [])
     setTechnologies(user.technologies ?? [])
@@ -174,6 +182,7 @@ const Page = () => {
       portfolioLinks: portfolio,
       workExperience: +data.workExperience,
       linkedinLink: data.linkedinLink,
+      isPublic: isPublic,
     }
 
     if (imageBase64) {
@@ -223,6 +232,18 @@ const Page = () => {
             </AdminButton>
           </div>
         )}
+        <div className="mt-4">
+          <label className="flex items-center">
+            <input
+              type="checkbox"
+              checked={isPublic}
+              onChange={handlePublicChange}
+              className="mr-2"
+            />
+            Зробити публічним
+          </label>
+        </div>
+
         <div className="flex flex-col items-start">
           <div>
             {user.userLogo ? <>Змінити логотип</> : <>Додати логотип</>}
@@ -438,7 +459,7 @@ const Page = () => {
           </div>
           <Input
             type={'text'}
-            placeholder={'Додати технологію'}
+            placeholder={'Додати посилання на портфоліо'}
             value={portfolioInput}
             onChange={(e) => setPortfolioInput(e.target.value)}
           />

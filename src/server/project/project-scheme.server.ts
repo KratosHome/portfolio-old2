@@ -58,10 +58,6 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    team: {
-      type: [String],
-      required: false,
-    },
     teams: {
       type: [
         {
@@ -72,7 +68,17 @@ const projectSchema = new mongoose.Schema(
           role: {
             type: String,
             required: true,
-            types: ['owner', 'mentor', 'designer', 'manager', 'developer'],
+            enum: ['owner', 'member', 'mentor', 'manager', 'developer'],
+          },
+          rating: {
+            type: Number,
+            required: false,
+            default: 0,
+          },
+          percentageWorkProject: {
+            type: Number,
+            required: false,
+            default: 0,
           },
           isDeleted: {
             type: Boolean,

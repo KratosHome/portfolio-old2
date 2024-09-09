@@ -6,8 +6,6 @@ export const updateProject = async (id: any, data: any) => {
   try {
     await connectToDb()
 
-    console.log('updateProject work', id)
-    console.log('updateProject data', data)
     const user = await Project.findByIdAndUpdate(id, data)
     if (!user) return { success: false }
 

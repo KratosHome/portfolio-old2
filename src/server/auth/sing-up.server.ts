@@ -24,6 +24,7 @@ export const singUp = async (data: singUpData) => {
       username,
       email: email.toLowerCase(),
       password: hashedPassword,
+      role: 'user',
     })
 
     await newUser.save()
@@ -32,6 +33,7 @@ export const singUp = async (data: singUpData) => {
       success: true,
     }
   } catch (e) {
+    console.error('Error saving user:', e)
     return { success: false, message: 'Sumsing went wrong singUp' }
   }
 }

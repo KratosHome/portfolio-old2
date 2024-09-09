@@ -32,21 +32,6 @@ const userSchemaServer = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    projects: {
-      type: [
-        {
-          id: {
-            type: String,
-            required: true,
-          },
-          percentageWorkProject: {
-            type: Number,
-            required: true,
-            default: 0,
-          },
-        },
-      ],
-    },
     isEmailVerifiedToken: {
       type: String,
     },
@@ -95,10 +80,6 @@ const userSchemaServer = new mongoose.Schema(
     },
     linkedinLink: {
       type: String,
-    },
-    rating: {
-      type: Number,
-      default: 0,
     },
     resume: {
       type: String,
