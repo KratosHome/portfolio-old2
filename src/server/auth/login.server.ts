@@ -11,11 +11,12 @@ export const loginAction = async (data: {
       password: data.password,
       redirect: false,
     })
+
     return {
       success: true,
       error: false,
     }
   } catch (e) {
-    return { error: true }
+    return { error: true, success: false }
   }
 }

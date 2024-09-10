@@ -35,10 +35,21 @@ const Page = () => {
     'mentor',
   ]
 
+  const levelExperience = [
+    'pre junior',
+    'junior',
+    'strong junior',
+    'middle',
+    'strong middle',
+    'senior',
+    'lead',
+  ]
+
+  const session = useSession()
   const { user, fetchUser } = useStore()
   const t = useTranslations('footer')
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [loading, setLoading] = useState<boolean | undefined>(false)
+  const [loading, setLoading] = useState<boolean | undefined>(true)
 
   const [selectedResume, setSelectedResume] = useState<any>(null)
   const [image, setImage] = useState<any>(null)
@@ -51,14 +62,18 @@ const Page = () => {
 
   const [portfolioInput, setPortfolioInput] = useState<string>('')
   const [portfolio, setPortfolio] = useState<string[]>(['vcdfsv'])
-  const [selectedRoles, setSelectedRoles] = useState(status[0])
+  const [selectedRoles, setSelectedRoles] = useState(roles[0])
+
+  const [selectedExperienceLevel, setSelectedExperienceLevel] = useState(
+    levelExperience[0],
+  )
 
   useEffect(() => {
     if (user.resume) {
-      const pdfFile = base64ToFile(user.resume, 'example.pdf')
+      const pdfFile = base64ToFile(user.resume, `${user.username}.pdf`)
       setSelectedResume(pdfFile)
     }
-  }, [user])
+  }, [user, loading])
 
   const handlePublicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsPublic(event.target.checked)
@@ -77,7 +92,8 @@ const Page = () => {
     setSelectedRoles(user.role)
     setPortfolio(user.portfolioLinks ?? [])
     setTechnologies(user.technologies ?? [])
-  }, [user])
+    setSelectedExperienceLevel(user.experienceLevel)
+  }, [user, session, loading])
 
   const {
     register,
@@ -106,6 +122,9 @@ const Page = () => {
 
   const handleChangeRole = (event: any) => {
     setSelectedRoles(event.target.value)
+  }
+  const handleChangeExperienceLevel = (event: any) => {
+    setSelectedExperienceLevel(event.target.value)
   }
 
   const handleAddTechnology = () => {
@@ -183,8 +202,10 @@ const Page = () => {
       workExperience: +data.workExperience,
       linkedinLink: data.linkedinLink,
       isPublic: isPublic,
+      experienceLevel: selectedExperienceLevel,
     }
 
+    console.log('sendData', sendData)
     if (imageBase64) {
       sendData.userLogo = imageBase64
     }
@@ -348,6 +369,19 @@ const Page = () => {
           className="my-1 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {roles.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+
+        <div className="mt-3">Оберіть рівень досвіду</div>
+        <select
+          value={selectedExperienceLevel}
+          onChange={handleChangeExperienceLevel}
+          className="my-1 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          {levelExperience.map((option, index) => (
             <option key={index} value={option}>
               {option}
             </option>

@@ -19,6 +19,8 @@ import { useStore } from '@/store/user'
 import { teamStore } from '@/store/team'
 import Image from 'next/image'
 import { Loader } from '@/components/UI/loader/loader'
+import { auth } from '@/server/auth/auth.server'
+import { useSession } from 'next-auth/react'
 
 const icons = {
   MdOutlineWorkHistory,
@@ -58,6 +60,7 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   let enterTimeout: ReturnType<typeof setTimeout> | null = null
   const { user } = useStore()
   const { team, fetchTeam } = teamStore()
+  const session = useSession()
 
   const [loading, setLoading] = useState(false)
 
@@ -68,7 +71,7 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
       setLoading(false)
     }
     fetchData()
-  }, [user])
+  }, [user, session])
 
   const team2 = [
     { name: 'Team A', newUsers: ['User1', 'User2', 'User3'] },

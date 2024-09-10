@@ -22,4 +22,5 @@ interface UserTypes {
   linkedinLink: string
   isPublic: boolean
   resume: string
+  experienceLevel: string
 }

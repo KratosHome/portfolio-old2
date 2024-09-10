@@ -16,7 +16,6 @@ export const createUsers = async (session: any) => {
         role: 'user',
       })
 
-      console.log('newUser', newUser)
       await newUser.save()
       return { success: true }
     }

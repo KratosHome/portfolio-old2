@@ -50,6 +50,19 @@ const userSchemaServer = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    experienceLevel: {
+      type: String,
+      enum: [
+        'pre junior',
+        'junior',
+        'strong junior',
+        'middle',
+        'strong middle',
+        'senior',
+        'lead',
+      ],
+      required: false,
+    },
     role: {
       required: true,
       type: String,
