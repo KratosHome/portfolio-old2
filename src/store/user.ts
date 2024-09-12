@@ -63,6 +63,7 @@ export const useStore = create<StoreState>((set) => ({
         linkedinLink: response.user.linkedinLink,
         isPublic: response.user.isPublic,
         resume: response.user.resume,
+        experienceLevel: response.user.experienceLevel,
       }
 
       set({ user })

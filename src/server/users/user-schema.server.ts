@@ -61,7 +61,6 @@ const userSchemaServer = new mongoose.Schema(
         'senior',
         'lead',
       ],
-      required: false,
     },
     role: {
       required: true,

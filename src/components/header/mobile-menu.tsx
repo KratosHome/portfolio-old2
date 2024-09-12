@@ -22,7 +22,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ menu }) => {
 
   const containerClasses = `tham tham-e-squeeze tham-w-12  ${opened ? 'tham-active' : ''}`
 
-  const overlayClasses = `fixed inset-0 bg-gray-500 bg-opacity-0 z-10 transition-opacity top-[80px] duration-500 ease-in ${
+  const overlayClasses = `fixed inset-0  bg-gray-500 bg-opacity-0 z-10 transition-opacity top-[80px] duration-500 ease-in ${
     opened ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`
 
@@ -42,7 +42,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ menu }) => {
     <div className="z-20 block lg:hidden">
       <div className={containerClasses} onClick={() => setOpened(!opened)}>
         <div className="tham-box">
-          <div className="tham-inner bg-white" />
+          <div className="tham-inner bg-black dark:bg-white" />
         </div>
       </div>
       <div className={overlayClasses} onClick={handleOverlayClick}>

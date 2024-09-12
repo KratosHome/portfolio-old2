@@ -1,4 +1,4 @@
-import '../globals.css'
+import '../globals.scss'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from '@/components/theme-provider/theme-provider'
@@ -29,19 +29,13 @@ export default async function LocaleLayout({
         <GoogleTagManager />
         <SpeedInsights />
       </Head>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+      <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
           <StarsCanvas />
           <SessionProvider>
             <Header />
-            <main className="min-h-[100svh]">{children}</main>
-            <Footer />
+            <main className="min-h-[90svh]">{children}</main>
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>

@@ -9,7 +9,6 @@ import Google from '@auth/core/providers/google'
 
 const login = async (credentials: any) => {
   'use server'
-  console.log('work')
   try {
     await connectToDb()
     const user = await User.findOne({ email: credentials.email }).select(

@@ -43,6 +43,12 @@ const config: Config = {
           'background-position': 'center',
           'background-size': 'contain',
         },
+        '.bg-group-pattern-light': {
+          'background-image': "url('/assets/background/group-light.svg')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
         '.bg-planet-first': {
           'background-image': "url('/assets/hero/round.png')",
           'background-repeat': 'no-repeat',

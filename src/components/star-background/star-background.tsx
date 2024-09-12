@@ -22,6 +22,8 @@ const StarBackground = (props: any) => {
     }
   })
 
+  console.log('theme', theme)
+
   return (
     <group rotation={[0, 0, Math.PI / 5]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>

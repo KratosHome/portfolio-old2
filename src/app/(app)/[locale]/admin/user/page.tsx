@@ -205,7 +205,6 @@ const Page = () => {
       experienceLevel: selectedExperienceLevel,
     }
 
-    console.log('sendData', sendData)
     if (imageBase64) {
       sendData.userLogo = imageBase64
     }

@@ -33,7 +33,7 @@
   }
 }
 
-@media (max-width: 975px) {
+@media (max-width: 1024px) {
   .responsive-width {
     width: 100%;
   }
@@ -44,6 +44,9 @@
   position: relative;
   overflow: hidden;
   transition: background-color 0.3s ease;
+  border-radius: 35px;
+  background: var(--blue-gradient);
+  backdrop-filter: blur(12.5px);
 }
 
 .custom-login::before {

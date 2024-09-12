@@ -9,7 +9,7 @@ export default async function LocaleLayout({
   children: ReactNode
 }) {
   return (
-    <html suppressHydrationWarning={true}>
+    <html suppressHydrationWarning>
       <body className="max-w-screen relative overflow-x-hidden bg-white font-sansation dark:bg-black">
         {children}
       </body>

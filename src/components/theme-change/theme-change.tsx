@@ -42,9 +42,8 @@ const ThemeChange = () => {
     )
   }
 
-  if (!mounted) {
-    return null
-  }
+  if (!mounted) return null
+
   return (
     <div onClick={changeTheme} className="z-10 max-w-max">
       <div
