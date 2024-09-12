@@ -9,12 +9,14 @@ export default async function LocaleLayout({
   children: ReactNode
   params: { locale: LanguageProps }
 }) {
-  const data = projectsDashboardData[locale]
+  /*
+    const data = projectsDashboardData[locale]
+    <CommunityDashboard data={data} />
+   */
 
   return (
     <>
       <main className="mx-auto max-w-[1442px] px-[12px] lg:px-[24px]">
-        <CommunityDashboard data={data} />
         {children}
       </main>
     </>

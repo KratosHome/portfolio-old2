@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { getUser } from '@/server/users/get-users.server'
 
 interface StoreState {
-  user: UserTypes
+  user: any
   fetchUser: (session: any) => Promise<void>
   saveUser: (newUser: Partial<UserTypes>) => void
   updateUser: (newUser: Partial<UserTypes>) => void

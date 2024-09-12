@@ -10,6 +10,7 @@ import { convertToBase64 } from '@/utils/convertToBase64'
 import { localesData } from '@/data/locales-data'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 import { updatePostServer } from '@/server/blog/updape-post.server'
+import Image from 'next/image'
 
 interface PostData {
   authorId: string
@@ -134,6 +135,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
       setImage(data.post[0].img)
       setPostsData(updatedPostsData)
     }
+    // eslint-disable-next-line
   }, [data])
 
   const handleContentChange = (value: string) => {
@@ -226,7 +228,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
     <div>
       {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
       {data ? (
-        <img
+        <Image
           src={data.post[0].img}
           alt={data.post[0].title}
           width={30}

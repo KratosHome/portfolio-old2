@@ -9,11 +9,11 @@ export const getTeamProject = async (userId: string) => {
   try {
     await connectToDb()
 
-    const projects = await Project.find({ team: { $in: [userId] } }).lean()
+    const projects: any = await Project.find({ team: { $in: [userId] } }).lean()
 
     const projectsWithUsers = await Promise.all(
-      projects.map(async (project) => {
-        const teamUsers = await User.find({ _id: { $in: project.team } })
+      projects.map(async (project: any) => {
+        const teamUsers: any = await User.find({ _id: { $in: project.team } })
           .select('-password -isEmailVerifiedToken -isEmailVerified -isAdmin')
           .lean()
 
@@ -21,10 +21,9 @@ export const getTeamProject = async (userId: string) => {
           .select('-password -isEmailVerifiedToken -isEmailVerified -isAdmin')
           .lean()
 
-        // Додаємо інформацію з teams до відповідних користувачів
-        const teamUsersWithRoles = teamUsers.map((user) => {
+        const teamUsersWithRoles = teamUsers.map((user: any) => {
           const teamInfo = project.teams.find(
-            (teamMember) => teamMember.userId === user._id.toString(),
+            (teamMember: any) => teamMember.userId === user._id.toString(),
           )
           return {
             ...user,

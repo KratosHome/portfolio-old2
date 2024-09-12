@@ -11,8 +11,9 @@ const Page = async () => {
       <div className="flex justify-end">
         <h1 className="mt-[70px] text-right text-[#0B66F5] lg:w-[70%]">
           This page showcases projects that are currently in development. You
-          can explore the progress of these projects, and if you're interested,
-          there's an opportunity to join the project team and contribute.
+          can explore the progress of these projects, and if you&apos;re
+          interested, there&apos;s an opportunity to join the project team and
+          contribute.
         </h1>
       </div>
       <div className="mt-[136px]">

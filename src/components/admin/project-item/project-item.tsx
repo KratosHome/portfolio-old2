@@ -73,6 +73,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     setTechnologies(project.technologies ?? [])
     setWorkPlanPlan(project.workPlan ?? [])
     setLookingInTeam(project.lookingInTeam ?? [])
+    // eslint-disable-next-line
   }, [project])
 
   const handleLogoChange = (e: any) => {

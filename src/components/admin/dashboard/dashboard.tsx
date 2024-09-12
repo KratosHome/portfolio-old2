@@ -71,6 +71,7 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
       setLoading(false)
     }
     fetchData()
+    // eslint-disable-next-line
   }, [user, session])
 
   const team2 = [

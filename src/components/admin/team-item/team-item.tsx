@@ -32,6 +32,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
       percentageProjectCompletion: item.percentageWorkProject,
       rating: item.rating2,
     })
+    // eslint-disable-next-line
   }, [item])
 
   const accept = async (userId: string) => {
@@ -108,7 +109,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
           <div className="grid grid-cols-1 gap-2">
             <div className="font-semibold">Технології:</div>
             <div className="flex flex-wrap gap-2">
-              {user.technologies.map((tech) => (
+              {user.technologies.map((tech: any) => (
                 <span
                   key={tech}
                   className="rounded-md bg-blue-100 px-2 py-1 text-blue-800"
@@ -121,7 +122,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
           <div className="mt-2 grid grid-cols-1 gap-2">
             <div className="font-semibold">Портфоліо:</div>
             <div className="flex flex-wrap gap-2">
-              {user.portfolioLinks.map((link) => (
+              {user.portfolioLinks.map((link: any) => (
                 <a
                   key={link}
                   href={link}

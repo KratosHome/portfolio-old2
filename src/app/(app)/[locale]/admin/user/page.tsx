@@ -93,6 +93,7 @@ const Page = () => {
     setPortfolio(user.portfolioLinks ?? [])
     setTechnologies(user.technologies ?? [])
     setSelectedExperienceLevel(user.experienceLevel)
+    // eslint-disable-next-line
   }, [user, session, loading])
 
   const {

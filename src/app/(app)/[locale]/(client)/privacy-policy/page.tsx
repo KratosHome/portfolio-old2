@@ -1,4 +1,3 @@
-'use client'
 import './privacy-policy.scss'
 import { FC } from 'react'
 

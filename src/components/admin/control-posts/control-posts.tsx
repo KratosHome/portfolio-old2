@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { Loader } from '@/components/UI/loader/loader'
 import { useLocale } from 'use-intl'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const ControlPosts = () => {
   const locale = useLocale()
@@ -23,7 +24,7 @@ export const ControlPosts = () => {
     }
 
     fetchData()
-  }, [])
+  }, [locale])
   // HE AR
   const togglePublishStatus = async (
     postId: string,
@@ -62,8 +63,10 @@ export const ControlPosts = () => {
           </p>
           <h2 className="mb-2 text-2xl font-bold">{post.title}</h2>
           <p className="mb-2">{post.subTitle}</p>
-          <img
+          <Image
             src={post.img}
+            width={100}
+            height={100}
             alt={post.title}
             className="mb-4 size-12 rounded-full object-cover"
           />
