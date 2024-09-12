@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Viewport } from 'next'
-import { homeMateData } from '@/components/metadata/home-meta-data'
+import { homeMateData } from '@/data/OlegTkach/meta/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
 import { servicesData } from '@/data/services'
 import { projectsData } from '@/data/projects-data'
@@ -25,20 +25,25 @@ export const viewport: Viewport = {
 }
 
 export async function generateMetadata({ params: { locale } }: PageProps) {
-  console.log('locale', locale)
   const projects = homeMateData[locale]
+
   return {
-    title: 'locale',
+    title: projects.title,
+    description: projects.description,
+    keywords: projects.keywords,
+    authors: projects.authors,
+    openGraph: {
+      url: projects.canonicalUrl,
+      title: projects.openGraph.title,
+      description: projects.openGraph.description,
+      locale: projects.openGraph.locale,
+      siteName: projects.openGraph.site_name,
+      images: projects.openGraph.images,
+    },
   }
 }
 
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
-  const services = servicesData[locale]
-  const projects = projectsData[locale]
-  const experience = experienceData[locale]
-  const dataReviewsSend = dataReviews
-  const faq = gaqData[locale]
-
   return (
     <>
       <HomeSnippets locale={locale} />
@@ -49,7 +54,13 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 export default Home
 
 /*
-     <HomeSnippets locale={locale} />
+  const services = servicesData[locale]
+  const projects = projectsData[locale]
+  const experience = experienceData[locale]
+  const dataReviewsSend = dataReviews
+  const faq = gaqData[locale]
+
+
       <Hero />
       <HomeSnippets locale={locale} />
       <Services services={services} />
