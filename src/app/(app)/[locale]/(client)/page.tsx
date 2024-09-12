@@ -39,7 +39,11 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const dataReviewsSend = dataReviews
   const faq = gaqData[locale]
 
-  return <></>
+  return (
+    <>
+      <HomeSnippets locale={locale} />
+    </>
+  )
 }
 
 export default Home
