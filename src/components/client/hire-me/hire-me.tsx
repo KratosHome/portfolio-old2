@@ -1,6 +1,6 @@
 'use client'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Input } from '@/components/UI/input/input'
 import ReCAPTCHA from 'react-google-recaptcha'

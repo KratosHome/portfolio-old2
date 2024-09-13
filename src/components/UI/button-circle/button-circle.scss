@@ -12,13 +12,13 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.00) 70%);
+  background: var(--bg-button-circle);
   animation: gradientAnimation 8s infinite;
 }
 
 .custom-button:hover::before {
   animation: none;
-  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30) 40.76%, rgba(78, 128, 206, 0.15) 70.61%, rgba(255, 255, 255, 0.00) 100.49%);
+  background: var(--bg-button-circle-hover);
 }
 
 @keyframes gradientAnimation {

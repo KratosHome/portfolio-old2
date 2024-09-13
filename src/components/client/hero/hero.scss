@@ -8,8 +8,48 @@
   opacity: 0;
 }
 
+.overlay-theme-fr {
+  background: linear-gradient(to right, var(--arctical-h1-color), var(--arctical-h1-color) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-theme-dv {
+  background: linear-gradient(to right, var(--arctical-h1-color-db), var(--arctical-h1-color-db) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
 .overlay-blue {
   background: linear-gradient(to right, #0B66F5, #0B66F5 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-ex {
+  background: linear-gradient(to right, var(--arctical-h1-color-ex), var(--arctical-h1-color-ex) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-blue-year {
+  background: linear-gradient(to right, var(--arctical-h1-color-ye), var(--arctical-h1-color-ye) 50%, transparent 50%, transparent);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   color: transparent;

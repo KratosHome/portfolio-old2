@@ -159,7 +159,7 @@ export const Header = () => {
           <div className="animate-grow inabsolute block h-[1px] overflow-x-hidden bg-[#050505] dark:bg-[#FAFAFA]"></div>
         </div>
       </header>
-      <div className="mt-[15px] flex w-full justify-end pr-[30px] lg:hidden">
+      <div className="absolute mt-[15px] flex w-full justify-end pr-[30px] lg:hidden">
         <ThemeChange />
       </div>
       <div className="relative">

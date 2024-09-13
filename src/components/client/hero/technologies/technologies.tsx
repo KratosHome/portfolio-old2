@@ -145,15 +145,15 @@ export const Technologies = () => {
 
   return (
     <div className="relative -z-10 mt-[31px] flex size-[300px] items-center justify-center sm:size-[400px] lg:size-[500px]">
-      <div className="absolute size-[300px] rounded-full border-[1px] border-white opacity-[0.5] sm:size-[450px] lg:size-[500px]" />
-      <div className="absolute left-1/2 top-1/2 hidden size-[300px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:block sm:size-[400px] lg:size-[450px]" />
-      <div className="absolute left-1/2 top-1/2 size-[250px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:size-[350px] lg:size-[400px]" />
-      <div className="absolute left-1/2 top-1/2 size-[200px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:size-[300px] lg:size-[350px]" />
-      <div className="absolute left-1/2 top-1/2 size-[150px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:size-[250px] lg:size-[300px]" />
-      <div className="absolute left-1/2 top-1/2 size-[100px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:size-[200px] lg:size-[250px]" />
-      <div className="absolute left-1/2 top-1/2 size-[50px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:size-[150px] lg:size-[200px]" />
-      <div className="absolute left-1/2 top-1/2 hidden size-[30px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:block sm:size-[100px] lg:size-[150px]" />
-      <div className="absolute left-1/2 top-1/2 hidden size-[10px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-white opacity-[0.5] sm:block sm:size-[50px] lg:size-[100px]" />
+      <div className="absolute size-[300px] rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[450px] lg:size-[500px]" />
+      <div className="absolute left-1/2 top-1/2 hidden size-[300px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:block sm:size-[400px] lg:size-[450px]" />
+      <div className="absolute left-1/2 top-1/2 size-[250px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[350px] lg:size-[400px]" />
+      <div className="absolute left-1/2 top-1/2 size-[200px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[300px] lg:size-[350px]" />
+      <div className="absolute left-1/2 top-1/2 size-[150px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[250px] lg:size-[300px]" />
+      <div className="absolute left-1/2 top-1/2 size-[100px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[200px] lg:size-[250px]" />
+      <div className="absolute left-1/2 top-1/2 size-[50px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:size-[150px] lg:size-[200px]" />
+      <div className="absolute left-1/2 top-1/2 hidden size-[30px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:block sm:size-[100px] lg:size-[150px]" />
+      <div className="absolute left-1/2 top-1/2 hidden size-[10px] -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[1px] border-[#0B66F5] opacity-[0.5] dark:border-white sm:block sm:size-[50px] lg:size-[100px]" />
       <div ref={containerRef} className="relative h-[500px] w-[500px]">
         {currentTechnologies.map((tech, index) => (
           <div
@@ -166,10 +166,10 @@ export const Technologies = () => {
               alt={tech.name}
               width={48}
               height={48}
-              className="h-[24px] w-[24px] object-cover lg:h-[48px] lg:w-[48px]"
+              className="h-[24px] w-[24px] object-contain lg:h-[48px] lg:w-[48px]"
               quality={100}
             />
-            <span className="text-[12px] font-light text-[#FAFAFA] lg:text-[16px]">
+            <span className="text-[12px] font-light text-black dark:text-[#FAFAFA] lg:text-[16px]">
               {tech.name}
             </span>
           </div>

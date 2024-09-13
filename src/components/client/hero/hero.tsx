@@ -9,7 +9,6 @@ import telegramLight from '@/assets/icons/telegramLight.svg'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-import ThemeChange from '@/components/theme-change/theme-change'
 import { Technologies } from '@/components/client/hero/technologies/technologies'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 
@@ -28,18 +27,15 @@ const Hero = () => {
   return (
     <section className="relative min-h-[1700px] overflow-x-hidden lg:overflow-visible">
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
-        <div className="absolute right-[28px] z-10 mt-[15px] block lg:hidden">
-          <ThemeChange />
-        </div>
         <div className="flex flex-col items-center justify-between lg:flex-row">
-          <div className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-gradient-to-tr from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px] lg:-top-[50px] lg:left-[20px] lg:size-[280px]" />
+          <div className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] backdrop-blur-[12.5px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[50px] lg:left-[20px] lg:size-[280px]" />
           <div className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4] lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]" />
           <div className="w-full max-w-[400px] lg:max-w-[600px]">
             <h1 className="relative mt-[55px] flex w-full max-w-[300px] flex-col uppercase lg:-mt-[50px] lg:max-w-full">
-              <span className="overlay delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] lg:text-[80px]">
+              <span className="overlay-theme-fr delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] text-[#0B66F5] dark:text-white lg:text-[80px]">
                 {t('frontend')}
               </span>
-              <span className="overlay delay-2 -mt-[10px] inline-block text-[36px] font-light uppercase lg:text-[64px]">
+              <span className="overlay-theme-dv delay-2 -mt-[10px] inline-block text-[36px] font-light uppercase lg:text-[64px]">
                 {t('developer')}
               </span>
             </h1>
@@ -54,7 +50,7 @@ const Hero = () => {
         </div>
         <div className="relative mt-[52px] flex flex-col-reverse items-end justify-between lg:flex-row">
           <div className="flex justify-between lg:w-1/2">
-            <div className="border--stone-500/30 flex min-w-[160px] flex-row justify-between border-t-2 py-[5px] pr-[16px] lg:min-w-[0px] lg:flex-col lg:border-r-2 lg:border-t-0">
+            <div className="flex min-w-[160px] flex-row justify-between border-t-2 border-black py-[5px] pr-[16px] dark:border-white lg:min-w-[0px] lg:flex-col lg:border-r-[1px] lg:border-t-0">
               <a
                 href="https://github.com/KratosHome"
                 target="_blank"
@@ -105,10 +101,10 @@ const Hero = () => {
           </div>
           <h2 className="relative min-w-[190px] text-end text-[24px] font-light uppercase leading-[1] lg:min-w-[550px] lg:text-[64px]">
             <span className="overlay delay-2" />
-            <span className="delay-3 overlay-blue block text-[#0B66F5]">
+            <span className="delay-3 overlay-ex block text-[#0B66F5]">
               <span> {t('experience')}</span>
             </span>
-            <span className="overlay delay-3 -mt-3 block text-start lg:mt-0">
+            <span className="overlay-blue-year delay-3 -mt-3 block text-start lg:mt-0">
               {years} <span> {t('years')}</span>
             </span>
           </h2>
