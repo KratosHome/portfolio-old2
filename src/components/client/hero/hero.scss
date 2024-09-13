@@ -86,12 +86,12 @@
   0%, 20%, 100% {
     opacity: 0.4;
     transform: scale(1);
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: var(--hero-plenet-color-center)
   }
   50% {
     opacity: 0.7;
     transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--hero-plenet-color-rounded)
   }
 }
 
@@ -103,12 +103,12 @@
   0%, 20%, 100% {
     opacity: 0.4;
     transform: scale(1);
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: var(--hero-plenet-color-center)
   }
   50% {
     opacity: 0.7;
     transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--hero-plenet-color-rounded)
   }
 }
 

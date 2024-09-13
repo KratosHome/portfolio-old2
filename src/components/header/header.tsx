@@ -89,7 +89,9 @@ export const Header = () => {
                 className="flex items-center gap-[6px] lg:text-[28px]"
               >
                 <Image src={'/logo.svg'} alt={'logo'} width="40" height="40" />
-                <span className="block text-[28px] uppercase">{t('name')}</span>
+                <span className="block text-[20px] uppercase lg:text-[28px]">
+                  {t('name')}
+                </span>
               </Link>
               <nav className="hidden text-[20px] lg:block">
                 <ul className="flex items-center gap-[32px]">

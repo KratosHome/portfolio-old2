@@ -37,6 +37,12 @@ const config: Config = {
           'background-position': 'center',
           'background-size': 'contain',
         },
+        '.bg-ellipse-light-pattern': {
+          'background-image': "url('/assets/background/bg-ellipse-light.png')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
         '.bg-group-pattern': {
           'background-image': "url('/assets/background/group.png')",
           'background-repeat': 'no-repeat',
@@ -57,6 +63,12 @@ const config: Config = {
         },
         '.bg-orbit': {
           'background-image': "url('/assets/hero/torus.png')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
+        '.bg-orbit-light': {
+          'background-image': "url('/assets/hero/torus-light.png')",
           'background-repeat': 'no-repeat',
           'background-position': 'center',
           'background-size': 'contain',

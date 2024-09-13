@@ -29,7 +29,7 @@ const Hero = () => {
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="flex flex-col items-center justify-between lg:flex-row">
           <div className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-[1px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] backdrop-blur-[12.5px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[50px] lg:left-[20px] lg:size-[280px]" />
-          <div className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4] lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]" />
+          <div className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-contain bg-ellipse-light-pattern dark:bg-ellipse-pattern dark:opacity-[0.4] lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]" />
           <div className="w-full max-w-[400px] lg:max-w-[600px]">
             <h1 className="relative mt-[55px] flex w-full max-w-[300px] flex-col uppercase lg:-mt-[50px] lg:max-w-full">
               <span className="overlay-theme-fr delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] text-[#0B66F5] dark:text-white lg:text-[80px]">
@@ -39,9 +39,11 @@ const Hero = () => {
                 {t('developer')}
               </span>
             </h1>
-            <span className="overlay-blue delay-2 !-mt-[25px] block w-full text-end text-[12px] text-[#0B66F5] lg:!-mt-[5px] lg:ml-12 lg:text-[20px]">
-              {t('subtitle')}
-            </span>
+            <div className="flex justify-end">
+              <span className="overlay-blue delay-2 !-mt-[25px] block w-full max-w-[153px] text-end text-[12px] text-[#0B66F5] lg:!-mt-[5px] lg:ml-12 lg:max-w-max lg:text-[20px]">
+                {t('subtitle')}
+              </span>
+            </div>
           </div>
           <div className="bg-hero-pattern bg-cover" />
           <div className="">
@@ -109,10 +111,11 @@ const Hero = () => {
             </span>
           </h2>
         </div>
-        <div className="animate-scale-in-out absolute -bottom-[20px] left-[75vw] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] xl:-bottom-[220px] xl:left-[400px] xl:size-[300px]" />
+        <div className="animate-scale-in-out absolute -bottom-[20px] left-[75vw] -z-20 size-[200px] -translate-x-1/2 bg-group-pattern-light dark:bg-group-pattern dark:opacity-[0.1] xl:-bottom-[220px] xl:left-[400px] xl:size-[300px]" />
         <div className="absolute -right-[75px] bottom-[190px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
-        <div className="absolute -top-[600px] left-0 -z-20 hidden size-[1900px] transform bg-hero-pattern lg:block" />
-        <div className="absolute -right-[350px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern lg:right-[0px]" />
+        <div className="absolute -top-[600px] left-0 -z-20 size-[1900px] transform bg-hero-pattern lg:hidden dark:lg:block" />
+        <div className="absolute -right-[350px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern dark:block lg:right-[0px] lg:hidden" />
+        <div className="absolute -left-[950px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern dark:hidden lg:right-[0px] lg:block" />
         <div className="absolute -left-[100px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/0" />
@@ -121,7 +124,7 @@ const Hero = () => {
           <div className="circle absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />
           <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[250px] rounded-full bg-black" />
           <div className="absolute right-[120px] z-10 ml-[125px] mt-[130px] h-[100px] w-[240px] rounded-full bg-black" />
-          <div className="orbit absolute right-0 size-[500px] bg-orbit" />
+          <div className="absolute -top-5 right-0 size-[500px] bg-orbit-light dark:top-0 dark:bg-orbit" />
           <div className="planet absolute right-[230px] z-10 ml-[80px] mt-[215px] h-40 w-40 rounded-full bg-white opacity-40 blur-2xl"></div>
         </div>
       </div>
