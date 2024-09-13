@@ -1,6 +1,6 @@
 const homeMateDataUa = {
   canonicalUrl: 'https://codecraftmaster.com/ua',
-  title: 'Олег Ткач - Веб-розробник і Ментор | CodeCraftMaster.com',
+  title: 'Веб-розробник і Ментор | CodeCraftMaster.com',
   description:
     'Олег Ткач - професійний веб-розробник і ментор. Досвід у створенні веб-сайтів з складними анімаціями, e-commerce рішень, а також навчання молодих розробників на реальних проектах.',
   keywords: [
@@ -23,7 +23,7 @@ const homeMateDataUa = {
   ],
   authors: [{ name: 'Олег Ткач', url: 'https://codecraftmaster.com' }],
   openGraph: {
-    title: 'Олег Ткач - Веб-розробник і Ментор | CodeCraftMaster.com',
+    title: 'Веб-розробник і Ментор | CodeCraftMaster.com',
     description:
       'Олег Ткач - професійний веб-розробник і ментор. Досвід у створенні веб-сайтів з складними анімаціями, e-commerce рішень, а також навчання молодих розробників на реальних проектах.',
     locale: 'uk_UA',
@@ -42,7 +42,7 @@ const homeMateDataUa = {
 
 const homeMateDataEn = {
   canonicalUrl: 'https://codecraftmaster.com/en',
-  title: 'Oleh Tkach - Web Developer and Mentor | CodeCraftMaster.com',
+  title: 'Web Developer and Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach is a professional web developer and mentor. Experienced in creating websites with complex animations, e-commerce solutions, and training young developers on real projects.',
   keywords: [
@@ -65,7 +65,7 @@ const homeMateDataEn = {
   ],
   authors: [{ name: 'Oleh Tkach', url: 'https://codecraftmaster.com' }],
   openGraph: {
-    title: 'Oleh Tkach - Web Developer and Mentor | CodeCraftMaster.com',
+    title: 'Web Developer and Mentor | CodeCraftMaster.com',
     description:
       'Oleh Tkach is a professional web developer and mentor. Experienced in creating websites with complex animations, e-commerce solutions, and training young developers on real projects.',
     locale: 'en_US',
@@ -84,7 +84,7 @@ const homeMateDataEn = {
 
 const homeMateDataDe = {
   canonicalUrl: 'https://codecraftmaster.com/de',
-  title: 'Oleh Tkach - Webentwickler und Mentor | CodeCraftMaster.com',
+  title: 'Webentwickler und Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach ist ein professioneller Webentwickler und Mentor. Erfahren in der Erstellung von Websites mit komplexen Animationen, E-Commerce-Lösungen sowie in der Ausbildung junger Entwickler an realen Projekten.',
   keywords: [
@@ -107,7 +107,7 @@ const homeMateDataDe = {
   ],
   authors: [{ name: 'Oleh Tkach', url: 'https://codecraftmaster.com' }],
   openGraph: {
-    title: 'Oleh Tkach - Webentwickler und Mentor | CodeCraftMaster.com',
+    title: 'Webentwickler und Mentor | CodeCraftMaster.com',
     description:
       'Oleh Tkach ist ein professioneller Webentwickler und Mentor. Erfahren in der Erstellung von Websites mit komplexen Animationen, E-Commerce-Lösungen sowie in der Ausbildung junger Entwickler an realen Projekten.',
     locale: 'de_DE',
@@ -126,7 +126,7 @@ const homeMateDataDe = {
 
 const homeMateDataEs = {
   canonicalUrl: 'https://codecraftmaster.com/es',
-  title: 'Oleh Tkach - Desarrollador Web y Mentor | CodeCraftMaster.com',
+  title: 'Desarrollador Web y Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach es un desarrollador web profesional y mentor. Con experiencia en la creación de sitios web con animaciones complejas, soluciones de comercio electrónico y en la formación de desarrolladores jóvenes en proyectos reales.',
   keywords: [
@@ -149,7 +149,7 @@ const homeMateDataEs = {
   ],
   authors: [{ name: 'Oleh Tkach', url: 'https://codecraftmaster.com' }],
   openGraph: {
-    title: 'Oleh Tkach - Desarrollador Web y Mentor | CodeCraftMaster.com',
+    title: 'Desarrollador Web y Mentor | CodeCraftMaster.com',
     description:
       'Oleh Tkach es un desarrollador web profesional y mentor. Con experiencia en la creación de sitios web con animaciones complejas, soluciones de comercio electrónico y en la formación de desarrolladores jóvenes en proyectos reales.',
     locale: 'es_ES',
@@ -168,7 +168,7 @@ const homeMateDataEs = {
 
 const homeMateDataFr = {
   canonicalUrl: 'https://codecraftmaster.com/fr',
-  title: 'Oleh Tkach - Développeur Web et Mentor | CodeCraftMaster.com',
+  title: 'Développeur Web et Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach est un développeur web professionnel et mentor. Expérimenté dans la création de sites web avec des animations complexes, des solutions e-commerce, ainsi que dans la formation de jeunes développeurs sur des projets réels.',
   keywords: [
@@ -210,7 +210,7 @@ const homeMateDataFr = {
 
 const homeMateDataHi = {
   canonicalUrl: 'https://codecraftmaster.com/hi',
-  title: 'ओलेह टकाच - वेब डेवलपर और मेंटर | CodeCraftMaster.com',
+  title: 'वेब डेवलपर और मेंटर | CodeCraftMaster.com',
   description:
     'ओलेह टकाच एक पेशेवर वेब डेवलपर और मेंटर हैं। जटिल एनिमेशन, ई-कॉमर्स समाधान, और वास्तविक परियोजनाओं पर युवा डेवलपर्स को प्रशिक्षण देने में अनुभवी।',
   keywords: [
@@ -252,7 +252,7 @@ const homeMateDataHi = {
 
 const homeMateDataIt = {
   canonicalUrl: 'https://codecraftmaster.com/it',
-  title: 'Oleh Tkach - Sviluppatore Web e Mentore | CodeCraftMaster.com',
+  title: 'Sviluppatore Web e Mentore | CodeCraftMaster.com',
   description:
     'Oleh Tkach è uno sviluppatore web professionista e mentore. Esperto nella creazione di siti web con animazioni complesse, soluzioni e-commerce e nella formazione di giovani sviluppatori su progetti reali.',
   keywords: [
@@ -294,7 +294,7 @@ const homeMateDataIt = {
 
 const homeMateDataJa = {
   canonicalUrl: 'https://codecraftmaster.com/ja',
-  title: 'オレグ・トカチ - ウェブ開発者とメンター | CodeCraftMaster.com',
+  title: 'ウェブ開発者とメンター | CodeCraftMaster.com',
   description:
     'オレグ・トカチはプロフェッショナルなウェブ開発者であり、メンターです。複雑なアニメーションを使用したウェブサイトの作成、eコマースソリューション、および実際のプロジェクトで若い開発者の指導に経験があります。',
   keywords: [
@@ -336,7 +336,7 @@ const homeMateDataJa = {
 
 const homeMateDataKo = {
   canonicalUrl: 'https://codecraftmaster.com/ko',
-  title: '올레흐 트카치 - 웹 개발자 및 멘토 | CodeCraftMaster.com',
+  title: '웹 개발자 및 멘토 | CodeCraftMaster.com',
   description:
     '올레흐 트카치는 전문 웹 개발자이자 멘토입니다. 복잡한 애니메이션이 있는 웹사이트, 전자상거래 솔루션을 개발하고 실제 프로젝트에서 젊은 개발자들을 교육하는 경험이 있습니다.',
   keywords: [
@@ -378,7 +378,7 @@ const homeMateDataKo = {
 
 const homeMateDataPt = {
   canonicalUrl: 'https://codecraftmaster.com/pt',
-  title: 'Oleh Tkach - Desenvolvedor Web e Mentor | CodeCraftMaster.com',
+  title: 'Desenvolvedor Web e Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach é um desenvolvedor web profissional e mentor. Experiente na criação de sites com animações complexas, soluções de e-commerce e na formação de jovens desenvolvedores em projetos reais.',
   keywords: [
@@ -420,7 +420,7 @@ const homeMateDataPt = {
 
 const homeMateDataSv = {
   canonicalUrl: 'https://codecraftmaster.com/sv',
-  title: 'Oleh Tkach - Webbutvecklare och Mentor | CodeCraftMaster.com',
+  title: 'Webbutvecklare och Mentor | CodeCraftMaster.com',
   description:
     'Oleh Tkach är en professionell webbutvecklare och mentor. Erfaren inom att skapa webbplatser med komplexa animationer, e-handelslösningar samt att utbilda unga utvecklare i verkliga projekt.',
   keywords: [

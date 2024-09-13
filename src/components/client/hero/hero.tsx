@@ -115,7 +115,7 @@ const Hero = () => {
         <div className="absolute -right-[75px] bottom-[190px] -z-20 h-[103px] w-[125px] rotate-[10deg] bg-ellipse-pattern bg-contain opacity-[0.4]" />
         <div className="absolute -top-[600px] left-0 -z-20 size-[1900px] transform bg-hero-pattern lg:hidden dark:lg:block" />
         <div className="absolute -right-[350px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern dark:block lg:right-[0px] lg:hidden" />
-        <div className="absolute -left-[950px] -top-[300px] -z-20 size-[1900px] bg-hero-pattern dark:hidden lg:right-[0px] lg:block" />
+        <div className="absolute -left-[950px] -top-[300px] -z-20 hidden size-[1900px] bg-hero-pattern lg:right-[0px] lg:block" />
         <div className="absolute -left-[100px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/0" />

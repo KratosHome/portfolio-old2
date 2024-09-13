@@ -95,11 +95,12 @@ export const Services: FC<any> = ({ services }) => {
               className="services-card group relative flex h-[400px] w-[394px] flex-col justify-between rounded-md border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px]"
             >
               <div
-                className="absolute right-0 top-0 size-[150px] animate-pulse bg-group-pattern"
+                className="absolute right-12 top-10 size-[150px] animate-pulse bg-group-pattern"
                 style={{
                   animationDelay: `${index * 0.5}s`,
                   backgroundColor: 'transparent  !important',
                   opacity: '0.1 !important',
+                  rotate: '120deg !important',
                 }}
               />
               <h3 className="h-[70px] text-[32px] font-bold uppercase leading-[1.1] text-[#0B66F5]">

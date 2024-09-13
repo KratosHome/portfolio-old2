@@ -71,7 +71,7 @@ export const menuDataUk = [
         link: '#reviews',
       },
       {
-        name: 'Питання та відповіді',
+        name: 'FAQ',
         link: '#faq',
       },
       {
