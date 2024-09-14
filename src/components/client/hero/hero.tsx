@@ -119,13 +119,15 @@ const Hero = () => {
         <div className="absolute -left-[100px] top-[100px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/0" />
-      <div className="absolute -right-[250px] mx-auto flex w-full max-w-[1445px] rotate-[25deg] justify-end lg:-right-[50px] lg:-mt-[290px]">
-        <div className="relative max-h-[500px] max-w-[500px]">
-          <div className="circle absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />
-          <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[250px] rounded-full bg-black" />
-          <div className="absolute right-[120px] z-10 ml-[125px] mt-[130px] h-[100px] w-[240px] rounded-full bg-black" />
-          <div className="absolute -top-5 right-0 size-[500px] bg-orbit-light dark:top-0 dark:bg-orbit" />
-          <div className="planet absolute right-[230px] z-10 ml-[80px] mt-[215px] h-40 w-40 rounded-full bg-white opacity-40 blur-2xl"></div>
+      <div className="relative mx-auto max-w-[1442px]">
+        <div className="absolute -right-[150px] bottom-0 -mt-[290px] rotate-[25deg]">
+          <div className="relative max-h-[500px] max-w-[500px]">
+            <div className="circle absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />
+            <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[250px] rounded-full bg-black" />
+            <div className="absolute right-[120px] z-10 ml-[125px] mt-[130px] h-[100px] w-[240px] rounded-full bg-black" />
+            <div className="absolute -top-5 right-0 size-[500px] bg-orbit-light dark:top-0 dark:bg-orbit" />
+            <div className="planet absolute right-[230px] z-10 ml-[80px] mt-[215px] h-40 w-40 rounded-full bg-white opacity-40 blur-2xl"></div>
+          </div>
         </div>
       </div>
     </section>

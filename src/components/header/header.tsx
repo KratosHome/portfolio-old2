@@ -164,8 +164,8 @@ export const Header = () => {
       <div className="absolute mt-[15px] flex w-full justify-end pr-[30px] lg:hidden">
         <ThemeChange />
       </div>
-      <div className="relative">
-        <div className="animate-scale-in-out absolute -top-[170px] right-[40px] -z-10 hidden h-[300px] w-[300px] bg-cover bg-center bg-group-pattern-light dark:bg-group-pattern dark:opacity-[.1] lg:block" />
+      <div className="relative mx-auto max-w-[1842px]">
+        <div className="animate-scale-in-out absolute -right-[50px] -top-[170px] -z-10 hidden h-[300px] w-[300px] bg-cover bg-center bg-group-pattern-light dark:bg-group-pattern dark:opacity-[.1] lg:block" />
       </div>
     </>
   )

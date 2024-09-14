@@ -1,3 +1,8 @@
+.services-card {
+  background: var(--bg-services-card);
+  overflow: hidden;
+}
+
 .services-card::before {
   content: "";
   position: absolute;
@@ -5,7 +10,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30)40.76%, rgba(78, 128, 206, 0.15)70.61%, rgba(255, 255, 255, 0.00)100.49%);
+  background: var(--bg-services-card-hover);
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
   z-index: -1;
@@ -13,7 +18,7 @@
 
 .services-card:hover {
   border-radius: 12px;
-  background: none ;
+  background: none;
   transition: opacity 0.4s ease-in-out;
   border-right-color: rgba(255, 255, 255, 1);
 }
@@ -31,4 +36,25 @@
 
 .panel {
   will-change: transform;
+}
+
+@keyframes pulse {
+  0% {
+	transform: scale(1);
+	opacity: 1;
+  }
+  50% {
+	transform: scale(1.1);
+	opacity: 0.7;
+  }
+  100% {
+	transform: scale(1);
+	opacity: 1;
+  }
+}
+
+.animate-serv-pulse {
+  opacity: var(--bg-services-card-opacity) !important;
+  rotate: -10deg;
+  animation: pulse 2s infinite;
 }

@@ -95,22 +95,19 @@ export const Services: FC<any> = ({ services }) => {
               className="services-card group relative flex h-[400px] w-[394px] flex-col justify-between rounded-md border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px]"
             >
               <div
-                className="absolute right-12 top-10 size-[150px] animate-pulse bg-group-pattern"
+                className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
                 style={{
                   animationDelay: `${index * 0.5}s`,
-                  backgroundColor: 'transparent  !important',
-                  opacity: '0.1 !important',
-                  rotate: '120deg !important',
                 }}
               />
-              <h3 className="h-[70px] text-[32px] font-bold uppercase leading-[1.1] text-[#0B66F5]">
+              <h3 className="z-10 h-[70px] text-[32px] font-bold uppercase leading-[1.1] text-[#0B66F5] duration-300 group-hover:text-white dark:group-hover:text-[#0B66F5]">
                 {service.title}
               </h3>
-              <p className="block text-[20px] font-light">
+              <p className="z-10 block text-[20px] font-light">
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></div>
+                <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent"></div>
                 {service.icon.length >= 1 &&
                   service.icon.map((icon: any, iconIndex: number) => (
                     <div
