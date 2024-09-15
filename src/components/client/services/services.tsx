@@ -1,12 +1,15 @@
 'use client'
 import './services.scss'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import arrowLong from '@/assets/icons/arrow-long.svg'
+import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
+import theme from 'tailwindcss/defaultTheme'
+import { useTheme } from 'next-themes'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,6 +19,13 @@ export const Services: FC<any> = ({ services }) => {
   const serviceRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLDivElement[][]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)
+  const { theme } = useTheme()
+
+  const [currentSrc, setCurrentSrc] = useState(arrowLong)
+
+  useEffect(() => {
+    setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
+  }, [theme])
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
@@ -107,7 +117,7 @@ export const Services: FC<any> = ({ services }) => {
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-3">
-                <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent"></div>
+                <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent" />
                 {service.icon.length >= 1 &&
                   service.icon.map((icon: any, iconIndex: number) => (
                     <div
@@ -137,17 +147,17 @@ export const Services: FC<any> = ({ services }) => {
             className="wrapper-services-mob max-w-screen z-20 flex overflow-hidden"
             ref={wrapperRef}
           >
-            <h2 className="absolute top-0 block pt-[50px] text-[40px] font-light uppercase lg:hidden">
+            <h2 className="absolute top-0 block pt-[10px] text-[40px] font-light uppercase lg:hidden">
               {t('services')}
             </h2>
-            <div className="absolute -right-[50px] top-[80px] mt-[30px]">
+            <div className="absolute -right-[50px] top-[0px] mt-[30px]">
               <div className="ml-[10px] flex flex-col items-center text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
                 <div>{t('scroll')}</div>
                 <div>{t('see-more')}</div>
               </div>
               <div className="-mt-[70px] rotate-90">
                 <Image
-                  src={arrowLong}
+                  src={currentSrc}
                   alt={t('scroll')}
                   width={130}
                   height={30}
@@ -157,15 +167,13 @@ export const Services: FC<any> = ({ services }) => {
             {services.map((item: any, index: any) => (
               <div
                 key={index}
-                className="panel group relative mx-3 my-10 mt-[300px] flex h-[500px] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel group relative mx-3 my-10 mt-[200px] flex h-[70vh] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div
-                  className="absolute right-0 top-0 size-[150px] animate-pulse bg-group-pattern"
+                  className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
                   style={{
                     animationDelay: `${index * 0.5}s`,
-                    backgroundColor: 'transparent  !important',
-                    opacity: '0.1 !important',
                   }}
                 />
                 <h3 className="h-[70px] text-[30px] font-bold uppercase leading-[1.1] text-[#0B66F5]">
@@ -175,7 +183,7 @@ export const Services: FC<any> = ({ services }) => {
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0"></div>
+                  <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent" />
                   {item.icon.length > 0 &&
                     item.icon.map((icon: any) => (
                       <div key={icon.id}>

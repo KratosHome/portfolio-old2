@@ -36,6 +36,7 @@
 
 .panel {
   will-change: transform;
+  background: var(--bg-services-card);
 }
 
 @keyframes pulse {

@@ -3,7 +3,6 @@ import { Viewport } from 'next'
 import { homeMateData } from '@/data/OlegTkach/meta/home-meta-data'
 import HomeSnippets from '@/components/snippets/home-snippets'
 import { servicesData } from '@/data/services'
-import { projectsData } from '@/data/projects-data'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
@@ -16,6 +15,7 @@ import { Reviews } from '@/components/client/reviews/reviews'
 import { dataReviews } from '@/data/reviews'
 import { Faq } from '@/components/client/faq/faq'
 import { gaqData } from '@/data/faq'
+import { projectsData } from '@/data/OlegTkach/projects-data'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -45,12 +45,14 @@ export async function generateMetadata({ params: { locale } }: PageProps) {
 
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
+  const projects = projectsData[locale]
 
   return (
     <>
       <HomeSnippets locale={locale} />
       <Hero />
       <Services services={services} />
+      <Projects projects={projects} />
     </>
   )
 }
@@ -58,15 +60,11 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 export default Home
 
 /*
-  const services = servicesData[locale]
-  const projects = projectsData[locale]
   const experience = experienceData[locale]
   const dataReviewsSend = dataReviews
   const faq = gaqData[locale]
 
 
-      <Services services={services} />
-      <Projects projects={projects} />
       <Experience experience={experience} />
       <Reviews data={dataReviewsSend} />
       <Faq data={faq} />
