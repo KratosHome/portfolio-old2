@@ -47,6 +47,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
   const projects = projectsData[locale]
   const experience = experienceData[locale]
+  const dataReviewsSend = dataReviews as any
 
   return (
     <>
@@ -55,6 +56,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
       <Services services={services} />
       <Projects projects={projects} />
       <Experience experience={experience} />
+      <Reviews data={dataReviewsSend} />
     </>
   )
 }
@@ -62,9 +64,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 export default Home
 
 /*
-  const dataReviewsSend = dataReviews
   const faq = gaqData[locale]
 
-      <Reviews data={dataReviewsSend} />
       <Faq data={faq} />
  */

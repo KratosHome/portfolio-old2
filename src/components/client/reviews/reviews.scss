@@ -4,6 +4,11 @@
   transform: translateX(500px);
 }
 
+.reviews-card {
+  background: var(--bg-reviews-card);
+  overflow: hidden;
+}
+
 .reviews-card::before {
   content: "";
   position: absolute;
@@ -11,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30)40.76%, rgba(78, 128, 206, 0.15)70.61%, rgba(255, 255, 255, 0.00)100.49%);
+  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30) 40.76%, rgba(78, 128, 206, 0.15) 70.61%, rgba(255, 255, 255, 0.00) 100.49%);
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
   z-index: -1;
@@ -19,9 +24,9 @@
 
 .reviews-card:hover {
   border-radius: 12px;
-  background: none ;
+  background: none;
   transition: opacity 0.4s ease-in-out;
-  border-right-color: rgba(255, 255, 255, 1);
+  background: var(--bg-reviews-card-hover);
 }
 
 .reviews-card:hover::before {
@@ -36,7 +41,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30)40.76%, rgba(78, 128, 206, 0.15)70.61%, rgba(255, 255, 255, 0.00)100.49%);
+  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30) 40.76%, rgba(78, 128, 206, 0.15) 70.61%, rgba(255, 255, 255, 0.00) 100.49%);
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
   z-index: -1;

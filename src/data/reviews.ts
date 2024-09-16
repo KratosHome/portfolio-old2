@@ -6,7 +6,7 @@ import logoJuli from '@/assets/reviews/Juli.jpeg'
 
 export const dataReviews = [
   {
-    _id: '657d565c5ddb31d615bb759e',
+    _id: 1,
     userName: 'Alex',
     email: 'ecousadba@gmail.com',
     company: 'Ecousadba',
@@ -20,7 +20,7 @@ export const dataReviews = [
     updatedAt: '2024-07-16T07:48:44.655Z',
   },
   {
-    _id: '657d565c5ddb31d615bb759e',
+    _id: 2,
     userName: 'Camran',
     email: 'rastcom@gmail.com',
     company: 'https://www.rastcom.com',
@@ -34,7 +34,7 @@ export const dataReviews = [
     updatedAt: '2024-01-16T07:48:44.655Z',
   },
   {
-    _id: '657d565c5ddb31d615bb759e',
+    _id: 3,
     userName: 'Андрій',
     email: 'codecraftmaster@gmail.com',
     company: 'Сodecraftmaster',
@@ -48,7 +48,7 @@ export const dataReviews = [
     updatedAt: '2023-12-16T07:48:44.655Z',
   },
   {
-    _id: '657d565c5ddb31d615bb759e',
+    _id: 4,
     userName: 'Speranza Mitsney',
     email: 'maurizio.ruggeri@etere.com',
     company: 'ETERE',
@@ -62,7 +62,7 @@ export const dataReviews = [
     updatedAt: '2023-04-16T07:48:44.655Z',
   },
   {
-    _id: '657958c29d46d7a6161de500',
+    _id: 5,
     userName: 'Юлія',
     email: 'julibah93@icloud.com',
     company: 'Sharm Beaty',
