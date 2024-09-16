@@ -79,6 +79,12 @@ const config: Config = {
           'background-position': 'center',
           'background-size': 'contain',
         },
+        '.bg-orbit-services-light': {
+          'background-image': "url('/assets/services/torus-light.png')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
       })
     }),
   ],

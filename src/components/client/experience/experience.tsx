@@ -80,7 +80,7 @@ export const Experience = ({
       <div className="absolute inset-0 mx-auto h-[210px] w-[210px] flex-shrink-0 rotate-[-89.637deg] rounded-full bg-[linear-gradient(223deg,_rgba(223,_223,_223,_0.20)_12.99%,_rgba(0,_0,_0,_0.20)_28.97%),_linear-gradient(265deg,_#666_-44.12%,_#262626_-21.9%,_#1C1C1C_4.39%,_#000_40.18%)] lg:h-[769.29px] lg:w-[769.29px]"></div>
 
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
-        <h2 className="my-0 mr-[20px] text-center text-[40px] font-light uppercase lg:text-[96px]">
+        <h2 className="my-0 mr-[20px] text-center text-[40px] font-light uppercase text-[#0B66F5] dark:text-white lg:text-[96px]">
           {t('experience')}
         </h2>
         <div className="mt-[64px] px-[25px]">
@@ -88,8 +88,10 @@ export const Experience = ({
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className={`relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px] ${
-                activeItem === item.id ? 'cursor-pointer' : 'experience-card'
+              className={`group relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
+                activeItem === item.id
+                  ? 'experience-card-open cursor-pointer'
+                  : 'experience-card'
               }`}
               onClick={() => handleClick(item.id)}
             >
@@ -97,7 +99,7 @@ export const Experience = ({
                 id={`block-experience-${item.id}`}
                 className="flex items-center justify-between"
               >
-                <div className="mr[12px] mr-[12px] hidden text-[48px] font-light leading-[0.9] text-[#0B66F5]/50 lg:mr-0 lg:block lg:text-[96px]">
+                <div className="mr[12px] mr-[12px] hidden text-[48px] font-light leading-[0.9] text-black dark:text-[#0B66F5]/50 lg:mr-0 lg:block lg:text-[96px]">
                   {item.count}
                 </div>
                 <div className="flex flex-col items-center text-[24px] font-bold lg:text-[40px]">
@@ -105,7 +107,7 @@ export const Experience = ({
                     <div className="mr[12px] mr-[12px] mt-1 block text-[48px] font-light leading-[0.9] text-[#0B66F5]/50 lg:mr-0 lg:hidden lg:text-[96px]">
                       {item.count}
                     </div>
-                    <div className="text-[24px] font-normal lg:text-[40px] lg:font-bold">
+                    <div className="text-[24px] font-normal text-white lg:text-[40px] lg:font-bold">
                       {item.title}
                     </div>
                   </div>
@@ -128,13 +130,17 @@ export const Experience = ({
                     </div>
                     <Link
                       href={item.link}
-                      className="ml-[10px] text-[24px] text-[#0B66F5] underline"
+                      className="ml-[10px] text-[24px] text-white underline dark:text-[#0B66F5]"
                     >
                       {item.company}
                     </Link>
                   </div>
                 </div>
-                <div className="hidden min-w-max text-[16px] font-bold lg:block lg:text-[24px]">
+                <div
+                  className={`hidden min-w-max text-[16px] font-bold text-[#0B66F5] duration-300 dark:text-white lg:block lg:text-[24px] ${
+                    activeItem === item.id ? '' : 'group-hover:text-white'
+                  }`}
+                >
                   {item.date}
                 </div>
               </div>
@@ -159,7 +165,7 @@ export const Experience = ({
         </div>
         <div className="mt-[50px] flex w-full justify-end lg:-ml-[220px] lg:mt-[120px]">
           <div className="relative flex max-w-max items-center justify-center">
-            <div className="orbit absolute -top-[250px] -z-10 hidden size-[700px] bg-orbit lg:block" />
+            <div className="orbit absolute -top-[250px] -z-10 hidden size-[700px] bg-orbit-light dark:bg-orbit lg:block" />
             <HireMe title={t('hire-me')} modalTitle={t('hire-me')} />
           </div>
         </div>
