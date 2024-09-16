@@ -11,9 +11,11 @@ import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
 import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 
-gsap.registerPlugin(ScrollTrigger)
-
 export const Services: FC<any> = ({ services }) => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+  }, [])
+
   const t = useTranslations('home-page.services')
   const { contextSafe } = useGSAP()
   const serviceRefs = useRef<HTMLDivElement[]>([])

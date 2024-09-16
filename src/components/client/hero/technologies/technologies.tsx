@@ -108,12 +108,19 @@ export const Technologies = () => {
         .slice()
         .sort(() => Math.random() - 0.2)
       iconRefs.current.forEach((ref, index) => {
-        gsap.to(ref, {
-          x: shuffledPositions[index].x,
-          y: shuffledPositions[index].y,
-          duration: 2,
-          ease: 'power2.inOut',
-        })
+        gsap.fromTo(
+          ref,
+          {
+            opacity: 0,
+          },
+          {
+            x: shuffledPositions[index].x,
+            y: shuffledPositions[index].y,
+            opacity: 1,
+            duration: 2,
+            ease: 'power2.inOut',
+          },
+        )
       })
     }
 
@@ -159,7 +166,7 @@ export const Technologies = () => {
           <div
             key={index}
             ref={(el: any) => (iconRefs.current[index] = el)}
-            className="absolute -m-5 flex size-[30px] flex-col items-center justify-center rounded-full lg:size-[100px]"
+            className="absolute -m-5 flex size-[30px] flex-col items-center justify-center rounded-full opacity-0 lg:size-[100px]"
           >
             <Image
               src={tech.icon}

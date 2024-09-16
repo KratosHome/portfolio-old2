@@ -1,7 +1,7 @@
 'use client'
 import './projects.scss'
 import { useTranslations } from 'next-intl'
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import arrowAslant from '@/assets/icons/arrow-aslant.svg'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,8 +9,10 @@ import { Autoplay, Grid } from 'swiper/modules'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import arrowLong from '@/assets/icons/arrow-long.svg'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import { HireMe } from '@/components/client/hire-me/hire-me'
+import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
+import theme from 'tailwindcss/defaultTheme'
+import { useTheme } from 'next-themes'
 
 export const Projects: FC<any> = ({ projects }) => {
   const t = useTranslations('home-page.project')
@@ -20,6 +22,12 @@ export const Projects: FC<any> = ({ projects }) => {
   const iconRefs = useRef<HTMLLIElement[][]>([])
   const descriptionRefs = useRef<HTMLDivElement[]>([])
   const [mobActiveSlide, setMobActiveSlide] = useState(0)
+  const { theme } = useTheme()
+  const [currentSrc, setCurrentSrc] = useState(arrowLong)
+
+  useEffect(() => {
+    setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
+  }, [theme])
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
@@ -122,7 +130,7 @@ export const Projects: FC<any> = ({ projects }) => {
           </div>
           <Image
             className="mr-1 mt-[10px] w-[120px] lg:mr-3 lg:w-[170px]"
-            src={arrowLong}
+            src={currentSrc}
             alt={t('scroll')}
             width={130}
             height={30}
@@ -158,15 +166,13 @@ export const Projects: FC<any> = ({ projects }) => {
                       className="project-card group relative z-10 m-4 flex min-h-[552px] w-[398px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
                     >
                       <div
-                        className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
+                        className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
                         style={{
                           animationDelay: `${index * 0.5}s`,
-                          backgroundColor: 'transparent  !important',
-                          opacity: '0.1 !important',
                         }}
                       />
                       <div className="overflow-hidden">
-                        <h3 className="mb-[21px] text-[60px] font-light leading-[0.9] duration-700 group-hover:text-[32px] group-hover:text-[#0B66F5]">
+                        <h3 className="mb-[21px] text-[60px] font-light leading-[0.9] duration-700 group-hover:text-[32px] group-hover:text-white group-hover:dark:text-[#0B66F5]">
                           {project.title}
                         </h3>
                         <div className="text-[20px] font-bold text-[#0B66F5] duration-700 group-hover:text-right group-hover:text-white">
@@ -183,7 +189,7 @@ export const Projects: FC<any> = ({ projects }) => {
                       </div>
                       <div className="flex justify-between border-t-[1px] border-amber-50">
                         <div className="mt-5 flex flex-wrap gap-4">
-                          <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
+                          <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent">
                             <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
                           {project.technologies.length >= 1 &&
@@ -262,7 +268,7 @@ export const Projects: FC<any> = ({ projects }) => {
                   {project.isEmptiness === false ? (
                     <a href={project.link} target="_blank">
                       <div
-                        className={`relative m-4 flex h-[452px] min-h-[452px] w-[300px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-mob-wrapper-hidden'}`}
+                        className={`relative m-4 flex h-[452px] min-h-[452px] w-[300px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-card-mob-all project-mob-wrapper-hidden'}`}
                       >
                         <div className="overflow-hidden">
                           <div
@@ -274,7 +280,7 @@ export const Projects: FC<any> = ({ projects }) => {
                             }}
                           />
                           <h3
-                            className={`text-[36px] leading-[0.9] ${mobActiveSlide === index ? 'text-[26px] text-[#0B66F5]' : ''}`}
+                            className={`text-[36px] leading-[0.9] ${mobActiveSlide === index ? 'text-[26px] text-white dark:text-[#0B66F5]' : ''}`}
                           >
                             {project.title}
                           </h3>

@@ -60,6 +60,7 @@
       "hire-me": "Hire Me"
     },
     "HireMe": {
+      "Invalid phone number format": "Invalid phone number format",
       "The message has been sent": "The message has been sent",
       "Something happened, it's sad!": "Something happened, it's sad!",
       "Contact Me": "Contact Me",
@@ -79,6 +80,12 @@
       "see-more": "see more",
       "scroll-see-more": "scroll to see more",
       "leave-review": "Leave review"
+    },
+    "faq": {
+      "faq": "faq",
+      "scroll": "scroll to",
+      "see-more": "see more",
+      "scroll-see-more": "scroll to see more"
     }
   },
   "auth": {
