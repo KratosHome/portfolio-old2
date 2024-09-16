@@ -46,6 +46,9 @@ export async function generateMetadata({ params: { locale } }: PageProps) {
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
   const projects = projectsData[locale]
+  const dataReviewsSend = dataReviews as any
+  const faq = gaqData[locale]
+  const experience = experienceData[locale]
 
   return (
     <>
@@ -53,6 +56,9 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
       <Hero />
       <Services services={services} />
       <Projects projects={projects} />
+      <Experience experience={experience} />
+      <Reviews data={dataReviewsSend} />
+      <Faq data={faq} />
     </>
   )
 }
