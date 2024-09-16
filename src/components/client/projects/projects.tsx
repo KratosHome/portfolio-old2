@@ -31,7 +31,6 @@ export const Projects: FC<any> = ({ projects }) => {
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
-    const icons = iconRefs.current[index]
     const descriptionRef = descriptionRefs.current[index]
 
     gsap.to(descriptionRef, {
@@ -48,7 +47,7 @@ export const Projects: FC<any> = ({ projects }) => {
       ease: 'power2.out',
     })
 
-    gsap.to(icons, {
+    gsap.to(serviceRef.querySelectorAll('.icon-item'), {
       opacity: 1,
       duration: 0.3,
       stagger: 0.1,
@@ -59,7 +58,6 @@ export const Projects: FC<any> = ({ projects }) => {
 
   const handleMouseLeave = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
-    const icons = iconRefs.current[index]
     const descriptionRef = descriptionRefs.current[index]
 
     gsap.to(descriptionRef, {
@@ -75,7 +73,7 @@ export const Projects: FC<any> = ({ projects }) => {
       ease: 'power2.out',
     })
 
-    gsap.to(icons, {
+    gsap.to(serviceRef.querySelectorAll('.icon-item'), {
       opacity: 0,
       duration: 0.3,
       stagger: 0.1,
@@ -118,7 +116,7 @@ export const Projects: FC<any> = ({ projects }) => {
   return (
     <section aria-label="projects" id="projects">
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
-        <div className="clip-half-circle absolute -left-[100px] -top-[30px] size-[200px] flex-shrink-0 rounded-full border border-black border-stone-500/30 bg-gradient-to-r from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px] xl:-left-[200px] xl:size-[400px]"></div>
+        <div className="absolute -left-[100px] -top-[30px] size-[200px] flex-shrink-0 rounded-full border-black border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] backdrop-blur-[12.5px] dark:border dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] xl:-left-[200px] xl:size-[400px]" />
 
         <div className="absolute right-[200px] top-[100px] -z-40 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:block" />
         <h2 className="my-0 mr-[20px] text-right text-[40px] font-light uppercase lg:text-[96px]">
@@ -193,28 +191,20 @@ export const Projects: FC<any> = ({ projects }) => {
                             <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
                           {project.technologies.length >= 1 &&
-                            project.technologies.map(
-                              (icon: any, iconIndex: number) => (
-                                <li
-                                  key={icon.id}
-                                  className="mt-2"
-                                  ref={(el) => {
-                                    if (!iconRefs.current[index]) {
-                                      iconRefs.current[index] = []
-                                    }
-                                    iconRefs.current[index][iconIndex] = el!
-                                  }}
-                                  style={{ opacity: 0, height: 0 }}
-                                >
-                                  <Image
-                                    src={icon.icon}
-                                    alt={icon.alt}
-                                    width={34}
-                                    height={34}
-                                  />
-                                </li>
-                              ),
-                            )}
+                            project.technologies.map((icon: any) => (
+                              <li
+                                key={icon.id}
+                                className="icon-item mt-2"
+                                style={{ opacity: 0, height: 0 }}
+                              >
+                                <Image
+                                  src={icon.icon}
+                                  alt={icon.alt}
+                                  width={34}
+                                  height={34}
+                                />
+                              </li>
+                            ))}
                         </div>
                         <div className="text-[64px] font-light text-[#0B66F5]">
                           {project.count}
@@ -272,11 +262,9 @@ export const Projects: FC<any> = ({ projects }) => {
                       >
                         <div className="overflow-hidden">
                           <div
-                            className="absolute right-0 top-0 h-[150px] w-[150px] animate-pulse bg-group-pattern"
+                            className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
                             style={{
                               animationDelay: `${index * 0.5}s`,
-                              backgroundColor: 'transparent  !important',
-                              opacity: '0.1 !important',
                             }}
                           />
                           <h3
@@ -297,10 +285,36 @@ export const Projects: FC<any> = ({ projects }) => {
                           </div>
                         </div>
                         <div className="flex items-center justify-between border-t-[1px] border-amber-50">
-                          <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
+                          <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex !size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
                             <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
-                          <div className="text-[64px] font-light text-[#0B66F5]">
+                          <div className="ml-2 flex flex-wrap gap-4">
+                            {project.technologies.length >= 1 &&
+                              project.technologies.map(
+                                (icon: any, iconIndex: number) => (
+                                  <li
+                                    key={icon.id}
+                                    className={` ${mobActiveSlide === index ? 'opacity-1' : 'opacity-0'}`}
+                                    ref={(el) => {
+                                      if (!iconRefs.current[index]) {
+                                        iconRefs.current[index] = []
+                                      }
+                                      iconRefs.current[index][iconIndex] = el!
+                                    }}
+                                  >
+                                    <Image
+                                      src={icon.icon}
+                                      alt={icon.alt}
+                                      width={34}
+                                      height={34}
+                                    />
+                                  </li>
+                                ),
+                              )}
+                          </div>
+                          <div
+                            className={`text-[64px] font-light text-[#0B66F5] ${mobActiveSlide === index ? 'text-white dark:text-[#0B66F5]' : ''}`}
+                          >
                             {project.count}
                           </div>
                         </div>
