@@ -2,13 +2,14 @@
 import './footer.scss'
 import Link from 'next/link'
 import arrowDown from '@/assets/icons/arrow-down.svg'
+import arrowDownLight from '@/assets/icons/arrowDownLight.svg'
 import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import Image from 'next/image'
 import { Input } from '@/components/UI/input/input'
 import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import gitHubLight from '@/assets/icons/githubLight.svg'
 import gitHub from '@/assets/icons/github.svg'
@@ -32,11 +33,24 @@ export const Footer = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<any>()
 
   const [isVerified, setIsVerified] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean | undefined>(false)
+
+  const [gitSrc, setGitSrc] = useState(gitHub)
+  const [linkSrc, setLink] = useState(linkedin)
+  const [telegramSrc, setTelegram] = useState(telegram)
+  const [arrowDownSrc, setArrowDown] = useState(arrowDown)
+
+  useEffect(() => {
+    setGitSrc(theme === 'dark' ? gitHub : gitHubLight)
+    setLink(theme === 'dark' ? linkedin : linkedinLight)
+    setTelegram(theme === 'dark' ? telegram : telegramLight)
+    setArrowDown(theme === 'dark' ? arrowDown : arrowDownLight)
+  }, [theme])
 
   const year = new Date().getFullYear()
 
@@ -79,14 +93,18 @@ export const Footer = () => {
       <div className="absolute -right-[400px] -top-[400px] -z-20 hidden h-[1900px] w-[1900px] transform bg-hero-pattern lg:-top-[100px] lg:right-[200px] lg:block" />
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="flex flex-col items-end justify-end">
-          <div className="animate-scale-in-out absolute -top-[55px] left-0 -z-20 size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:size-[200px]" />
+          <div className="animate-scale-in-out absolute -top-[55px] left-0 -z-20 size-[200px] -translate-x-1/2 bg-group-pattern-light dark:bg-group-pattern dark:opacity-[0.1] lg:size-[200px]" />
           <div className="text-[24px] uppercase lg:text-[64px] lg:font-light">
             {t('any-questions')}
           </div>
           <div className="text-[24px] text-[32px] font-bold text-[#0B66F5] lg:mt-[32px]">
             {t('Just fill out the form below')}
           </div>
-          <Image className="mt-[83px]" src={arrowDown} alt={t('arrow down')} />
+          <Image
+            className="mt-[83px]"
+            src={arrowDownSrc}
+            alt={t('arrow down')}
+          />
         </div>
       </div>
       <div className="mt-[155px] h-[1px] w-full bg-stone-500/30 lg:mt-[380px]" />
@@ -164,23 +182,34 @@ export const Footer = () => {
                 type={'phone'}
                 placeholder={t('phone')}
                 name={'phone'}
-                register={{
-                  ...register('phone', {
-                    required: `${t('This field is required')}`,
-                    pattern: {
-                      value: /^\+\d{2} \(\d{3}\) \d{3}-\d{4}$/,
-                      message: `${t('Invalid phone number format')}`,
-                    },
-                  }),
+                control={control}
+                rules={{
+                  required: `${t('This field is required')}`,
+                  pattern: {
+                    value: /^\+\d{2}\s?\(\d{3}\)\s?\d{3}-\d{4}$/,
+                    message: `${t('Invalid phone number format')}`,
+                  },
                 }}
                 error={errors.phone?.message}
               />
-              <textarea
-                className={`mt-[12px] h-[125px] w-full resize-none rounded-[8px] border-[1px] border-white px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA]`}
+              <Input
+                type={'textarea'}
                 placeholder={t('message')}
-                {...register('message', {
-                  required: false,
-                })}
+                name={'message'}
+                register={{
+                  ...register('message', {
+                    required: `${t('This field is required')}`,
+                    minLength: {
+                      value: 10,
+                      message: `${t('Minimum number of characters')} 10`,
+                    },
+                    maxLength: {
+                      value: 1000,
+                      message: `${t('Maximum number of characters')} 1000`,
+                    },
+                  }),
+                }}
+                error={errors.message?.message}
               />
             </div>
             <div className="mt-[24px] flex w-[300px] flex-col items-center justify-between px-10 lg:w-[500px] lg:flex-row lg:items-start lg:px-0">
@@ -209,7 +238,7 @@ export const Footer = () => {
             >
               <Image
                 className="!fill-amber-700 !stroke-red-500 transition-transform duration-300 hover:scale-[1.2]"
-                src={theme === 'light' ? gitHubLight : gitHub}
+                src={gitSrc}
                 alt="github"
                 width={40}
                 height={40}
@@ -224,7 +253,7 @@ export const Footer = () => {
             >
               <Image
                 className="transition-transform duration-300 hover:scale-[1.2]"
-                src={theme === 'light' ? linkedinLight : linkedin}
+                src={linkSrc}
                 alt="linkedin"
                 width={40}
                 height={40}
@@ -238,7 +267,7 @@ export const Footer = () => {
             >
               <Image
                 className="transition-transform duration-300 hover:scale-[1.2]"
-                src={theme === 'light' ? telegramLight : telegram}
+                src={telegramSrc}
                 alt="telegram"
                 width={40}
                 height={40}

@@ -79,8 +79,10 @@ export const Faq = ({ data }: any) => {
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className={`relative z-10 mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] p-[12px] backdrop-blur-[12.5px] lg:p-[24px] ${
-                activeItem === item.id ? 'cursor-pointer' : 'experience-card'
+              className={`relative z-10 mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
+                activeItem === item.id
+                  ? 'cursor-pointer bg-[#0B66F5] dark:bg-transparent'
+                  : 'experience-card'
               }`}
               onClick={() => handleClick(item.id)}
             >
@@ -92,7 +94,7 @@ export const Faq = ({ data }: any) => {
                   <div className="flex w-full items-center justify-start">
                     <div
                       id={`icon-experience-${item.id}`}
-                      className="from-white/12 mr-[32px] size-[44px] rounded-full bg-gradient-to-br via-transparent to-transparent bg-clip-border stroke-black stroke-current stroke-[1px] backdrop-blur-[12.5px]"
+                      className="from-white/12 mr-[32px] size-[44px] rounded-full bg-[#0B66F5] via-transparent to-transparent stroke-black stroke-[1px] p-2 backdrop-blur-[12.5px] dark:bg-gradient-to-br dark:bg-clip-border"
                       style={{ opacity: activeItem === item.id ? 0 : 1 }}
                     />
                     <div className="flex w-full text-center text-[24px] font-normal lg:text-[32px] lg:font-bold">

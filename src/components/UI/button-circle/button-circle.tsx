@@ -3,9 +3,15 @@ import Image from 'next/image'
 import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import ArrowRightLight from '@/assets/icons/ArrowRightLight.svg'
 import { useTranslations } from 'next-intl'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { cn } from '@/utils/cn'
 import { useTheme } from 'next-themes'
+import gitHub from '@/assets/icons/github.svg'
+import linkedin from '@/assets/icons/linkedin.svg'
+import telegram from '@/assets/icons/telegram.svg'
+import gitHubLight from '@/assets/icons/githubLight.svg'
+import linkedinLight from '@/assets/icons/linkedinLight.svg'
+import telegramLight from '@/assets/icons/telegramLight.svg'
 
 interface ButtonCircleProps {
   title: string
@@ -21,6 +27,12 @@ export const ButtonCircle: FC<ButtonCircleProps> = ({
   const t = useTranslations('home-page.hero')
   const { theme } = useTheme()
 
+  const [arrowRightSrc, setArrowRightSrc] = useState(ArrowRight)
+
+  useEffect(() => {
+    setArrowRightSrc(theme === 'dark' ? ArrowRight : ArrowRightLight)
+  }, [theme])
+
   return (
     <button
       onClick={onClick}
@@ -33,7 +45,7 @@ export const ButtonCircle: FC<ButtonCircleProps> = ({
         {title}
       </span>
       <Image
-        src={theme === 'light' ? ArrowRightLight : ArrowRight}
+        src={arrowRightSrc}
         alt={t('arrow-right')}
         width={70}
         height={40}

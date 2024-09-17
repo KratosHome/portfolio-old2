@@ -36,6 +36,7 @@ export default async function LocaleLayout({
           <SessionProvider>
             <Header />
             <main className="min-h-[90svh]">{children}</main>
+            <Footer />
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>

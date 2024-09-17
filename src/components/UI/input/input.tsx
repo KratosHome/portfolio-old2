@@ -5,6 +5,7 @@ import eyesOpen from '@/assets/icons/eyes-open.svg'
 import Image from 'next/image'
 import MaskedInput from 'react-text-mask'
 import { cn } from '@/utils/cn'
+import { Controller } from 'react-hook-form'
 
 interface myInputProps {
   label?: string
@@ -19,7 +20,9 @@ interface myInputProps {
   password?: string
   className?: string
   min?: number
+  control?: any
   max?: number
+  rules?: any
 }
 
 export const Input: FC<myInputProps> = ({
@@ -36,6 +39,8 @@ export const Input: FC<myInputProps> = ({
   className,
   min,
   max,
+  control,
+  rules,
 }) => {
   const [inputType, setInputType] = useState<string>(type)
 
@@ -84,39 +89,46 @@ export const Input: FC<myInputProps> = ({
     <div className={`relative ${className}`}>
       {label && <label className="text-[20px] lg:text-[28px]">{label}</label>}
       <div>
-        {type === 'phone' ? (
-          <MaskedInput
-            className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[20px] text-[white] placeholder-[#FAFAFA] ${error ? 'border-[#A80E0E]' : ''}`}
-            mask={[
-              '+',
-              /\d/,
-              /\d/,
-              ' ',
-              '(',
-              /\d/,
-              /\d/,
-              /\d/,
-              ')',
-              ' ',
-              /\d/,
-              /\d/,
-              /\d/,
-              '-',
-              /\d/,
-              /\d/,
-              /\d/,
-              /\d/,
-            ]}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            disabled={disabled}
-            {...register}
+        {type === 'phone' && name ? (
+          <Controller
+            control={control}
+            name={name}
+            rules={rules}
+            render={({ field }) => (
+              <MaskedInput
+                {...field}
+                className={`mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-black bg-transparent px-[8px] py-[14px] text-[16px] text-black placeholder-black dark:border-white dark:text-[white] dark:placeholder-[#FAFAFA] ${
+                  error ? 'border-[#A80E0E]' : ''
+                }`}
+                mask={[
+                  '+',
+                  /\d/,
+                  /\d/,
+                  ' ',
+                  '(',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  ')',
+                  ' ',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  '-',
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                ]}
+                placeholder={placeholder}
+                disabled={disabled}
+              />
+            )}
           />
         ) : type === 'textarea' ? (
           <textarea
             className={cn(
-              `mt-[12px] min-h-[148px] w-full resize-none rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[20px] text-[white] placeholder-[#FAFAFA] lg:text-[16px]`,
+              `mt-[12px] min-h-[148px] w-full resize-none rounded-[8px] border-[1px] border-black bg-transparent px-[8px] py-[14px] text-[20px] text-black placeholder-black dark:border-white dark:text-[white] dark:placeholder-[#FAFAFA] lg:text-[16px]`,
               `${error ? 'border-[#A80E0E]' : ''}`,
             )}
             name={name}
@@ -129,7 +141,7 @@ export const Input: FC<myInputProps> = ({
         ) : (
           <input
             className={cn(
-              `lg:text-[16px]" mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[20px] text-[white] placeholder-[#FAFAFA] lg:text-[16px]`,
+              `lg:text-[16px]" mt-[12px] h-[48px] w-full rounded-[8px] border-[1px] border-black bg-transparent px-[8px] py-[14px] text-[20px] text-black placeholder-black dark:border-white dark:text-[white] dark:placeholder-[#FAFAFA] lg:text-[16px]`,
               `${error ? 'border border-[#A80E0E]' : ''}`,
             )}
             min={min}
