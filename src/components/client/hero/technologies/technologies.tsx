@@ -108,19 +108,13 @@ export const Technologies = () => {
         .slice()
         .sort(() => Math.random() - 0.2)
       iconRefs.current.forEach((ref, index) => {
-        gsap.fromTo(
-          ref,
-          {
-            opacity: 0,
-          },
-          {
-            x: shuffledPositions[index].x,
-            y: shuffledPositions[index].y,
-            opacity: 1,
-            duration: 2,
-            ease: 'power2.inOut',
-          },
-        )
+        gsap.to(ref, {
+          x: shuffledPositions[index].x,
+          y: shuffledPositions[index].y,
+          opacity: 1,
+          duration: 2,
+          ease: 'power2.inOut',
+        })
       })
     }
 
