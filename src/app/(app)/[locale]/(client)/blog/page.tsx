@@ -22,7 +22,7 @@ export default async function Page({ params: { locale }, searchParams }: any) {
           {post.posts.map((item: any) => (
             <PostItem key={item.title} item={item} />
           ))}
-          <Pagination totalPages={totalPages} />
+          <Pagination totalPages={25} />
         </div>
       </div>
     </div>
