@@ -30,13 +30,17 @@ export const Pagination: FC<PaginationControlProps> = ({ totalPages }) => {
 
   const goToPage = contextSafe((event: any, newPage: number) => {
     const button = event.currentTarget
+    const queryParams = new URLSearchParams(searchParams?.toString())
+
+    queryParams.set('page', newPage.toString())
+
     gsap.to(button, {
       scale: 2.5,
       duration: 0.2,
       ease: 'power1.out',
       onComplete: () => {
         gsap.to(button, { scale: 1, duration: 0.1 })
-        router.push(`?page=${newPage}`)
+        router.push(`?${queryParams.toString()}`)
       },
     })
   })
