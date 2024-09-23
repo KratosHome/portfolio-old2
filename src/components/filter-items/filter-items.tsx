@@ -8,18 +8,13 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 interface FilterItemsProps {
   title: string
   url: string
-  filters: string[]
+  filters: any
 }
 
 export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
-
-  const availableFilters = filters.map((category: string) => ({
-    id: category.toLowerCase(),
-    label: `#${category.charAt(0).toUpperCase() + category.slice(1)}`,
-  }))
 
   const updateFiltersInQuery = (newFilters: string[]) => {
     const queryParams = new URLSearchParams(searchParams?.toString()) // Збереження поточних параметрів URL
@@ -54,7 +49,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
             {selectedFilters.length > 0
               ? selectedFilters.map((filterId: string) => (
                   <span key={filterId} className="mr-2">
-                    {availableFilters.find((f) => f.id === filterId)?.label}
+                    {filters.find((f: any) => f.id === filterId)?.label}
                   </span>
                 ))
               : `#${title}`}
@@ -66,7 +61,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
           className="rounded-lg border border-black bg-gradient-to-br from-[rgba(255,255,255,0.4)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]"
         >
           <div className="grid grid-cols-3 gap-4 p-4">
-            {availableFilters.map((filter) => (
+            {filters.map((filter: any) => (
               <MenuItem key={filter.id}>
                 <label
                   className={`flex cursor-pointer items-center justify-between rounded-lg border-b-[1px] px-[12px] py-[8px] ${

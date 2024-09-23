@@ -11,7 +11,7 @@ export default async function Page({ params: { locale }, searchParams }: any) {
   const page = searchParams['page'] ?? '1'
   const filters = searchParams['filters']
   const authors = searchParams['authors']
-  const post: any = await getPosts(locale, page, 10)
+  const post: any = await getPosts(locale, page, 10, false, filters, authors)
   const totalPages = post.totalPages
 
   return (
@@ -32,14 +32,14 @@ export default async function Page({ params: { locale }, searchParams }: any) {
           <FilterItems
             title={'All authors'}
             url={'authors'}
-            filters={post.categories}
+            filters={post.authors}
           />
         </div>
         <div>
           {post.posts.map((item: any) => (
             <PostItem key={item.title} item={item} />
           ))}
-          <Pagination totalPages={200} />
+          <Pagination totalPages={totalPages} />
         </div>
       </div>
     </div>
