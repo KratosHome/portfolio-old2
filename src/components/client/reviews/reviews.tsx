@@ -7,8 +7,8 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Grid } from 'swiper/modules'
-import { dataReviews } from '@/data/reviews'
 import { HireMe } from '@/components/client/hire-me/hire-me'
+import { dataReviews } from '@/data/OlegTkach/reviews'
 
 export const Reviews = ({}: any) => {
   const data = dataReviews

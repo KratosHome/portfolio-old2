@@ -1,4 +1,3 @@
-import '../globals.scss'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from '@/components/theme-provider/theme-provider'

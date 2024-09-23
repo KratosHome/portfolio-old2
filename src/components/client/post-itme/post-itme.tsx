@@ -16,7 +16,7 @@ interface blogListType {
 }
 
 export const PostItem: FC<blogListType> = ({ item }) => {
-  const t = useTranslations('home-page.project')
+  const t = useTranslations('post-client')
   const locale = useLocale()
   const { contextSafe } = useGSAP()
   const containerRef = useRef<HTMLAnchorElement>(null)

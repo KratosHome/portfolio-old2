@@ -25,7 +25,9 @@ export const ControlPosts = () => {
 
     fetchData()
   }, [locale])
-  // HE AR
+
+  console.log('ControlPosts', posts)
+
   const togglePublishStatus = async (
     postId: string,
     currentStatus: boolean,

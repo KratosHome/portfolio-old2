@@ -11,6 +11,8 @@ import { localesData } from '@/data/locales-data'
 import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 import { updatePostServer } from '@/server/blog/updape-post.server'
 import Image from 'next/image'
+import { MdDelete } from 'react-icons/md'
+import { Input } from '@/components/UI/input/input'
 
 interface PostData {
   authorId: string
@@ -22,6 +24,7 @@ interface PostData {
   local: LanguageProps
   isPublished: boolean
   img: string
+  categories: string[]
 }
 
 interface NewPostProps {
@@ -40,6 +43,9 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isPublished, setIsPublished] = useState<boolean>(false)
 
+  const [categoriesInput, setCategoriesInput] = useState<string>('')
+  const [categories, setCategories] = useState<string[]>([])
+
   const initializePostsData = (): { [key in LanguageProps]: PostData } => {
     const initialData: any = {}
 
@@ -48,6 +54,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
         authorId: '',
         title: '',
         keyWords: [],
+        categories: [],
         subTitle: '',
         desc: '',
         url: '',
@@ -58,6 +65,34 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
     })
 
     return initialData
+  }
+
+  const handleAddCategories = () => {
+    if (categoriesInput.trim() !== '') {
+      setPostsData((prev) => ({
+        ...prev,
+        [activeLanguage]: {
+          ...prev[activeLanguage],
+          categories: [
+            ...prev[activeLanguage].categories,
+            categoriesInput.trim(),
+          ],
+        },
+      }))
+      setCategoriesInput('')
+    }
+  }
+
+  const handleRemoveCategories = (index: number) => {
+    setPostsData((prev) => ({
+      ...prev,
+      [activeLanguage]: {
+        ...prev[activeLanguage],
+        categories: prev[activeLanguage].categories.filter(
+          (_, i) => i !== index,
+        ),
+      },
+    }))
   }
 
   const [postsData, setPostsData] = useState<{
@@ -129,11 +164,13 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
             local: locale,
             isPublished: postItem.isPublished || false,
             img: postItem.img || '',
+            categories: postItem.categories || [],
           }
         }
       })
       setImage(data.post[0].img)
       setPostsData(updatedPostsData)
+      setCategories(data.post[0].categories)
     }
     // eslint-disable-next-line
   }, [data])
@@ -284,6 +321,35 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
           value={postsData[activeLanguage].subTitle}
           onChange={(e) => handleInputChange(e, 'subTitle')}
         />
+        <div>
+          <h2 className="text-2xl font-bold">Категорія (фільтр)</h2>
+          <div className="flex flex-wrap gap-4">
+            {postsData[activeLanguage].categories.map((category, index) => (
+              <div
+                key={index}
+                className="flex max-w-max items-center rounded-lg bg-blue-500 p-2"
+              >
+                <p>{category}</p>
+                <AdminButton
+                  className="ml-2"
+                  onClick={() => handleRemoveCategories(index)}
+                >
+                  <MdDelete />
+                </AdminButton>
+              </div>
+            ))}
+          </div>
+
+          <Input
+            type={'text'}
+            placeholder={'Додати технологію'}
+            value={categoriesInput}
+            onChange={(e) => setCategoriesInput(e.target.value)}
+          />
+          <AdminButton onClick={handleAddCategories} className="mt-3">
+            Додати категорію
+          </AdminButton>
+        </div>
         <div className="min-h-[200px]">
           <CustomToolbarQuill />
           <ReactQuill

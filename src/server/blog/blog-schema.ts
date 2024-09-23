@@ -14,6 +14,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    categories: {
+      type: [String],
+      default: [],
+    },
     desc: {
       type: String,
       required: true,

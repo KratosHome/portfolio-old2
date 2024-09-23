@@ -47,7 +47,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
   const [description, setDescription] = useState<string>('')
 
   const [technologyInput, setTechnologyInput] = useState<string>('')
-  const [technologies, setTechnologies] = useState<string[]>(['NextJS'])
+  const [technologies, setTechnologies] = useState<string[]>([''])
 
   const [lookingInTeamInput, setLookingInTeamInput] = useState<string>('')
   const [lookingInTeam, setLookingInTeam] = useState<string[]>(['NextJS'])

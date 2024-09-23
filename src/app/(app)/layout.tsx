@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/react'
 import { ReactNode } from 'react'
+import './globals.scss'
 
 export const dynamic = 'force-dynamic'
 

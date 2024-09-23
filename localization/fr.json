@@ -30,6 +30,9 @@
     "The message has been sent": "The message has been sent!",
     "Something happened, it's sad!": "Something happened, it's sad!"
   },
+  "post-client": {
+    "blog": "Blog"
+  },
   "home-page": {
     "hero": {
       "frontend": "Frontend",
@@ -107,7 +110,7 @@
     "sign up now": "Sign up now",
     "Confirm password": "Confirm password",
     "name": "name",
-    "Already have an account?" : "Already have an account?",
+    "Already have an account?": "Already have an account?",
     "Sign In": "Sign In",
     "Enter your email account to reset your password": "Enter your email account to reset your password",
     "You have registered successfully!": "You have registered successfully!",

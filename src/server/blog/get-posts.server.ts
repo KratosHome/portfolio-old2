@@ -11,6 +11,8 @@ export const getPosts = async (
     await connectToDb()
     const skip = (page - 1) * limit
 
+    const uniqueCategories = await Post.distinct('categories')
+
     const posts = await Post.find({ local: local }).skip(skip).limit(limit)
     const totalPosts = await Post.countDocuments({ local: local })
 
@@ -32,6 +34,7 @@ export const getPosts = async (
     return {
       success: true,
       posts: postsWithUserDetails,
+      categories: uniqueCategories,
       currentPage: page,
       totalPages,
     }
