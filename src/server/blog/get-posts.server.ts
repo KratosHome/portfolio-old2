@@ -14,7 +14,6 @@ export const getPosts = async (
     await connectToDb()
     const skip = (page - 1) * limit
 
-    // Отримуємо унікальні категорії та авторів для фільтрів
     const uniqueCategories = await Post.distinct('categories', { local: local })
     const formattedFilters = uniqueCategories.map((category: string) => ({
       id: category,
@@ -31,9 +30,6 @@ export const getPosts = async (
       id: author._id,
       label: author.username,
     }))
-
-    console.log('filters', filters)
-    console.log('authors', authors)
 
     let query: any = { local: local, isPublished }
 

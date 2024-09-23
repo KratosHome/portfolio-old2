@@ -23,22 +23,24 @@ export default async function Page({ params: { locale }, searchParams }: any) {
         <h1 className="text-center text-[64px] font-light uppercase lg:text-[160px]">
           {t('blog')}
         </h1>
-        <div className="flex gap-9">
+        <div className="flex flex-wrap sm:gap-9">
           <FilterItems
-            title={'All filter'}
+            title={t('All filters')}
             url={'filters'}
             filters={post.categories}
           />
           <FilterItems
-            title={'All authors'}
+            title={t('All authors')}
             url={'authors'}
             filters={post.authors}
           />
         </div>
-        <div>
-          {post.posts.map((item: any) => (
-            <PostItem key={item.title} item={item} />
-          ))}
+        <div className="flex min-h-screen flex-col justify-between">
+          <div className="flex flex-wrap items-center justify-center gap-10 lg:justify-start">
+            {post.posts.map((item: any) => (
+              <PostItem key={item.title} item={item} />
+            ))}
+          </div>
           <Pagination totalPages={totalPages} />
         </div>
       </div>

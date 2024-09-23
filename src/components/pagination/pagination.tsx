@@ -8,14 +8,12 @@ import arrowLight from '@/assets/icons/arrow-triangle-light.svg'
 import Image from 'next/image'
 import { cn } from '@/utils/cn'
 import { useTheme } from 'next-themes'
-import { useTranslations } from 'next-intl'
 
 interface PaginationControlProps {
   totalPages: number
 }
 
 export const Pagination: FC<PaginationControlProps> = ({ totalPages }) => {
-  const t = useTranslations('pagination')
   const router = useRouter()
   const searchParams = useSearchParams()
   const { contextSafe } = useGSAP()

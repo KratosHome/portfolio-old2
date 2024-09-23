@@ -31,7 +31,10 @@
     "Something happened, it's sad!": "Something happened, it's sad!"
   },
   "post-client": {
-    "blog": "Blog"
+    "blog": "Blog",
+    "All filters": "All filters",
+    "All authors": "All authors",
+    "arrow-link": "arrow link"
   },
   "home-page": {
     "hero": {
