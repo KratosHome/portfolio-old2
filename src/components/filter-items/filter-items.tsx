@@ -11,6 +11,8 @@ import {
   Transition,
 } from '@headlessui/react'
 import { Fragment } from 'react'
+import theme from 'tailwindcss/defaultTheme'
+import { useTheme } from 'next-themes'
 
 interface FilterItemsProps {
   title: string
@@ -20,10 +22,10 @@ interface FilterItemsProps {
 
 export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
+  const { theme } = useTheme()
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  // Функція для оновлення фільтрів в URL
   const updateFiltersInQuery = (newFilters: string[]) => {
     const queryParams = new URLSearchParams(searchParams?.toString())
     if (newFilters.length > 0) {
@@ -34,7 +36,6 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
     router.push(`?${queryParams.toString()}`)
   }
 
-  // Функція для перемикання фільтра
   const toggleFilter = (filterId: string) => {
     const newSelectedFilters = selectedFilters.includes(filterId)
       ? selectedFilters.filter((f) => f !== filterId)
@@ -43,7 +44,6 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
     updateFiltersInQuery(newSelectedFilters)
   }
 
-  // Використовуємо useEffect для ініціалізації вибраних фільтрів з URL
   useEffect(() => {
     const currentFilters = searchParams?.get(url)
     if (currentFilters) {
@@ -54,14 +54,24 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
   return (
     <div>
       <Menu>
-        <MenuButton className="my-[24px] flex">
-          <Image
-            src={filterIcon}
-            alt={title}
-            height={24}
-            width={24}
-            className="cursor-pointer"
-          />
+        <MenuButton className="my-[24px] flex cursor-pointer">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 26 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="Group 52">
+              <path
+                id="Vector"
+                d="M10.3333 14.8947L2.10645 7.10115C1.39863 6.43133 1.00079 5.52263 1 4.57484V4.57484C1 3.62676 1.39751 2.71753 2.10514 2.04713C2.81278 1.37674 3.77236 1 4.77311 1H21.2266C22.2273 1 23.1869 1.37674 23.8945 2.04713C24.6022 2.71753 25 3.62676 25 4.57484V4.57484C24.9992 5.52263 24.601 6.43133 23.8932 7.10115L15.6667 14.8947V21.2105L10.3333 25V14.8947Z"
+                stroke={theme === 'dark' ? '#FAFAFA' : '#000'}
+                stroke-width="2"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
           <div className="ml-4">
             {selectedFilters.length > 0
               ? selectedFilters.map((filterId: string) => (
@@ -84,7 +94,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
           <MenuItems
             transition
             anchor="bottom start"
-            className="rounded-lg border border-black bg-gradient-to-br from-[rgba(255,255,255,0.4)] to-[rgba(255,255,255,0)] backdrop-blur-[12.5px]"
+            className="rounded-lg border border-black border-stone-500/30 bg-[#0B66F5] backdrop-blur-[12.5px] dark:bg-transparent dark:bg-gradient-to-br dark:from-[rgba(255,255,255,0.4)] dark:to-[rgba(255,255,255,0)]"
           >
             <div className="grid grid-cols-2 gap-4 p-4 lg:grid-cols-3">
               {filters.map((filter: any) => (
@@ -93,7 +103,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
                     className={`relative flex cursor-pointer items-center justify-between rounded-lg border-b-[1px] px-[12px] py-[8px] ${
                       selectedFilters.includes(filter.id)
                         ? 'border-blue-gradient bg-[#0B66F5] text-white'
-                        : 'border-b-[var(--blue-gradient,#0B66F5)] bg-[linear-gradient(127deg,rgba(11,102,245,0.3)_49.23%,rgba(78,128,206,0.15)_83.27%,rgba(255,255,255,0)_102.62%)] duration-300 hover:bg-[#0B66F5]'
+                        : 'border-b-[var(--blue-gradient,#0B66F5)] bg-[linear-gradient(127deg,rgba(11,102,245,0.3)_49.23%,rgba(78,128,206,0.15)_83.27%,rgba(255,255,255,0)_102.62%)] duration-300 hover:bg-white dark:hover:bg-[#0B66F5]'
                     }`}
                   >
                     <span>{filter.label}</span>

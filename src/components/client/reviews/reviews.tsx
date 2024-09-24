@@ -174,7 +174,7 @@ export const Reviews = ({}: any) => {
               <SwiperSlide key={project._id}>
                 <a href={project.link} target="_blank">
                   <div
-                    className={`reviews-card group relative z-10 m-4 flex w-[310px] flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between ${mobActiveSlide === index ? 'reviews-mob-wrapper' : 'reviews-mob-wrapper-hidden'}`}
+                    className={`reviews-card group relative z-10 m-4 flex !w-full flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between lg:w-[310px] ${mobActiveSlide === index ? 'reviews-mob-wrapper' : 'reviews-mob-wrapper-hidden'}`}
                   >
                     <div className="overflow-hidden">
                       <div className="text-[20px] font-light">

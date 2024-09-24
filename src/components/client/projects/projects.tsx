@@ -258,7 +258,7 @@ export const Projects: FC<any> = ({ projects }) => {
                   {project.isEmptiness === false ? (
                     <a href={project.link} target="_blank">
                       <div
-                        className={`relative m-4 flex h-[452px] min-h-[452px] w-[300px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-card-mob-all project-mob-wrapper-hidden'}`}
+                        className={`relative m-4 flex h-[452px] min-h-full w-full flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-red-400 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-card-mob-all project-mob-wrapper-hidden'}`}
                       >
                         <div className="overflow-hidden">
                           <div

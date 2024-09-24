@@ -20,6 +20,7 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<any>()
 
@@ -122,14 +123,13 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
                 type={'phone'}
                 placeholder={t('phone')}
                 name={'phone'}
-                register={{
-                  ...register('phone', {
-                    required: `${t('This field is required')}`,
-                    pattern: {
-                      value: /^\+\d{2} \(\d{3}\) \d{3}-\d{4}$/,
-                      message: `${t('Invalid phone number format')}`,
-                    },
-                  }),
+                control={control}
+                rules={{
+                  required: `${t('This field is required')}`,
+                  pattern: {
+                    value: /^\+\d{2}\s?\(\d{3}\)\s?\d{3}-\d{4}$/,
+                    message: `${t('Invalid phone number format')}`,
+                  },
                 }}
                 error={errors.phone?.message}
               />

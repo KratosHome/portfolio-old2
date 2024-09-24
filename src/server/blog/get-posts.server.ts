@@ -34,11 +34,13 @@ export const getPosts = async (
     let query: any = { local: local, isPublished }
 
     if (filters.length > 0) {
-      query.categories = { $in: filters }
+      const resultАilters = filters.split(',')
+      query.categories = { $in: resultАilters }
     }
 
     if (authors.length > 0) {
-      query.authorId = { $in: authors }
+      const resultАilters = authors.split(',')
+      query.authorId = { $in: resultАilters }
     }
 
     const totalPosts = await Post.countDocuments(query)
