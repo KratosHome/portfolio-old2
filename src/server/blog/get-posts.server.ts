@@ -7,8 +7,8 @@ export const getPosts = async (
   page: number = 1,
   limit: number = 10,
   isPublished: boolean = true,
-  filters: string[] = [],
-  authors: string[] = [],
+  filters: any = [],
+  authors: any = [],
 ) => {
   try {
     await connectToDb()
