@@ -26,14 +26,18 @@ export const ControlPosts = () => {
     fetchData()
   }, [locale])
 
-  console.log('ControlPosts', posts)
-
   const togglePublishStatus = async (
     postId: string,
     currentStatus: boolean,
   ) => {
-    await publicPost(postId, !currentStatus)
+    setLoading(true)
+    const rs = await publicPost(postId, !currentStatus)
+    if (rs.success) {
+      toast.success('Пост успішно видалено')
+      setLoading(false)
+    }
   }
+
   const deletePost = async (postId: string) => {
     const rs = await deletePostServer(postId)
     if (rs.success) {
@@ -79,7 +83,7 @@ export const ControlPosts = () => {
             детальніше
           </Link>
           <button
-            onClick={() => togglePublishStatus(post._id, post.isPublished)}
+            onClick={() => togglePublishStatus(post.postId, post.isPublished)}
             className={`rounded px-4 py-2 ${
               post.isPublished ? 'bg-green-500' : 'bg-red-500'
             } text-white`}

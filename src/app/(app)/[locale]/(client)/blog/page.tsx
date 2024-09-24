@@ -11,7 +11,7 @@ export default async function Page({ params: { locale }, searchParams }: any) {
   const page = searchParams['page'] ?? '1'
   const filters = searchParams['filters']
   const authors = searchParams['authors']
-  const post: any = await getPosts(locale, page, 10, false, filters, authors)
+  const post: any = await getPosts(locale, page, 10, true, filters, authors)
   const totalPages = post.totalPages
 
   return (
