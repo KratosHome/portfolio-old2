@@ -19,6 +19,7 @@ interface ProjectItemProps {
 export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
+  console.log('project', project)
 
   const { user } = useStore()
 

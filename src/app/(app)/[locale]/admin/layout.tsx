@@ -13,10 +13,8 @@ export default async function LocaleLayout({
   children: ReactNode
   params: { locale: LanguageProps }
 }) {
-  /*
-    const dashboard: any = adminDashboardData[locale]
-    <Dashboard dashboard={dashboard} />
-   */
+  const dashboard: any = adminDashboardData[locale]
+
   const session = await auth()
 
   if (!session) redirect('/')
@@ -24,6 +22,7 @@ export default async function LocaleLayout({
   return (
     <>
       <div className="relative mx-auto flex max-w-[1442px] rounded-lg bg-neutral-800">
+        <Dashboard dashboard={dashboard} />
         <main className="z-20 min-h-[90svh] w-full">{children}</main>
       </div>
     </>

@@ -10,12 +10,14 @@ import gitHub from '@/assets/icons/github.svg'
 import gitHubLight from '@/assets/icons/githubLight.svg'
 import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
+import { useRouter } from 'next/navigation'
 
 interface MembersItemProps {
   item: any
 }
 
 const MembersItem: FC<MembersItemProps> = ({ item }) => {
+  const router = useRouter()
   const { theme } = useTheme()
 
   const truncateText = (text: any, maxLength: number) => {
@@ -27,6 +29,10 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
 
   const truncatedContent = truncateText(item.aboutMe, 1550)
   console.log('item', item)
+
+  const onProfileClick = () => {
+    router.push(`members/${item._id}`)
+  }
   return (
     <div className="background-item-no-hover relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
       <div className="relative mt-[15px] h-[20px] w-full rounded-[50px] border-t border-white/30">
@@ -138,7 +144,11 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       </div>
       <div className="h-[1px] w-full bg-stone-500/30" />
       <div>
-        <ButtonCircle title={'profile'} className="bg-black/60" />
+        <ButtonCircle
+          title={'profile'}
+          className="bg-black/60"
+          onClick={onProfileClick}
+        />
         <ButtonCircle title={'RESUME'} />
       </div>
     </div>
