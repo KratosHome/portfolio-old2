@@ -28,4 +28,3 @@ export async function messageMe(formData: any) {
     return { success: false }
   }
 }
-// Todo: Add id user to message

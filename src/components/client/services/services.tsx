@@ -8,7 +8,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import arrowLong from '@/assets/icons/arrow-long.svg'
 import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
-import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 
 export const Services: FC<any> = ({ services }) => {
@@ -97,7 +96,7 @@ export const Services: FC<any> = ({ services }) => {
         </h2>
         <div className="absolute -left-[155px] top-[-100px] size-[345px] rounded-full border-r-[1px] border-stone-500/30" />
         {/* eslint-disable-next-line */}
-        <div className="bg-orbit-services-light absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] dark:opacity-[0.7] dark:bg-orbit-services" />
+        <div className="absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] bg-orbit-services-light dark:opacity-[0.7] dark:bg-orbit-services" />
         <div className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">
           {services.map((service: any, index: number) => (
             <div

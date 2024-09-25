@@ -274,7 +274,7 @@ export const Footer = () => {
               />
             </a>
           </div>
-          <Link href={'privacy-policy'} className="">
+          <Link href={'/privacy-policy'} className="">
             {t('Privacy Policy')}
           </Link>
         </div>

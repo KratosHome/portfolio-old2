@@ -34,7 +34,21 @@
     "blog": "Blog",
     "All filters": "All filters",
     "All authors": "All authors",
-    "arrow-link": "arrow link"
+    "arrow-link": "arrow link",
+    "comments": "Comments",
+    "leave-comment": "LEAVE COMMENT",
+    "The message has been sent": "The message has been sent!",
+    "Something happened, it's sad!": "Something happened, it's sad!",
+    "message": "message",
+    "This field is required": "This field is required",
+    "Minimum number of characters": "Minimum number of characters",
+    "Maximum number of characters": "Maximum number of characters",
+    "send": "send",
+    "please log in": "please log in",
+    "You must be logged in to leave a like or dislike.": "You must be logged in to leave a like or dislike.",
+    "sign in": "Sign in",
+    "Hide": "Hide",
+    "Read more": "Read more"
   },
   "home-page": {
     "hero": {

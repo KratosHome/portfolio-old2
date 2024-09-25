@@ -55,12 +55,42 @@ const blogSchema = new mongoose.Schema(
       default: 0,
     },
     likes: {
-      type: Number,
+      type: Array,
       required: true,
-      default: 0,
+      default: [],
+    },
+    dizLikes: {
+      type: Array,
+      required: true,
+      default: [],
     },
     comments: {
-      type: Array,
+      type: [
+        {
+          authorId: {
+            type: String,
+            required: true,
+          },
+          userLogo: {
+            type: String,
+            required: true,
+            default: '',
+          },
+          isPublished: {
+            type: Boolean,
+            required: true,
+            default: false,
+          },
+          author: {
+            type: String,
+            required: true,
+          },
+          text: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       required: true,
       default: [],
     },
