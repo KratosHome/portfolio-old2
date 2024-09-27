@@ -10,6 +10,7 @@ interface ModalProps {
   onClose: () => void
   children: ReactNode
   className?: string
+  wrapperClassName?: string
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -17,6 +18,7 @@ export const Modal: FC<ModalProps> = ({
   onClose,
   children,
   className,
+  wrapperClassName,
 }) => {
   const modalRef = useRef<HTMLDivElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
@@ -82,7 +84,10 @@ export const Modal: FC<ModalProps> = ({
     <>
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-50 bg-black bg-opacity-50 opacity-0"
+        className={cn(
+          'fixed inset-0 z-40 bg-black bg-opacity-50 duration-300',
+          wrapperClassName,
+        )}
         onClick={onClose}
       />
       <div

@@ -133,5 +133,23 @@
     "Enter your email account to reset your password": "Enter your email account to reset your password",
     "You have registered successfully!": "You have registered successfully!",
     "Passwords do not match!": "Passwords do not match!"
+  },
+  "projects-client": {
+    "Сhoose which section you want to look at": "Сhoose which section you want to look at",
+    "h1": "This page showcases projects that are currently in development. You can explore the progress of these projects, and if youre interested, theres an opportunity to join the project team and contribute.",
+    "arrow-home": "arrow home",
+    "All technologies": "All technologies",
+    "All completion": "All completion",
+    "Application has been sent": "Application for participation has been sent, wait for confirmation",
+    "already submitted": "You have already submitted an application for this project",
+    "WE NEED": "WE NEED",
+    "logo": "logo",
+    "completed": "completed",
+    "join": "join",
+    "view": "view",
+    "description": "description",
+    "development phases": "development phases",
+    "project team": "project team",
+    "project involvement": "project involvement"
   }
 }

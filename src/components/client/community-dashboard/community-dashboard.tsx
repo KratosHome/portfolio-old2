@@ -4,12 +4,14 @@ import Link from 'next/link'
 import { useLocale } from 'use-intl'
 import { usePathname } from 'next/navigation'
 import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
+import { useTranslations } from 'next-intl'
 
 interface CommunityDashboardProps {
   data: any
 }
 
 export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
+  const t = useTranslations('projects-client')
   const locale = useLocale()
   const pathname = usePathname()
 
@@ -19,12 +21,11 @@ export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
       <div className="animate-scale-in-out absolute left-0 -z-20 size-[300px] -translate-x-1/2 bg-group-pattern-light dark:bg-group-pattern dark:opacity-[0.1] xl:size-[300px]" />
       <ButtonBeck />
       <div className="mt-[33px] text-right font-bold">
-        Сhoose which section you want to look at
+        {t('Сhoose which section you want to look at')}
       </div>
       <div className="mt-[91px] flex items-center justify-center">
         {data.map((item: any, index: number) => {
           const isActive = pathname === `/${locale}/${item.link}`
-
           return (
             <div
               key={item.name}
