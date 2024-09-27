@@ -15,12 +15,13 @@ import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 
 export const Projects: FC<any> = ({ projects }) => {
-  const t = useTranslations('home-page.project')
-
-  const { contextSafe } = useGSAP()
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLLIElement[][]>([])
   const descriptionRefs = useRef<HTMLDivElement[]>([])
+
+  const t = useTranslations('home-page.project')
+  const { contextSafe } = useGSAP()
+
   const [mobActiveSlide, setMobActiveSlide] = useState(0)
   const { theme } = useTheme()
   const [currentSrc, setCurrentSrc] = useState(arrowLong)
@@ -28,6 +29,37 @@ export const Projects: FC<any> = ({ projects }) => {
   useEffect(() => {
     setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
   }, [theme])
+
+  useGSAP(
+    () => {
+      gsap.to('.project-mob-wrapper', {
+        height: 'auto',
+        minHeight: '452px',
+        duration: 0.3,
+        ease: 'power2.out',
+      })
+
+      gsap.to('.project-mob-description', {
+        height: 'auto',
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+      })
+      gsap.to('.project-mob-description-hidden', {
+        height: '0px',
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+      })
+
+      gsap.to('.project-mob-wrapper-hidden', {
+        height: '452px',
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+    },
+    { dependencies: [mobActiveSlide] },
+  )
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
@@ -81,37 +113,6 @@ export const Projects: FC<any> = ({ projects }) => {
       ease: 'power2.out',
     })
   })
-
-  useGSAP(
-    () => {
-      gsap.to('.project-mob-wrapper', {
-        height: 'auto',
-        minHeight: '452px',
-        duration: 0.3,
-        ease: 'power2.out',
-      })
-
-      gsap.to('.project-mob-description', {
-        height: 'auto',
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-      })
-      gsap.to('.project-mob-description-hidden', {
-        height: '0px',
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
-      })
-
-      gsap.to('.project-mob-wrapper-hidden', {
-        height: '452px',
-        duration: 0.5,
-        ease: 'power2.out',
-      })
-    },
-    { dependencies: [mobActiveSlide] },
-  )
 
   return (
     <section aria-label="projects" id="projects">

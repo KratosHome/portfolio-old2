@@ -15,10 +15,8 @@ import { Footer } from '@/components/footer/footer'
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
 }: {
   children: ReactNode
-  params: { locale: string }
 }) {
   const messages = await getMessages()
 

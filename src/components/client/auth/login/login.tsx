@@ -11,26 +11,23 @@ import Link from 'next/link'
 import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
 import { GitHub } from '@/components/client/auth/git-hub/git-hub'
 import { Google } from '@/components/client/auth/google/google'
+import { Loader } from '@/components/UI/loader/loader'
 
 interface LoginFormValues {
   email: string
   password: string
 }
 
-function Loader() {
-  return null
-}
-
 const Login = () => {
-  const router = useRouter()
   const t = useTranslations('auth')
-
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
   } = useForm<LoginFormValues>()
+
   const password = watch('password')
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
@@ -44,6 +41,7 @@ const Login = () => {
       router.refresh()
     }
   }
+
   return (
     <div>
       {loading && <Loader />}

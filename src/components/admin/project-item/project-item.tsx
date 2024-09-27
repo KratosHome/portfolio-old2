@@ -27,19 +27,19 @@ interface ProjectItemProps {
 }
 
 export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
-  const status = ['new', 'in progress', 'deploy', 'completed', 'archived']
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const t = useTranslations('footer')
   const { user } = useStore()
-  const isSuperAdmin = user.isAdmin
-
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<any>()
+
+  const status = ['new', 'in progress', 'deploy', 'completed', 'archived']
+  const isSuperAdmin = user.isAdmin
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
   const [image, setImage] = useState<File | null>(null)
@@ -167,7 +167,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     }
     let result
     if (action === 'create') {
-      result = await createProject([userId, adminId], sendData)
+      result = await createProject(userId, adminId, sendData)
     } else if (action === 'update') {
       result = await updateProject(id, sendData)
     }

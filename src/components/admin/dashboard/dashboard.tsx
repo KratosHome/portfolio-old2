@@ -60,25 +60,20 @@ export const Dashboard: FC<DashboardProps> = ({ dashboard }) => {
   let enterTimeout: ReturnType<typeof setTimeout> | null = null
   const { user } = useStore()
   const { team, fetchTeam } = teamStore()
-  const session = useSession()
 
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      await fetchTeam(user._id)
-      setLoading(false)
+    if (user._id) {
+      const fetchData = async () => {
+        setLoading(true)
+        await fetchTeam(user._id)
+        setLoading(false)
+      }
+      fetchData()
     }
-    fetchData()
     // eslint-disable-next-line
-  }, [user, session])
-
-  const team2 = [
-    { name: 'Team A', newUsers: ['User1', 'User2', 'User3'] },
-    { name: 'Team B', newUsers: ['User4', 'User5'] },
-    { name: 'Team C', newUsers: ['User6', 'User7', 'User8', 'User9'] },
-  ]
+  }, [user])
 
   const totalNewUsers = team.reduce((total, currentTeam) => {
     return total + currentTeam.newUsers.length

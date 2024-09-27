@@ -26,6 +26,7 @@ export const Experience = ({
 }) => {
   const t = useTranslations('home-page.experience')
   const { contextSafe } = useGSAP()
+
   const [activeItem, setActiveItem] = useState<number | null>(null)
 
   const closeItem = (id: number) => {

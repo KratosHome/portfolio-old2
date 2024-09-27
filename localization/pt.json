@@ -45,7 +45,7 @@
     "Maximum number of characters": "Maximum number of characters",
     "send": "send",
     "please log in": "please log in",
-    "You must be logged in to leave a like or dislike.": "You must be logged in to leave a like or dislike.",
+    "You must be logged in to leave a like or dislike": "You must be logged in to leave a like or dislike.",
     "sign in": "Sign in",
     "Hide": "Hide",
     "Read more": "Read more"
@@ -110,6 +110,7 @@
     }
   },
   "auth": {
+    "login": "Login",
     "signNow": "Sign in now",
     "google-sing-icon": "Google sing in icon",
     "github-sing-icon": "Github sing in icon",

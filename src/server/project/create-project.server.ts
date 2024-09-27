@@ -2,7 +2,7 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 
-export const createProject = async (id: any, data: any) => {
+export const createProject = async (id: any, adminId: string, data: any) => {
   try {
     await connectToDb()
 

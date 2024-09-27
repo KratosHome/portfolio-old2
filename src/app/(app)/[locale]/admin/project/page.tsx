@@ -7,12 +7,10 @@ import { ProjectItem } from '@/components/admin/project-item/project-item'
 import { useStore } from '@/store/user'
 
 const Page = () => {
-  const t = useTranslations('footer')
   const { user } = useStore()
   const { projects } = projectStore()
 
   const isInProject = projects.length > 0
-  const isSuperAdmin = user.isAdmin
 
   const [activeTab, setActiveTab] = useState('0')
 
@@ -22,16 +20,12 @@ const Page = () => {
     }
   }, [projects])
 
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId)
-  }
-
   return (
     <div className="px-2">
       <h1 className="text-center text-[50px] font-light">Проєкт</h1>
       <button
         className={`rounded px-4 py-2 ${activeTab === 'створити-проєкт' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}
-        onClick={() => handleTabChange('створити-проєкт')}
+        onClick={() => setActiveTab('створити-проєкт')}
       >
         Створити проєкт
       </button>
@@ -57,7 +51,7 @@ const Page = () => {
                   <button
                     key={project._id}
                     className={`rounded px-4 py-2 ${activeTab === project._id ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}
-                    onClick={() => handleTabChange(project._id)}
+                    onClick={() => setActiveTab(project._id)}
                   >
                     {project.name}
                   </button>

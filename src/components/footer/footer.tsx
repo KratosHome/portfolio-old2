@@ -25,9 +25,10 @@ import { Loader } from '@/components/UI/loader/loader'
 import { toast } from 'react-toastify'
 
 export const Footer = () => {
+  const t = useTranslations('footer')
   const { theme } = useTheme()
   const locale = useLocale()
-  const t = useTranslations('footer')
+
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const {
     register,
@@ -36,6 +37,8 @@ export const Footer = () => {
     control,
     formState: { errors },
   } = useForm<any>()
+
+  const year = new Date().getFullYear()
 
   const [isVerified, setIsVerified] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean | undefined>(false)
@@ -51,8 +54,6 @@ export const Footer = () => {
     setTelegram(theme === 'dark' ? telegram : telegramLight)
     setArrowDown(theme === 'dark' ? arrowDown : arrowDownLight)
   }, [theme])
-
-  const year = new Date().getFullYear()
 
   async function handleCaptchaSubmission(token: string | null) {
     await verifyCaptcha(token)
@@ -97,7 +98,7 @@ export const Footer = () => {
           <div className="text-[24px] uppercase lg:text-[64px] lg:font-light">
             {t('any-questions')}
           </div>
-          <div className="text-[24px] text-[32px] font-bold text-[#0B66F5] lg:mt-[32px]">
+          <div className="text-[32px] font-bold text-[#0B66F5] lg:mt-[32px]">
             {t('Just fill out the form below')}
           </div>
           <Image
@@ -108,7 +109,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="mt-[155px] h-[1px] w-full bg-stone-500/30 lg:mt-[380px]" />
-      <div className="relative h-10 min-h-max w-full">
+      <div className="relative mx-auto h-10 min-h-max w-full max-w-[1442px] px-[24px]">
         <div className="absolute -top-[45px] right-[0] max-w-[1445px] rotate-[25deg] justify-end lg:-top-[80px]">
           <div className="circle-footer absolute right-[100px] ml-[110px] mt-[70px] size-[55px] rounded-full bg-[rgba(255,255,255,0.3)] p-[55px] opacity-40 blur-2xl lg:size-[125px] lg:p-[135px]" />
           <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[85px] rounded-full bg-black lg:size-[250px]" />
@@ -274,9 +275,7 @@ export const Footer = () => {
               />
             </a>
           </div>
-          <Link href={'/privacy-policy'} className="">
-            {t('Privacy Policy')}
-          </Link>
+          <Link href={'/privacy-policy'}>{t('Privacy Policy')}</Link>
         </div>
       </div>
     </footer>

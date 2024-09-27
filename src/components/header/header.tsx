@@ -19,20 +19,20 @@ import { projectStore } from '@/store/project'
 import { useTheme } from 'next-themes'
 
 export const Header = () => {
+  const subMenuTimers = useRef<Array<NodeJS.Timeout | null>>([])
+  const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
+
   const t = useTranslations('header')
   const locale = useLocale() as LanguageProps
   const { contextSafe } = useGSAP()
   const { theme } = useTheme()
-
-  const [currentSrc, setCurrentSrc] = useState(arrow)
-
-  const subMenuTimers = useRef<Array<NodeJS.Timeout | null>>([])
-  const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
   const { data: session }: any = useSession()
   const { user, fetchUser } = useStore()
-  const { fetchProjects } = projectStore()
 
   const menu = menuData[locale]
+
+  const [currentSrc, setCurrentSrc] = useState(arrow)
+  const { fetchProjects } = projectStore()
 
   useEffect(() => {
     setCurrentSrc(theme === 'dark' ? arrow : arrowBlack)
@@ -45,7 +45,8 @@ export const Header = () => {
       }
       fetchData()
     }
-  }, [fetchUser, session])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session])
 
   useEffect(() => {
     const fetchData = async () => {

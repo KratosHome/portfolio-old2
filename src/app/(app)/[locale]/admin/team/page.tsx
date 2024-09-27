@@ -1,5 +1,4 @@
 'use client'
-
 import { teamStore } from '@/store/team'
 import { useEffect, useState } from 'react'
 import { TeamItem } from '@/components/admin/team-item/team-item'
@@ -7,16 +6,16 @@ import { useStore } from '@/store/user'
 import Link from 'next/link'
 
 const Page = () => {
-  const [activeTab, setActiveTab] = useState('0')
   const { team } = teamStore()
   const { user } = useStore()
 
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId)
-  }
+  const [activeTab, setActiveTab] = useState('0')
+
   useEffect(() => {
     setActiveTab(team[0]?._id)
   }, [team])
+
+  console.log('team', team)
 
   return (
     <div className="h-full">
@@ -37,7 +36,7 @@ const Page = () => {
               <button
                 key={project._id}
                 className={`rounded px-4 py-2 ${activeTab === project._id ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'}`}
-                onClick={() => handleTabChange(project._id)}
+                onClick={() => setActiveTab(project._id)}
               >
                 {project.name}
               </button>

@@ -6,7 +6,7 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 
 export const Google = () => {
-  const t = useTranslations('login')
+  const t = useTranslations('auth')
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

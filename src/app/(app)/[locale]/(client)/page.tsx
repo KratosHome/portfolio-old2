@@ -64,13 +64,3 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 }
 
 export default Home
-
-/*
-  const dataReviewsSend = dataReviews as any
-  const faq = gaqData[locale]
-    const experience = experienceData[locale]
-
-   <Experience experience={experience} />
-      <Reviews data={dataReviewsSend} />
-      <Faq data={faq} />
- */

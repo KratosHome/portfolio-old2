@@ -6,7 +6,9 @@ import { gsap } from 'gsap'
 
 export const Faq = ({ data }: any) => {
   const t = useTranslations('home-page.faq')
+
   const { contextSafe } = useGSAP()
+
   const [activeItem, setActiveItem] = useState<number | null>(null)
 
   const closeItem = (id: number) => {

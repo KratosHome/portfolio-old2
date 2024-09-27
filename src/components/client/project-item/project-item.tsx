@@ -85,7 +85,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
         <div className="block lg:hidden">
           <article
             className="my-[24px] font-light"
-            dangerouslySetInnerHTML={{ __html: truncatedContent }}
+            dangerouslySetInnerHTML={{ __html: project.description }}
           />
           <div className="flex flex-wrap gap-[10px]">
             {project.technologies.map((item: string) => (

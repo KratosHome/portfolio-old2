@@ -11,11 +11,31 @@ import { HireMe } from '@/components/client/hire-me/hire-me'
 import { dataReviews } from '@/data/OlegTkach/reviews'
 
 export const Reviews = ({}: any) => {
-  const data = dataReviews
+  const projectsRefs = useRef<HTMLDivElement[]>([])
+
   const t = useTranslations('home-page.reviews')
   const { contextSafe } = useGSAP()
-  const projectsRefs = useRef<HTMLDivElement[]>([])
+
+  const data = dataReviews
+
   const [mobActiveSlide, setMobActiveSlide] = useState(0)
+
+  useGSAP(
+    () => {
+      gsap.to('.reviews-mob-wrapper', {
+        height: 'auto',
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+
+      gsap.to('.reviews-mob-wrapper-hidden', {
+        height: '420px',
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+    },
+    { dependencies: [mobActiveSlide] },
+  )
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
@@ -37,23 +57,6 @@ export const Reviews = ({}: any) => {
     })
   })
 
-  useGSAP(
-    () => {
-      gsap.to('.reviews-mob-wrapper', {
-        height: 'auto',
-        duration: 0.5,
-        ease: 'power2.out',
-      })
-
-      gsap.to('.reviews-mob-wrapper-hidden', {
-        height: '420px',
-        duration: 0.5,
-        ease: 'power2.out',
-      })
-    },
-    { dependencies: [mobActiveSlide] },
-  )
-
   return (
     <section aria-label="reviews" id="reviews" className="z-20">
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] overflow-hidden lg:overflow-visible lg:px-[24px]">
@@ -63,20 +66,6 @@ export const Reviews = ({}: any) => {
         <h2 className="ml-4 text-[40px] font-light uppercase lg:text-[96px]">
           {t('reviews')}
         </h2>
-        {/*
-                  <div className="my-[32px] mr-[20px] flex flex-col items-end justify-end">
-          <div className="text-[16px] lg:text-[24px]">
-            {t('scroll-see-more')}
-          </div>
-          <Image
-            className="mr-1 mt-[10px] w-[120px] lg:mr-3 lg:w-[170px]"
-            src={arrowLong}
-            alt={t('scroll')}
-            width={130}
-            height={30}
-          />
-        </div>
-           */}
         <div className="z-20 mt-[69px] hidden w-full lg:mt-[51px] xl:block">
           <Swiper
             slidesPerView={3}

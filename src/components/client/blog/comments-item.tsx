@@ -4,10 +4,13 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 export const CommentsItem: FC<any> = ({ comment }) => {
-  const t = useTranslations('post-client')
-  const [isExpanded, setIsExpanded] = useState(false)
-  const isLongText = comment.text.length > 200
   const commentRef = useRef<HTMLDivElement | null>(null)
+
+  const t = useTranslations('post-client')
+
+  const isLongText = comment.text.length > 200
+
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleText = () => {
     setIsExpanded(!isExpanded)

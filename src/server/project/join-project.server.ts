@@ -10,6 +10,7 @@ export const joinProjects = async (idProject: string, idUser: string) => {
     await connectToDb()
 
     const project = await Project.findById(idProject)
+    console.log('vsdfvsdfvsdfvdfs', project.newUsers)
     if (!project) return { success: false, message: 'Project not found' }
 
     if (project.newUsers.includes(idUser)) return { success: false }

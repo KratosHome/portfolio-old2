@@ -45,7 +45,7 @@ const Page = () => {
     'lead',
   ]
 
-  const session = useSession()
+  const { data: session }: any = useSession()
   const { user, fetchUser } = useStore()
   const t = useTranslations('footer')
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -78,6 +78,16 @@ const Page = () => {
   const handlePublicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsPublic(event.target.checked)
   }
+
+  useEffect(() => {
+    if (session?.user) {
+      const fetchData = async () => {
+        await fetchUser(session.user.email)
+      }
+      fetchData()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session])
 
   useEffect(() => {
     reset({

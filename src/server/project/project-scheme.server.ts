@@ -59,6 +59,7 @@ const projectSchema = new mongoose.Schema(
       required: false,
     },
     teams: {
+      default: [],
       type: [
         {
           userId: {

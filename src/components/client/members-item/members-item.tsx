@@ -11,6 +11,8 @@ import gitHubLight from '@/assets/icons/githubLight.svg'
 import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
+import { base64ToFile } from '@/utils/base64ToFile'
 
 interface MembersItemProps {
   item: any
@@ -32,6 +34,16 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
 
   const onProfileClick = () => {
     router.push(`members/${item._id}`)
+  }
+
+  const openResume = () => {
+    const pdfFile = base64ToFile(item.resume, `${item.username}.pdf`)
+    if (pdfFile) {
+      const fileURL = URL.createObjectURL(pdfFile)
+      window.open(fileURL, '_blank')
+    } else {
+      toast.error('Файл PDF не вибрано')
+    }
   }
   return (
     <div className="background-item-no-hover relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
@@ -123,19 +135,19 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="my-[23px] flex w-full justify-between">
-        <div className="text-[#0B66F5]">About</div>
+      <div className="my-[23px] flex w-full">
+        <div className="mr-[24px] w-[170px] text-[#0B66F5]">About</div>
         <article
           className="custom-article-style mb-[12px] font-light"
           dangerouslySetInnerHTML={{ __html: truncatedContent }}
         />
       </div>
       <div className="h-[1px] w-full bg-stone-500/30" />
-      <div className="my-[23px] flex w-full justify-between">
-        <div className="text-[#0B66F5]">Technologies</div>
+      <div className="my-[23px] flex w-full">
+        <div className="mr-[24px] w-[170px] text-[#0B66F5]">Technologies</div>
         <div className="flex flex-wrap gap-2">
           {item.technologies.map((tech: any, index: number) => (
-            <div key={tech} className="text-[#0B66F5]">
+            <div key={tech}>
               {tech}
               {index < item.technologies.length - 1 && ','}
             </div>
@@ -143,13 +155,42 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
         </div>
       </div>
       <div className="h-[1px] w-full bg-stone-500/30" />
-      <div>
-        <ButtonCircle
-          title={'profile'}
-          className="bg-black/60"
-          onClick={onProfileClick}
-        />
-        <ButtonCircle title={'RESUME'} />
+      <div className="my-[23px] flex w-full">
+        <div className="mr-[24px] w-[170px] text-[#0B66F5]">Projects</div>
+        <div className="flex flex-wrap gap-2">
+          {item.technologies.map((tech: any, index: number) => (
+            <div key={tech}>
+              {tech}
+              {index < item.technologies.length - 1 && ','}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="h-[1px] w-full bg-stone-500/30" />
+      <div className="my-[23px] flex w-full">
+        <div className="mr-[24px] w-[170px] text-[#0B66F5]">Portfolio</div>
+        <div className="flex flex-wrap gap-2">
+          {item.technologies.map((tech: any, index: number) => (
+            <div key={tech}>
+              {tech}
+              {index < item.technologies.length - 1 && ','}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="h-[1px] w-full bg-stone-500/30" />
+      <div className="flex justify-between">
+        <div>
+          <div className="mr-[24px] w-[170px] text-[#0B66F5]">Rating</div>
+        </div>
+        <div className="flex flex-wrap gap-[24px]">
+          <ButtonCircle
+            title={'profile'}
+            className="bg-black/60"
+            onClick={onProfileClick}
+          />
+          <ButtonCircle title={'RESUME'} onClick={openResume} />
+        </div>
       </div>
     </div>
   )

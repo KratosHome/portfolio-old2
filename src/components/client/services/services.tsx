@@ -11,22 +11,45 @@ import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
 import { useTheme } from 'next-themes'
 
 export const Services: FC<any> = ({ services }) => {
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-  }, [])
-
-  const t = useTranslations('home-page.services')
-  const { contextSafe } = useGSAP()
   const serviceRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLDivElement[][]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)
+
+  const t = useTranslations('home-page.services')
+  const { contextSafe } = useGSAP()
   const { theme } = useTheme()
 
   const [currentSrc, setCurrentSrc] = useState(arrowLong)
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+  }, [])
+
+  useEffect(() => {
     setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
   }, [theme])
+
+  useGSAP(() => {
+    if (!wrapperRef.current) return
+
+    const sections = gsap.utils.toArray('.panel')
+    const isDesktop = window.innerWidth >= 600
+    const xPercentValue = isDesktop
+      ? -102 * (sections.length - 1)
+      : -108 * (sections.length - 1)
+
+    gsap.to(sections, {
+      xPercent: xPercentValue,
+      ease: 'none',
+      scrollTrigger: {
+        anticipatePin: 2,
+        trigger: wrapperRef.current,
+        pin: true,
+        scrub: 0.1,
+        end: '+=3000',
+      },
+    })
+  })
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
@@ -61,28 +84,6 @@ export const Services: FC<any> = ({ services }) => {
       duration: 0.3,
       stagger: 0.1,
       ease: 'power2.out',
-    })
-  })
-
-  useGSAP(() => {
-    if (!wrapperRef.current) return
-
-    const sections = gsap.utils.toArray('.panel')
-    const isDesktop = window.innerWidth >= 600
-    const xPercentValue = isDesktop
-      ? -102 * (sections.length - 1)
-      : -108 * (sections.length - 1)
-
-    gsap.to(sections, {
-      xPercent: xPercentValue,
-      ease: 'none',
-      scrollTrigger: {
-        anticipatePin: 2,
-        trigger: wrapperRef.current,
-        pin: true,
-        scrub: 0.1,
-        end: '+=3000',
-      },
     })
   })
 
