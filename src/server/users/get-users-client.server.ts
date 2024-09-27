@@ -1,6 +1,7 @@
 import { unstable_noStore as noStore } from 'next/cache'
 import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/user-schema.server'
+import { Project } from '@/server/project/project-scheme.server' // Додано імпорт Project
 
 export const getUserClient = async (
   isPublic: boolean,
@@ -47,6 +48,16 @@ export const getUserClient = async (
 
     const users = await User.find(query).skip(skip).limit(limit).lean()
 
+    const usersWithProjects = await Promise.all(
+      users.map(async (user) => {
+        const projects = await Project.find({ 'teams.userId': user._id }).lean()
+        return {
+          ...user,
+          projects,
+        }
+      }),
+    )
+
     const totalUsers = await User.countDocuments(query)
     const totalPages = Math.ceil(totalUsers / limit)
 
@@ -54,7 +65,7 @@ export const getUserClient = async (
       success: true,
       technologies: formattedTechnologies,
       workExperience: formattedWorkExperience,
-      users,
+      users: usersWithProjects,
       totalUsers,
       totalPages,
       currentPage: page,

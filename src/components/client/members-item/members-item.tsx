@@ -8,17 +8,18 @@ import linkedin from '@/assets/icons/linkedin.svg'
 import linkedinLight from '@/assets/icons/linkedinLight.svg'
 import gitHub from '@/assets/icons/github.svg'
 import gitHubLight from '@/assets/icons/githubLight.svg'
-import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { base64ToFile } from '@/utils/base64ToFile'
+import { useTranslations } from 'next-intl'
 
 interface MembersItemProps {
   item: any
 }
 
 const MembersItem: FC<MembersItemProps> = ({ item }) => {
+  const t = useTranslations('projects-client')
   const router = useRouter()
   const { theme } = useTheme()
 
@@ -155,17 +156,38 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
         </div>
       </div>
       <div className="h-[1px] w-full bg-stone-500/30" />
-      <div className="my-[23px] flex w-full">
-        <div className="mr-[24px] w-[170px] text-[#0B66F5]">Projects</div>
-        <div className="flex flex-wrap gap-2">
-          {item.technologies.map((tech: any, index: number) => (
-            <div key={tech}>
-              {tech}
-              {index < item.technologies.length - 1 && ','}
-            </div>
-          ))}
+
+      <div className="mb-[24px] mt-[60px] flex w-full justify-between">
+        <div className="w-[200px] text-[20px] text-[#0B66F5]">Projects</div>
+        <div className="flex w-full flex-wrap gap-[12px]">
+          {item.projects.map((project: any) => {
+            const filteredTeam = project.teams.find(
+              (team: any) => team.userId === item._id,
+            )
+
+            return (
+              <div key={project._id}>
+                <div className="flex w-[372px] rounded-full border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[24px] py-[12px] text-[24px] font-bold capitalize backdrop-blur-[12.5px]">
+                  <Link
+                    href={`projects?id=${project._id}`}
+                    className="mr-[18px] cursor-pointer hover:underline"
+                  >
+                    {project.name}
+                  </Link>
+                </div>
+
+                {filteredTeam ? (
+                  <div className="mr-3 text-right">
+                    {t('project involvement')}{' '}
+                    {filteredTeam.percentageWorkProject} %
+                  </div>
+                ) : null}
+              </div>
+            )
+          })}
         </div>
       </div>
+
       <div className="h-[1px] w-full bg-stone-500/30" />
       <div className="my-[23px] flex w-full">
         <div className="mr-[24px] w-[170px] text-[#0B66F5]">Portfolio</div>
