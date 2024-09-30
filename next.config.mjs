@@ -4,9 +4,6 @@ import * as NextMdx from '@next/mdx';
 const withNextIntl = createNextIntlPlugin();
 const withMDX = NextMdx.default({
     extension: /\.mdx?$/,
-    options: {
-        // налаштування remarkPlugins або інші опції
-    },
 });
 
 const nextConfig = {

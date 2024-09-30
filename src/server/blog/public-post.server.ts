@@ -11,7 +11,7 @@ export const publicPost = async (postId: any, isPublished: boolean) => {
       { $set: { isPublished: isPublished } },
     )
 
-    return { success: true }
+    return { success: result.modifiedCount > 0 }
   } catch (err) {
     console.log(err)
     return { success: false }

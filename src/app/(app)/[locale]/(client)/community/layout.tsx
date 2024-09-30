@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { CommunityDashboard } from '@/components/client/community-dashboard/community-dashboard'
-import { projectsDashboardData } from '@/data/projects-dashboard'
+import { projectsDashboardData } from '@/data/users/OlegTkach/projects-dashboard'
 
 export default async function LocaleLayout({
   children,

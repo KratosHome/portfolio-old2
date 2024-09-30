@@ -1,4 +1,4 @@
-interface UserTypes {
+interface IUser {
   createdAt: string
   email: string
   isAdmin: boolean

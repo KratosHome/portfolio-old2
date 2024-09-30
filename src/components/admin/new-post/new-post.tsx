@@ -60,7 +60,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
         url: '',
         local: lang.local,
         isPublished: false,
-        img: image,
+        img: '',
       }
     })
 

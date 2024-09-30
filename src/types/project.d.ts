@@ -1,9 +1,9 @@
-interface WorkPlanItem {
+interface IWorkPlanItem {
   text: string
   completed: boolean
 }
 
-interface TeamMember {
+interface ITeamMember {
   userId: string
   role: 'owner' | 'member' | 'mentor' | 'manager' | 'developer'
   rating?: number
@@ -12,12 +12,12 @@ interface TeamMember {
   deletedAt?: Date
 }
 
-interface ProjectTypes {
+interface IProject {
   _id: string
   name: string
   description: string
   technologies: string[]
-  workPlan: WorkPlanItem[]
+  workPlan: IWorkPlanItem[]
   lookingInTeam?: string[]
   isPublic?: boolean
   percentageProjectCompletion: number
@@ -25,7 +25,7 @@ interface ProjectTypes {
   gitHubLink?: string
   designLink?: string
   contactGroupLink?: string
-  teams: TeamMember[]
+  teams: ITeamMember[]
   status?: 'new' | 'in progress' | 'deploy' | 'completed' | 'archived'
   logo?: string
   newUsers?: string[]
