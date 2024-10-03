@@ -151,5 +151,15 @@
     "development phases": "development phases",
     "project team": "project team",
     "project involvement": "project involvement"
+  },
+  "user-diz": {
+    "Designer Page": "Designer Page",
+    "You can create your own designer page and add it here": "You can create your own designer page and add it here",
+    "View repository on GitHub": "View repository on GitHub",
+    "Submit your pull requests": "Submit your pull requests",
+    "Rules": "Rules",
+    "Use data from the admin panel if available": "Use data from the admin panel if available",
+    "The code should be clean and understandable to others": "The code should be clean and understandable to others",
+    "You can add necessary libraries to solve tasks": "You can add necessary libraries to solve tasks"
   }
 }

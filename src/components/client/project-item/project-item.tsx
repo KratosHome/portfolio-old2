@@ -13,7 +13,7 @@ import check from '@/assets/icons/check.svg'
 import { useTranslations } from 'next-intl'
 
 interface ProjectItemProps {
-  project: ProjectTypes
+  project: IProject
   index: number
 }
 

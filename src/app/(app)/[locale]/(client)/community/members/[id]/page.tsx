@@ -1,26 +1,37 @@
 import React from 'react'
+import { getTranslations } from 'next-intl/server'
 
-const Page = () => {
+const Page = async () => {
+  const t = await getTranslations('user-diz')
+
   return (
-    <div>
-      <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-          <h1 className="mb-4 text-2xl font-bold text-gray-800">Ім&apos;я:</h1>
-          <p className="mb-4 text-lg text-gray-600">
-            Проєкт: <a className="text-blue-500 hover:underline">ів сч с</a>
-          </p>
-          <div className="rounded-lg bg-gray-100 p-4 text-sm text-gray-800">
-            <h2 className="mb-2 text-xl font-semibold">Правила:</h2>
-            <ol className="ml-5 list-decimal">
-              <li>Використовуйте дані з бази, якщо вони вже є.</li>
-              <li>Код повинен бути зрозумілим і читабельним.</li>
-              <li>
-                Додавайте будь-які бібліотеки для вирішення задач, і посилання
-                на GitHub.
-              </li>
-            </ol>
-          </div>
-        </div>
+    <div className="background-item-no-hover mx-auto mt-12 max-w-[1442px] rounded-xl">
+      <div className="mb-8 py-5 text-center">
+        <h1 className="mb-4 text-3xl font-bold">{t('Designer Page')}</h1>
+        <p className="text-lg">
+          {t('You can create your own designer page and add it here')}.
+        </p>
+      </div>
+
+      <div className="mb-6 text-center">
+        <a
+          href="https://github.com/KratosHome/portfolio"
+          className="text-lg text-blue-500 hover:underline"
+        >
+          {t('View repository on GitHub')}
+        </a>
+        <p className="text-gray-600">{t('Submit your pull requests')}</p>
+      </div>
+
+      <div className="rounded-lg p-6 shadow">
+        <h2 className="mb-4 text-2xl font-semibold text-gray-400">
+          {t('Rules')}:
+        </h2>
+        <ul className="list-inside list-disc space-y-2 text-gray-400">
+          <li>{t('Use data from the admin panel if available')}.</li>
+          <li>{t('The code should be clean and understandable to others')}.</li>
+          <li>{t('You can add necessary libraries to solve tasks')}.</li>
+        </ul>
       </div>
     </div>
   )
