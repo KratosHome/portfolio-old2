@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Viewport } from 'next'
-import HomeSnippets from '@/components/snippets/home-snippets'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
+import { Viewport } from 'next'
+import HomeSnippets from '@/components/snippets/home-snippets'
 import { Services } from '@/components/client/services/services'
 import { Projects } from '@/components/client/projects/projects'
 import { Experience } from '@/components/client/experience/experience'
@@ -46,7 +46,7 @@ export async function generateMetadata({ params: { locale } }: PageProps) {
 const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const services = servicesData[locale]
   const projects = projectsData[locale]
-  const dataReviewsSend = dataReviews as any
+  const dataReviewsSend = dataReviews
   const faq = gaqData[locale]
   const experience = experienceData[locale]
 

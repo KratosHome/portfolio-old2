@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getUser } from '@/server/users/get-users.server'
+import { getUser } from '@/server/users/get-user.server'
 
 interface StoreState {
   user: any

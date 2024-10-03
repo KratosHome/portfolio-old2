@@ -7,7 +7,6 @@ import { GoogleTagManager } from '@/components/google-tag-manager/google-tag-man
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ReactNode } from 'react'
 import Head from 'next/head'
-import { Header } from '@/components/header/header'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { SessionProvider } from 'next-auth/react'
@@ -31,7 +30,6 @@ export default async function LocaleLayout({
           <ScrollToTop />
           <StarsCanvas />
           <SessionProvider>
-            <Header />
             <main className="min-h-[90svh]">{children}</main>
             <Footer />
           </SessionProvider>

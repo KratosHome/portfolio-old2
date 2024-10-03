@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getUser } from '@/server/users/get-users.server'
+import { getUser } from '@/server/users/get-user.server'
 
 const useFetchUser = (session: any) => {
   const [userData, setUserData] = useState<any>(null)

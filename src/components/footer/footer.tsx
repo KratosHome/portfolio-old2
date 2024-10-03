@@ -24,19 +24,27 @@ import { messageMe } from '@/server/telegram/message-me.server'
 import { Loader } from '@/components/UI/loader/loader'
 import { toast } from 'react-toastify'
 
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  message: string
+}
+
 export const Footer = () => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
+
   const t = useTranslations('footer')
   const { theme } = useTheme()
   const locale = useLocale()
 
-  const recaptchaRef = useRef<ReCAPTCHA>(null)
   const {
     register,
     handleSubmit,
     reset,
     control,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<FormData>()
 
   const year = new Date().getFullYear()
 
@@ -61,7 +69,7 @@ export const Footer = () => {
       .catch(() => setIsVerified(false))
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
     const sendData = {
       type: 'footer message',

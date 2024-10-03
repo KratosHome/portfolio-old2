@@ -46,7 +46,10 @@ export const getPosts = async (
     const totalPosts = await Post.countDocuments(query)
     const totalPages = Math.ceil(totalPosts / limit)
 
-    const posts = await Post.find(query).skip(skip).limit(limit)
+    const posts = await Post.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
 
     const postsWithUserDetails = await Promise.all(
       posts.map(async (post) => {
