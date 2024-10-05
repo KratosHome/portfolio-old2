@@ -1,4 +1,3 @@
-'use server'
 import { getTranslations } from 'next-intl/server'
 import { Pagination } from '@/components/pagination/pagination'
 import { getPosts } from '@/server/blog/get-posts.server'

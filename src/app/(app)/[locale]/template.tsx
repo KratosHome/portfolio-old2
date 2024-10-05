@@ -54,7 +54,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     path === `/${locale}/community/projects` ||
     path === `/${locale}/community/members` ||
     path.startsWith(`/${locale}/admin/`) ||
-    path.startsWith('/admin/')
+    path.startsWith('/admin/') // Додано цей рядок
   ) {
     userInfoComponent = <Header userInfo={<MenuInfoCodeCraft />} />
   } else if (path === `/${locale}/community/members/${userId}`) {
