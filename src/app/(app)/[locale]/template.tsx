@@ -41,22 +41,27 @@ export default function Template({ children }: { children: React.ReactNode }) {
     return <Error statusCode={404} />
   }
 
-  const userInfoComponentsMap: { [key: string]: JSX.Element } = {
-    [`/`]: <Header userInfo={<MenuInfoOlegTkach />} />,
-    [`/${locale}`]: <Header userInfo={<MenuInfoOlegTkach />} />,
-    [`/${locale}/blog`]: <Header userInfo={<MenuInfoCodeCraft />} />,
-    [`/${locale}/community/projects`]: (
-      <Header userInfo={<MenuInfoCodeCraft />} />
-    ),
-    [`/${locale}/community/members`]: (
-      <Header userInfo={<MenuInfoCodeCraft />} />
-    ),
-    [`/${locale}/community/members/${userId}`]: (
-      <Header userInfo={<MenuInfoUser title={user?.user?.username} />} />
-    ),
-  }
+  let userInfoComponent = null
 
-  const userInfoComponent = userInfoComponentsMap[path] || null
+  if (
+    path === '/' ||
+    path === `/${locale}` ||
+    path === `/${locale}/privacy-policy`
+  ) {
+    userInfoComponent = <Header userInfo={<MenuInfoOlegTkach />} />
+  } else if (
+    path === `/${locale}/blog` ||
+    path === `/${locale}/community/projects` ||
+    path === `/${locale}/community/members` ||
+    path.startsWith(`/${locale}/admin/`) ||
+    path.startsWith('/admin/')
+  ) {
+    userInfoComponent = <Header userInfo={<MenuInfoCodeCraft />} />
+  } else if (path === `/${locale}/community/members/${userId}`) {
+    userInfoComponent = (
+      <Header userInfo={<MenuInfoUser title={user?.user?.username} />} />
+    )
+  }
 
   return (
     <div>

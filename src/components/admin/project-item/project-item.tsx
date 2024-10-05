@@ -22,7 +22,7 @@ interface PlanItem {
 }
 
 interface ProjectItemProps {
-  project: ProjectTypes | any
+  project: IProject | any
   isCrate?: boolean
 }
 

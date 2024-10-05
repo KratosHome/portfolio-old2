@@ -16,6 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
+  const privacyPolicy = local.map((lang) => ({
+    url: `https://codecraftmaster.com/${lang}/privacy-policy`,
+    lastModified: new Date('2023-09-01'),
+    changeFrequency: 'never' as const,
+    priority: 0.8,
+  }))
+
   const blog = local.map((lang) => ({
     url: `https://codecraftmaster.com/${lang}/blog`,
     lastModified: new Date('2023-09-01'),
@@ -60,5 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }))
 
-  return [...homePage, ...blog, ...posts, ...project, ...projects, ...user]
+  return [
+    ...homePage,
+    ...blog,
+    ...posts,
+    ...project,
+    ...projects,
+    ...user,
+    ...privacyPolicy,
+  ]
 }

@@ -4,8 +4,8 @@ import { getUser } from '@/server/users/get-user.server'
 interface StoreState {
   user: any
   fetchUser: (session: any) => Promise<void>
-  saveUser: (newUser: Partial<UserTypes>) => void
-  updateUser: (newUser: Partial<UserTypes>) => void
+  saveUser: (newUser: Partial<IUser>) => void
+  updateUser: (newUser: Partial<IUser>) => void
   clearUser: () => void
 }
 
@@ -39,7 +39,10 @@ export const useStore = create<StoreState>((set) => ({
     const response = await getUser(email)
 
     if (response.success) {
-      const user: UserTypes = {
+      const user: IUser = {
+        id: response.user._id,
+        image: response.user.userLogo,
+        name: response.user.username,
         createdAt: response.user.createdAt,
         email: response.user.email,
         isAdmin: response.user.isAdmin,
@@ -69,9 +72,9 @@ export const useStore = create<StoreState>((set) => ({
       set({ user })
     }
   },
-  saveUser: (newUser: Partial<UserTypes>) =>
+  saveUser: (newUser: Partial<IUser>) =>
     set((state) => ({ user: { ...state.user, ...newUser } })),
-  updateUser: (newUser: Partial<UserTypes>) =>
+  updateUser: (newUser: Partial<IUser>) =>
     set((state) => ({ user: { ...state.user, ...newUser } })),
   clearUser: () =>
     set({

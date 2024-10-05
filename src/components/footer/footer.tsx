@@ -283,7 +283,7 @@ export const Footer = () => {
               />
             </a>
           </div>
-          <Link href={'/privacy-policy'}>{t('Privacy Policy')}</Link>
+          <Link href={`/${locale}/privacy-policy`}>{t('Privacy Policy')}</Link>
         </div>
       </div>
     </footer>
