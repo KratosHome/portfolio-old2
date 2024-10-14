@@ -29,10 +29,11 @@
 
 .wrapper-services-mob {
   display: flex;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  will-change: transform;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
+
 
 .panel {
   will-change: transform;
