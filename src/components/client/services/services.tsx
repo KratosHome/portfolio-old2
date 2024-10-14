@@ -51,6 +51,10 @@ export const Services: FC<any> = ({ services }) => {
     })
   })
 
+  useEffect(() => {
+    ScrollTrigger.refresh()
+  }, [window.innerWidth])
+
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
     const icons = iconRefs.current[index]
