@@ -151,7 +151,7 @@ export const Services: FC<any> = ({ services }) => {
         </div>
         <div className="block lg:hidden">
           <div
-            className="wrapper-services-mob max-w-screen z-20 flex overflow-hidden"
+            className="wrapper-services-mob max-w-screen z-20 flex overflow-y-hidden"
             ref={wrapperRef}
           >
             <h2 className="absolute top-0 block pt-[10px] text-[40px] font-light uppercase lg:hidden">
