@@ -5,7 +5,6 @@ import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
-import { MobileMenu } from '@/components/header/mobile-menu'
 import arrow from '@/assets/icons/arrow-small.svg'
 import arrowBlack from '@/assets/icons/arrow-dark-small.svg'
 import { FC, ReactNode, useEffect, useRef, useState } from 'react'
@@ -17,6 +16,7 @@ import { useSession } from 'next-auth/react'
 import { useStore } from '@/store/user'
 import { projectStore } from '@/store/project'
 import { useTheme } from 'next-themes'
+import { MobileMenu } from '@/components/layout/header/mobile-menu'
 
 interface IMenuProps {
   userInfo?: ReactNode
@@ -136,7 +136,8 @@ export const Header: FC<IMenuProps> = ({ userInfo }) => {
                       )}
                     </li>
                   ))}
-                  <li className="group">
+                  {/*
+                                <li className="group">
                     <Link
                       className="custom-login block rounded-[35px] border-b border-[#0B66F5] px-[15px] py-[10px] text-[#0B66F5] backdrop-blur-[12.5px] dark:border-zinc-600 dark:text-white"
                       href={`/${locale}/login`}
@@ -146,6 +147,7 @@ export const Header: FC<IMenuProps> = ({ userInfo }) => {
                       </span>
                     </Link>
                   </li>
+                     */}
                 </ul>
               </nav>
               <div className="hidden items-center gap-[15px] lg:flex">

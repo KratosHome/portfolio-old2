@@ -16,13 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const privacyPolicy = local.map((lang) => ({
-    url: `https://codecraftmaster.com/${lang}/privacy-policy`,
-    lastModified: new Date('2023-09-01'),
-    changeFrequency: 'never' as const,
-    priority: 0.8,
-  }))
-
   const blog = local.map((lang) => ({
     url: `https://codecraftmaster.com/${lang}/blog`,
     lastModified: new Date('2023-09-01'),
@@ -43,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
   const project = local.map((lang) => ({
-    url: `https://codecraftmaster.com/${lang}/community/projects`,
+    url: `https://codecraftmaster.com/${lang}/mentoring/projects`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
@@ -52,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = local.flatMap((lang) =>
     dataProjects.map((item) => {
       return {
-        url: `https://codecraftmaster.com/${lang}/community/projects/?id=${item._id}`,
+        url: `https://codecraftmaster.com/${lang}/mentoring/projects/?id=${item._id}`,
         lastModified: item.createdAt,
         changeFrequency: 'never' as const,
         priority: 0.5,
@@ -61,19 +54,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   const user = local.map((lang) => ({
-    url: `https://codecraftmaster.com/${lang}/community/members`,
+    url: `https://codecraftmaster.com/${lang}/mentoring/members`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }))
 
-  return [
-    ...homePage,
-    ...blog,
-    ...posts,
-    ...project,
-    ...projects,
-    ...user,
-    ...privacyPolicy,
-  ]
+  return [...homePage, ...blog, ...posts, ...project, ...projects, ...user]
 }

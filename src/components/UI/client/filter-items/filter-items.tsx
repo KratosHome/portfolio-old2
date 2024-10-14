@@ -1,8 +1,6 @@
 'use client'
 import React, { FC, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import filterIcon from '@/assets/icons/filter.svg'
 import {
   Menu,
   MenuButton,
@@ -100,7 +98,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
               {filters.map((filter: any) => (
                 <MenuItem key={filter.id}>
                   <label
-                    className={`relative flex cursor-pointer items-center justify-between rounded-lg border-b-[1px] px-[12px] py-[8px] ${
+                    className={`relative flex cursor-pointer items-center justify-between gap-4 rounded-lg border-b-[1px] px-[12px] py-[8px] ${
                       selectedFilters.includes(filter.id)
                         ? 'border-blue-gradient bg-[#0B66F5] text-white'
                         : 'border-b-[var(--blue-gradient,#0B66F5)] bg-[linear-gradient(127deg,rgba(11,102,245,0.3)_49.23%,rgba(78,128,206,0.15)_83.27%,rgba(255,255,255,0)_102.62%)] duration-300 hover:bg-white dark:hover:bg-[#0B66F5]'

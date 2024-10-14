@@ -1,16 +1,16 @@
 'use client'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import { FC, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Input } from '@/components/UI/input/input'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { verifyCaptcha } from '@/server/verifyCaptcha'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { useLocale } from 'use-intl'
-import { Modal } from '@/components/UI/modal/modal'
-import { Loader } from '@/components/UI/loader/loader'
+import { Loader } from '@/components/UI/client/loader/loader'
+import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Modal } from '@/components/UI/client/modal/modal'
+import { Input } from '@/components/UI/client/input/input'
 
 export const HireMe: FC<any> = ({ title, modalTitle }) => {
   const locale = useLocale()
@@ -74,6 +74,7 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
       >
         <ButtonCircle title={title} className="!z-30" />
       </div>
+      {/* eslint-disable-next-line react/jsx-no-undef */}
       <Modal
         isOpen={open}
         onClose={() => setClose(false)}

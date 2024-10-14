@@ -1,11 +1,11 @@
-'usce client'
+import { Header } from '@/components/layout/header/header'
+;('usce client')
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import { useLocale } from 'use-intl'
-import { Header } from '@/components/header/header'
-import MenuInfoOlegTkach from '@/components/users/OlegTkach/menu-info-oleg-tkach'
 import MenuInfoCodeCraft from '@/components/client/menu-info/menu-info-code-craft'
 import { MenuInfoUser } from '@/components/client/menu-info/menu-info-user'
+import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-info-oleg-tkach'
 
 const TemplateMenu = () => {
   const path = usePathname()

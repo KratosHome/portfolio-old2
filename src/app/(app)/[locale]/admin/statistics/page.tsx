@@ -1,4 +1,4 @@
-import { Donat } from '@/components/UI/donat/donat'
+import { Donat } from '@/components/UI/client/donat/donat'
 
 const Page = () => {
   return (

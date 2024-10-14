@@ -1,13 +1,13 @@
 'use client'
 import { usePathname } from 'next/navigation'
-import { Header } from '@/components/header/header'
 import { MenuInfoUser } from '@/components/client/menu-info/menu-info-user'
 import MenuInfoCodeCraft from '@/components/client/menu-info/menu-info-code-craft'
-import MenuInfoOlegTkach from '@/components/users/OlegTkach/menu-info-oleg-tkach'
 import { useLocale } from 'use-intl'
 import { useEffect, useState } from 'react'
 import { getUser } from '@/server/users/get-user.server'
 import Error from 'next/error'
+import { Header } from '@/components/layout/header/header'
+import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-info-oleg-tkach'
 
 interface User {
   success: boolean
@@ -64,9 +64,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div>
-      {userInfoComponent}
+    <>
+      <Header userInfo={<MenuInfoOlegTkach />} />
       {children}
-    </div>
+    </>
   )
 }

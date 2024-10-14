@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Grid } from 'swiper/modules'
 import { HireMe } from '@/components/client/hire-me/hire-me'
-import { dataReviews } from '@/data/users/OlegTkach/reviews'
+import { dataReviews } from '@/data/reviews'
 
 export const Reviews = ({}: any) => {
   const projectsRefs = useRef<HTMLDivElement[]>([])
@@ -42,7 +42,7 @@ export const Reviews = ({}: any) => {
 
     gsap.to(serviceRef, {
       height: 'auto',
-      duration: 1,
+      duration: 0.5,
       ease: 'power2.out',
     })
   })
@@ -52,7 +52,7 @@ export const Reviews = ({}: any) => {
 
     gsap.to(serviceRef, {
       height: '420px',
-      duration: 1,
+      duration: 0.5,
       ease: 'power2.out',
     })
   })
@@ -92,7 +92,7 @@ export const Reviews = ({}: any) => {
                     ref={(el: any) => (projectsRefs.current[index] = el!)}
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={() => handleMouseLeave(index)}
-                    className="reviews-card group relative z-30 m-4 flex h-[420px] w-[360px] flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
+                    className="reviews-card group relative z-30 m-4 flex h-[420px] w-[420px] flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
                   >
                     <div className="overflow-hidden">
                       <div className="text-[20px] font-light">

@@ -1,16 +1,16 @@
 'use client'
 import { FC, useEffect, useState } from 'react'
-import { AdminButton } from '@/components/UI/admin-button/admin-button'
 import { acceptUserProject } from '@/server/project/accept-user-project.server'
 import { toast } from 'react-toastify'
 import { rejectUserProject } from '@/server/project/reject-user-project.server'
 import { projectStore } from '@/store/project'
-import { Input } from '@/components/UI/input/input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslations } from 'next-intl'
 import { removeFromTeamServer } from '@/server/project/remove-from-team.server'
-import { Loader } from '@/components/UI/loader/loader'
 import { updateProjectUser } from '@/server/project/update-users-priject'
+import { Loader } from '@/components/UI/client/loader/loader'
+import { Input } from '@/components/UI/client/input/input'
+import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
 
 export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
   const { fetchProjects } = projectStore()

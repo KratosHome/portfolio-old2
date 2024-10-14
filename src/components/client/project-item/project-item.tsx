@@ -1,16 +1,13 @@
 'use client'
 import { FC, useState, useEffect } from 'react'
-import { Modal } from '@/components/UI/modal/modal'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { marked } from 'marked'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
-import { useStore } from '@/store/user'
-import { joinProjects } from '@/server/project/join-project.server'
-import { toast } from 'react-toastify'
 import Image from 'next/image'
 import { cn } from '@/utils/cn'
 import check from '@/assets/icons/check.svg'
 import { useTranslations } from 'next-intl'
+import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Modal } from '@/components/UI/client/modal/modal'
+import { JoinProject } from '@/components/client/project-item/join-project'
 
 interface ProjectItemProps {
   project: IProject
@@ -21,8 +18,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
   const t = useTranslations('projects-client')
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { user } = useStore()
 
+  const [join, setJoin] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -32,21 +29,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
     }
   }, [searchParams, project._id])
 
-  const joinProject = async () => {
-    if (user._id) {
-      const join = await joinProjects(project._id, user._id)
-      if (join.success) {
-        toast(`${t('Application has been sent')}`, {
-          type: 'success',
-        })
-      } else {
-        toast(`${t('already submitted')}`, {
-          type: 'error',
-        })
-      }
-    } else {
-      router.push(`/login`)
-    }
+  const joinProject = () => {
+    setJoin(!join)
   }
 
   const closeModal = () => {
@@ -364,6 +348,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
           </div>
         </div>
       </Modal>
+      <JoinProject open={join} setClose={joinProject} />
     </div>
   )
 }

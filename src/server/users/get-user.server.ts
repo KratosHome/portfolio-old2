@@ -8,7 +8,7 @@ export const getUser = async (id: string) => {
   noStore()
   try {
     await connectToDb()
-    const user = await User.findOne({ _id: id })
+    const user = await User.findOne({ email: id })
 
     return {
       success: true,

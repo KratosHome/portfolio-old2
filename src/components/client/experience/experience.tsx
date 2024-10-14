@@ -5,7 +5,6 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 
 interface ExperienceItem {

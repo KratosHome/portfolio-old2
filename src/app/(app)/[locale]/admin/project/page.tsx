@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
 import { projectStore } from '@/store/project'
 import { ProjectItem } from '@/components/admin/project-item/project-item'
 import { useStore } from '@/store/user'

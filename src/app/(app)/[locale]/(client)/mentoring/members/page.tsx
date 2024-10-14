@@ -1,8 +1,8 @@
 import { getUserClient } from '@/server/users/get-users-client.server'
 import MembersItem from '@/components/client/members-item/members-item'
-import { Pagination } from '@/components/pagination/pagination'
 import { getTranslations } from 'next-intl/server'
-import { FilterItems } from '@/components/filter-items/filter-items'
+import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
+import { Pagination } from '@/components/UI/client/pagination/pagination'
 
 export default async function Page({ params: { locale }, searchParams }: any) {
   const t = await getTranslations('page.users')
@@ -28,18 +28,6 @@ export default async function Page({ params: { locale }, searchParams }: any) {
         </h1>
       </div>
       <div className="mt-[136px]">
-        <div className="flex flex-wrap sm:gap-9">
-          <FilterItems
-            title={t('All filters')}
-            url={'technologies'}
-            filters={users.technologies}
-          />
-          <FilterItems
-            title={t('All authors')}
-            url={'workExperience'}
-            filters={users.workExperience}
-          />
-        </div>
         {users.users.map((item: any) => (
           <MembersItem item={item} key={item.id} />
         ))}

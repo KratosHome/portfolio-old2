@@ -1,132 +1,132 @@
 const menuDataEn = [
   {
     name: 'Projects',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Members',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataUk = [
   {
     name: 'Проєкти',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Учасники',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataEs = [
   {
     name: 'Proyectos',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Miembros',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataFr = [
   {
     name: 'Projets',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Membres',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataDe = [
   {
     name: 'Projekte',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Mitglieder',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataZh = [
   {
     name: '项目',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: '成员',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataJa = [
   {
     name: 'プロジェクト',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'メンバー',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataIt = [
   {
     name: 'Progetti',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Membri',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataPt = [
   {
     name: 'Projetos',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Membros',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataSv = [
   {
     name: 'Projekt',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'Medlemmar',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataKo = [
   {
     name: '프로젝트',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: '회원',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 
 const menuDataHi = [
   {
     name: 'प्रोजेक्ट्स',
-    link: 'community/projects',
+    link: 'mentoring/projects',
   },
   {
     name: 'सदस्य',
-    link: 'community/members',
+    link: 'mentoring/members',
   },
 ]
 

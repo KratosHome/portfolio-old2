@@ -5,10 +5,10 @@ import { getAllPosts } from '@/server/blog/get-all-post-server'
 import { publicPost } from '@/server/blog/public-post.server'
 import { deletePostServer } from '@/server/blog/delete-post.server'
 import { toast } from 'react-toastify'
-import { Loader } from '@/components/UI/loader/loader'
 import { useLocale } from 'use-intl'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Loader } from '@/components/UI/client/loader/loader'
 
 export const ControlPosts = () => {
   const locale = useLocale()

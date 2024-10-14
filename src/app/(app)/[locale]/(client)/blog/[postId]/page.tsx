@@ -1,12 +1,12 @@
 import { getTranslations } from 'next-intl/server'
 import { getPost } from '@/server/blog/get-post.server'
 import { notFound } from 'next/navigation'
-import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
 import { formatDate } from '@/utils/formatDate'
 import { AddLike } from '@/components/client/blog/add-like'
 import { SocialNetworks } from '@/components/client/blog/social-networks'
 import { CommentsItem } from '@/components/client/blog/comments-item'
 import { LeaveComment } from '@/components/client/blog/leave-comment'
+import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 
 export default async function Page({ params: { locale, postId } }: any) {
   const t = await getTranslations('post-client')

@@ -68,20 +68,20 @@ export const Projects: FC<any> = ({ projects }) => {
     gsap.to(descriptionRef, {
       height: 'auto',
       opacity: 1,
-      duration: 1,
+      duration: 1.5,
       ease: 'power2.out',
     })
 
     gsap.to(serviceRef, {
-      height: 'auto',
+      height: 'max-content',
       minHeight: '552px',
-      duration: 0.3,
+      duration: 0.7,
       ease: 'power2.out',
     })
 
     gsap.to(serviceRef.querySelectorAll('.icon-item'), {
       opacity: 1,
-      duration: 0.3,
+      duration: 0.7,
       stagger: 0.1,
       height: 'auto',
       ease: 'power2.out',
@@ -95,13 +95,13 @@ export const Projects: FC<any> = ({ projects }) => {
     gsap.to(descriptionRef, {
       height: '0px',
       opacity: 0,
-      duration: 1,
+      duration: 1.5,
       ease: 'power2.out',
     })
 
     gsap.to(serviceRef, {
       height: '552px',
-      duration: 0.5,
+      duration: 0.1,
       ease: 'power2.out',
     })
 

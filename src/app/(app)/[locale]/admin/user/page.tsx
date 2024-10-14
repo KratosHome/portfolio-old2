@@ -1,19 +1,19 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { Input } from '@/components/UI/input/input'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useTranslations } from 'next-intl'
 import { updateUser } from '@/server/users/update-user.server'
 import { useSession } from 'next-auth/react'
-import { AdminButton } from '@/components/UI/admin-button/admin-button'
 import { sendEmailTokenServer } from '@/server/auth/confirm-email.server'
 import { useStore } from '@/store/user'
 import { MdDelete } from 'react-icons/md'
 import ReactQuill from 'react-quill'
-import { CustomToolbarQuill } from '@/components/UI/custom-toolbar-quill/custom-toolbar-quill'
 import { convertToBase64 } from '@/utils/convertToBase64'
 import { base64ToFile } from '@/utils/base64ToFile'
+import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
+import { Input } from '@/components/UI/client/input/input'
+import { CustomToolbarQuill } from '@/components/UI/client/custom-toolbar-quill/custom-toolbar-quill'
 
 const Page = () => {
   const roles = [
@@ -254,6 +254,7 @@ const Page = () => {
         {!user?.isEmailVerified && (
           <div className="flex flex-col items-center">
             <div>Підтвердіть ваш імейл:</div>
+            {/* eslint-disable-next-line react/jsx-no-undef */}
             <AdminButton
               className="mt-1"
               disabled={loading}

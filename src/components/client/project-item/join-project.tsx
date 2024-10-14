@@ -1,33 +1,33 @@
-'use client'
-import { FC, useRef, useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { verifyCaptcha } from '@/server/verifyCaptcha'
+import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
-import { addComments } from '@/server/blog/add-commetns'
-import { useStore } from '@/store/user'
-import Link from 'next/link'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
 
-export const LeaveComment: FC<any> = ({ postId }) => {
+interface JoinProjectProps {
+  open: boolean
+  setClose: (value: boolean) => void
+}
+
+export const JoinProject: FC<JoinProjectProps> = ({ open, setClose }) => {
   const locale = useLocale()
-  const { user } = useStore()
-  const t = useTranslations('post-client')
+  const t = useTranslations('home-page.HireMe')
 
   const {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<any>()
 
-  const [open, setClose] = useState<boolean>(false)
-  const [openIsUser, setCloseIsUser] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean | undefined>(false)
   const [isVerified, setIsVerified] = useState<boolean>(false)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
@@ -38,26 +38,18 @@ export const LeaveComment: FC<any> = ({ postId }) => {
       .catch(() => setIsVerified(false))
   }
 
-  const openModal = () => {
-    if (user) {
-      setClose(true)
-    } else {
-      setCloseIsUser(true)
-    }
-  }
-
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     setLoading(true)
     const sendData = {
-      userId: user?._id,
-      postId: postId,
-      author: user?.username,
-      userLogo: user?.userLogo,
+      type: 'hire',
       locale: locale,
+      name: data.name,
+      email: data.email,
+      number: data.phone,
       message: data.message,
     }
     if (isVerified) {
-      const result = await addComments(sendData)
+      const result = await messageMe(sendData)
       if (result?.success) {
         toast(`${t('The message has been sent')}`, {
           type: 'success',
@@ -76,44 +68,68 @@ export const LeaveComment: FC<any> = ({ postId }) => {
   return (
     <>
       {loading && <Loader />}
-      <div
-        onClick={openModal}
-        className="!z-50 mt-[115px] flex cursor-pointer justify-end"
-        style={{
-          zIndex: 50,
-        }}
-      >
-        <ButtonCircle title={'LEAVE COMMENT'} className="!z-30" />
-      </div>
       <Modal
         isOpen={open}
         onClose={() => setClose(false)}
         className="flex flex-col justify-end rounded-lg border-b border-black bg-[127deg] bg-gradient-to-r from-[rgba(11,102,245,0.30)] via-[rgba(78,128,206,0.15)] to-transparent px-3 backdrop-blur-[12.5px] lg:px-8"
       >
         <div className="w-[300px] lg:w-[400px]">
-          <h2 className="text-center text-[40px] font-bold uppercase text-[#0B66F5]">
-            {t('leave-comment')}
-          </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <Input
-                type={'textarea'}
-                placeholder={t('message')}
-                name={'message'}
+                type={'text'}
+                placeholder={t('name')}
+                name={'name'}
                 register={{
-                  ...register('message', {
+                  ...register('name', {
                     required: `${t('This field is required')}`,
                     minLength: {
-                      value: 10,
-                      message: `${t('Minimum number of characters')} 10`,
+                      value: 4,
+                      message: `${t('Minimum number of characters')} 4`,
                     },
                     maxLength: {
-                      value: 1000,
-                      message: `${t('Maximum number of characters')} 1000`,
+                      value: 50,
+                      message: `${t('Maximum number of characters')} 50`,
                     },
                   }),
                 }}
-                error={errors.message?.message}
+                error={errors.name?.message}
+              />
+              <Input
+                type={'text'}
+                placeholder={t('email')}
+                name={'email'}
+                register={{
+                  ...register('email', {
+                    required: `${t('This field is required')}`,
+                    pattern: {
+                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                      message: `${t('This is not an email')}`,
+                    },
+                  }),
+                }}
+                error={errors.email?.message}
+              />
+              <Input
+                type={'phone'}
+                placeholder={t('phone')}
+                name={'phone'}
+                control={control}
+                rules={{
+                  required: `${t('This field is required')}`,
+                  pattern: {
+                    value: /^\+\d{2}\s?\(\d{3}\)\s?\d{3}-\d{4}$/,
+                    message: `${t('Invalid phone number format')}`,
+                  },
+                }}
+                error={errors.phone?.message}
+              />
+              <textarea
+                className={`mt-[12px] h-[125px] w-full resize-none rounded-[8px] border-[1px] border-white bg-transparent px-[8px] py-[14px] text-[16px] text-[white] placeholder-[#FAFAFA]`}
+                placeholder={t('message')}
+                {...register('message', {
+                  required: false,
+                })}
               />
             </div>
             <div className="flex flex-col items-center">
@@ -126,25 +142,6 @@ export const LeaveComment: FC<any> = ({ postId }) => {
               <ButtonCircle title={t('send')} className="mt-3" />
             </div>
           </form>
-        </div>
-      </Modal>
-      <Modal
-        isOpen={openIsUser}
-        onClose={() => setCloseIsUser(false)}
-        className="flex flex-col justify-end rounded-lg border-b border-black bg-[127deg] bg-gradient-to-r from-[rgba(11,102,245,0.30)] via-[rgba(78,128,206,0.15)] to-transparent px-3 backdrop-blur-[12.5px] lg:px-8"
-      >
-        <div className="p-6 text-center">
-          <h2 className="text-xl font-semibold">{t('please log in')}</h2>
-          <p className="mt-4">
-            {t('You must be logged in to leave a like or dislike.')}
-          </p>
-          <Link
-            href="/login"
-            className="mt-6 block rounded-lg bg-blue-500 px-6 py-2 text-white shadow-md transition-all duration-200 hover:bg-blue-600"
-            onClick={() => setCloseIsUser(false)}
-          >
-            {t('sign in')}
-          </Link>
         </div>
       </Modal>
     </>

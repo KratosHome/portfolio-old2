@@ -3,8 +3,8 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { useLocale } from 'use-intl'
 import { usePathname } from 'next/navigation'
-import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
 import { useTranslations } from 'next-intl'
+import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 
 interface CommunityDashboardProps {
   data: any

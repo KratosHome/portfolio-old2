@@ -18,9 +18,7 @@ import { AiOutlineWechat } from 'react-icons/ai'
 import { useStore } from '@/store/user'
 import { teamStore } from '@/store/team'
 import Image from 'next/image'
-import { Loader } from '@/components/UI/loader/loader'
-import { auth } from '@/server/auth/auth.server'
-import { useSession } from 'next-auth/react'
+import { Loader } from '@/components/UI/client/loader/loader'
 
 const icons = {
   MdOutlineWorkHistory,

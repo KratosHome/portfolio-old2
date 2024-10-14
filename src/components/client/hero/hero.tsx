@@ -11,10 +11,18 @@ import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { Technologies } from '@/components/client/hero/technologies/technologies'
 import { HireMe } from '@/components/client/hire-me/hire-me'
+import { useEffect, useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
   const { theme } = useTheme()
+
+  const bigСircleRef = useRef<HTMLDivElement>(null)
+  const bgRef = useRef<HTMLDivElement>(null)
+  const hireMeRef = useRef<HTMLDivElement>(null)
+  const planetRef = useRef<HTMLDivElement>(null)
 
   const startDate = new Date('2021-10-01')
 
@@ -25,15 +33,85 @@ const Hero = () => {
 
   const years = calculateYears(startDate, new Date())
 
+  useGSAP(() => {
+    if (bigСircleRef.current) {
+      gsap.fromTo(
+        bigСircleRef.current,
+        {
+          scale: 0.1,
+          opacity: 0.5,
+          y: -100,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 2,
+          ease: 'power2.out',
+        },
+      )
+    }
+
+    if (bgRef.current) {
+      gsap.fromTo(
+        bgRef.current,
+        {
+          x: -200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 0.5,
+          duration: 2,
+          ease: 'power2.out',
+        },
+      )
+    }
+
+    if (hireMeRef.current) {
+      gsap.fromTo(
+        hireMeRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 1.5,
+        },
+      )
+    }
+
+    if (planetRef.current) {
+      gsap.fromTo(
+        planetRef.current,
+        {
+          opacity: 0,
+          rotation: 340,
+        },
+        {
+          opacity: 1,
+          rotation: 0,
+          duration: 2.5,
+          ease: 'power2.out',
+        },
+      )
+    }
+  })
   return (
     <section className="relative min-h-[1700px] overflow-x-hidden lg:overflow-visible">
       <div className="relative mx-auto max-w-[1442px] px-[24px]">
         <div className="flex flex-col items-center justify-between lg:flex-row">
-          <div className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] backdrop-blur-[12.5px] dark:border-[1px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[50px] lg:left-[20px] lg:size-[280px]" />
-          <div className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-contain bg-ellipse-light-pattern dark:bg-ellipse-pattern dark:opacity-[0.4] lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]" />
+          <div
+            ref={bigСircleRef}
+            className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] opacity-0 backdrop-blur-[12.5px] dark:border-[1px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[50px] lg:left-[20px] lg:size-[280px]"
+          />
+          <div
+            ref={bgRef}
+            className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-contain opacity-0 bg-ellipse-light-pattern dark:bg-ellipse-pattern lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]"
+          />
           <div className="w-full max-w-[400px] lg:max-w-[600px]">
             <h1 className="relative mt-[55px] flex w-full max-w-[300px] flex-col uppercase lg:-mt-[50px] lg:max-w-full">
-              <span className="overlay-theme-fr delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] text-[#0B66F5] dark:text-white lg:text-[80px]">
+              <span className="overlay-theme-fr delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] text-[#0B66F5] lg:text-[80px]">
                 {t('frontend')}
               </span>
               <span className="overlay-theme-dv delay-2 -mt-[10px] inline-block text-[36px] font-light uppercase lg:text-[64px]">
@@ -98,7 +176,10 @@ const Hero = () => {
                 />
               </a>
             </div>
-            <div className="absolute left-0 lg:-top-[120px] lg:left-[310px]">
+            <div
+              ref={hireMeRef}
+              className="absolute left-0 opacity-0 lg:-top-[120px] lg:left-[310px]"
+            >
               <HireMe title={t('hire-me')} modalTitle={t('hire-me')} />
             </div>
           </div>
@@ -121,7 +202,10 @@ const Hero = () => {
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/0" />
       <div className="relative mx-auto max-w-[1442px]">
-        <div className="absolute -right-[150px] bottom-0 -mt-[290px] rotate-[25deg]">
+        <div
+          ref={planetRef}
+          className="absolute -right-[150px] bottom-0 -mt-[290px] rotate-[25deg] opacity-0"
+        >
           <div className="relative max-h-[500px] max-w-[500px]">
             <div className="circle-hero absolute right-[100px] ml-[110px] mt-[70px] size-[125px] rounded-full bg-[rgba(255,255,255,0.3)] p-[135px] opacity-40 blur-2xl" />
             <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[250px] rounded-full bg-black" />

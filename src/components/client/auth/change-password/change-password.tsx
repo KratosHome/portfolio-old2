@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLocale } from 'use-intl'
-import { Input } from '@/components/UI/input/input'
+import { Input } from '@/components/UI/client/input/input'
 
 interface changePasswordFormValues {
   password: string

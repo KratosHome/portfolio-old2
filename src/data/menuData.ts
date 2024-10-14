@@ -35,16 +35,16 @@ export const menuDataEn = [
     subMenu: [],
   },
   {
-    name: 'Community',
-    link: 'community/projects',
+    name: 'Mentoring',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Projects',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Members',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -86,16 +86,16 @@ export const menuDataUk = [
     subMenu: [],
   },
   {
-    name: 'Спільнота',
-    link: 'community/projects',
+    name: 'Наставництво',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Проєкти',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Учасники',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -138,16 +138,16 @@ export const menuDataFr = [
     subMenu: [],
   },
   {
-    name: 'Communauté',
-    link: 'community/projects',
+    name: 'Mentorat',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Projets',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Membres',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -190,16 +190,16 @@ export const menuDataDe = [
     subMenu: [],
   },
   {
-    name: 'Gemeinschaft',
-    link: 'community/projects',
+    name: 'Mentoring',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Projekte',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Mitglieder',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -242,16 +242,16 @@ export const menuDataEs = [
     subMenu: [],
   },
   {
-    name: 'Comunidad',
-    link: 'community/projects',
+    name: 'Mentoría',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Proyectos',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Miembros',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -294,16 +294,16 @@ export const menuDataHi = [
     subMenu: [],
   },
   {
-    name: 'समुदाय',
-    link: 'community/projects',
+    name: 'मेंटरिंग',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'परियोजनाएं',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'सदस्य',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -346,16 +346,16 @@ export const menuDataIt = [
     subMenu: [],
   },
   {
-    name: 'Comunità',
-    link: 'community/projects',
+    name: 'Mentoring',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Progetti',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Membri',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -398,16 +398,16 @@ export const menuDataJa = [
     subMenu: [],
   },
   {
-    name: 'コミュニティ',
-    link: 'community/projects',
+    name: 'メンタリング',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'プロジェクト',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'メンバー',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -450,16 +450,16 @@ export const menuDataKo = [
     subMenu: [],
   },
   {
-    name: '커뮤니티',
-    link: 'community/projects',
+    name: '멘토링',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: '프로젝트',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: '회원',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -502,16 +502,16 @@ export const menuDataPt = [
     subMenu: [],
   },
   {
-    name: 'Comunidade',
-    link: 'community/projects',
+    name: 'Mentoria',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Projetos',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Membros',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -554,16 +554,16 @@ export const menuDataSv = [
     subMenu: [],
   },
   {
-    name: 'Community',
-    link: 'community/projects',
+    name: 'Mentorskap',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: 'Projekt',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: 'Medlemmar',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },
@@ -606,16 +606,16 @@ export const menuDataZh = [
     subMenu: [],
   },
   {
-    name: '社区',
-    link: 'community/projects',
+    name: '导师',
+    link: 'mentoring/projects',
     subMenu: [
       {
         name: '项目',
-        link: 'community/projects',
+        link: 'mentoring/projects',
       },
       {
         name: '成员',
-        link: 'community/members',
+        link: 'mentoring/members',
       },
     ],
   },

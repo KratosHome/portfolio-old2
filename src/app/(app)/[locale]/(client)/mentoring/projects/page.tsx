@@ -1,8 +1,8 @@
 import { getProjects } from '@/server/project/get-projects.server'
 import { ProjectItem } from '@/components/client/project-item/project-item'
-import { FilterItems } from '@/components/filter-items/filter-items'
 import { getTranslations } from 'next-intl/server'
-import { Pagination } from '@/components/pagination/pagination'
+import { Pagination } from '@/components/UI/client/pagination/pagination'
+import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
 
 export default async function Page({ params: { locale }, searchParams }: any) {
   const t = await getTranslations('projects-client')

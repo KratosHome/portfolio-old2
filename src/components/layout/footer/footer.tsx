@@ -1,18 +1,15 @@
 'use client'
 import './footer.scss'
-import Link from 'next/link'
 import arrowDown from '@/assets/icons/arrow-down.svg'
 import arrowDownLight from '@/assets/icons/arrowDownLight.svg'
 import ArrowRight from '@/assets/icons/ArrowRight.svg'
 import Image from 'next/image'
-import { Input } from '@/components/UI/input/input'
 import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
-import gitHubLight from '@/assets/icons/githubLight.svg'
 import gitHub from '@/assets/icons/github.svg'
+import gitHubLight from '@/assets/icons/gitHubLight.svg'
 import linkedinLight from '@/assets/icons/linkedinLight.svg'
 import linkedin from '@/assets/icons/linkedin.svg'
 import telegramLight from '@/assets/icons/telegramLight.svg'
@@ -21,8 +18,10 @@ import { useTheme } from 'next-themes'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { verifyCaptcha } from '@/server/verifyCaptcha'
 import { messageMe } from '@/server/telegram/message-me.server'
-import { Loader } from '@/components/UI/loader/loader'
 import { toast } from 'react-toastify'
+import { Loader } from '@/components/UI/client/loader/loader'
+import { Input } from '@/components/UI/client/input/input'
+import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 
 interface FormData {
   name: string
@@ -283,7 +282,9 @@ export const Footer = () => {
               />
             </a>
           </div>
-          <Link href={`/${locale}/privacy-policy`}>{t('Privacy Policy')}</Link>
+          {/*
+                      <Link href={`/${locale}/privacy-policy`}>{t('Privacy Policy')}</Link>
+             */}
         </div>
       </div>
     </footer>

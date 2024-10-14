@@ -2,17 +2,17 @@
 import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Input } from '@/components/UI/input/input'
-import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
-import { BigLuna } from '@/components/UI/big-luna/big-luna'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import Link from 'next/link'
-import { Loader } from '@/components/UI/loader/loader'
 import { singUp } from '@/server/auth/sing-up.server'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { GitHub } from '@/components/client/auth/git-hub/git-hub'
 import { Google } from '@/components/client/auth/google/google'
+import { Loader } from '@/components/UI/client/loader/loader'
+import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
+import { BigLuna } from '@/components/UI/client/big-luna/big-luna'
+import { Input } from '@/components/UI/client/input/input'
+import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 
 interface registerFormValues {
   username: string

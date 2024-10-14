@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { Donat } from '@/components/UI/donat/donat'
 import { NewPost } from '@/components/admin/new-post/new-post'
 import { useStore } from '@/store/user'
 import Link from 'next/link'
 import { ControlPosts } from '@/components/admin/control-posts/control-posts'
+import { Donat } from '@/components/UI/client/donat/donat'
 
 const Page = () => {
   const { user } = useStore()

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { homeJsonLd } from '@/data/users/OlegTkach/jsonLd/home'
+import { homeJsonLd } from '@/data/jsonLd/home'
 
 interface MainSchemaProps {
   locale: LanguageProps

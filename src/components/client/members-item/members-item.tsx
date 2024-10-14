@@ -1,6 +1,5 @@
 'use client'
 import { FC } from 'react'
-import { ButtonCircle } from '@/components/UI/button-circle/button-circle'
 import Link from 'next/link'
 import Image from 'next/image'
 import { RxAvatar } from 'react-icons/rx'
@@ -13,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { base64ToFile } from '@/utils/base64ToFile'
 import { useTranslations } from 'next-intl'
+import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 
 interface MembersItemProps {
   item: any
@@ -31,11 +31,6 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
   }
 
   const truncatedContent = truncateText(item.aboutMe, 1550)
-  console.log('item', item)
-
-  const onProfileClick = () => {
-    router.push(`members/${item._id}`)
-  }
 
   const openResume = () => {
     const pdfFile = base64ToFile(item.resume, `${item.username}.pdf`)
@@ -46,6 +41,9 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       toast.error('Файл PDF не вибрано')
     }
   }
+
+  console.log(item)
+
   return (
     <div className="background-item-no-hover relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
       <div className="relative mt-[15px] h-[20px] w-full rounded-[50px] border-t border-white/30">
@@ -189,28 +187,9 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       </div>
 
       <div className="h-[1px] w-full bg-stone-500/30" />
-      <div className="my-[23px] flex w-full">
-        <div className="mr-[24px] w-[170px] text-[#0B66F5]">Portfolio</div>
-        <div className="flex flex-wrap gap-2">
-          {item.technologies.map((tech: any, index: number) => (
-            <div key={tech}>
-              {tech}
-              {index < item.technologies.length - 1 && ','}
-            </div>
-          ))}
-        </div>
-      </div>
       <div className="h-[1px] w-full bg-stone-500/30" />
-      <div className="flex justify-between">
-        <div>
-          <div className="mr-[24px] w-[170px] text-[#0B66F5]">Rating</div>
-        </div>
+      <div className="mt-4 flex justify-end">
         <div className="flex flex-wrap gap-[24px]">
-          <ButtonCircle
-            title={'profile'}
-            className="bg-black/60"
-            onClick={onProfileClick}
-          />
           <ButtonCircle title={'RESUME'} onClick={openResume} />
         </div>
       </div>

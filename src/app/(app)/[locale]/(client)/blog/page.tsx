@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server'
-import { Pagination } from '@/components/pagination/pagination'
 import { getPosts } from '@/server/blog/get-posts.server'
-import { ButtonBeck } from '@/components/UI/button-beck/button-beck'
 import { PostItem } from '@/components/client/post-itme/post-itme'
-import { FilterItems } from '@/components/filter-items/filter-items'
+import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
+import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
+import { Pagination } from '@/components/UI/client/pagination/pagination'
 
 export default async function Page({ params: { locale }, searchParams }: any) {
   const t = await getTranslations('post-client')
@@ -28,11 +28,13 @@ export default async function Page({ params: { locale }, searchParams }: any) {
             url={'filters'}
             filters={post.categories}
           />
-          <FilterItems
+          {/*
+                 <FilterItems
             title={t('All authors')}
             url={'authors'}
             filters={post.authors}
           />
+             */}
         </div>
         <div className="flex min-h-screen flex-col justify-between">
           <div className="flex flex-wrap items-center justify-center gap-10 lg:justify-start">

@@ -1,12 +1,12 @@
 'use client'
 import { FC, useEffect, useState } from 'react'
 import { addLikeServer } from '@/server/blog/add-like.server'
-import { Loader } from '@/components/UI/loader/loader'
-import { Modal } from '@/components/UI/modal/modal'
 import Link from 'next/link'
 import { useStore } from '@/store/user'
 import { useTheme } from 'next-themes'
 import { addDizLikeServer } from '@/server/blog/add-diz-like.server'
+import { Loader } from '@/components/UI/client/loader/loader'
+import { Modal } from '@/components/UI/client/modal/modal'
 
 export const AddLike: FC<any> = ({ postContent }) => {
   const { user } = useStore()
