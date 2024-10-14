@@ -29,28 +29,28 @@ export const Services: FC<any> = ({ services }) => {
     setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
   }, [theme])
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!wrapperRef.current) return
-
+    const sections = gsap.utils.toArray('.panel')
     const isDesktop = window.innerWidth >= 600
-
-    if (isDesktop) {
-      const sections = gsap.utils.toArray('.panel')
-      const xPercentValue = -102 * (sections.length - 1)
-
-      gsap.to(sections, {
-        xPercent: xPercentValue,
-        ease: 'none',
-        scrollTrigger: {
-          anticipatePin: 2,
-          trigger: wrapperRef.current,
-          pin: true,
-          scrub: 0.1,
-          end: '+=3000',
-        },
-      })
+    const xPercentValue = isDesktop
+      ? -102 * (sections.length - 1)
+      : -108 * (sections.length - 1)
+    gsap.to(sections, {
+      xPercent: xPercentValue,
+      ease: 'none',
+      scrollTrigger: {
+        anticipatePin: 2,
+        trigger: wrapperRef.current,
+        pin: true,
+        scrub: 0.1,
+        end: '+=3000',
+      },
+    })
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
-  })
+  }, [])
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
