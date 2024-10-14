@@ -329,7 +329,7 @@ export const Projects: FC<any> = ({ projects }) => {
             <HireMe title={t('resume')} modalTitle={t('resume')} />
           </div>
         </div>
-        <div className="absolute -bottom-[180px] right-0 h-[90px] w-[100px] rotate-[10deg] bg-contain bg-ellipse-light-pattern dark:bg-ellipse-pattern dark:opacity-[0.3]" />
+        <div className="absolute -bottom-[180px] right-0 hidden h-[90px] w-[100px] rotate-[10deg] bg-contain bg-ellipse-light-pattern dark:bg-ellipse-pattern dark:opacity-[0.3] sm:block" />
       </div>
       <div className="mt-[124px] h-[1px] w-full bg-stone-500/30" />
     </section>
