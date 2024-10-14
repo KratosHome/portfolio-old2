@@ -54,6 +54,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
     <>
       <HomeSnippets locale={locale} />
       <Hero />
+      <Services services={services} />
     </>
   )
 }
