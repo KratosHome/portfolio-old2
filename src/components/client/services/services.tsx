@@ -32,28 +32,25 @@ export const Services: FC<any> = ({ services }) => {
   useGSAP(() => {
     if (!wrapperRef.current) return
 
-    const sections = gsap.utils.toArray('.panel')
     const isDesktop = window.innerWidth >= 600
-    const xPercentValue = isDesktop
-      ? -102 * (sections.length - 1)
-      : -108 * (sections.length - 1)
 
-    gsap.to(sections, {
-      xPercent: xPercentValue,
-      ease: 'none',
-      scrollTrigger: {
-        anticipatePin: 2,
-        trigger: wrapperRef.current,
-        pin: true,
-        scrub: 0.1,
-        end: '+=3000',
-      },
-    })
+    if (isDesktop) {
+      const sections = gsap.utils.toArray('.panel')
+      const xPercentValue = -102 * (sections.length - 1)
+
+      gsap.to(sections, {
+        xPercent: xPercentValue,
+        ease: 'none',
+        scrollTrigger: {
+          anticipatePin: 2,
+          trigger: wrapperRef.current,
+          pin: true,
+          scrub: 0.1,
+          end: '+=3000',
+        },
+      })
+    }
   })
-
-  useEffect(() => {
-    ScrollTrigger.refresh()
-  }, [window.innerWidth])
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
