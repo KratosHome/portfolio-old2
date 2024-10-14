@@ -9,7 +9,6 @@ import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import gitHub from '@/assets/icons/github.svg'
-import gitHubLight from '@/assets/icons/gitHubLight.svg'
 import linkedinLight from '@/assets/icons/linkedinLight.svg'
 import linkedin from '@/assets/icons/linkedin.svg'
 import telegramLight from '@/assets/icons/telegramLight.svg'
@@ -56,7 +55,7 @@ export const Footer = () => {
   const [arrowDownSrc, setArrowDown] = useState(arrowDown)
 
   useEffect(() => {
-    setGitSrc(theme === 'dark' ? gitHub : gitHubLight)
+    setGitSrc(theme === 'dark' ? gitHub : gitHub)
     setLink(theme === 'dark' ? linkedin : linkedinLight)
     setTelegram(theme === 'dark' ? telegram : telegramLight)
     setArrowDown(theme === 'dark' ? arrowDown : arrowDownLight)
