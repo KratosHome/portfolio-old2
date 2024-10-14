@@ -1,0 +1,117 @@
+.overlay {
+  background: linear-gradient(to right, white, white 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-theme-fr {
+  background: linear-gradient(to right, var(--arctical-h1-color), var(--arctical-h1-color) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-theme-dv {
+  background: linear-gradient(to right, var(--arctical-h1-color-db), var(--arctical-h1-color-db) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-blue {
+  background: linear-gradient(to right, #0B66F5, #0B66F5 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-ex {
+  background: linear-gradient(to right, var(--arctical-h1-color-ex), var(--arctical-h1-color-ex) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+.overlay-blue-year {
+  background: linear-gradient(to right, var(--arctical-h1-color-ye), var(--arctical-h1-color-ye) 50%, transparent 50%, transparent);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 8px 0;
+  animation: slideInLeftToRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+
+@keyframes slideInLeftToRight {
+  from {
+    opacity: 0;
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+    opacity: 1;
+  }
+}
+
+.delay-1 {
+  animation-delay: .3s;
+}
+
+.delay-2 {
+  animation-delay: .5s;
+}
+.delay-3 {
+  animation-delay: .8s;
+}
+
+
+@keyframes planet-hero {
+  0%, 20%, 100% {
+    opacity: 0.8;
+    transform: scale(1.3);
+    background-color: var(--hero-plenet-color-center)
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(0.5);
+    background-color: var(--hero-plenet-color-rounded)
+  }
+}
+.planet-hero {
+  animation: planet-hero 5s ease-in-out infinite;
+}
+
+@keyframes circle-hero {
+  0%, 20%, 100% {
+    opacity: 0.4;
+    transform: scale(1.3);
+    background-color: var(--hero-plenet-color-center)
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.8);
+    background-color: var(--hero-plenet-color-rounded)
+  }
+}
+
+.circle-hero {
+  animation: circle-hero 5s ease-in-out infinite;
+  animation-delay: 2s;
+}

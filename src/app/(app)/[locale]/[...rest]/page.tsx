@@ -1,5 +1,6 @@
-import { notFound } from 'next/navigation'
+'use client'
+import Error from 'next/error'
 
-export default function CatchAllPage() {
-  notFound()
+export default function NotFound() {
+  return <Error statusCode={404} />
 }

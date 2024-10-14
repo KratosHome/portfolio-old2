@@ -1,5 +1,5 @@
 'use server'
-import { signIn } from '@/server/auth/auth'
+import { signIn } from '@/server/auth/auth.server'
 
 export const loginAction = async (data: {
   email: string
@@ -11,12 +11,12 @@ export const loginAction = async (data: {
       password: data.password,
       redirect: false,
     })
+
     return {
       success: true,
       error: false,
     }
   } catch (e) {
-    console.log('vfsvdfvdsfvsdfvd', e)
-    return { error: true }
+    return { error: true, success: false }
   }
 }

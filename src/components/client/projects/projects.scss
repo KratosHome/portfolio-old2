@@ -1,0 +1,60 @@
+.project-card {
+  background: var(--bg-services-card);
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-services-card-hover);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.project-card:hover {
+  border-radius: 12px;
+  background: none;
+  transition: opacity 0.4s ease-in-out;
+  border-right-color: rgba(255, 255, 255, 1);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card-mob-all {
+  background: var(--bg-services-card);
+  overflow: hidden;
+}
+.project-card-mob {
+  overflow: hidden;
+}
+
+.project-card-mob::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-services-card-hover);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.project-card-mob {
+  border-radius: 12px;
+  background: none;
+  transition: opacity 0.4s ease-in-out;
+  border-right-color: rgba(255, 255, 255, 1);
+}
+
+.project-card-mob::before {
+  opacity: 1;
+}

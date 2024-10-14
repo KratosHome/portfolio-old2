@@ -5,7 +5,12 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "all",
+        "printWidth": 80,
+        "endOfLine": "auto",
+        "plugins": ["prettier-plugin-tailwindcss"]
       }
     ]
   }

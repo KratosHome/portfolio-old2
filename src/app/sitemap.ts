@@ -1,51 +1,64 @@
 import { MetadataRoute } from 'next'
 import { connectToDb } from '@/server/connectToDb'
-import { Post } from '@/server/post/postSchema'
+import { Post } from '@/server/blog/blog-schema'
+import { local } from '@/data/local'
+import { Project } from '@/server/project/project-scheme.server'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   await connectToDb()
-  const data: any = await Post.find({ isPublished: true })
+  const dataPost: IPost[] = await Post.find({ isPublished: true })
+  const dataProjects: IProject[] = await Project.find({ isPublic: true })
 
-  const postsUa = data.map((item: any) => ({
-    url: `https://codecraftmaster.com/ua/blog/${item.url}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 1,
+  const homePage = local.map((lang) => ({
+    url: `https://codecraftmaster.com/${lang}`,
+    lastModified: new Date('2023-09-01'),
+    changeFrequency: 'yearly' as const,
+    priority: 0.8,
   }))
 
-  const postsEn = data.map((item: any) => ({
-    url: `https://codecraftmaster.com/en/blog/${item.url}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 1,
+  const blog = local.map((lang) => ({
+    url: `https://codecraftmaster.com/${lang}/blog`,
+    lastModified: new Date('2023-09-01'),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
   }))
 
-  return [
-    {
-      url: 'https://codecraftmaster.com/ua',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://codecraftmaster.com/en',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://codecraftmaster.com/en/blog',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+  const posts = dataPost.map((item) => {
+    const urlParts = item.url.split('-')
+    const cleanUrl = urlParts.slice(0, -1).join('-')
+
+    return {
+      url: `https://codecraftmaster.com/${item.local}/blog/${cleanUrl}`,
+      lastModified: item.createdAt,
+      changeFrequency: 'never' as const,
       priority: 0.5,
-    },
-    {
-      url: 'https://codecraftmaster.com/ua/blog',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.5,
-    },
-    ...postsUa,
-    ...postsEn,
-  ]
+    }
+  })
+
+  const project = local.map((lang) => ({
+    url: `https://codecraftmaster.com/${lang}/mentoring/projects`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.5,
+  }))
+
+  const projects = local.flatMap((lang) =>
+    dataProjects.map((item) => {
+      return {
+        url: `https://codecraftmaster.com/${lang}/mentoring/projects/?id=${item._id}`,
+        lastModified: item.createdAt,
+        changeFrequency: 'never' as const,
+        priority: 0.5,
+      }
+    }),
+  )
+
+  const user = local.map((lang) => ({
+    url: `https://codecraftmaster.com/${lang}/mentoring/members`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.5,
+  }))
+
+  return [...homePage, ...blog, ...posts, ...project, ...projects, ...user]
 }

@@ -4,11 +4,13 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm'
+import { useTheme } from 'next-themes'
 
 const StarBackground = (props: any) => {
+  const { theme } = useTheme()
   const ref: any = useRef()
   const [sphere] = useState(() => {
-    const positions = new Float32Array(5000 * 3) // 5000 points, each with x, y, z
+    const positions = new Float32Array(5000 * 3)
     random.inSphere(positions, { radius: 1.2 })
     return positions
   })
@@ -20,12 +22,14 @@ const StarBackground = (props: any) => {
     }
   })
 
+  console.log('theme', theme)
+
   return (
     <group rotation={[0, 0, Math.PI / 5]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#ffffff"
+          color={theme === 'dark' ? '#ffffff' : '#282525'}
           size={0.002}
           sizeAttenuation={true}
           depthWrite={false}
