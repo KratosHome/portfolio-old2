@@ -21,9 +21,6 @@ export default async function LocaleLayout({
 
   return (
     <>
-      <Head>
-        <SpeedInsights />
-      </Head>
       <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
