@@ -56,6 +56,7 @@
 }
 
 .animate-serv-pulse {
+  opacity: 0.2 !important;
   rotate: -10deg;
   animation: pulse 2s infinite;
 }

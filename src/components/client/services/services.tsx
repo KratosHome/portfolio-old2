@@ -175,7 +175,7 @@ export const Services: FC<any> = ({ services }) => {
                 role="listitem"
               >
                 <div
-                  className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern dark:!opacity-[0.2]"
+                  className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
                   style={{
                     animationDelay: `${index * 0.5}s`,
                   }}
