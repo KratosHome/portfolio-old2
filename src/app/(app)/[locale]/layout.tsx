@@ -22,7 +22,6 @@ export default async function LocaleLayout({
   return (
     <>
       <Head>
-        <GoogleTagManager />
         <SpeedInsights />
       </Head>
       <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
