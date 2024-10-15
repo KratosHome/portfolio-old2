@@ -245,7 +245,6 @@ export const Projects: FC<any> = ({ projects }) => {
               delay: 3000,
               disableOnInteraction: true,
             }}
-            modules={[Autoplay]}
             spaceBetween={40}
             loop={true}
             onSlideChangeTransitionStart={(swiper) => {
@@ -263,7 +262,7 @@ export const Projects: FC<any> = ({ projects }) => {
                       >
                         <div className="overflow-hidden">
                           <div
-                            className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
+                            className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern dark:!opacity-[0.2]"
                             style={{
                               animationDelay: `${index * 0.5}s`,
                             }}

@@ -152,7 +152,6 @@ export const Reviews = ({}: any) => {
               delay: 3000,
               disableOnInteraction: true,
             }}
-            modules={[Autoplay]}
             spaceBetween={40}
             loop={true}
             onSlideChangeTransitionStart={(swiper) => {
