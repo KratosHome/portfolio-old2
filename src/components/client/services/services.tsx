@@ -147,31 +147,31 @@ export const Services: FC<any> = ({ services }) => {
           ))}
         </div>
         <div className="block lg:hidden">
+          <h2 className="top-0 block pt-[10px] text-[40px] font-light uppercase lg:hidden">
+            {t('services')}
+          </h2>
+          <div className="relative flex items-center justify-end">
+            <div className="flex flex-col items-center text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
+              <div>{t('scroll')}</div>
+              <div>{t('see-more')}</div>
+            </div>
+            <div className="absolute rotate-90">
+              <Image
+                src={currentSrc}
+                alt={t('scroll')}
+                width={130}
+                height={30}
+              />
+            </div>
+          </div>
           <div
             className="wrapper-services-mob max-w-screen z-20 flex overflow-y-hidden"
             ref={wrapperRef}
           >
-            <h2 className="absolute top-0 block pt-[10px] text-[40px] font-light uppercase lg:hidden">
-              {t('services')}
-            </h2>
-            <div className="absolute -right-[50px] top-[0px] mt-[30px]">
-              <div className="ml-[10px] flex flex-col items-center text-[16px] font-light [text-orientation:upright] [writing-mode:vertical-rl]">
-                <div>{t('scroll')}</div>
-                <div>{t('see-more')}</div>
-              </div>
-              <div className="-mt-[70px] rotate-90">
-                <Image
-                  src={currentSrc}
-                  alt={t('scroll')}
-                  width={130}
-                  height={30}
-                />
-              </div>
-            </div>
             {services.map((item: any, index: any) => (
               <div
                 key={index}
-                className="panel group relative mx-3 my-10 mt-[200px] flex h-[70vh] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
+                className="panel group relative mx-3 my-10 mt-[50px] flex h-[70vh] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
                 role="listitem"
               >
                 <div
