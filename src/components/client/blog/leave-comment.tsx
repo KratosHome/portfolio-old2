@@ -122,6 +122,7 @@ export const LeaveComment: FC<any> = ({ postId }) => {
                 sitekey={`${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
                 ref={recaptchaRef}
                 onChange={handleCaptchaSubmission}
+                hl={locale}
               />
               <ButtonCircle title={t('send')} className="mt-3" />
             </div>
