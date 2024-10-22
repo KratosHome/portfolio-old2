@@ -18,7 +18,8 @@ import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Services } from '@/components/client/services/services'
 
-const Hero = React.lazy(() => import('@/components/client/hero/hero'))
+const Hero = dynamic(() => import('@/components/client/hero/hero'))
+
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
