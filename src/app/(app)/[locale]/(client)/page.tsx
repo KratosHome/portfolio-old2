@@ -16,6 +16,7 @@ import HomeSnippets from '@/components/client/snippets/home-snippets'
 import { Projects } from '@/components/client/projects/projects'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
+import { Services } from '@/components/client/services/services'
 
 const Hero = React.lazy(() => import('@/components/client/hero/hero'))
 export const viewport: Viewport = {
@@ -53,9 +54,16 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 
   return (
     <>
+      <HomeSnippets locale={locale} />
       <Suspense name={'Hero'} fallback={<Loader />}>
         <Hero />
       </Suspense>
+      <Services services={services} />
+      <Projects projects={projects} />
+      <Projects projects={projects} />
+      <Experience experience={experience} />
+      <Reviews data={dataReviewsSend} />
+      <Faq data={faq} />
     </>
   )
 }
