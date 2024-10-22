@@ -10,7 +10,20 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
 import { useTheme } from 'next-themes'
 
-export const Services: FC<any> = ({ services }) => {
+interface ServicesProps {
+  services: Array<{
+    id: number
+    title: string
+    description: string
+    icon: Array<{
+      id: number
+      alt: string
+      icon: any
+    }>
+  }>
+}
+
+export const Services: FC<ServicesProps> = ({ services }) => {
   const serviceRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLDivElement[][]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)

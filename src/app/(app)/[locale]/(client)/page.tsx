@@ -15,11 +15,10 @@ import { experienceData } from '@/data/experience'
 import HomeSnippets from '@/components/client/snippets/home-snippets'
 import { Projects } from '@/components/client/projects/projects'
 import dynamic from 'next/dynamic'
-import { Services } from '@/components/client/services/services'
 import { Loader } from '@/components/UI/client/loader/loader'
 
 const Hero = dynamic(() => import('@/components/client/hero/hero'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loader />,
 })
 
 export const viewport: Viewport = {
@@ -55,14 +54,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const faq = gaqData[locale]
   const experience = experienceData[locale]
 
-  return (
-    <>
-      <HomeSnippets locale={locale} />
-      <Suspense name={'Hero'} fallback={<Loader />}>
-        <Hero />
-      </Suspense>
-    </>
-  )
+  return <></>
 }
 
 export default Home
