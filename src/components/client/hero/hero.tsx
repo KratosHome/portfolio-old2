@@ -11,9 +11,7 @@ import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { Technologies } from '@/components/client/hero/technologies/technologies'
 import { HireMe } from '@/components/client/hire-me/hire-me'
-import { useRef } from 'react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
+import { useEffect, useRef } from 'react'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -32,6 +30,55 @@ const Hero = () => {
   }
 
   const years = calculateYears(startDate, new Date())
+
+  useEffect(() => {
+    let gsapInstance: any
+
+    const loadGSAP = async () => {
+      const { default: gsap } = await import('gsap')
+      gsapInstance = gsap
+
+      if (bigСircleRef.current) {
+        gsapInstance.fromTo(
+          bigСircleRef.current,
+          { scale: 0.1, opacity: 0.5, y: -100 },
+          { scale: 1, opacity: 1, y: 0, duration: 2, ease: 'power2.out' },
+        )
+      }
+
+      if (bgRef.current) {
+        gsapInstance.fromTo(
+          bgRef.current,
+          { x: -200, opacity: 0 },
+          { x: 0, opacity: 0.5, duration: 2, ease: 'power2.out' },
+        )
+      }
+
+      if (hireMeRef.current) {
+        gsapInstance.fromTo(
+          hireMeRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 1.5 },
+        )
+      }
+
+      if (planetRef.current) {
+        gsapInstance.fromTo(
+          planetRef.current,
+          { opacity: 0, rotation: 340 },
+          { opacity: 1, rotation: 0, duration: 2.5, ease: 'power2.out' },
+        )
+      }
+    }
+
+    loadGSAP()
+
+    return () => {
+      if (gsapInstance) {
+        gsapInstance.kill() // Очищення анімацій при розмонтуванні
+      }
+    }
+  }, [])
 
   return (
     <section className="relative min-h-[1700px] overflow-x-hidden lg:overflow-visible">
