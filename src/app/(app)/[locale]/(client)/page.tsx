@@ -56,21 +56,12 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 
   return (
     <>
-      <Suspense fallback={<p>Loading Services...</p>}>
-        <Services services={services} />
-      </Suspense>
-      <Suspense fallback={<p>Loading Projects...</p>}>
-        <Projects projects={projects} />
-      </Suspense>
-      <Suspense fallback={<p>Loading Experience...</p>}>
-        <Experience experience={experience} />
-      </Suspense>
-      <Suspense fallback={<p>Loading Reviews...</p>}>
-        <Reviews data={dataReviewsSend} />
-      </Suspense>
-      <Suspense fallback={<p>Loading FAQ...</p>}>
-        <Faq data={faq} />
-      </Suspense>
+      <Services services={services} />
+      <Projects projects={projects} />
+      <Projects projects={projects} />
+      <Experience experience={experience} />
+      <Reviews data={dataReviewsSend} />
+      <Faq data={faq} />
     </>
   )
 }
