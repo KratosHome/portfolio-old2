@@ -54,7 +54,13 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   const faq = gaqData[locale]
   const experience = experienceData[locale]
 
-  return <></>
+  return (
+    <>
+      <Suspense name={'Hero'} fallback={<Loader />}>
+        <Hero />
+      </Suspense>
+    </>
+  )
 }
 
 export default Home
