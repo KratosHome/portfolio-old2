@@ -56,9 +56,6 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 
   return (
     <>
-      <Suspense fallback={<p>Loading Hero...</p>}>
-        <Hero />
-      </Suspense>
       <Suspense fallback={<p>Loading Services...</p>}>
         <Services services={services} />
       </Suspense>
