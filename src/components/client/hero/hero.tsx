@@ -125,9 +125,7 @@ const Hero = () => {
             </div>
           </div>
           <div className="bg-hero-pattern bg-cover" />
-          <div className="">
-            <Technologies />
-          </div>
+          <div className=""></div>
         </div>
         <div className="relative mt-[52px] flex flex-col-reverse items-end justify-between lg:flex-row">
           <div className="flex justify-between lg:w-1/2">
