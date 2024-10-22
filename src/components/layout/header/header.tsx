@@ -22,7 +22,7 @@ interface IMenuProps {
   userInfo?: ReactNode
 }
 
-export const Header: FC<IMenuProps> = ({ userInfo }) => {
+const Header: FC<IMenuProps> = ({ userInfo }) => {
   const subMenuTimers = useRef<Array<NodeJS.Timeout | null>>([])
   const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
 
@@ -171,3 +171,5 @@ export const Header: FC<IMenuProps> = ({ userInfo }) => {
     </>
   )
 }
+
+export default Header

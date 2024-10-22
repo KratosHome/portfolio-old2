@@ -29,7 +29,7 @@ interface FormData {
   message: string
 }
 
-export const Footer = () => {
+const Footer = () => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const t = useTranslations('footer')
@@ -290,3 +290,5 @@ export const Footer = () => {
     </footer>
   )
 }
+
+export default Footer
