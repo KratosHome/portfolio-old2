@@ -16,6 +16,7 @@ import HomeSnippets from '@/components/client/snippets/home-snippets'
 import { Projects } from '@/components/client/projects/projects'
 import dynamic from 'next/dynamic'
 import { Services } from '@/components/client/services/services'
+import { Loader } from '@/components/UI/client/loader/loader'
 
 const Hero = dynamic(() => import('@/components/client/hero/hero'), {
   loading: () => <p>Loading...</p>,
@@ -57,7 +58,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
   return (
     <>
       <HomeSnippets locale={locale} />
-      <Suspense>
+      <Suspense name={'Hero'} fallback={<Loader />}>
         <Hero />
       </Suspense>
       <Services services={services} />
