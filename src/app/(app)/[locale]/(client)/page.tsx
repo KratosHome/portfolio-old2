@@ -18,7 +18,9 @@ import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Services } from '@/components/client/services/services'
 
-const Hero = dynamic(() => import('@/components/client/hero/hero'))
+const Hero = dynamic(() => import('@/components/client/hero/hero'), {
+  loading: () => <Loader />,
+})
 
 export const viewport: Viewport = {
   themeColor: [
