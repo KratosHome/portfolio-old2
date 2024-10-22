@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
@@ -64,6 +64,3 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 }
 
 export default Home
-/*
-
- */

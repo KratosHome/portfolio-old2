@@ -29,14 +29,11 @@
 
 .wrapper-services-mob {
   display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 
 .panel {
-  will-change: transform;
   background: var(--bg-services-card);
 }
 

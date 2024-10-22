@@ -225,6 +225,7 @@ export const Footer = () => {
                 sitekey={`${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
                 ref={recaptchaRef}
                 onChange={handleCaptchaSubmission}
+                hl={locale}
               />
               <div className="mt-[22px] flex w-full items-end justify-end lg:mt-0">
                 <ButtonCircle title={t('send')} />
