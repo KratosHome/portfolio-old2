@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react'
+import React, { FC, Suspense } from 'react'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
@@ -17,10 +17,7 @@ import { Projects } from '@/components/client/projects/projects'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
 
-const Hero = dynamic(() => import('@/components/client/hero/hero'), {
-  loading: () => <Loader />,
-})
-
+const Hero = React.lazy(() => import('@/components/client/hero/hero'))
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
