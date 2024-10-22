@@ -11,7 +11,7 @@ import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { Technologies } from '@/components/client/hero/technologies/technologies'
 import { HireMe } from '@/components/client/hire-me/hire-me'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
