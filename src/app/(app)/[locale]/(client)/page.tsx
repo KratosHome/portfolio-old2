@@ -56,12 +56,10 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 
   return (
     <>
-      <Services services={services} />
-      <Projects projects={projects} />
-      <Projects projects={projects} />
-      <Experience experience={experience} />
-      <Reviews data={dataReviewsSend} />
-      <Faq data={faq} />
+      <HomeSnippets locale={locale} />
+      <Suspense>
+        <Hero />
+      </Suspense>
     </>
   )
 }
