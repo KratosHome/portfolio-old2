@@ -23,7 +23,7 @@ interface ServicesProps {
   }>
 }
 
-export const Services: FC<ServicesProps> = ({ services }) => {
+const Services: FC<ServicesProps> = ({ services }) => {
   const serviceRefs = useRef<HTMLDivElement[]>([])
   const iconRefs = useRef<HTMLDivElement[][]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -222,3 +222,5 @@ export const Services: FC<ServicesProps> = ({ services }) => {
     </section>
   )
 }
+
+export default Services

@@ -16,11 +16,17 @@ import HomeSnippets from '@/components/client/snippets/home-snippets'
 import { Projects } from '@/components/client/projects/projects'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
-import { Services } from '@/components/client/services/services'
 
 const Hero = dynamic(() => import('@/components/client/hero/hero'), {
   loading: () => <Loader />,
 })
+
+const Services = dynamic(
+  () => import('@/components/client/services/services'),
+  {
+    loading: () => <Loader />,
+  },
+)
 
 export const viewport: Viewport = {
   themeColor: [
@@ -61,7 +67,9 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
       <Suspense fallback={<Loader />}>
         <Hero />
       </Suspense>
-      <Services services={services} />
+      <Suspense fallback={<Loader />}>
+        <Services services={services} />
+      </Suspense>
       <Projects projects={projects} />
       <Projects projects={projects} />
       <Experience experience={experience} />
