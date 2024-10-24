@@ -67,9 +67,7 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
       <Suspense fallback={<Loader />}>
         <Hero />
       </Suspense>
-      <Suspense fallback={<Loader />}>
-        <Services services={services} />
-      </Suspense>
+      <Services services={services} />
       <Projects projects={projects} />
       <Projects projects={projects} />
       <Experience experience={experience} />
