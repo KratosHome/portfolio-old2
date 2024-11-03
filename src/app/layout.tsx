@@ -1,16 +1,44 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import './globals.css'
+import './globals.scss'
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
+const sansationBold = localFont({
+  src: './fonts/Sansation_Bold.ttf',
+  variable: '--font-sansation-bold',
+  weight: '700',
 })
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+
+const sansationBoldItalic = localFont({
+  src: './fonts/Sansation_Bold_Italic.ttf',
+  variable: '--font-sansation-bold-italic',
+  weight: '700',
+  style: 'italic',
+})
+
+const sansationItalic = localFont({
+  src: './fonts/Sansation_Italic.ttf',
+  variable: '--font-sansation-italic',
+  weight: '400',
+  style: 'italic',
+})
+
+const sansationLight = localFont({
+  src: './fonts/Sansation_Light.ttf',
+  variable: '--font-sansation-light',
+  weight: '300',
+})
+
+const sansationLightItalic = localFont({
+  src: './fonts/Sansation_Light_Italic.ttf',
+  variable: '--font-sansation-light-italic',
+  weight: '300',
+  style: 'italic',
+})
+
+const sansationRegular = localFont({
+  src: './fonts/Sansation_Regular.ttf',
+  variable: '--font-sansation-regular',
+  weight: '400',
 })
 
 export const metadata: Metadata = {
@@ -26,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${sansationBold.variable} ${sansationBoldItalic.variable} ${sansationItalic.variable} ${sansationLight.variable} ${sansationLightItalic.variable} ${sansationRegular.variable} antialiased`}
     >
     {children}
     </body>
