@@ -1,0 +1,81 @@
+@keyframes grow {
+  0% {
+	width: 0;
+  }
+  100% {
+	width: 100%;
+  }
+}
+
+.animate-grow {
+  animation: grow 1s ease-in-out forwards;
+}
+
+
+@keyframes slide-in-left {
+  from {
+	transform: translateX(-100%);
+  }
+  to {
+	transform: translateX(0);
+  }
+}
+
+
+.responsive-width {
+  width: calc(90vw - ((110vw - 110vw) / 2));
+}
+
+@media (min-width: 1442px) {
+  .responsive-width {
+	width: calc(90vw - ((110vw - 1542px) / 3));
+  }
+}
+
+@media (max-width: 1024px) {
+  .responsive-width {
+	width: 100%;
+  }
+}
+
+
+.custom-login {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  border-radius: 35px;
+  background: var(--blue-gradient);
+  backdrop-filter: blur(12.5px);
+}
+
+.custom-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 500%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.00) 70%);
+  animation: gradientAnimation 8s infinite;
+  animation-delay: 2s;
+}
+
+.custom-login:hover::before {
+  animation: none;
+  background: linear-gradient(113deg, rgba(11, 102, 245, 0.30) 40.76%, rgba(78, 128, 206, 0.15) 70.61%, rgba(255, 255, 255, 0.00) 100.49%);
+}
+
+@keyframes gradientAnimation {
+  0% {
+	transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+	transform: translateX(50%) translateY(10%);
+  }
+  100% {
+	transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+
+

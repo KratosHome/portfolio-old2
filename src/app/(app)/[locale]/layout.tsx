@@ -4,6 +4,9 @@ import { getLocale, getMessages } from 'next-intl/server'
 
 import './globals.scss'
 import localFont from 'next/font/local'
+import Hedaer from '@/components/header/hedaer'
+import { SessionProvider } from 'next-auth/react'
+import { ThemeProvider } from '@/components/theme-provider/theme-provider'
 
 const sansationBold = localFont({
   src: '../../fonts/Sansation_Bold.ttf',
@@ -57,10 +60,16 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-    <body  className={`${sansationBold.variable} ${sansationBoldItalic.variable} ${sansationItalic.variable} ${sansationLight.variable} ${sansationLightItalic.variable} ${sansationRegular.variable} antialiased`}>
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <body
+      className={`${sansationBold.variable} ${sansationBoldItalic.variable} ${sansationItalic.variable} ${sansationLight.variable} ${sansationLightItalic.variable} ${sansationRegular.variable} antialiased`}>
+    <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
+      <SessionProvider>
+        <NextIntlClientProvider messages={messages}>
+          <Hedaer />
+          {children}
+        </NextIntlClientProvider>
+      </SessionProvider>
+    </ThemeProvider>
     </body>
     </html>
   )
