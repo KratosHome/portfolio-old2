@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type JSX } from 'react'
 import { usePathname } from 'next/navigation'
 import { useLocale } from 'use-intl'
 import MenuInfoCodeCraft from '@/components/client/menu-info/menu-info-code-craft'

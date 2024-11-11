@@ -6,17 +6,16 @@ import { toast } from 'react-toastify'
 import { useStore } from '@/store/user'
 
 const Page = () => {
-  const params = useParams()
+  const { token } = useParams()
   const router = useRouter()
   const { user } = useStore()
 
+  console.log('token', token)
+
   useEffect(() => {
-    if (user._id) {
+    if (user._id && token) {
       const fetchData = async () => {
-        const response = await confirmEmailToken(
-          user._id,
-          params.token.toString(),
-        )
+        const response = await confirmEmailToken(user._id, token.toString())
         if (response.success) {
           toast.success('Email token sent successfully!')
           router.push('/')
@@ -27,7 +26,8 @@ const Page = () => {
       }
       fetchData()
     }
-  }, [params.token, user])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, user])
 
   return <div />
 }

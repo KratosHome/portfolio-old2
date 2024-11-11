@@ -6,13 +6,16 @@ import { createUsers } from '@/server/users/create-user.server'
 import 'react-quill/dist/quill.snow.css'
 import { Dashboard } from '@/components/admin/dashboard/dashboard'
 
-export default async function LocaleLayout({
-  children,
-  params: { locale },
-}: {
+export default async function LocaleLayout(props: {
   children: ReactNode
-  params: { locale: LanguageProps }
+  params: Promise<{ locale: LanguageProps }>
 }) {
+  const params = await props.params
+
+  const { locale } = params
+
+  const { children } = props
+
   const dashboard: any = adminDashboardData[locale]
 
   const session = await auth()

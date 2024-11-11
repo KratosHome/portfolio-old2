@@ -4,12 +4,14 @@ import { getTranslations } from 'next-intl/server'
 import { Pagination } from '@/components/UI/client/pagination/pagination'
 import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
 
-export default async function Page({ params: { locale }, searchParams }: any) {
+export default async function Page({ searchParams }: { searchParams: any }) {
+  const { page } = searchParams
+  console.log('page', page)
+
   const t = await getTranslations('projects-client')
-  const page = searchParams['page'] ?? '1'
   const technologies = searchParams['technologies']
 
-  const data: any = await getProjects(page, 5, true, technologies)
+  const data: any = await getProjects(1, 5, true, technologies)
   const totalPages = data.totalPages
 
   return (

@@ -1,14 +1,8 @@
 import './privacy-policy.scss'
-import { FC } from 'react'
 
-interface PageProps {
-  params: {
-    locale: string
-  }
-}
+export default async function Page({ params }: { params: any }) {
+  const { locale } = params
 
-const Page: FC<PageProps> = async ({ params: { locale } }) => {
-  // Динамічний імпорт MDX залежно від мови
   let MarkdownToHtml
   try {
     MarkdownToHtml = await import(
@@ -27,5 +21,3 @@ const Page: FC<PageProps> = async ({ params: { locale } }) => {
     </div>
   )
 }
-
-export default Page

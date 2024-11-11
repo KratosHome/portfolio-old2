@@ -4,8 +4,9 @@ import { getTranslations } from 'next-intl/server'
 import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
 import { Pagination } from '@/components/UI/client/pagination/pagination'
 
-export default async function Page({ params: { locale }, searchParams }: any) {
-  const t = await getTranslations('page.users')
+export default async function Page(props: any) {
+  const searchParams = await props.searchParams
+
   const page = searchParams['page'] ?? '1'
   const technologies = searchParams['technologies']
   const workExperience = searchParams['workExperience']

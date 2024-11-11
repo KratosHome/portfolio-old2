@@ -35,26 +35,37 @@ export const viewport: Viewport = {
   ],
 }
 
-export async function generateMetadata({ params: { locale } }: PageProps) {
-  const projects = homeMateData[locale]
+export async function generateMetadata({ params }: { params: any }) {
+  const { locale } = params
 
-  return {
-    title: projects.title,
-    description: projects.description,
-    keywords: projects.keywords,
-    authors: projects.authors,
-    openGraph: {
-      url: projects.canonicalUrl,
-      title: projects.openGraph.title,
-      description: projects.openGraph.description,
-      locale: projects.openGraph.locale,
-      siteName: projects.openGraph.site_name,
-      images: projects.openGraph.images,
-    },
-  }
+  /*
+  // TODO: Implement this
+    const projects = homeMateData[locale]
+
+    return {
+      title: projects.title,
+      description: projects.description,
+      keywords: projects.keywords,
+      authors: projects.authors,
+      openGraph: {
+        url: projects.canonicalUrl,
+        title: projects.openGraph.title,
+        description: projects.openGraph.description,
+        locale: projects.openGraph.locale,
+        siteName: projects.openGraph.site_name,
+        images: projects.openGraph.images,
+      },
+    }
+   */
 }
 
-const Home: FC<PageProps> = async ({ params: { locale } }) => {
+type LanguagePropsTypes = {
+  locale: LanguageProps
+}
+
+const Home: FC<any> = async ({ params }: { params: any }) => {
+  const { locale } = params as LanguagePropsTypes
+
   const services = servicesData[locale]
   const projects = projectsData[locale]
   const dataReviewsSend = dataReviews
@@ -78,12 +89,3 @@ const Home: FC<PageProps> = async ({ params: { locale } }) => {
 }
 
 export default Home
-
-/*
-      <Services services={services} />
-      <Projects projects={projects} />
-      <Projects projects={projects} />
-      <Experience experience={experience} />
-      <Reviews data={dataReviewsSend} />
-      <Faq data={faq} />
- */

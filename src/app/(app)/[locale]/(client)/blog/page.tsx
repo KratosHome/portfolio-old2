@@ -5,7 +5,11 @@ import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
 import { Pagination } from '@/components/UI/client/pagination/pagination'
 
-export default async function Page({ params: { locale }, searchParams }: any) {
+export default async function Page(props: any) {
+  const searchParams = await props.searchParams
+  const params = await props.params
+
+  const { locale } = params
   const t = await getTranslations('post-client')
   const page = searchParams['page'] ?? '1'
   const filters = searchParams['filters']

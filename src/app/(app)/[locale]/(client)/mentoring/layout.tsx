@@ -2,13 +2,16 @@ import { ReactNode } from 'react'
 import { CommunityDashboard } from '@/components/client/community-dashboard/community-dashboard'
 import { projectsDashboardData } from '@/data/projects-dashboard'
 
-export default async function LocaleLayout({
-  children,
-  params: { locale },
-}: {
+export default async function LocaleLayout(props: {
   children: ReactNode
-  params: { locale: LanguageProps }
+  params: Promise<{ locale: LanguageProps }>
 }) {
+  const params = await props.params
+
+  const { locale } = params
+
+  const { children } = props
+
   const data = projectsDashboardData[locale]
 
   return (
