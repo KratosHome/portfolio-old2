@@ -43,6 +43,7 @@
 
 :root {
   --text-color: black;
+  --star-clor: black;
   --arctical-h1-color: #0B66F5;
   --arctical-h1-color-db: black;
   --arctical-h1-color-ex: black;
@@ -67,6 +68,7 @@
 
 [class='dark'] {
   --text-color: white;
+  --star-clor: white;
   --arctical-h1-color: white;
   --arctical-h1-color-db: white;
   --arctical-h1-color-ex: #0B66F5;;
@@ -96,10 +98,10 @@ html {
 
 @keyframes scale-in-out {
   0%, 100% {
-	transform: scale(0.8);
+    transform: scale(0.8);
   }
   50% {
-	transform: scale(1);
+    transform: scale(1);
   }
 }
 

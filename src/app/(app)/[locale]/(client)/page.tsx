@@ -77,7 +77,6 @@ const Home: FC<any> = async ({ params }: { params: any }) => {
       </Suspense>
       <Services services={services} />
       <Projects projects={projects} />
-      <Projects projects={projects} />
       <Experience experience={experience} />
       <Reviews data={dataReviewsSend} />
       <Faq data={faq} />
