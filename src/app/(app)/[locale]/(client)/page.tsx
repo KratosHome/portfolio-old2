@@ -35,32 +35,29 @@ export const viewport: Viewport = {
   ],
 }
 
-export async function generateMetadata({ params }: { params: any }) {
-  const { locale } = params
-
-  /*
-  // TODO: Implement this
-    const projects = homeMateData[locale]
-
-    return {
-      title: projects.title,
-      description: projects.description,
-      keywords: projects.keywords,
-      authors: projects.authors,
-      openGraph: {
-        url: projects.canonicalUrl,
-        title: projects.openGraph.title,
-        description: projects.openGraph.description,
-        locale: projects.openGraph.locale,
-        siteName: projects.openGraph.site_name,
-        images: projects.openGraph.images,
-      },
-    }
-   */
-}
-
 type LanguagePropsTypes = {
   locale: LanguageProps
+}
+
+export async function generateMetadata({ params }: { params: any }) {
+  const { locale } = params as LanguagePropsTypes
+
+  const projects = homeMateData[locale]
+
+  return {
+    title: projects.title,
+    description: projects.description,
+    keywords: projects.keywords,
+    authors: projects.authors,
+    openGraph: {
+      url: projects.canonicalUrl,
+      title: projects.openGraph.title,
+      description: projects.openGraph.description,
+      locale: projects.openGraph.locale,
+      siteName: projects.openGraph.site_name,
+      images: projects.openGraph.images,
+    },
+  }
 }
 
 const Home: FC<any> = async ({ params }: { params: any }) => {
