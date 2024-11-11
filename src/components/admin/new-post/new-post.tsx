@@ -21,7 +21,7 @@ interface PostData {
   subTitle: string
   desc: string
   url: string
-  local: LanguageProps
+  local: ILocale
   isPublished: boolean
   img: string
   categories: string[]
@@ -39,14 +39,14 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
 
   const [image, setImage] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
-  const [activeLanguage, setActiveLanguage] = useState<LanguageProps>('uk')
+  const [activeLanguage, setActiveLanguage] = useState<ILocale>('uk')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isPublished, setIsPublished] = useState<boolean>(false)
 
   const [categoriesInput, setCategoriesInput] = useState<string>('')
   const [categories, setCategories] = useState<string[]>([])
 
-  const initializePostsData = (): { [key in LanguageProps]: PostData } => {
+  const initializePostsData = (): { [key in ILocale]: PostData } => {
     const initialData: any = {}
 
     localesData.forEach((lang) => {
@@ -96,7 +96,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
   }
 
   const [postsData, setPostsData] = useState<{
-    [key in LanguageProps]: PostData
+    [key in ILocale]: PostData
   }>(initializePostsData())
 
   useEffect(() => {
@@ -104,14 +104,14 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
       setPostsData((prev) => {
         const updatedPostsData = { ...prev }
         Object.keys(updatedPostsData).forEach((lang) => {
-          updatedPostsData[lang as LanguageProps].authorId = userData.user._id
+          updatedPostsData[lang as ILocale].authorId = userData.user._id
         })
         return updatedPostsData
       })
     }
   }, [userData])
 
-  const handleLanguageChange = (lang: LanguageProps) => {
+  const handleLanguageChange = (lang: ILocale) => {
     setActiveLanguage(lang)
   }
 
@@ -132,7 +132,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
       setPostsData((prev) => {
         const updatedPostsData = { ...prev }
         Object.keys(updatedPostsData).forEach((lang) => {
-          updatedPostsData[lang as LanguageProps][field] = value
+          updatedPostsData[lang as ILocale][field] = value
         })
         return updatedPostsData
       })
@@ -152,7 +152,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
       const updatedPostsData = initializePostsData()
 
       data.post.forEach((postItem: any) => {
-        const locale = postItem.local as LanguageProps
+        const locale = postItem.local as ILocale
         if (updatedPostsData[locale]) {
           updatedPostsData[locale] = {
             authorId: postItem.authorId || '',
@@ -192,7 +192,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
   }
 
   const validateAllFields = () => {
-    for (const lang of ['uk', 'en', 'fr'] as LanguageProps[]) {
+    for (const lang of ['uk', 'en', 'fr'] as ILocale[]) {
       const postData = postsData[lang]
       if (
         !postData.title ||
@@ -225,9 +225,9 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
 
     const updatedPostsData = { ...postsData }
     Object.keys(updatedPostsData).forEach((lang) => {
-      const currentUrl = updatedPostsData[lang as LanguageProps].url
+      const currentUrl = updatedPostsData[lang as ILocale].url
       if (!currentUrl.endsWith(`-${lang}`)) {
-        updatedPostsData[lang as LanguageProps].url += `-${lang}`
+        updatedPostsData[lang as ILocale].url += `-${lang}`
       }
     })
 
@@ -292,7 +292,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
             <button
               key={lang.local}
               type="button"
-              onClick={() => handleLanguageChange(lang.local as LanguageProps)}
+              onClick={() => handleLanguageChange(lang.local as ILocale)}
               className={`rounded px-4 py-2 ${
                 activeLanguage === lang.local
                   ? 'bg-blue-500 text-white'

@@ -27,7 +27,7 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
   const subMenuRefs = useRef<Array<HTMLUListElement | null>>([])
 
   const t = useTranslations('header')
-  const locale = useLocale() as LanguageProps
+  const locale = useLocale() as ILocale
   const { contextSafe } = useGSAP()
   const { theme } = useTheme()
   const { data: session } = useSession()

@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { homeJsonLd } from '@/data/jsonLd/home'
 
 interface MainSchemaProps {
-  locale: LanguageProps
+  locale: ILocale
 }
 
 const HomeSnippets: FC<MainSchemaProps> = ({ locale }) => {

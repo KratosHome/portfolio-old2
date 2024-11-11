@@ -5,7 +5,7 @@ import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 
 const MenuInfoOlegTkach = () => {
-  const locale = useLocale() as LanguageProps
+  const locale = useLocale() as ILocale
 
   const t = useTranslations('header')
 

@@ -8,7 +8,7 @@ import { Dashboard } from '@/components/admin/dashboard/dashboard'
 
 export default async function LocaleLayout(props: {
   children: ReactNode
-  params: Promise<{ locale: LanguageProps }>
+  params: Promise<{ locale: ILocale }>
 }) {
   const params = await props.params
 

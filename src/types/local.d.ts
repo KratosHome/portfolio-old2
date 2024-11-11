@@ -1,4 +1,4 @@
-type LanguageProps =
+type ILocale =
   | 'en'
   | 'uk'
   | 'es'

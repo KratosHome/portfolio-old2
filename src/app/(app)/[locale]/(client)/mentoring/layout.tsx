@@ -4,7 +4,7 @@ import { projectsDashboardData } from '@/data/projects-dashboard'
 
 export default async function LocaleLayout(props: {
   children: ReactNode
-  params: Promise<{ locale: LanguageProps }>
+  params: Promise<{ locale: ILocale }>
 }) {
   const params = await props.params
 

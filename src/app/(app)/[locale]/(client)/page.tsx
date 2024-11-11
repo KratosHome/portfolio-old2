@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 }
 
 type LanguagePropsTypes = {
-  locale: LanguageProps
+  locale: ILocale
 }
 
 export async function generateMetadata({ params }: { params: any }) {
