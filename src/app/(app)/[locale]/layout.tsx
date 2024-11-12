@@ -37,9 +37,6 @@ export default async function LocaleLayout({
               <Header userInfo={<MenuInfoOlegTkach />} />
             </Suspense>
             <main className="min-h-[90svh]">{children}</main>
-            <Suspense fallback={<Loader />}>
-              <Footer />
-            </Suspense>
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>
@@ -66,3 +63,9 @@ export function generateStaticParams() {
     { params: { locale: 'zh' } },
   ]
 }
+
+/*
+     <Suspense fallback={<Loader />}>
+              <Footer />
+            </Suspense>
+ */

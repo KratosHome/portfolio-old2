@@ -8,9 +8,7 @@ import { CommentsItem } from '@/components/client/blog/comments-item'
 import { LeaveComment } from '@/components/client/blog/leave-comment'
 import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 
-export default async function Page(props: any) {
-  const params = await props.params
-
+export default async function Page({ params }: { params: any }) {
   const { locale, postId } = params
 
   const t = await getTranslations('post-client')

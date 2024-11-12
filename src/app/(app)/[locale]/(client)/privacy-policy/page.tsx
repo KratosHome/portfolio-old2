@@ -1,7 +1,7 @@
 import './privacy-policy.scss'
 
 export default async function Page({ params }: { params: any }) {
-  const { locale } = params
+  const { locale } = (await params) as any
 
   let MarkdownToHtml
   try {

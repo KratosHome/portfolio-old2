@@ -1,15 +1,11 @@
 import { getUserClient } from '@/server/users/get-users-client.server'
 import MembersItem from '@/components/client/members-item/members-item'
-import { getTranslations } from 'next-intl/server'
-import { FilterItems } from '@/components/UI/client/filter-items/filter-items'
 import { Pagination } from '@/components/UI/client/pagination/pagination'
 
-export default async function Page(props: any) {
-  const searchParams = await props.searchParams
-
-  const page = searchParams['page'] ?? '1'
-  const technologies = searchParams['technologies']
-  const workExperience = searchParams['workExperience']
+export default async function Page({ params }: { params: any }) {
+  const page = 1
+  const technologies = 'technologies'
+  const workExperience = 'workExperience'
   const users: any = await getUserClient(
     true,
     page,

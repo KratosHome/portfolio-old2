@@ -40,7 +40,7 @@ type LanguagePropsTypes = {
 }
 
 export async function generateMetadata({ params }: { params: any }) {
-  const { locale } = params as LanguagePropsTypes
+  const { locale } = (await params) as LanguagePropsTypes
 
   const projects = homeMateData[locale]
 
@@ -61,7 +61,8 @@ export async function generateMetadata({ params }: { params: any }) {
 }
 
 const Home: FC<any> = async ({ params }: { params: any }) => {
-  const { locale } = params as LanguagePropsTypes
+  const { locale } = (await params) as LanguagePropsTypes
+  console.log('locffffale', locale)
 
   const services = servicesData[locale]
   const projects = projectsData[locale]
@@ -69,9 +70,13 @@ const Home: FC<any> = async ({ params }: { params: any }) => {
   const faq = gaqData[locale]
   const experience = experienceData[locale]
 
-  return (
-    <>
-      <HomeSnippets locale={locale} />
+  return <></>
+}
+
+export default Home
+
+/*
+   <HomeSnippets locale={locale} />
       <Suspense fallback={<Loader />}>
         <Hero />
       </Suspense>
@@ -80,8 +85,4 @@ const Home: FC<any> = async ({ params }: { params: any }) => {
       <Experience experience={experience} />
       <Reviews data={dataReviewsSend} />
       <Faq data={faq} />
-    </>
-  )
-}
-
-export default Home
+ */
