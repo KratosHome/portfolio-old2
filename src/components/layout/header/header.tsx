@@ -136,8 +136,7 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
                       )}
                     </li>
                   ))}
-                  {/*
-                                <li className="group">
+                  <li className="group">
                     <Link
                       className="custom-login block rounded-[35px] border-b border-[#0B66F5] px-[15px] py-[10px] text-[#0B66F5] backdrop-blur-[12.5px] dark:border-zinc-600 dark:text-white"
                       href={`/${locale}/login`}
@@ -147,7 +146,6 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
                       </span>
                     </Link>
                   </li>
-                     */}
                 </ul>
               </nav>
               <div className="hidden items-center gap-[15px] lg:flex">

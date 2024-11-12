@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { base64ToFile } from '@/utils/base64ToFile'
 import { useTranslations } from 'next-intl'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Button } from '@/components/UI/buttom/button'
 
 interface MembersItemProps {
   item: any
@@ -190,7 +190,9 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       <div className="h-[1px] w-full bg-stone-500/30" />
       <div className="mt-4 flex justify-end">
         <div className="flex flex-wrap gap-[24px]">
-          <ButtonCircle title={'RESUME'} onClick={openResume} />
+          <Button variant="circle" onClick={openResume}>
+            {'RESUME'}
+          </Button>
         </div>
       </div>
     </div>

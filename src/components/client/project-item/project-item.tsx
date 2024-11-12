@@ -5,9 +5,9 @@ import Image from 'next/image'
 import { cn } from '@/utils/cn'
 import check from '@/assets/icons/check.svg'
 import { useTranslations } from 'next-intl'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 import { Modal } from '@/components/UI/client/modal/modal'
 import { JoinProject } from '@/components/client/project-item/join-project'
+import { Button } from '@/components/UI/buttom/button'
 
 interface ProjectItemProps {
   project: IProject
@@ -116,35 +116,43 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
             />
           </div>
           <div className="mt-[16px] flex min-h-full flex-row items-center justify-center gap-[32px]">
-            <ButtonCircle
-              title={t('join')}
+            <Button
+              variant="circle"
               onClick={joinProject}
               className="bg-black/60"
-            />
-            <ButtonCircle
-              title={t('view')}
+            >
+              {t('join')}
+            </Button>
+            <Button
+              variant="circle"
               onClick={() => {
                 setIsOpen(!isOpen)
                 router.push(`?id=${project._id}`)
               }}
-            />
+            >
+              {t('view')}
+            </Button>
           </div>
         </div>
         <div className="hidden h-full lg:flex">
           <div className="flex min-h-full flex-col items-end justify-end gap-[26px]">
-            <ButtonCircle
-              title={t('join')}
+            <Button
+              variant="circle"
               onClick={joinProject}
               className="border-white bg-[#0B66F5] opacity-0 duration-300 group-hover:opacity-100 dark:border-transparent dark:bg-black/60"
-            />
-            <ButtonCircle
-              title={t('view')}
+            >
+              {t('join')}
+            </Button>
+            <Button
+              variant="circle"
               onClick={() => {
                 setIsOpen(!isOpen)
                 router.push(`?id=${project._id}`)
               }}
               className="group-hover:bg-slate-200 dark:group-hover:bg-transparent"
-            />
+            >
+              {t('view')}
+            </Button>
           </div>
           <div className="ml-[46px] flex w-full flex-col justify-between">
             <div>
@@ -344,7 +352,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
             <div className="text-[64px] leading-[0.9] text-[#0B66F5]">
               {project.percentageProjectCompletion}%
             </div>
-            <ButtonCircle title={t('join')} onClick={joinProject} />
+            <Button onClick={joinProject}>{t('join')}</Button>
           </div>
         </div>
       </Modal>

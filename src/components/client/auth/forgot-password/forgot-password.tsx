@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 import { BigLuna } from '@/components/UI/client/big-luna/big-luna'
 import { Input } from '@/components/UI/client/input/input'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Button } from '@/components/UI/buttom/button'
 
 interface ForgotPasswordValues {
   email: string
@@ -62,7 +62,9 @@ const ForgotPassword = () => {
               />
               <span className="mt-[24px] block" />
               <div className="mt-[48px] flex w-full items-center justify-center">
-                <ButtonCircle title={t('sign-in')} className="capitalize" />
+                <Button variant="circle" className="capitalize">
+                  {t('sign-in')}
+                </Button>
               </div>
             </form>
           </div>

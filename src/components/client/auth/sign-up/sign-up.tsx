@@ -12,7 +12,7 @@ import { Loader } from '@/components/UI/client/loader/loader'
 import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 import { BigLuna } from '@/components/UI/client/big-luna/big-luna'
 import { Input } from '@/components/UI/client/input/input'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Button } from '@/components/UI/buttom/button'
 
 interface registerFormValues {
   username: string
@@ -172,7 +172,9 @@ export const SignUp = () => {
                 error={errors.passwordRepeat?.message}
               />
               <div className="mt-[48px] flex w-full items-center justify-center">
-                <ButtonCircle title={t('sign-in')} className="capitalize" />
+                <Button variant="circle" className="capitalize">
+                  {t('sign-in')}
+                </Button>
               </div>
             </form>
             <div className="mt-[70px] flex flex-col items-center text-[20px] lg:items-start">

@@ -7,9 +7,9 @@ import { verifyCaptcha } from '@/server/verifyCaptcha'
 import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { Loader } from '@/components/UI/client/loader/loader'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
+import { Button } from '@/components/UI/buttom/button'
 
 interface JoinProjectProps {
   open: boolean
@@ -140,7 +140,9 @@ export const JoinProject: FC<JoinProjectProps> = ({ open, setClose }) => {
                 onChange={handleCaptchaSubmission}
                 hl={locale}
               />
-              <ButtonCircle title={t('send')} className="mt-3" />
+              <Button variant="circle" className="mt-3">
+                {t('send')}
+              </Button>
             </div>
           </form>
         </div>

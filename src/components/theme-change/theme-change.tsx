@@ -6,6 +6,7 @@ import sun from '@/assets/icons/sun.svg'
 import moon from '@/assets/icons/moon.svg'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Loader2 } from 'tabler-icons-react'
 
 const ThemeChange = () => {
   const t = useTranslations('header')
@@ -42,7 +43,12 @@ const ThemeChange = () => {
     )
   }
 
-  if (!mounted) return null
+  if (!mounted)
+    return (
+      <div className="!size-[28px]">
+        <Loader2 className="animate-spin" />
+      </div>
+    )
 
   return (
     <div onClick={changeTheme} className="z-10 max-w-max">

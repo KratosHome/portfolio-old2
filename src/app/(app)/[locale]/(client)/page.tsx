@@ -1,32 +1,9 @@
-import React, { FC, Suspense } from 'react'
+import React, { FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
 import { Viewport } from 'next'
-import { Experience } from '@/components/client/experience/experience'
-import { Reviews } from '@/components/client/reviews/reviews'
-import { Faq } from '@/components/client/faq/faq'
-import { projectsData } from '@/data/projects-data'
 import { homeMateData } from '@/data/meta-data/home-meta-data'
-import { servicesData } from '@/data/services'
-import { dataReviews } from '@/data/reviews'
-import { gaqData } from '@/data/faq'
-import { experienceData } from '@/data/experience'
-import HomeSnippets from '@/components/client/snippets/home-snippets'
-import { Projects } from '@/components/client/projects/projects'
-import dynamic from 'next/dynamic'
-import { Loader } from '@/components/UI/client/loader/loader'
-
-const Hero = dynamic(() => import('@/components/client/hero/hero'), {
-  loading: () => <Loader />,
-})
-
-const Services = dynamic(
-  () => import('@/components/client/services/services'),
-  {
-    loading: () => <Loader />,
-  },
-)
 
 export const viewport: Viewport = {
   themeColor: [
@@ -64,25 +41,7 @@ const Home: FC<any> = async ({ params }: { params: any }) => {
   const { locale } = (await params) as LanguagePropsTypes
   console.log('locffffale', locale)
 
-  const services = servicesData[locale]
-  const projects = projectsData[locale]
-  const dataReviewsSend = dataReviews
-  const faq = gaqData[locale]
-  const experience = experienceData[locale]
-
   return <></>
 }
 
 export default Home
-
-/*
-   <HomeSnippets locale={locale} />
-      <Suspense fallback={<Loader />}>
-        <Hero />
-      </Suspense>
-      <Services services={services} />
-      <Projects projects={projects} />
-      <Experience experience={experience} />
-      <Reviews data={dataReviewsSend} />
-      <Faq data={faq} />
- */

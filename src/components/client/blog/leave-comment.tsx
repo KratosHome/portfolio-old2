@@ -10,9 +10,9 @@ import { addComments } from '@/server/blog/add-commetns'
 import { useStore } from '@/store/user'
 import Link from 'next/link'
 import { Loader } from '@/components/UI/client/loader/loader'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
+import { Button } from '@/components/UI/buttom/button'
 
 export const LeaveComment: FC<any> = ({ postId }) => {
   const locale = useLocale()
@@ -83,7 +83,9 @@ export const LeaveComment: FC<any> = ({ postId }) => {
           zIndex: 50,
         }}
       >
-        <ButtonCircle title={'LEAVE COMMENT'} className="!z-30" />
+        <Button variant="circle" className="!z-30">
+          {'LEAVE COMMENT'}
+        </Button>
       </div>
       <Modal
         isOpen={open}
@@ -124,7 +126,9 @@ export const LeaveComment: FC<any> = ({ postId }) => {
                 onChange={handleCaptchaSubmission}
                 hl={locale}
               />
-              <ButtonCircle title={t('send')} className="mt-3" />
+              <Button variant="circle" className="mt-3">
+                {t('send')}
+              </Button>
             </div>
           </form>
         </div>

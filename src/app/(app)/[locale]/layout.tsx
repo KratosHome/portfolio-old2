@@ -11,10 +11,6 @@ import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
 
-const Footer = dynamic(() => import('@/components/layout/footer/footer'), {
-  loading: () => <Loader />,
-})
-
 const Header = dynamic(() => import('@/components/layout/header/header'), {
   loading: () => <Loader />,
 })
@@ -63,9 +59,3 @@ export function generateStaticParams() {
     { params: { locale: 'zh' } },
   ]
 }
-
-/*
-     <Suspense fallback={<Loader />}>
-              <Footer />
-            </Suspense>
- */
