@@ -20,7 +20,7 @@ import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Input } from '@/components/UI/client/input/input'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
+import { Button } from '@/components/UI/buttom/button'
 
 interface FormData {
   name: string
@@ -228,7 +228,7 @@ const Footer = () => {
                 hl={locale}
               />
               <div className="mt-[22px] flex w-full items-end justify-end lg:mt-0">
-                <ButtonCircle title={t('send')} />
+                <Button variant="circle">{t('send')}</Button>
               </div>
             </div>
           </form>

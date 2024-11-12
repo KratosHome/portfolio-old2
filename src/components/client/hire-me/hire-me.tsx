@@ -8,9 +8,9 @@ import { messageMe } from '@/server/telegram/message-me.server'
 import { toast } from 'react-toastify'
 import { useLocale } from 'use-intl'
 import { Loader } from '@/components/UI/client/loader/loader'
-import { ButtonCircle } from '@/components/UI/client/button-circle/button-circle'
 import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
+import { Button } from '@/components/UI/buttom/button'
 
 export const HireMe: FC<any> = ({ title, modalTitle }) => {
   const locale = useLocale()
@@ -72,7 +72,7 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
           zIndex: 50,
         }}
       >
-        <ButtonCircle title={title} className="!z-30" />
+        <Button variant="circle">{title}</Button>
       </div>
       {/* eslint-disable-next-line react/jsx-no-undef */}
       <Modal
@@ -150,7 +150,9 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
                 onChange={handleCaptchaSubmission}
                 hl={locale}
               />
-              <ButtonCircle title={t('send')} className="mt-3" />
+              <Button variant="circle" className="mt-3">
+                {t('send')}
+              </Button>
             </div>
           </form>
         </div>
