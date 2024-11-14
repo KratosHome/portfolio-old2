@@ -4,6 +4,7 @@ import 'swiper/css/grid'
 import 'swiper/css/pagination'
 import { Viewport } from 'next'
 import { homeMateData } from '@/data/meta-data/home-meta-data'
+import Hero from '@/components/client/hero/hero'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -41,7 +42,11 @@ const Home: FC<any> = async ({ params }: { params: any }) => {
   const { locale } = (await params) as LanguagePropsTypes
   console.log('locffffale', locale)
 
-  return <></>
+  return (
+    <>
+      <Hero />
+    </>
+  )
 }
 
 export default Home

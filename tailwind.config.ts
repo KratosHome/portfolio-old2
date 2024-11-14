@@ -55,6 +55,12 @@ const config: Config = {
           'background-position': 'center',
           'background-size': 'contain',
         },
+        '.bg-group-torus-9': {
+          'background-image': "url('/assets/background/torus-9.svg')",
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'contain',
+        },
         '.bg-planet-first': {
           'background-image': "url('/assets/hero/round.png')",
           'background-repeat': 'no-repeat',

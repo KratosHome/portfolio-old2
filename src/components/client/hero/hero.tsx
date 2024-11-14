@@ -23,6 +23,7 @@ const Hero = () => {
   const bgRef = useRef<HTMLDivElement>(null)
   const hireMeRef = useRef<HTMLDivElement>(null)
   const planetRef = useRef<HTMLDivElement>(null)
+  const bgСircleTextRef = useRef<HTMLDivElement>(null)
 
   const startDate = new Date('2021-10-01')
 
@@ -51,6 +52,20 @@ const Hero = () => {
         },
       )
     }
+
+    gsap.fromTo(
+      bgСircleTextRef.current,
+      {
+        scale: 0.1,
+        opacity: 0,
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 2,
+        ease: 'power2.out',
+      },
+    )
 
     if (bgRef.current) {
       gsap.fromTo(
@@ -103,13 +118,13 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-between lg:flex-row">
           <div
             ref={bigСircleRef}
-            className="absolute -top-[10px] left-[40px] -z-10 size-[100px] flex-shrink-0 rounded-[280px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] opacity-0 backdrop-blur-[12.5px] dark:border-[1px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[50px] lg:left-[20px] lg:size-[280px]"
+            className="absolute -top-[10px] left-[40px] z-10 size-[100px] flex-shrink-0 rounded-[280px] border-stone-500/30 bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] opacity-0 backdrop-blur-[12.5px] dark:border-[1px] dark:bg-gradient-to-tr dark:from-[rgba(255,255,255,0.12)] dark:to-[rgba(255,255,255,0)] lg:-top-[20px] lg:left-[20px] lg:size-[280px]"
           />
           <div
             ref={bgRef}
             className="absolute left-[5px] top-[20px] -z-20 h-[70px] w-[80px] rotate-[10deg] bg-contain opacity-0 bg-ellipse-light-pattern dark:bg-ellipse-pattern lg:-left-[80px] lg:top-[70px] lg:h-[103px] lg:w-[125px]"
           />
-          <div className="w-full max-w-[400px] lg:max-w-[600px]">
+          <div className="z-20 w-full max-w-[400px] lg:max-w-[600px]">
             <h1 className="relative mt-[55px] flex w-full max-w-[300px] flex-col uppercase lg:-mt-[50px] lg:max-w-full">
               <span className="overlay-theme-fr delay-1 inline-block items-end text-end text-[40px] font-extrabold leading-[0.5] text-[#0B66F5] lg:text-[80px]">
                 {t('frontend')}
@@ -122,6 +137,10 @@ const Hero = () => {
               <span className="overlay-blue delay-2 !-mt-[25px] block w-full max-w-[153px] text-end text-[12px] text-[#0B66F5] lg:!-mt-[5px] lg:ml-12 lg:max-w-max lg:text-[20px]">
                 {t('subtitle')}
               </span>
+              <div
+                ref={bgСircleTextRef}
+                className="bg-group-torus-9 absolute -mr-12 mt-4 h-[70px] w-[80px] scale-0 bg-contain opacity-0"
+              />
             </div>
           </div>
           <div className="bg-hero-pattern bg-cover" />
