@@ -10,17 +10,23 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
 import { useTheme } from 'next-themes'
 
+gsap.registerPlugin(ScrollTrigger)
+
+interface IIcon {
+  id: number
+  alt: string
+  icon: string
+}
+
+interface IService {
+  id: number
+  title: string
+  description: string
+  icon: IIcon[]
+}
+
 interface ServicesProps {
-  services: Array<{
-    id: number
-    title: string
-    description: string
-    icon: Array<{
-      id: number
-      alt: string
-      icon: any
-    }>
-  }>
+  services: IService[]
 }
 
 const Services: FC<ServicesProps> = ({ services }) => {
@@ -35,14 +41,10 @@ const Services: FC<ServicesProps> = ({ services }) => {
   const [currentSrc, setCurrentSrc] = useState(arrowLong)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-  }, [])
-
-  useEffect(() => {
     setCurrentSrc(theme === 'dark' ? arrowLong : arrowLongLight)
   }, [theme])
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!wrapperRef.current) return
     const sections = gsap.utils.toArray('.panel')
     const isDesktop = window.innerWidth >= 600
@@ -60,10 +62,43 @@ const Services: FC<ServicesProps> = ({ services }) => {
         end: '+=3000',
       },
     })
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+  })
+  useGSAP(() => {
+    if (!wrapperRef.current) return
+
+    const sections = gsap.utils.toArray<HTMLDivElement>(
+      '.services-card-trigger',
+    )
+    sections.forEach((section) => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          end: 'top 10%',
+          toggleActions: 'play reverse play reverse',
+          scrub: true,
+        },
+      })
+
+      tl.fromTo(
+        section,
+        { opacity: 0, y: 100, filter: 'blur(10px)' },
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          duration: 1,
+          ease: 'power4.out',
+        },
+      ).to(section, {
+        opacity: 0,
+        y: -50,
+        filter: 'blur(10px)',
+        duration: 1,
+        ease: 'power4.in',
+      })
+    })
+  })
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = serviceRefs.current[index]
@@ -113,13 +148,15 @@ const Services: FC<ServicesProps> = ({ services }) => {
         {/* eslint-disable-next-line */}
         <div className="absolute -bottom-[120px] right-[15px] -z-20 h-[103px] w-[125px] bg-orbit-services-light dark:opacity-[0.7] dark:bg-orbit-services" />
         <div className="mt-[152px] hidden flex-wrap justify-center gap-4 lg:flex">
-          {services.map((service: any, index: number) => (
+          {services.map((service, index) => (
             <div
               key={service.id}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
-              ref={(el: any) => (serviceRefs.current[index] = el!)}
-              className="services-card group relative flex h-[400px] w-[394px] flex-col justify-between rounded-md border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px]"
+              ref={(el: HTMLDivElement | null | undefined) => {
+                serviceRefs.current[index] = el!
+              }}
+              className="services-card services-card-trigger group relative flex h-[400px] w-[394px] flex-col justify-between rounded-md border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px]"
             >
               <div
                 className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern"
@@ -136,7 +173,7 @@ const Services: FC<ServicesProps> = ({ services }) => {
               <div className="flex flex-wrap gap-3">
                 <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent" />
                 {service.icon.length >= 1 &&
-                  service.icon.map((icon: any, iconIndex: number) => (
+                  service.icon.map((icon: IIcon, iconIndex: number) => (
                     <div
                       key={icon.id}
                       ref={(el) => {
@@ -181,7 +218,7 @@ const Services: FC<ServicesProps> = ({ services }) => {
             className="wrapper-services-mob max-w-screen z-20 flex overflow-y-hidden"
             ref={wrapperRef}
           >
-            {services.map((item: any, index: any) => (
+            {services.map((item: IService, index: number) => (
               <div
                 key={index}
                 className="panel group relative mx-3 my-10 mt-[50px] flex h-[70vh] min-w-[90vw] flex-col justify-between rounded-xl border-r border-white/80 bg-gradient-to-l from-white/20 to-gray-600/10 p-[24px] sm:p-10"
@@ -202,7 +239,7 @@ const Services: FC<ServicesProps> = ({ services }) => {
                 <div className="flex flex-wrap gap-3">
                   <div className="flex size-[34px] items-center justify-center rounded-full border border-stone-500/30 bg-[#0B66F5] bg-gradient-to-r to-white/0 dark:bg-transparent" />
                   {item.icon.length > 0 &&
-                    item.icon.map((icon: any) => (
+                    item.icon.map((icon: IIcon) => (
                       <div key={icon.id}>
                         <Image
                           src={icon.icon}

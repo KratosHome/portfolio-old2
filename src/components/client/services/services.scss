@@ -37,22 +37,37 @@
   background: var(--bg-services-card);
 }
 
+root {
+  --servics-opacity: 0.5;
+  --servics-opacity-0: 0.5;
+  --servics-opacity-5: 0.8;
+  --servics-opacity-1: 0.5;
+}
+
+[class='dark'] {
+  --servics-opacity: 0.1;
+  --servics-opacity-0: 0.1;
+  --servics-opacity-5: 0.2;
+  --servics-opacity-1: 0.1;
+}
+
 @keyframes pulse {
   0% {
-	transform: scale(1);
-	opacity: 0.1;
+    transform: scale(1);
+    opacity: var(--servics-opacity-0)
   }
   50% {
-	transform: scale(1.1);
-	opacity: 0.3;
+    transform: scale(1.1);
+    opacity: var(--servics-opacity-5)
   }
   100% {
-	transform: scale(1);
-	opacity: 0.2;
+    transform: scale(1);
+    opacity: var(--servics-opacity-1)
   }
 }
 
 .animate-serv-pulse {
+  opacity: var(--servics-opacity);
   rotate: -10deg;
   animation: pulse 2s infinite;
 }

@@ -36,7 +36,6 @@ interface FormData {
 
 const Footer = () => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-  const { contextSafe } = useGSAP()
 
   const t = useTranslations('footer')
   const { theme } = useTheme()

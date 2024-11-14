@@ -139,6 +139,7 @@ const Hero = () => {
               </span>
               <div
                 ref={bgСircleTextRef}
+                // eslint-disable-next-line prettier/prettier
                 className="bg-group-torus-9 absolute -mr-12 mt-4 h-[70px] w-[80px] scale-0 bg-contain opacity-0"
               />
             </div>

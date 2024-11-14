@@ -10,7 +10,7 @@ const MenuInfoOlegTkach = () => {
   const t = useTranslations('header')
 
   return (
-    <div className='z-20'>
+    <div className="z-20">
       <Link
         href={`/${locale}`}
         className="!z-20 flex items-center gap-[6px] lg:text-[28px]"
