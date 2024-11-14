@@ -10,8 +10,9 @@ import { ThemeProvider } from '@/components/providers/theme-provider/theme-provi
 import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-info-oleg-tkach'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
+import Header from '@/components/layout/header/header'
 
-const Header = dynamic(() => import('@/components/layout/header/header'), {
+const Footer = dynamic(() => import('@/components/layout/footer/footer'), {
   loading: () => <Loader />,
 })
 
@@ -29,10 +30,11 @@ export default async function LocaleLayout({
           <ScrollToTop />
           <StarsCanvas />
           <SessionProvider>
-            <Suspense fallback={<Loader />}>
-              <Header userInfo={<MenuInfoOlegTkach />} />
-            </Suspense>
+            <Header userInfo={<MenuInfoOlegTkach />} />
             <main className="min-h-[90svh]">{children}</main>
+            <Suspense fallback={<Loader />}>
+              <Footer />
+            </Suspense>
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>

@@ -104,7 +104,7 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
                         {item.subMenu.length > 0 && (
                           <Image
                             src={currentSrc}
-                            className="mt-2 rotate-180 duration-300 group-hover:rotate-0"
+                            className="ml-3 mt-1 rotate-180 duration-300 group-hover:rotate-0"
                             alt={t('arrow-menu')}
                             width="20"
                             height="20"

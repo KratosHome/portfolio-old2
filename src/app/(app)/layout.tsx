@@ -8,43 +8,40 @@ import localFont from 'next/font/local'
 
 export const dynamic = 'force-dynamic'
 
-const sansationBold = localFont({
-  src: '../fonts/Sansation_Bold.ttf',
-  variable: '--font-sansation-bold',
-  weight: '700',
-})
-
-const sansationBoldItalic = localFont({
-  src: '../fonts/Sansation_Bold_Italic.ttf',
-  variable: '--font-sansation-bold-italic',
-  weight: '700',
-  style: 'italic',
-})
-
-const sansationItalic = localFont({
-  src: '../fonts/Sansation_Italic.ttf',
-  variable: '--font-sansation-italic',
-  weight: '400',
-  style: 'italic',
-})
-
-const sansationLight = localFont({
-  src: '../fonts/Sansation_Light.ttf',
-  variable: '--font-sansation-light',
-  weight: '300',
-})
-
-const sansationLightItalic = localFont({
-  src: '../fonts/Sansation_Light_Italic.ttf',
-  variable: '--font-sansation-light-italic',
-  weight: '300',
-  style: 'italic',
-})
-
-const sansationRegular = localFont({
-  src: '../fonts/Sansation_Regular.ttf',
-  variable: '--font-sansation-regular',
-  weight: '400',
+const sansation = localFont({
+  src: [
+    {
+      path: '../fonts/Sansation_Light.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Sansation_Light_Italic.ttf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/Sansation_Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Sansation_Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/Sansation_Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Sansation_Bold_Italic.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-sansation',
 })
 
 export default async function LocaleLayout({
@@ -59,7 +56,7 @@ export default async function LocaleLayout({
       <SpeedInsights />
       <GoogleTagManager />
       <body
-        className={`${sansationBold.variable} ${sansationBoldItalic.variable} ${sansationItalic.variable} ${sansationLight.variable} ${sansationLightItalic.variable} ${sansationRegular.variable} max-w-screen relative overflow-x-hidden bg-white font-sansation antialiased dark:bg-black`}
+        className={`${sansation.variable} max-w-screen relative overflow-x-hidden bg-white font-sansation antialiased dark:bg-black`}
       >
         {children}
       </body>

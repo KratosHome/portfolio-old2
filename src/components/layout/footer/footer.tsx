@@ -21,6 +21,11 @@ import { toast } from 'react-toastify'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Input } from '@/components/UI/client/input/input'
 import { Button } from '@/components/UI/buttom/button'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface FormData {
   name: string
@@ -31,6 +36,7 @@ interface FormData {
 
 const Footer = () => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const { contextSafe } = useGSAP()
 
   const t = useTranslations('footer')
   const { theme } = useTheme()
@@ -53,6 +59,46 @@ const Footer = () => {
   const [linkSrc, setLink] = useState(linkedin)
   const [telegramSrc, setTelegram] = useState(telegram)
   const [arrowDownSrc, setArrowDown] = useState(arrowDown)
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '.footer-section',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: 'power3.out',
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: '.footer-section',
+          start: 'top 65%',
+          end: 'top 65%',
+          toggleActions: 'play none none reverse',
+        },
+      },
+    )
+  })
+
+  useGSAP(() => {
+    gsap.fromTo(
+      '.planet-section',
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.planet-section',
+          start: 'top 80%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse',
+          markers: true,
+        },
+      },
+    )
+  })
 
   useEffect(() => {
     setGitSrc(theme === 'dark' ? gitHub : gitHub)
@@ -115,28 +161,28 @@ const Footer = () => {
         </div>
       </div>
       <div className="mt-[155px] h-[1px] w-full bg-stone-500/30 lg:mt-[380px]" />
-      <div className="relative mx-auto h-10 min-h-max w-full max-w-[1442px] px-[24px]">
+      <div className="planet-section relative mx-auto h-10 min-h-max w-full max-w-[1442px] px-[24px]">
         <div className="absolute -top-[45px] right-[0] max-w-[1445px] rotate-[25deg] justify-end lg:-top-[80px]">
           <div className="circle-footer absolute right-[100px] ml-[110px] mt-[70px] size-[55px] rounded-full bg-[rgba(255,255,255,0.3)] p-[55px] opacity-40 blur-2xl lg:size-[125px] lg:p-[135px]" />
           <div className="absolute right-[115px] ml-[120px] mt-[80px] size-[85px] rounded-full bg-black lg:size-[250px]" />
           <div className="planet-footer absolute right-[100px] z-10 ml-[80px] mt-[25px] size-[80px] rounded-full bg-white opacity-40 blur-2xl lg:h-40 lg:w-40"></div>
         </div>
       </div>
-      <div className="relative mx-auto mt-[55px] max-w-[1442px] px-[24px]">
+      <div className="footer-section relative mx-auto mt-[55px] max-w-[1442px] px-[24px]">
         <div className="flex flex-col items-center justify-between lg:flex-row">
           <div className="lg:mr-[100px]">
             <div className="text-[34px] uppercase lg:text-[64px]">
               {t('Oleg-Tkach')}
             </div>
             <div className="mt-[121px]">
-              <div className="text-[40px] font-bold text-[#0B66F5]">
+              <div className="text-[40px] font-bold uppercase text-[#0B66F5]">
                 {t('contact-and')}
               </div>
-              <div className="mt-[13px] text-[32px]">
+              <div className="mt-[13px] max-w-[600px] text-[32px]">
                 {t('watch your ideas turn into beautifully coded realities')}
               </div>
             </div>
-            <div className="flex flex-col items-end">
+            <div className="mr-[100px] flex flex-col items-end">
               <div className="mr-3 mt-[60px] h-[1px] w-[289px] bg-[#FAFAFA]/50" />
               <div className="mt-[45px] flex flex-col items-center text-[20px]">
                 <span>{t('let-connect')}</span>
@@ -282,9 +328,6 @@ const Footer = () => {
               />
             </a>
           </div>
-          {/*
-                      <Link href={`/${locale}/privacy-policy`}>{t('Privacy Policy')}</Link>
-             */}
         </div>
       </div>
     </footer>
