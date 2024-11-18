@@ -12,6 +12,9 @@ import arrowLong from '@/assets/icons/arrow-long.svg'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
 import { useTheme } from 'next-themes'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface IProject {
   id: string
@@ -28,7 +31,10 @@ interface ProjectsProps {
   projects: IProject[]
 }
 
-export const Projects: FC<ProjectsProps> = ({ projects }) => {
+const Projects: FC<ProjectsProps> = ({ projects }) => {
+  const descProjRef = useRef<HTMLDivElement | null>(null)
+  const descProjRefMob = useRef<HTMLDivElement | null>(null)
+
   const projectsRefs = useRef<HTMLDivElement[]>([])
   const descriptionRefs = useRef<HTMLDivElement[]>([])
 
@@ -139,6 +145,129 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
     })
   })
 
+  const animateTechnologiesIn = (el: HTMLElement | null, delay: number) => {
+    if (el) {
+      gsap.to(el, {
+        opacity: 1,
+        height: 'auto',
+        duration: 0.5,
+        ease: 'power2.out',
+        delay,
+        overwrite: true,
+      })
+    }
+  }
+
+  const animateTechnologiesOut = (el: HTMLElement | null) => {
+    if (el) {
+      gsap.to(el, {
+        opacity: 0,
+        height: 0,
+        duration: 0.3,
+        ease: 'power2.out',
+        overwrite: true,
+      })
+    }
+  }
+
+  useGSAP(() => {
+    if (descProjRef.current) {
+      const el = descProjRef.current
+
+      gsap.fromTo(
+        el,
+        {
+          autoAlpha: 0,
+          y: 50,
+          scale: 0.65,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'cubic-bezier(0.25, 1, 0.5, 1)',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+          },
+        },
+      )
+
+      gsap.fromTo(
+        el,
+        {
+          autoAlpha: 1,
+          y: 0,
+        },
+        {
+          autoAlpha: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'bottom 10%',
+            end: 'bottom -20%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      )
+    }
+  })
+
+  useGSAP(() => {
+    if (descProjRefMob.current) {
+      const elMob = descProjRefMob.current
+
+      gsap.fromTo(
+        elMob,
+        {
+          autoAlpha: 0,
+          y: 50,
+          scale: 0.85,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'cubic-bezier(0.25, 1, 0.5, 1)',
+          scrollTrigger: {
+            trigger: elMob,
+            start: 'top 90%',
+            end: 'top 20%',
+            toggleActions: 'play none none reverse',
+            scrub: true,
+          },
+        },
+      )
+
+      gsap.fromTo(
+        elMob,
+        {
+          autoAlpha: 1,
+          y: 0,
+        },
+        {
+          autoAlpha: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: elMob,
+            start: 'bottom 10%',
+            end: 'bottom -20%',
+            toggleActions: 'play none none reverse',
+          },
+        },
+      )
+    }
+  })
+
   return (
     <section aria-label="projects" id="projects">
       <div className="relative mx-auto mb-[140px] mt-[120px] max-w-[1442px] lg:px-[24px]">
@@ -160,7 +289,7 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
             height={30}
           />
         </div>
-        <div className="mt-[51px] hidden w-full xl:block">
+        <div ref={descProjRef} className="mt-[51px] hidden w-full xl:block">
           <Swiper
             slidesPerView={3}
             slidesPerGroup={3}
@@ -257,7 +386,7 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
           </div>
         </div>
 
-        <div className="block w-full xl:hidden">
+        <div ref={descProjRefMob} className="block w-full xl:hidden">
           <Swiper
             breakpoints={{
               0: {
@@ -333,20 +462,23 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
                           {project.description}
                         </div>
                       </div>
-                      <div className="flex items-center justify-between border-t-[1px] border-amber-50">
-                        <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex !size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
+                      <div className="flex items-center justify-between border-t-[1px] border-amber-50 pt-4">
+                        <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex !size-[50px] min-w-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
                           <Image src={arrowAslant} alt={t('arrow-link')} />
                         </div>
                         <div className="ml-2 flex flex-wrap gap-4">
                           {project.technologies.length >= 1 &&
-                            project.technologies.map((icon) => (
+                            project.technologies.map((icon, techIndex) => (
                               <li
                                 key={icon.id}
-                                className={`${
-                                  mobActiveSlide === index
-                                    ? 'opacity-1'
-                                    : 'opacity-0'
-                                }`}
+                                className="icon-item"
+                                ref={(el) => {
+                                  if (mobActiveSlide === index) {
+                                    animateTechnologiesIn(el, techIndex * 0.1)
+                                  } else {
+                                    animateTechnologiesOut(el)
+                                  }
+                                }}
                               >
                                 <Image
                                   src={icon.icon}
@@ -358,7 +490,7 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
                             ))}
                         </div>
                         <div
-                          className={`text-[64px] font-light text-[#0B66F5] ${
+                          className={`text-[64px] font-light leading-[1] text-[#0B66F5] ${
                             mobActiveSlide === index
                               ? 'text-white dark:text-[#0B66F5]'
                               : ''
@@ -382,3 +514,5 @@ export const Projects: FC<ProjectsProps> = ({ projects }) => {
     </section>
   )
 }
+
+export default Projects

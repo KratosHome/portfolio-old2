@@ -3395,7 +3395,7 @@ const projectsZh = [
   },
 ]
 
-export const projectsData = {
+export const projectsData: any = {
   en: projectsEn,
   uk: projectsUk,
   de: projectsDe,
