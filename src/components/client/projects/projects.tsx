@@ -5,18 +5,31 @@ import { FC, useEffect, useRef, useState } from 'react'
 import arrowAslant from '@/assets/icons/arrow-aslant.svg'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Grid } from 'swiper/modules'
+import { Grid } from 'swiper/modules'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import arrowLong from '@/assets/icons/arrow-long.svg'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 import arrowLongLight from '@/assets/icons/arrow-long-light.svg'
-import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
 
-export const Projects: FC<any> = ({ projects }) => {
+interface IProject {
+  id: string
+  title: string
+  description: string
+  company: string
+  link: string
+  isEmptiness: boolean
+  technologies: { id: string; icon: string; alt: string }[]
+  count: number
+}
+
+interface ProjectsProps {
+  projects: IProject[]
+}
+
+export const Projects: FC<ProjectsProps> = ({ projects }) => {
   const projectsRefs = useRef<HTMLDivElement[]>([])
-  const iconRefs = useRef<HTMLLIElement[][]>([])
   const descriptionRefs = useRef<HTMLDivElement[]>([])
 
   const t = useTranslations('home-page.project')
@@ -36,6 +49,12 @@ export const Projects: FC<any> = ({ projects }) => {
         height: 'auto',
         minHeight: '452px',
         duration: 0.3,
+        ease: 'power2.out',
+      })
+
+      gsap.to('.project-mob-h3', {
+        opacity: 1,
+        duration: 1,
         ease: 'power2.out',
       })
 
@@ -70,6 +89,7 @@ export const Projects: FC<any> = ({ projects }) => {
       opacity: 1,
       duration: 1.5,
       ease: 'power2.out',
+      overwrite: true,
     })
 
     gsap.to(serviceRef, {
@@ -77,6 +97,7 @@ export const Projects: FC<any> = ({ projects }) => {
       minHeight: '552px',
       duration: 0.7,
       ease: 'power2.out',
+      overwrite: true,
     })
 
     gsap.to(serviceRef.querySelectorAll('.icon-item'), {
@@ -85,6 +106,7 @@ export const Projects: FC<any> = ({ projects }) => {
       stagger: 0.1,
       height: 'auto',
       ease: 'power2.out',
+      overwrite: true,
     })
   })
 
@@ -97,12 +119,14 @@ export const Projects: FC<any> = ({ projects }) => {
       opacity: 0,
       duration: 1.5,
       ease: 'power2.out',
+      overwrite: true,
     })
 
     gsap.to(serviceRef, {
       height: '552px',
       duration: 0.1,
       ease: 'power2.out',
+      overwrite: true,
     })
 
     gsap.to(serviceRef.querySelectorAll('.icon-item'), {
@@ -111,6 +135,7 @@ export const Projects: FC<any> = ({ projects }) => {
       stagger: 0.1,
       height: 0,
       ease: 'power2.out',
+      overwrite: true,
     })
   })
 
@@ -154,12 +179,20 @@ export const Projects: FC<any> = ({ projects }) => {
               pauseOnMouseEnter: true,
             }}
           >
-            {projects.map((project: any, index: number) => (
+            {projects.map((project: IProject, index: number) => (
               <SwiperSlide key={project.id}>
-                {project.isEmptiness === false ? (
-                  <a href={project.link} target="_blank">
+                {!project.isEmptiness && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <div
-                      ref={(el: any) => (projectsRefs.current[index] = el!)}
+                      ref={(el) => {
+                        if (el) {
+                          projectsRefs.current[index] = el
+                        }
+                      }}
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={() => handleMouseLeave(index)}
                       className="project-card group relative z-10 m-4 flex min-h-[552px] w-[398px] flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
@@ -178,9 +211,11 @@ export const Projects: FC<any> = ({ projects }) => {
                           {t('cooperation-with')}: &quot;{project.company}&quot;
                         </div>
                         <div
-                          ref={(el: any) =>
-                            (descriptionRefs.current[index] = el!)
-                          }
+                          ref={(el) => {
+                            if (el) {
+                              descriptionRefs.current[index] = el
+                            }
+                          }}
                           className="mt-[21px] h-0 text-[20px] font-light opacity-0"
                         >
                           {project.description}
@@ -192,7 +227,7 @@ export const Projects: FC<any> = ({ projects }) => {
                             <Image src={arrowAslant} alt={t('arrow-link')} />
                           </div>
                           {project.technologies.length >= 1 &&
-                            project.technologies.map((icon: any) => (
+                            project.technologies.map((icon) => (
                               <li
                                 key={icon.id}
                                 className="icon-item mt-2"
@@ -213,7 +248,7 @@ export const Projects: FC<any> = ({ projects }) => {
                       </div>
                     </div>
                   </a>
-                ) : null}
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
@@ -243,84 +278,97 @@ export const Projects: FC<any> = ({ projects }) => {
             }}
             autoplay={{
               delay: 3000,
-              disableOnInteraction: true,
+              disableOnInteraction: false,
             }}
-            spaceBetween={40}
+            spaceBetween={10}
             loop={true}
-            onSlideChangeTransitionStart={(swiper) => {
+            speed={600}
+            onSlideChange={(swiper) => {
               setMobActiveSlide(swiper.realIndex)
             }}
           >
             {projects
-              .filter((project: any) => !project.isEmptiness)
-              .map((project: any, index: number) => (
-                <SwiperSlide key={index} className="custom-slide">
-                  {project.isEmptiness === false ? (
-                    <a href={project.link} target="_blank">
-                      <div
-                        className={`relative m-4 flex h-[452px] min-h-full w-full flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-red-400 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${mobActiveSlide === index ? 'project-mob-wrapper project-card-mob justify-between' : 'project-card-mob-all project-mob-wrapper-hidden'}`}
-                      >
-                        <div className="overflow-hidden">
-                          <div
-                            className="animate-serv-pulse absolute right-12 top-10 size-[200px] bg-group-pattern-light dark:bg-group-pattern dark:!opacity-[0.2]"
-                            style={{
-                              animationDelay: `${index * 0.5}s`,
-                            }}
-                          />
-                          <h3
-                            className={`text-[36px] leading-[0.9] ${mobActiveSlide === index ? 'text-[26px] text-white dark:text-[#0B66F5]' : ''}`}
-                          >
-                            {project.title}
-                          </h3>
-                          <div
-                            className={`mt-[21px] text-[#0B66F5] ${mobActiveSlide === index ? 'mb-[21px] text-white' : ''}`}
-                          >
-                            {t('cooperation-with')}: &quot;{project.company}
-                            &quot;
-                          </div>
-                          <div
-                            className={`text-[16px] font-light opacity-0 ${mobActiveSlide === index ? 'project-mob-description' : 'project-mob-description-hidden'}`}
-                          >
-                            {project.description}
-                          </div>
+              .filter((project: IProject) => !project.isEmptiness)
+              .map((project: IProject, index: number) => (
+                <SwiperSlide key={project.id} className="custom-slide">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div
+                      className={`relative m-4 flex h-[452px] min-h-full w-full flex-col justify-end gap-[21px] rounded-lg border-b border-black bg-red-400 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0.00)] px-[16px] py-[24px] backdrop-blur-[12.5px] ${
+                        mobActiveSlide === index
+                          ? 'project-mob-wrapper project-card-mob'
+                          : 'project-card-mob-all project-mob-wrapper-hidden'
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <h3
+                          className={`text-[36px] leading-[0.9] ${
+                            mobActiveSlide === index
+                              ? 'text-[26px] text-white dark:text-[#0B66F5]'
+                              : 'project-mob-h3'
+                          }`}
+                        >
+                          {project.title}
+                        </h3>
+                        <div
+                          className={`mt-[21px] text-[#0B66F5] ${
+                            mobActiveSlide === index
+                              ? 'mb-[21px] text-white'
+                              : ''
+                          }`}
+                        >
+                          {t('cooperation-with')}: &quot;{project.company}
+                          &quot;
                         </div>
-                        <div className="flex items-center justify-between border-t-[1px] border-amber-50">
-                          <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex !size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
-                            <Image src={arrowAslant} alt={t('arrow-link')} />
-                          </div>
-                          <div className="ml-2 flex flex-wrap gap-4">
-                            {project.technologies.length >= 1 &&
-                              project.technologies.map(
-                                (icon: any, iconIndex: number) => (
-                                  <li
-                                    key={icon.id}
-                                    className={` ${mobActiveSlide === index ? 'opacity-1' : 'opacity-0'}`}
-                                    ref={(el) => {
-                                      if (!iconRefs.current[index]) {
-                                        iconRefs.current[index] = []
-                                      }
-                                      iconRefs.current[index][iconIndex] = el!
-                                    }}
-                                  >
-                                    <Image
-                                      src={icon.icon}
-                                      alt={icon.alt}
-                                      width={34}
-                                      height={34}
-                                    />
-                                  </li>
-                                ),
-                              )}
-                          </div>
-                          <div
-                            className={`text-[64px] font-light text-[#0B66F5] ${mobActiveSlide === index ? 'text-white dark:text-[#0B66F5]' : ''}`}
-                          >
-                            {project.count}
-                          </div>
+                        <div
+                          className={`text-[16px] font-light opacity-0 ${
+                            mobActiveSlide === index
+                              ? 'project-mob-description'
+                              : 'project-mob-description-hidden'
+                          }`}
+                        >
+                          {project.description}
                         </div>
                       </div>
-                    </a>
-                  ) : null}
+                      <div className="flex items-center justify-between border-t-[1px] border-amber-50">
+                        <div className="[153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%] flex !size-[50px] items-center justify-center rounded-full border border-stone-500/30 bg-gradient-to-r to-white/0">
+                          <Image src={arrowAslant} alt={t('arrow-link')} />
+                        </div>
+                        <div className="ml-2 flex flex-wrap gap-4">
+                          {project.technologies.length >= 1 &&
+                            project.technologies.map((icon) => (
+                              <li
+                                key={icon.id}
+                                className={`${
+                                  mobActiveSlide === index
+                                    ? 'opacity-1'
+                                    : 'opacity-0'
+                                }`}
+                              >
+                                <Image
+                                  src={icon.icon}
+                                  alt={icon.alt}
+                                  width={34}
+                                  height={34}
+                                />
+                              </li>
+                            ))}
+                        </div>
+                        <div
+                          className={`text-[64px] font-light text-[#0B66F5] ${
+                            mobActiveSlide === index
+                              ? 'text-white dark:text-[#0B66F5]'
+                              : ''
+                          }`}
+                        >
+                          {project.count}
+                        </div>
+                      </div>
+                    </div>
+                  </a>
                 </SwiperSlide>
               ))}
           </Swiper>

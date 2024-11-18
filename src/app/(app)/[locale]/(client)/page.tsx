@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
@@ -7,6 +7,8 @@ import { homeMateData } from '@/data/meta-data/home-meta-data'
 import Hero from '@/components/client/hero/hero'
 import Services from '@/components/client/services/services'
 import { servicesData } from '@/data/services'
+import { Projects } from '@/components/client/projects/projects'
+import { projectsData } from '@/data/projects-data'
 
 export const viewport: Viewport = {
   themeColor: [
@@ -15,12 +17,10 @@ export const viewport: Viewport = {
   ],
 }
 
-type LanguagePropsTypes = {
-  locale: ILocale
-}
+type Params = Promise<{ locale: ILocale }>
 
-export async function generateMetadata({ params }: { params: any }) {
-  const { locale } = (await params) as LanguagePropsTypes
+export async function generateMetadata({ params }: { params: Params }) {
+  const { locale } = await params
 
   const projects = homeMateData[locale]
 
@@ -40,13 +40,14 @@ export async function generateMetadata({ params }: { params: any }) {
   }
 }
 
-const Home: FC<any> = async ({ params }: { params: any }) => {
-  const { locale } = (await params) as LanguagePropsTypes
+const Home = async ({ params }: { params: Params }) => {
+  const { locale } = await params
 
   return (
     <>
       <Hero />
       <Services services={servicesData[locale]} />
+      <Projects projects={projectsData[locale]} />
     </>
   )
 }
