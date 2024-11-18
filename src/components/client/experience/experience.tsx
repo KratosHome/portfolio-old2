@@ -6,13 +6,16 @@ import { useGSAP } from '@gsap/react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { HireMe } from '@/components/client/hire-me/hire-me'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface ExperienceItem {
   id: number
   count: string
   title: string
   date: string
-  description: any
+  description: { text: string }[] | string
   company: string
   technologies: string[]
   link: string
@@ -75,6 +78,31 @@ export const Experience = ({
     }
   })
 
+  useGSAP(() => {
+    const items = gsap.utils.toArray('.experience-item')
+    items.forEach((item: any, index: number) => {
+      gsap.fromTo(
+        item,
+        {
+          opacity: 0,
+          scale: 0.4,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            end: 'top 20%',
+            toggleActions: 'play reverse play reverse',
+          },
+        },
+      )
+    })
+  })
+
   return (
     <section aria-label="projects" id="projects" className="relative">
       <div className="absolute inset-0 mx-auto h-[210px] w-[210px] flex-shrink-0 rotate-[-89.637deg] rounded-full bg-[linear-gradient(223deg,_rgba(223,_223,_223,_0.20)_12.99%,_rgba(0,_0,_0,_0.20)_28.97%),_linear-gradient(265deg,_#666_-44.12%,_#262626_-21.9%,_#1C1C1C_4.39%,_#000_40.18%)] lg:h-[769.29px] lg:w-[769.29px]"></div>
@@ -88,7 +116,7 @@ export const Experience = ({
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className={`group relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
+              className={`experience-item group relative mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
                 activeItem === item.id
                   ? 'experience-card-open cursor-pointer'
                   : 'experience-card'
@@ -151,7 +179,7 @@ export const Experience = ({
                 className="flex h-0 flex-wrap gap-[10px] overflow-hidden opacity-0"
                 id={`description-experience-${item.id}`}
               >
-                {item.technologies.map((desc: any) => (
+                {item.technologies.map((desc) => (
                   <div
                     key={desc}
                     className="rounded-2xl border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[10px] text-[20px] font-bold backdrop-blur-[12.5px] lg:mt-[40px] lg:px-[24px] lg:py-[10px]"
