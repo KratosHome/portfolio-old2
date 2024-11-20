@@ -9,14 +9,18 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Grid } from 'swiper/modules'
 import { HireMe } from '@/components/client/hire-me/hire-me'
 import { dataReviews } from '@/data/reviews'
+import { IReview } from '@/types/review'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-export const Reviews = ({}: any) => {
+gsap.registerPlugin(ScrollTrigger)
+
+const Reviews = () => {
   const projectsRefs = useRef<HTMLDivElement[]>([])
 
   const t = useTranslations('home-page.reviews')
   const { contextSafe } = useGSAP()
 
-  const data = dataReviews
+  const data: IReview[] = dataReviews
 
   const [mobActiveSlide, setMobActiveSlide] = useState(0)
 
@@ -36,6 +40,35 @@ export const Reviews = ({}: any) => {
     },
     { dependencies: [mobActiveSlide] },
   )
+
+  useGSAP(() => {
+    const cards = gsap.utils.toArray<HTMLElement>('.reviews-card')
+
+    cards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          autoAlpha: 0,
+          scale: 0.5,
+          y: 50,
+        },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card as HTMLElement, // Уточнення типу
+            start: 'top 90%',
+            end: 'top 10%',
+            toggleActions: 'play reverse play reverse',
+            markers: false,
+          },
+        },
+      )
+    })
+  })
 
   const handleMouseEnter = contextSafe((index: number) => {
     const serviceRef = projectsRefs.current[index]
@@ -74,7 +107,7 @@ export const Reviews = ({}: any) => {
               rows: 2,
               fill: 'row',
             }}
-            spaceBetween={30}
+            spaceBetween={10}
             pagination={{
               clickable: true,
             }}
@@ -85,7 +118,7 @@ export const Reviews = ({}: any) => {
             }}
             className="custom-swiper-grid"
           >
-            {data.map((project: any, index: number) => (
+            {data.map((project, index) => (
               <SwiperSlide key={project._id}>
                 <a href={project.link} target="_blank">
                   <div
@@ -204,3 +237,5 @@ export const Reviews = ({}: any) => {
     </section>
   )
 }
+
+export default Reviews

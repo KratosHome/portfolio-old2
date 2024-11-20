@@ -149,7 +149,7 @@ const Footer = () => {
           <div className="text-[24px] uppercase lg:text-[64px] lg:font-light">
             {t('any-questions')}
           </div>
-          <div className="text-[32px] font-bold text-[#0B66F5] lg:mt-[32px]">
+          <div className="text-[32px] font-bold uppercase text-[#0B66F5] lg:mt-[32px]">
             {t('Just fill out the form below')}
           </div>
           <Image

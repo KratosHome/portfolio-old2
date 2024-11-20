@@ -72,7 +72,9 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
           zIndex: 50,
         }}
       >
-        <Button variant="circle">{title}</Button>
+        <Button variant="circle" size="circle">
+          {title}
+        </Button>
       </div>
       {/* eslint-disable-next-line react/jsx-no-undef */}
       <Modal

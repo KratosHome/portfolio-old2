@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import ScrollToTop from '@/components/scroll-to-top/scroll-to-top'
 import StarsCanvas from '@/components/star-background/star-background'
-import { ReactNode, Suspense } from 'react'
+import { ReactNode } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { SessionProvider } from 'next-auth/react'
@@ -32,9 +32,7 @@ export default async function LocaleLayout({
           <SessionProvider>
             <Header userInfo={<MenuInfoOlegTkach />} />
             <main className="min-h-[90svh]">{children}</main>
-            <Suspense fallback={<Loader />}>
-              <Footer />
-            </Suspense>
+            <Footer />
           </SessionProvider>
           <ToastContainer />
         </NextIntlClientProvider>

@@ -21,11 +21,7 @@ interface ExperienceItem {
   link: string
 }
 
-export const Experience = ({
-  experience,
-}: {
-  experience: ExperienceItem[]
-}) => {
+const Experience = ({ experience }: { experience: ExperienceItem[] }) => {
   const t = useTranslations('home-page.experience')
   const { contextSafe } = useGSAP()
 
@@ -204,3 +200,5 @@ export const Experience = ({
     </section>
   )
 }
+
+export default Experience

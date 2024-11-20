@@ -23,13 +23,14 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         circle:
-          'custom-button group z-30 flex aspect-square min-h-[120px] min-w-[120px] flex-shrink-0 flex-col items-center justify-center rounded-full border-[1px] border-black border-stone-500/30 bg-[#0B66F5] p-4 text-[20px] font-bold uppercase backdrop-blur-[12.5px] dark:bg-[rgba(255,255,255,0.12)]',
+          'custom-button group z-30 flex aspect-square min-h-[120px] min-w-[120px] h-max w-max flex-shrink-0 flex-col items-center justify-center rounded-full border-[1px] border-stone-500/30 bg-[#0B66F5] p-4 text-[20px] font-bold uppercase backdrop-blur-[12.5px] dark:bg-[rgba(255,255,255,0.12)]',
       },
       size: {
         default: 'h-9 px-4 py-2',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'h-9 w-9',
+        circle: 'h-max w-max',
       },
     },
     defaultVariants: {

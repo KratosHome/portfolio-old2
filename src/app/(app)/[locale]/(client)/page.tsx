@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import 'swiper/css'
 import 'swiper/css/grid'
 import 'swiper/css/pagination'
@@ -8,7 +8,6 @@ import Hero from '@/components/client/hero/hero'
 import Services from '@/components/client/services/services'
 import { servicesData } from '@/data/services'
 import { projectsData } from '@/data/projects-data'
-import { Experience } from '@/components/client/experience/experience'
 import { experienceData } from '@/data/experience'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
@@ -19,6 +18,17 @@ const Projects = dynamic(
     loading: () => <Loader />,
   },
 )
+
+const Experience = dynamic(
+  () => import('@/components/client/experience/experience'),
+  {
+    loading: () => <Loader />,
+  },
+)
+
+const Reviews = dynamic(() => import('@/components/client/reviews/reviews'), {
+  loading: () => <Loader />,
+})
 
 export const viewport: Viewport = {
   themeColor: [
@@ -57,10 +67,9 @@ const Home = async ({ params }: { params: Params }) => {
     <>
       <Hero />
       <Services services={servicesData[locale]} />
-      <Suspense fallback={<Loader />}>
-        <Projects projects={projectsData[locale]} />
-      </Suspense>
+      <Projects projects={projectsData[locale]} />
       <Experience experience={experienceData[locale]} />
+      <Reviews />
     </>
   )
 }
