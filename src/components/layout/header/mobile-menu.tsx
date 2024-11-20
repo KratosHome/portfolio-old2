@@ -4,8 +4,13 @@ import { useLocale } from 'use-intl'
 import Link from 'next/link'
 import LanguageChange from '@/components/language-change/language-change'
 
+interface MenuItem {
+  name: string
+  link: string
+}
+
 interface MobileMenuProps {
-  menu: any
+  menu: MenuItem[]
 }
 
 export const MobileMenu: FC<MobileMenuProps> = ({ menu }) => {
@@ -30,38 +35,33 @@ export const MobileMenu: FC<MobileMenuProps> = ({ menu }) => {
     opened ? 'right-5' : 'right-[-100vw]'
   }`
 
-  const handleOverlayClick = () => {
-    setOpened(false)
-  }
-
-  const handleMenuClick = (e: MouseEvent) => {
-    e.stopPropagation()
-  }
-
   return (
-    <div className="z-20 block lg:hidden">
+    <div className="z-50 block lg:hidden">
       <div className={containerClasses} onClick={() => setOpened(!opened)}>
         <div className="tham-box">
           <div className="tham-inner bg-black dark:bg-white" />
         </div>
       </div>
-      <div className={overlayClasses} onClick={handleOverlayClick}>
-        <div className={menuClasses} onClick={handleMenuClick}>
+      <div className={overlayClasses} onClick={() => setOpened(!opened)}>
+        <div className={menuClasses} onClick={(e) => e.stopPropagation()}>
           <nav>
             <ul>
-              {menu.map((item: any, index: number) => (
-                <li
+              {menu.map((item: MenuItem) => (
+                <Link
                   key={item.name}
-                  className="from-white/12 mb-[12px] rounded-lg border-b border-b-stone-500/60 bg-gradient-to-tr to-white/0 px-[12px] py-[8px] text-[16px] font-light backdrop-blur-[12.5px]"
+                  href={`/${locale}/${item.link}`}
+                  onClick={() => setOpened(!opened)}
+                  className="from-white/12 mb-[12px] block rounded-lg border-b border-b-stone-500/60 bg-gradient-to-tr to-white/0 px-[12px] py-[8px] text-[16px] font-light backdrop-blur-[12.5px]"
                 >
-                  <Link href={`/${locale}/${item.link}`}>{item.name}</Link>
-                </li>
+                  <span>{item.name}</span>
+                </Link>
               ))}
             </ul>
           </nav>
           <div className="flex items-center justify-between">
             <Link
               href={`/${locale}/login`}
+              onClick={() => setOpened(!opened)}
               className="custom-language from-white/12 relative rounded-3xl border-b border-b-stone-500/60 bg-gradient-to-tr to-white/0 p-[10px] px-[12px] py-[8px] text-[20px] backdrop-blur-[12.5px]"
             >
               Login

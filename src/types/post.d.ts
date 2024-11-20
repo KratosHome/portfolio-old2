@@ -22,6 +22,7 @@ interface IPost {
   likes: any[]
   dizLikes: any[]
   comments: ICommentPost[]
-  createdAt?: Date
+  createdAt: Date | string
   updatedAt?: Date
+  authorUsername: string
 }

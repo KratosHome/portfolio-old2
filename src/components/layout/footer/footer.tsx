@@ -167,7 +167,11 @@ const Footer = () => {
           <div className="planet-footer absolute right-[100px] z-10 ml-[80px] mt-[25px] size-[80px] rounded-full bg-white opacity-40 blur-2xl lg:h-40 lg:w-40"></div>
         </div>
       </div>
-      <div className="footer-section relative mx-auto mt-[55px] max-w-[1442px] px-[24px]">
+      <div
+        aria-label="contact"
+        id="contact"
+        className="footer-section relative mx-auto mt-[55px] max-w-[1442px] px-[24px]"
+      >
         <div className="flex flex-col items-center justify-between lg:flex-row">
           <div className="lg:mr-[100px]">
             <div className="text-[34px] uppercase lg:text-[64px]">

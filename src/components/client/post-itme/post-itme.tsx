@@ -10,11 +10,11 @@ import { useLocale } from 'use-intl'
 import { removeLocaleFromUrl } from '@/utils/removeLocaleFromUrl'
 import { useTheme } from 'next-themes'
 
-interface blogListType {
-  item: any
+interface BlogListType {
+  item: IPost
 }
 
-export const PostItem: FC<blogListType> = ({ item }) => {
+export const PostItem: FC<BlogListType> = ({ item }) => {
   const { theme } = useTheme()
   const [truncatedText, setTruncatedText] = useState(item.subTitle)
 
@@ -23,7 +23,7 @@ export const PostItem: FC<blogListType> = ({ item }) => {
   const containerRef = useRef<HTMLAnchorElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
   const subTitleRef = useRef<HTMLDivElement>(null)
-  const imgRef = useRef<any>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
 
   const handleMouseMove = contextSafe(
     (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -44,9 +44,9 @@ export const PostItem: FC<blogListType> = ({ item }) => {
   )
 
   const handleMouseEnter = contextSafe(() => {
-    gsap.to(imgRef.current, { scale: 1.08, ease: 'power1.inOut' })
-    gsap.to(titleRef.current, { scale: 1.08, ease: 'power1.inOut' })
-    gsap.to(subTitleRef.current, { scale: 1.05, ease: 'power1.inOut' })
+    gsap.to(imgRef.current, { scale: 0.97, ease: 'power1.inOut' })
+    gsap.to(titleRef.current, { scale: 1.05, ease: 'power1.inOut' })
+    gsap.to(subTitleRef.current, { scale: 1.08, ease: 'power1.inOut' })
   })
 
   const handleMouseLeave = contextSafe(() => {

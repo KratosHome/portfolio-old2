@@ -20,7 +20,7 @@ const buttonVariants = cva(
           'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        ghost: 'hover:bg-accent hover:text-accent-foreground ',
         link: 'text-primary underline-offset-4 hover:underline',
         circle:
           'custom-button group z-30 flex aspect-square min-h-[120px] min-w-[120px] h-max w-max flex-shrink-0 flex-col items-center justify-center rounded-full border-[1px] border-stone-500/30 bg-[#0B66F5] p-4 text-[20px] font-bold uppercase backdrop-blur-[12.5px] dark:bg-[rgba(255,255,255,0.12)]',

@@ -2,13 +2,20 @@ import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 import { User } from '@/server/users/user-schema.server'
 
+interface QueryType {
+  local: string
+  isPublished: boolean
+  categories?: { $in: string[] }
+  authorId?: { $in: string[] }
+}
+
 export const getPosts = async (
   local: string,
   page: number = 1,
   limit: number = 10,
   isPublished: boolean = true,
-  filters: any = [],
-  authors: any = [],
+  filters?: string | string[],
+  authors?: string | string[],
 ) => {
   try {
     await connectToDb()
@@ -27,20 +34,24 @@ export const getPosts = async (
       .select('username userLogo')
       .lean()
     const formattedAuthors = uniqueAuthors.map((author) => ({
-      id: author._id,
-      label: author.username,
+      id: String(author._id),
+      username: author.username,
     }))
 
-    let query: any = { local: local, isPublished }
+    let query: QueryType = { local: local, isPublished }
 
-    if (filters.length > 0) {
-      const resultАilters = filters.split(',')
-      query.categories = { $in: resultАilters }
+    if (filters && filters.length > 0) {
+      const resultFilters = Array.isArray(filters)
+        ? filters
+        : filters.split(',')
+      query.categories = { $in: resultFilters }
     }
 
-    if (authors.length > 0) {
-      const resultАilters = authors.split(',')
-      query.authorId = { $in: resultАilters }
+    if (authors && authors.length > 0) {
+      const resultAuthors = Array.isArray(authors)
+        ? authors
+        : authors.split(',')
+      query.authorId = { $in: resultAuthors }
     }
 
     const totalPosts = await Post.countDocuments(query)
@@ -73,7 +84,14 @@ export const getPosts = async (
       authors: formattedAuthors,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return {
+      success: false,
+      posts: [],
+      categories: [],
+      currentPage: 1,
+      totalPages: 0,
+      authors: [],
+      error: 'Error while fetching posts',
+    }
   }
 }
