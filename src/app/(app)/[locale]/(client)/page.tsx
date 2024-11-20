@@ -11,6 +11,7 @@ import { projectsData } from '@/data/projects-data'
 import { experienceData } from '@/data/experience'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
+import { gaqData } from '@/data/faq'
 
 const Projects = dynamic(
   () => import('@/components/client/projects/projects'),
@@ -27,6 +28,10 @@ const Experience = dynamic(
 )
 
 const Reviews = dynamic(() => import('@/components/client/reviews/reviews'), {
+  loading: () => <Loader />,
+})
+
+const Faq = dynamic(() => import('@/components/client/faq/faq'), {
   loading: () => <Loader />,
 })
 
@@ -70,6 +75,7 @@ const Home = async ({ params }: { params: Params }) => {
       <Projects projects={projectsData[locale]} />
       <Experience experience={experienceData[locale]} />
       <Reviews />
+      <Faq data={gaqData[locale]} />
     </>
   )
 }

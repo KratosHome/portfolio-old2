@@ -3,13 +3,48 @@ import { useTranslations } from 'next-intl'
 import { useGSAP } from '@gsap/react'
 import { useState } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-export const Faq = ({ data }: any) => {
+gsap.registerPlugin(ScrollTrigger)
+
+interface FaqItem {
+  id: number
+  question: string
+  answer: string
+}
+
+interface FaqProps {
+  data: FaqItem[]
+}
+
+const Faq = ({ data }: FaqProps) => {
   const t = useTranslations('home-page.faq')
 
   const { contextSafe } = useGSAP()
 
   const [activeItem, setActiveItem] = useState<number | null>(null)
+
+  useGSAP(() => {
+    const elements = gsap.utils.toArray('.faq-item')
+    elements.forEach((el: any) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            end: 'top 20%',
+            toggleActions: 'play reverse play reverse',
+          },
+        },
+      )
+    })
+  })
 
   const closeItem = (id: number) => {
     gsap.to(`#wrapper-experience-${id}`, {
@@ -77,11 +112,11 @@ export const Faq = ({ data }: any) => {
           {t('faq')}
         </h2>
         <div className="mt-[64px] px-[25px]">
-          {data.map((item: any) => (
+          {data.map((item: FaqItem) => (
             <div
               key={item.id}
               id={`wrapper-experience-${item.id}`}
-              className={`relative z-10 mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
+              className={`faq-item relative z-10 mb-4 mt-[12px] overflow-hidden rounded-lg bg-[linear-gradient(127deg,_rgba(11,_102,_245,_0.30)_49.23%,_rgba(78,_128,_206,_0.15)_83.27%,_rgba(255,_255,_255,_0.00)_102.62%)] p-[12px] backdrop-blur-[12.5px] dark:bg-[linear-gradient(153deg,rgba(255,255,255,0.12)_2.19%,rgba(255,255,255,0)_99.21%)] lg:p-[24px] ${
                 activeItem === item.id
                   ? 'cursor-pointer bg-[#0B66F5] dark:bg-transparent'
                   : 'experience-card'
@@ -125,3 +160,5 @@ export const Faq = ({ data }: any) => {
     </section>
   )
 }
+
+export default Faq
