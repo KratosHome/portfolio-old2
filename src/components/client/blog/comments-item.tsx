@@ -3,7 +3,19 @@ import { FC, useState, useRef } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-export const CommentsItem: FC<any> = ({ comment }) => {
+interface Comment {
+  _id: string
+  userLogo: string
+  username: string
+  author: string
+  text: string
+}
+
+interface CommentsItemProps {
+  comment: Comment
+}
+
+export const CommentsItem: FC<CommentsItemProps> = ({ comment }) => {
   const commentRef = useRef<HTMLDivElement | null>(null)
 
   const t = useTranslations('post-client')

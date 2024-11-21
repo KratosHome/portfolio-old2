@@ -8,8 +8,22 @@ import { CommentsItem } from '@/components/client/blog/comments-item'
 import { LeaveComment } from '@/components/client/blog/leave-comment'
 import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 
-export default async function Page({ params }: { params: any }) {
-  const { locale, postId } = params
+type Params = Promise<{ locale: ILocale; postId: string }>
+
+interface UserContent {
+  username: string
+}
+
+interface Comment {
+  _id: string
+  userLogo: string
+  username: string
+  author: string
+  text: string
+}
+
+export default async function Page({ params }: { params: Params }) {
+  const { locale, postId } = await params
 
   const t = await getTranslations('post-client')
 
@@ -18,8 +32,9 @@ export default async function Page({ params }: { params: any }) {
   if (!post.success || !post.post) {
     notFound()
   }
-  const postContent: any = post.post
-  const userContent: any = post.user
+
+  const postContent: IPost = post.post
+  const userContent: UserContent = post.user
   const formattedDate = formatDate(postContent.createdAt)
 
   return (
@@ -54,7 +69,7 @@ export default async function Page({ params }: { params: any }) {
             {t('comments')}
           </h2>
           {post.comments &&
-            post.comments.map((comment: any) => (
+            post.comments.map((comment: Comment) => (
               <CommentsItem key={comment._id} comment={comment} />
             ))}
           <LeaveComment postId={postContent.postId} />

@@ -7,6 +7,7 @@ interface ICommentPost {
 }
 
 interface IPost {
+  _id: string
   postId: string
   title: string
   subTitle: string

@@ -14,7 +14,21 @@ import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
 import { Button } from '@/components/UI/buttom/button'
 
-export const LeaveComment: FC<any> = ({ postId }) => {
+interface CommentForm {
+  message: string
+}
+
+interface LeaveCommentProps {
+  postId: string
+}
+
+interface User {
+  _id: string
+  username: string
+  userLogo: string
+}
+
+export const LeaveComment: FC<LeaveCommentProps> = ({ postId }) => {
   const locale = useLocale()
   const { user } = useStore()
   const t = useTranslations('post-client')
@@ -24,7 +38,7 @@ export const LeaveComment: FC<any> = ({ postId }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<CommentForm>()
 
   const [open, setClose] = useState<boolean>(false)
   const [openIsUser, setCloseIsUser] = useState<boolean>(false)
@@ -46,7 +60,7 @@ export const LeaveComment: FC<any> = ({ postId }) => {
     }
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<CommentForm> = async (data) => {
     setLoading(true)
     const sendData = {
       userId: user?._id,
@@ -83,7 +97,7 @@ export const LeaveComment: FC<any> = ({ postId }) => {
           zIndex: 50,
         }}
       >
-        <Button variant="circle" className="!z-30">
+        <Button size="circle" variant="circle" className="!z-30">
           {'LEAVE COMMENT'}
         </Button>
       </div>
@@ -126,7 +140,7 @@ export const LeaveComment: FC<any> = ({ postId }) => {
                 onChange={handleCaptchaSubmission}
                 hl={locale}
               />
-              <Button variant="circle" className="mt-3">
+              <Button size="circle" variant="circle" className="mt-3">
                 {t('send')}
               </Button>
             </div>

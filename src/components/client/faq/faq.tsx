@@ -37,8 +37,8 @@ const Faq = ({ data }: FaqProps) => {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 90%',
-            end: 'top 20%',
+            start: 'top 80%',
+            end: 'top 5%',
             toggleActions: 'play reverse play reverse',
           },
         },

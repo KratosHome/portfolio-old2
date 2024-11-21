@@ -8,7 +8,11 @@ import { addDizLikeServer } from '@/server/blog/add-diz-like.server'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Modal } from '@/components/UI/client/modal/modal'
 
-export const AddLike: FC<any> = ({ postContent }) => {
+interface AddLikeProps {
+  postContent: IPost
+}
+
+export const AddLike: FC<AddLikeProps> = ({ postContent }) => {
   const { user } = useStore()
   const { theme } = useTheme()
 
@@ -20,11 +24,9 @@ export const AddLike: FC<any> = ({ postContent }) => {
   useEffect(() => {
     if (user) {
       console.log('user', postContent.likes)
-      setIsAddLike(postContent.likes.some((like: any) => like === user._id))
+      setIsAddLike(postContent.likes.some((like) => like === user._id))
 
-      setIsAddDiz(
-        postContent.dizLikes.some((dizLike: any) => dizLike === user._id),
-      )
+      setIsAddDiz(postContent.dizLikes.some((dizLike) => dizLike === user._id))
     }
   }, [user, postContent.likes, postContent.dizLikes])
 

@@ -2,26 +2,31 @@ import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 import { User } from '@/server/users/user-schema.server'
 
-export const getPost = async (url: any, local: string) => {
+export const getPost = async (url: string, local: string) => {
   try {
     await connectToDb()
 
+    // Знаходимо пост
     const post = await Post.findOne({ url: `${url}-${local}`, local: local })
-    const commetns = await Post.find({ postId: post.postId }).lean()
+    if (!post) {
+      return { success: false, message: 'Post not found' }
+    }
 
+    const commetns = await Post.find({ postId: post.postId }).lean()
     const allComments = commetns.reduce((acc, post) => {
       return acc.concat(post.comments || [])
     }, [])
 
-    const post2 = await Post.findOne({
+    post.read += 1
+    await post.save()
+
+    const postContent = await Post.findOne({
       url: `${url}-${local}`,
       local: local,
     }).lean()
-    if (!post) {
-      return { success: false, message: 'Post not found' }
+    if (!postContent) {
+      return { success: false, message: 'Post content not found' }
     }
-    post.read += 1
-    await post.save()
 
     const user = await User.findById(post.authorId).select(
       'username userLogo linkedinLink gitHubLink',
@@ -29,12 +34,17 @@ export const getPost = async (url: any, local: string) => {
 
     return {
       success: true,
-      post: post2,
+      post: postContent as any,
       user,
       comments: allComments,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return {
+      success: false,
+      post: null,
+      user: null,
+      comments: [],
+      message: 'Unexpected error',
+    }
   }
 }
