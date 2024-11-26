@@ -254,7 +254,6 @@ const Page = () => {
         {!user?.isEmailVerified && (
           <div className="flex flex-col items-center">
             <div>Підтвердіть ваш імейл:</div>
-            {/* eslint-disable-next-line react/jsx-no-undef */}
             <AdminButton
               className="mt-1"
               disabled={loading}
@@ -342,15 +341,7 @@ const Page = () => {
         />
         <div className="mt-3 min-h-[200px]">
           <CustomToolbarQuill />
-          <ReactQuill
-            theme="snow"
-            placeholder={'Опис проєкту'}
-            value={aboutMe}
-            onChange={(value) => setAboutMe(value)}
-            modules={{ toolbar: { container: '#toolbar' } }}
-            style={{ height: '300px' }}
-            className="min-h-[300px] w-full rounded-b-lg border-gray-300 bg-white p-2 text-black shadow-sm"
-          />
+          ReactQuill
         </div>
         <Input
           type={'number'}

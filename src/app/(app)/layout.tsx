@@ -1,10 +1,10 @@
 import './globals.scss'
 import { ReactNode } from 'react'
 import { Analytics } from '@vercel/analytics/react'
-import { GoogleTagManager } from '@/components/google-tag-manager/google-tag-manager'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { getLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
+import { GoogleTagManager } from '@/components/providers/google-tag-manager/google-tag-manager'
 
 export const dynamic = 'force-dynamic'
 

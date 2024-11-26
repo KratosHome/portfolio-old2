@@ -2,7 +2,7 @@
 import { useState, useEffect, FC, MouseEvent } from 'react'
 import { useLocale } from 'use-intl'
 import Link from 'next/link'
-import LanguageChange from '@/components/language-change/language-change'
+import LanguageChange from '@/components/features/language-change/language-change'
 
 interface MenuItem {
   name: string

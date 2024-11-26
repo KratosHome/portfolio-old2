@@ -1,8 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import ScrollToTop from '@/components/scroll-to-top/scroll-to-top'
-import StarsCanvas from '@/components/star-background/star-background'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { SessionProvider } from 'next-auth/react'
@@ -11,6 +9,8 @@ import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
 import Header from '@/components/layout/header/header'
+import ScrollToTop from '@/components/features/scroll-to-top/scroll-to-top'
+import StarsCanvas from '@/components/UI/star-background/star-background'
 
 const Footer = dynamic(() => import('@/components/layout/footer/footer'), {
   loading: () => <Loader />,

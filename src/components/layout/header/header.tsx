@@ -1,6 +1,5 @@
 'use client'
 import './header.scss'
-import LanguageChange from '@/components/language-change/language-change'
 import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -17,6 +16,7 @@ import { useStore } from '@/store/user'
 import { projectStore } from '@/store/project'
 import { useTheme } from 'next-themes'
 import { MobileMenu } from '@/components/layout/header/mobile-menu'
+import LanguageChange from '@/components/features/language-change/language-change'
 
 interface IMenuProps {
   userInfo?: ReactNode
@@ -83,6 +83,8 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
     }, 200)
   })
 
+  console.log('user', user)
+
   return (
     <>
       <header className="max-w-screen pt-[20px]">
@@ -142,7 +144,7 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
                       href={`/${locale}/login`}
                     >
                       <span className="block duration-300 group-hover:scale-[1.1]">
-                        {t('login')}
+                        {!user ? t('login') : 'Account'}
                       </span>
                     </Link>
                   </li>
