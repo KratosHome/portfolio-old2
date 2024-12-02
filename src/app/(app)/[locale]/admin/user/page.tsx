@@ -272,14 +272,14 @@ const Page = () => {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
 
-          <div className="flex items-center space-x-2 my-5">
+          <div className="my-5 flex items-center space-x-2">
             <Checkbox
-              id="terms"
+              id="isPublic"
               checked={isPublic}
-              onCheckedChange={(checked) => setIsPublic(checked)}
+              onCheckedChange={(checked) => setIsPublic(checked === true)}
             />
             <label
-              htmlFor="terms"
+              htmlFor="isPublic"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               {isPublic ? 'Публічний профіль' : 'Приватний профіль'}
@@ -316,22 +316,23 @@ const Page = () => {
         <Input
           type={'text'}
           placeholder={t('name')}
-          name={'username'}
-          register={{
-            ...register('username', {
-              required: `${t('This field is required')}`,
-              minLength: {
-                value: 4,
-                message: `${t('Minimum number of characters')} 4`,
-              },
-              maxLength: {
-                value: 50,
-                message: `${t('Maximum number of characters')} 50`,
-              },
-            }),
-          }}
-          error={errors.username?.message}
+          {...register('username', {
+            required: t('This field is required'),
+            minLength: {
+              value: 4,
+              message: `${t('Minimum number of characters')} 4`,
+            },
+            maxLength: {
+              value: 50,
+              message: `${t('Maximum number of characters')} 50`,
+            },
+          })}
         />
+        {errors.username?.message && (
+          <p className="text-sm text-red-500">
+            {errors.username.message.toString()}
+          </p>
+        )}
         <div className="mt-3 min-h-[200px]">
           <CustomToolbarQuill />
           ReactQuill
@@ -341,22 +342,23 @@ const Page = () => {
           min={1}
           max={100}
           placeholder={'Досвід роботи'}
-          name={'workExperience'}
-          register={{
-            ...register('workExperience', {
-              required: `${t('This field is required')}`,
-              minLength: {
-                value: 1,
-                message: `${t('Minimum number of characters')} 4`,
-              },
-              maxLength: {
-                value: 50,
-                message: `${t('Maximum number of characters')} 3`,
-              },
-            }),
-          }}
-          error={errors.workExperience?.message}
+          {...register('workExperience', {
+            required: t('This field is required'),
+            minLength: {
+              value: 4,
+              message: `${t('Minimum number of characters')} 4`,
+            },
+            maxLength: {
+              value: 50,
+              message: `${t('Maximum number of characters')} 50`,
+            },
+          })}
         />
+        {errors.workExperience?.message && (
+          <p className="text-sm text-red-500">
+            {errors.workExperience.message.toString()}
+          </p>
+        )}
         <div className="mt-3">Оберіть роль</div>
         <select
           value={selectedRoles}
@@ -414,60 +416,63 @@ const Page = () => {
         <Input
           type={'text'}
           placeholder={'контакт для звязку (telegram link)'}
-          name={'contactLink'}
-          register={{
-            ...register('contactLink', {
-              required: `${t('This field is required')}`,
-              minLength: {
-                value: 4,
-                message: `${t('Minimum number of characters')} 4`,
-              },
-              maxLength: {
-                value: 250,
-                message: `${t('Maximum number of characters')} 250`,
-              },
-            }),
-          }}
-          error={errors.contactLink?.message}
+          {...register('contactLink', {
+            required: t('This field is required'),
+            minLength: {
+              value: 4,
+              message: `${t('Minimum number of characters')} 4`,
+            },
+            maxLength: {
+              value: 50,
+              message: `${t('Maximum number of characters')} 50`,
+            },
+          })}
         />
+        {errors.contactLink?.message && (
+          <p className="text-sm text-red-500">
+            {errors.contactLink.message.toString()}
+          </p>
+        )}
         <Input
           type={'text'}
           placeholder={'gitHub Link'}
-          name={'gitHubLink'}
-          register={{
-            ...register('gitHubLink', {
-              required: `${t('This field is required')}`,
-              minLength: {
-                value: 4,
-                message: `${t('Minimum number of characters')} 4`,
-              },
-              maxLength: {
-                value: 250,
-                message: `${t('Maximum number of characters')} 250`,
-              },
-            }),
-          }}
-          error={errors.gitHubLink?.message}
+          {...register('gitHubLink', {
+            required: t('This field is required'),
+            minLength: {
+              value: 4,
+              message: `${t('Minimum number of characters')} 4`,
+            },
+            maxLength: {
+              value: 50,
+              message: `${t('Maximum number of characters')} 50`,
+            },
+          })}
         />
+        {errors.gitHubLink?.message && (
+          <p className="text-sm text-red-500">
+            {errors.gitHubLink.message.toString()}
+          </p>
+        )}
         <Input
           type={'text'}
           placeholder={'linked inLink'}
-          name={'linkedinLink'}
-          register={{
-            ...register('linkedinLink', {
-              required: `${t('This field is required')}`,
-              minLength: {
-                value: 4,
-                message: `${t('Minimum number of characters')} 4`,
-              },
-              maxLength: {
-                value: 250,
-                message: `${t('Maximum number of characters')} 250`,
-              },
-            }),
-          }}
-          error={errors.linkedinLink?.message}
+          {...register('gitHubLink', {
+            required: t('This field is required'),
+            minLength: {
+              value: 4,
+              message: `${t('Minimum number of characters')} 4`,
+            },
+            maxLength: {
+              value: 50,
+              message: `${t('Maximum number of characters')} 50`,
+            },
+          })}
         />
+        {errors.linkedinLink?.message && (
+          <p className="text-sm text-red-500">
+            {errors.linkedinLink.message.toString()}
+          </p>
+        )}
         <div>
           <h2 className="mt-3 font-bold">посилання на портфоліо</h2>
           <div className="flex flex-wrap gap-4">

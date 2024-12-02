@@ -30,8 +30,7 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
   const locale = useLocale() as ILocale
   const { contextSafe } = useGSAP()
   const { theme } = useTheme()
-  const { data: session } = useSession()
-  const { user, fetchUser } = useStore()
+  const { user } = useStore()
 
   const menu = menuData[locale]
 
@@ -41,16 +40,6 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
   useEffect(() => {
     setCurrentSrc(theme === 'dark' ? arrow : arrowBlack)
   }, [theme])
-
-  useEffect(() => {
-    if (session?.user) {
-      const fetchData = async () => {
-        await fetchUser(session.user?.email)
-      }
-      fetchData()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,8 +71,6 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
       })
     }, 200)
   })
-
-  console.log('user', user)
 
   return (
     <>
@@ -138,13 +125,14 @@ const Header: FC<IMenuProps> = ({ userInfo }) => {
                       )}
                     </li>
                   ))}
+                  гайди
                   <li className="group">
                     <Link
                       className="custom-login block rounded-[35px] border-b border-[#0B66F5] px-[15px] py-[10px] text-[#0B66F5] backdrop-blur-[12.5px] dark:border-zinc-600 dark:text-white"
                       href={`/${locale}/login`}
                     >
                       <span className="block duration-300 group-hover:scale-[1.1]">
-                        {!user ? t('login') : 'Account'}
+                        {!user.username?.trim() ? t('login') : 'Account'}
                       </span>
                     </Link>
                   </li>

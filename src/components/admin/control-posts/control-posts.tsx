@@ -51,7 +51,6 @@ export const ControlPosts = () => {
     }
   }
 
-  console.log(posts)
 
   return (
     <div className="p-4">

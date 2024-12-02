@@ -16,7 +16,6 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
   const { fetchProjects } = projectStore()
   const t = useTranslations('footer')
 
-  console.log('item', item)
   const [loading, setLoading] = useState<boolean>(false)
 
   const {

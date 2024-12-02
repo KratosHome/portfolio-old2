@@ -5,10 +5,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider } from '@/components/providers/theme-provider/theme-provider'
-import MenuInfoOlegTkach from '@/components/UI/client/menu-info-oleg-tkach/menu-info-oleg-tkach'
 import dynamic from 'next/dynamic'
 import { Loader } from '@/components/UI/client/loader/loader'
-import Header from '@/components/layout/header/header'
 import ScrollToTop from '@/components/features/scroll-to-top/scroll-to-top'
 import StarsCanvas from '@/components/UI/star-background/star-background'
 
@@ -30,7 +28,6 @@ export default async function LocaleLayout({
           <ScrollToTop />
           <StarsCanvas />
           <SessionProvider>
-            <Header userInfo={<MenuInfoOlegTkach />} />
             <main className="min-h-[90svh]">{children}</main>
             <Footer />
           </SessionProvider>

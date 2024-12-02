@@ -22,7 +22,7 @@ export default async function LocaleLayout(props: {
         <div>
           <AppSidebar />
         </div>
-        <main>
+        <main className="mx-auto">
           <SidebarTrigger />
           {children}
         </main>

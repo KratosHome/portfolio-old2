@@ -10,7 +10,6 @@ const Page = () => {
   const router = useRouter()
   const { user } = useStore()
 
-  console.log('token', token)
 
   useEffect(() => {
     if (user._id && token) {

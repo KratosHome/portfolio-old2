@@ -32,7 +32,7 @@ interface NewPostProps {
 }
 
 export const NewPost: FC<NewPostProps> = ({ data }) => {
-  console.log('data', data)
+
 
   const { data: session }: any = useSession()
   const userData = useFetchUser(session)
