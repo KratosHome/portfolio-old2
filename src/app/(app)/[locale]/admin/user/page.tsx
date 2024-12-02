@@ -12,8 +12,11 @@ import ReactQuill from 'react-quill'
 import { convertToBase64 } from '@/utils/convertToBase64'
 import { base64ToFile } from '@/utils/base64ToFile'
 import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
-import { Input } from '@/components/UI/client/input/input'
 import { CustomToolbarQuill } from '@/components/UI/client/custom-toolbar-quill/custom-toolbar-quill'
+import { Checkbox } from '@/components/UI/checkbox'
+import { Input } from '@/components/UI/input'
+import { Label } from '@/components/UI/label'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/avatar'
 
 const Page = () => {
   const roles = [
@@ -264,36 +267,26 @@ const Page = () => {
           </div>
         )}
         <div className="mt-4">
-          <label className="flex items-center">
-            <input
-              type="checkbox"
+          <Avatar onClick={handleImageChange}>
+            <AvatarImage src={user.userLogo} alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+
+          <div className="flex items-center space-x-2 my-5">
+            <Checkbox
+              id="terms"
               checked={isPublic}
-              onChange={handlePublicChange}
-              className="mr-2"
+              onCheckedChange={(checked) => setIsPublic(checked)}
             />
-            Зробити публічним
-          </label>
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              {isPublic ? 'Публічний профіль' : 'Приватний профіль'}
+            </label>
+          </div>
         </div>
 
-        <div className="flex flex-col items-start">
-          <div>
-            {user.userLogo ? <>Змінити логотип</> : <>Додати логотип</>}
-          </div>
-          <label
-            htmlFor="logo-upload"
-            className="mt-1 inline-flex cursor-pointer items-center rounded-md border border-gray-300 bg-white px-4 py-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Вибрати файл
-          </label>
-          <input
-            id="logo-upload"
-            type="file"
-            className="hidden"
-            ref={fileInputRef}
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </div>
         <div className="flex flex-col items-start">
           <div>Додати резюме</div>
           <label
