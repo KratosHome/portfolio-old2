@@ -7,6 +7,6 @@ export default async function page({ params }: { params: Params }) {
   const { locale } = await params
 
   const session = await auth()
-  if (session?.user) redirect(`/${locale}/admin/user`)
+  if (session?.user) redirect(`/${locale}/admin/profile`)
   return <Login />
 }

@@ -10,7 +10,6 @@ const Page = () => {
   const router = useRouter()
   const { user } = useStore()
 
-
   useEffect(() => {
     if (user._id && token) {
       const fetchData = async () => {

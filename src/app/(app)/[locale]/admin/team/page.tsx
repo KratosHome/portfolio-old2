@@ -15,7 +15,6 @@ const Page = () => {
     setActiveTab(team[0]?._id)
   }, [team])
 
-
   return (
     <div className="h-full">
       {team.length === 0 && (

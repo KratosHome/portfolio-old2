@@ -83,6 +83,14 @@ export const adminDashboardUk = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: 'Профіль',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardEn = [
@@ -156,6 +164,14 @@ export const adminDashboardEn = [
     link: 'calendar',
     isInProject: true,
     icon: Calendar,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: 'Profile',
+    link: 'profile',
+    isInProject: false,
+    icon: Users,
     roles: ['all'],
   },
 ]
@@ -233,6 +249,14 @@ export const adminDashboardDe = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: 'Profil',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardEs = [
@@ -306,6 +330,14 @@ export const adminDashboardEs = [
     link: 'calendar',
     icon: Calendar,
     isInProject: true,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: 'Perfil',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
     roles: ['all'],
   },
 ]
@@ -383,6 +415,14 @@ export const adminDashboardFr = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: 'Profil',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardHi = [
@@ -456,6 +496,14 @@ export const adminDashboardHi = [
     link: 'calendar',
     icon: Calendar,
     isInProject: true,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: 'प्रोफ़ाइल',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
     roles: ['all'],
   },
 ]
@@ -533,6 +581,14 @@ export const adminDashboardIt = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: 'Profilo',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardJa = [
@@ -606,6 +662,14 @@ export const adminDashboardJa = [
     link: 'calendar',
     icon: Calendar,
     isInProject: true,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: 'プロフィール',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
     roles: ['all'],
   },
 ]
@@ -683,6 +747,14 @@ export const adminDashboardKo = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: '프로필',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardPt = [
@@ -756,6 +828,14 @@ export const adminDashboardPt = [
     link: 'calendar',
     icon: Calendar,
     isInProject: true,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: 'Perfil',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
     roles: ['all'],
   },
 ]
@@ -833,6 +913,14 @@ export const adminDashboardSv = [
     isInProject: true,
     roles: ['all'],
   },
+  {
+    id: 10,
+    title: 'Profil',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
+    roles: ['all'],
+  },
 ]
 
 export const adminDashboardZh = [
@@ -906,6 +994,14 @@ export const adminDashboardZh = [
     link: 'calendar',
     icon: Calendar,
     isInProject: true,
+    roles: ['all'],
+  },
+  {
+    id: 10,
+    title: '个人资料',
+    link: 'profile',
+    icon: Users,
+    isInProject: false,
     roles: ['all'],
   },
 ]

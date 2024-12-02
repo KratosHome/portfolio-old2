@@ -51,7 +51,6 @@ export const ControlPosts = () => {
     }
   }
 
-
   return (
     <div className="p-4">
       {loading && <Loader />}
