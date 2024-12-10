@@ -50,16 +50,14 @@ const Reviews = () => {
         {
           autoAlpha: 0,
           scale: 0.5,
-          y: 50,
         },
         {
           autoAlpha: 1,
           scale: 1,
-          y: 0,
-          duration: 0.8,
+          duration: 0.4,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: card as HTMLElement, // Уточнення типу
+            trigger: card as HTMLElement,
             start: 'top 90%',
             end: 'top 10%',
             toggleActions: 'play reverse play reverse',

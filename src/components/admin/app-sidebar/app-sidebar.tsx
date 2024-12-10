@@ -23,13 +23,19 @@ interface SidebarItem {
   link: string
   title: string
   icon: ComponentType
+  roles: string[]
+  isRelisted?: boolean
 }
 
 export function AppSidebar() {
   const { user } = useStore()
   const locale = useLocale() as ILocale
 
-  const dashboard: SidebarItem[] = adminDashboardData[locale]
+  const dashboard: SidebarItem[] = adminDashboardData[locale].filter(
+    (item) =>
+      item.roles.includes('all') ||
+      (user.isAdmin && item.roles.includes('admin')),
+  )
 
   return (
     <Sidebar>
@@ -45,7 +51,7 @@ export function AppSidebar() {
                 {user.userLogo ? (
                   <Image
                     src={user.userLogo}
-                    alt={`user logo  ${user.username}`}
+                    alt={`user logo ${user.username}`}
                     width={48}
                     height={48}
                     className="size-12 rounded-full"
@@ -55,14 +61,26 @@ export function AppSidebar() {
                 )}
               </Link>
               {dashboard.map((item: SidebarItem) => (
-                <SidebarMenuItem key={item.id}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.link}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <SidebarMenuButton key={item.id} asChild>
+                  <SidebarMenuItem>
+                    {item.isRelisted ? (
+                      <Link
+                        href={item.link}
+                        className={`flex items-center space-x-2 transition-all duration-300 ${item.isRelisted ? 'text-green-500' : 'text-gray-500'} hover:scale-105`}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    ) : (
+                      <div
+                        className={`flex items-center space-x-2 transition-all duration-300 ${item.isRelisted ? 'text-green-500' : 'text-gray-500'} hover:scale-105`}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </div>
+                    )}
+                  </SidebarMenuItem>
+                </SidebarMenuButton>
               ))}
               <LogOut />
             </SidebarMenu>
