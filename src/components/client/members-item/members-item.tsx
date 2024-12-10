@@ -8,7 +8,6 @@ import linkedinLight from '@/assets/icons/linkedinLight.svg'
 import gitHub from '@/assets/icons/github.svg'
 import gitHubLight from '@/assets/icons/githubLight.svg'
 import { useTheme } from 'next-themes'
-import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { base64ToFile } from '@/utils/base64ToFile'
 import { useTranslations } from 'next-intl'
@@ -20,7 +19,6 @@ interface MembersItemProps {
 
 const MembersItem: FC<MembersItemProps> = ({ item }) => {
   const t = useTranslations('projects-client')
-  const router = useRouter()
   const { theme } = useTheme()
 
   const truncateText = (text: any, maxLength: number) => {

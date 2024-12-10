@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect, ChangeEvent, FC } from 'react'
-import ReactQuill from 'react-quill'
 import { useSession } from 'next-auth/react'
 import useFetchUser from '@/hooks/useFetchUser'
 import { createPostServer } from '@/server/blog/create-post.server'
@@ -12,7 +11,6 @@ import Image from 'next/image'
 import { MdDelete } from 'react-icons/md'
 import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
 import { Input } from '@/components/UI/client/input/input'
-import { CustomToolbarQuill } from '@/components/UI/client/custom-toolbar-quill/custom-toolbar-quill'
 
 interface PostData {
   authorId: string
@@ -348,19 +346,7 @@ export const NewPost: FC<NewPostProps> = ({ data }) => {
             Додати категорію
           </AdminButton>
         </div>
-        <div className="min-h-[200px]">
-          <CustomToolbarQuill />
-          <ReactQuill
-            key={activeLanguage}
-            theme="snow"
-            placeholder="Стаття"
-            value={postsData[activeLanguage].desc}
-            onChange={handleContentChange}
-            modules={{ toolbar: { container: '#toolbar' } }}
-            style={{ height: '300px' }}
-            className="min-h-[300px] w-full rounded-b-lg border-gray-300 bg-white p-2 text-black shadow-sm"
-          />
-        </div>
+        <div className="min-h-[200px]"></div>
         <AdminButton type="submit" disabled={loading}>
           Зберегти
         </AdminButton>

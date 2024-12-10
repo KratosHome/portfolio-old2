@@ -16,13 +16,6 @@ export const getUserClient = async (
 
     const uniqueTechnologies = await User.distinct('technologies')
     const uniqueWorkExperience = await User.distinct('workExperience')
-    const formattedTechnologies = uniqueTechnologies.map((tech: any) => ({
-      id: tech,
-      label:
-        typeof tech === 'string'
-          ? `${tech.charAt(0).toUpperCase() + tech.slice(1)}`
-          : String(tech),
-    }))
 
     const formattedWorkExperience = uniqueWorkExperience.map((exp: any) => ({
       id: exp,
@@ -30,6 +23,14 @@ export const getUserClient = async (
         typeof exp === 'string'
           ? `${exp.charAt(0).toUpperCase() + exp.slice(1)}`
           : String(exp),
+    }))
+
+    const formattedTechnologies = uniqueTechnologies.map((tech: any) => ({
+      id: tech,
+      label:
+        typeof tech === 'string'
+          ? `${tech.charAt(0).toUpperCase() + tech.slice(1)}`
+          : String(tech),
     }))
 
     const skip = (page - 1) * limit
@@ -64,7 +65,7 @@ export const getUserClient = async (
     return {
       success: true,
       technologies: formattedTechnologies,
-      workExperience: formattedWorkExperience,
+      workExperience: +formattedWorkExperience,
       users: usersWithProjects,
       totalUsers,
       totalPages,

@@ -62,6 +62,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
     [`/${locale}`]: <Header userInfo={<MenuInfoOlegTkach />} />,
     [`/${locale}/`]: <Header userInfo={<MenuInfoOlegTkach />} />,
     [`/${locale}/blog`]: <Header userInfo={<MenuInfoCodeCraft />} />,
+    [`/${locale}/mentoring/projects`]: (
+      <Header userInfo={<MenuInfoCodeCraft />} />
+    ),
+    [`/${locale}/mentoring/members`]: (
+      <Header userInfo={<MenuInfoCodeCraft />} />
+    ),
     [`/${locale}/community/projects`]: (
       <Header userInfo={<MenuInfoCodeCraft />} />
     ),

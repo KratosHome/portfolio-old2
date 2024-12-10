@@ -4,8 +4,8 @@ import { Pagination } from '@/components/UI/client/pagination/pagination'
 
 export default async function Page({ params }: { params: any }) {
   const page = 1
-  const technologies = 'technologies'
-  const workExperience = 'workExperience'
+  const technologies = ''
+  const workExperience = ''
   const users: any = await getUserClient(
     true,
     page,

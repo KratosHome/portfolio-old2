@@ -6,13 +6,11 @@ import { createProject } from '@/server/project/create-project.server'
 import { updateProject } from '@/server/project/update-project.server'
 import { toast } from 'react-toastify'
 import { useTranslations } from 'next-intl'
-import ReactQuill from 'react-quill'
 import { useStore } from '@/store/user'
 import Image from 'next/image'
 import { RxAvatar } from 'react-icons/rx'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Input } from '@/components/UI/client/input/input'
-import { CustomToolbarQuill } from '@/components/UI/client/custom-toolbar-quill/custom-toolbar-quill'
 import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
 
 interface PlanItem {
@@ -241,18 +239,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
           error={errors.name?.message}
         />
 
-        <div className="mt-2">
-          <CustomToolbarQuill />
-          <ReactQuill
-            theme="snow"
-            placeholder={'Опис проєкту'}
-            value={description}
-            onChange={(value) => setDescription(value)}
-            modules={{ toolbar: { container: '#toolbar' } }}
-            style={{ height: '300px' }}
-            className="min-h-[300px] w-full rounded-b-lg border-gray-300 bg-white p-2 text-black shadow-sm"
-          />
-        </div>
+        <div className="mt-2">ReactQuill</div>
 
         <div>
           <h2 className="text-2xl font-bold">Технології</h2>

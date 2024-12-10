@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 import { redirect } from 'next/navigation'
 import { auth } from '@/server/auth/auth.server'
 import { createUsers } from '@/server/users/create-user.server'
-import 'react-quill/dist/quill.snow.css'
 import { SidebarProvider, SidebarTrigger } from '@/components/UI/sidebar'
 import { AppSidebar } from '@/components/admin/app-sidebar/app-sidebar'
 
