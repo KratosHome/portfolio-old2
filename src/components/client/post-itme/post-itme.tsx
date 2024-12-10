@@ -35,7 +35,7 @@ export const PostItem: FC<BlogListType> = ({ item }) => {
   return (
     <Link href={`/${locale}/blog/${cleanUrl}`}>
       <CardContainer className="inter-var">
-        <CardBody className="post-item-card block h-max max-w-[396px] rounded-md border border-black bg-gradient-to-br from-white/20 to-white/0 p-1">
+        <CardBody className="post-item-card block h-[550px] max-w-[396px] rounded-md border border-black bg-gradient-to-br from-white/20 to-white/0 p-1">
           <CardItem
             translateZ="40"
             className="text-[20px] font-bold text-[#0B66F5]"
