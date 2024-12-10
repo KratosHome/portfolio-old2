@@ -6,8 +6,13 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { ButtonBeck } from '@/components/UI/client/button-beck/button-beck'
 
+interface Section {
+  name: string
+  link: string
+}
+
 interface CommunityDashboardProps {
-  data: any
+  data: Section[]
 }
 
 export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
@@ -24,7 +29,7 @@ export const CommunityDashboard: FC<CommunityDashboardProps> = ({ data }) => {
         {t('Сhoose which section you want to look at')}
       </div>
       <div className="mt-[91px] flex items-center justify-center">
-        {data.map((item: any, index: number) => {
+        {data.map((item, index: number) => {
           const isActive = pathname === `/${locale}/${item.link}`
           return (
             <div

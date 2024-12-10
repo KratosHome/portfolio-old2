@@ -30,7 +30,7 @@ const Page = async () => {
         <ul className="list-inside list-disc space-y-2 text-gray-400">
           <li>{t('Use data from the admin panel if available')}.</li>
           <li>{t('The code should be clean and understandable to others')}.</li>
-          <li>{t('You can add necessary libraries to solve tasks')}</li>
+          <li>{t('You can add necessary libraries to solve tasks')}.</li>
         </ul>
       </div>
     </div>

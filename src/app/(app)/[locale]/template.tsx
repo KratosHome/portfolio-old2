@@ -90,6 +90,15 @@ export default function Template({ children }: { children: React.ReactNode }) {
     )
   }
 
+  if (path.includes('/blog')) {
+    return (
+      <div>
+        <Header userInfo={<MenuInfoCodeCraft />} />
+        {children}
+      </div>
+    )
+  }
+
   if (path.includes('/login')) {
     return (
       <div>
