@@ -35,7 +35,7 @@ export const getPosts = async (
       .lean()
     const formattedAuthors = uniqueAuthors.map((author) => ({
       id: String(author._id),
-      username: author.username,
+      label: author.username,
     }))
 
     let query: QueryType = { local: local, isPublished }

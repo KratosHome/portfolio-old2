@@ -1,7 +1,8 @@
 'use client'
+
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
-import { useEffect, useRef, FC } from 'react'
+import { useEffect, useRef, FC, useState } from 'react'
 
 interface CustomToolbarQuillProps {
   placeholder?: string
@@ -20,7 +21,7 @@ export const QuillEditor: FC<CustomToolbarQuillProps> = ({
 }) => {
   const editorRef = useRef<HTMLDivElement | null>(null)
   const quillRef = useRef<Quill | null>(null)
-  const isUpdatingRef = useRef(false) // Для запобігання повторним оновленням
+  const [isInternalUpdate, setIsInternalUpdate] = useState(false)
 
   useEffect(() => {
     if (editorRef.current) {
@@ -51,7 +52,7 @@ export const QuillEditor: FC<CustomToolbarQuillProps> = ({
       }
 
       quillRef.current.on('text-change', () => {
-        if (!isUpdatingRef.current) {
+        if (!isInternalUpdate) {
           const html = quillRef.current?.root.innerHTML || ''
           onChange?.(html)
         }
@@ -61,13 +62,13 @@ export const QuillEditor: FC<CustomToolbarQuillProps> = ({
     return () => {
       quillRef.current = null
     }
-  }, [modules, formats, placeholder, onChange])
+  }, [modules, formats, placeholder])
 
   useEffect(() => {
     if (quillRef.current && value !== quillRef.current.root.innerHTML) {
-      isUpdatingRef.current = true
+      setIsInternalUpdate(true)
       quillRef.current.root.innerHTML = value || ''
-      isUpdatingRef.current = false
+      setIsInternalUpdate(false)
     }
   }, [value])
 

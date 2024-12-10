@@ -1,11 +1,11 @@
-interface IUser {
+interface IUserSession {
   email: string
   id: string
   image: string
   name: string
 }
 
-interface ISession {
+interface IUserSession {
   expires: string
   user: IUser
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useTranslations } from 'next-intl'
@@ -23,6 +23,14 @@ import {
   SelectValue,
 } from '@/components/UI/select'
 import { QuillEditor } from '@/components/admin/quill-editor/quill-editor'
+
+interface FormData {
+  username: string
+  gitHubLink: string
+  contactLink: string
+  workExperience: number
+  linkedinLink: string
+}
 
 const Page = () => {
   const roles = [
@@ -54,7 +62,7 @@ const Page = () => {
     'lead',
   ]
 
-  const { data: session }: any = useSession()
+  const { data: session } = useSession()
   const { user, fetchUser } = useStore()
   const t = useTranslations('footer')
   const fileAvatarRef = useRef<HTMLInputElement>(null)
@@ -62,8 +70,8 @@ const Page = () => {
 
   const resumeInputRef = useRef<HTMLInputElement>(null)
 
-  const [selectedResume, setSelectedResume] = useState<any>(null)
-  const [image, setImage] = useState<any>(null)
+  const [selectedResume, setSelectedResume] = useState<File | null>(null)
+  const [image, setImage] = useState<File | null>(null)
 
   const [aboutMe, setAboutMe] = useState<string>('')
   const [isPublic, setIsPublic] = useState<boolean>(false)
@@ -73,10 +81,10 @@ const Page = () => {
 
   const [portfolioInput, setPortfolioInput] = useState<string>('')
   const [portfolio, setPortfolio] = useState<string[]>(['vcdfsv'])
-  const [selectedRoles, setSelectedRoles] = useState(roles[0])
+  const [selectedRoles, setSelectedRoles] = useState(user.role || roles[0])
 
   const [selectedExperienceLevel, setSelectedExperienceLevel] = useState(
-    levelExperience[0],
+    user.experienceLevel || levelExperience[0],
   )
 
   useEffect(() => {
@@ -108,7 +116,7 @@ const Page = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<any>({
+  } = useForm<FormData>({
     defaultValues: {
       username: user?.username || '',
     },
@@ -128,11 +136,11 @@ const Page = () => {
     setLoading(false)
   }
 
-  const handleChangeRole = (event: any) => {
-    setSelectedRoles(event.target.value)
+  const handleChangeRole = (event: string) => {
+    setSelectedRoles(event)
   }
-  const handleChangeExperienceLevel = (event: any) => {
-    setSelectedExperienceLevel(event.target.value)
+  const handleChangeExperienceLevel = (event: string) => {
+    setSelectedExperienceLevel(event)
   }
 
   const handleAddTechnology = () => {
@@ -157,8 +165,8 @@ const Page = () => {
     setPortfolio(updatedTechnologies)
   }
 
-  const handleImageChange = (e: any) => {
-    const file = e.target.files[0]
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
     if (file && file.type.startsWith('image/')) {
       setImage(file)
     } else {
@@ -169,8 +177,8 @@ const Page = () => {
     }
   }
 
-  const handleResumeChange = (event: any) => {
-    const file = event.target.files[0]
+  const handleResumeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
 
     if (file) {
       if (file.type !== 'application/pdf') {
@@ -187,7 +195,7 @@ const Page = () => {
     }
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
 
     let imageBase64 = null
@@ -199,7 +207,7 @@ const Page = () => {
       selectedResumeBase64 = await convertToBase64(selectedResume)
     }
 
-    const sendData: any = {
+    const sendData: Partial<IUser> = {
       username: data.username,
       aboutMe: aboutMe,
       technologies: technologies,
@@ -336,7 +344,7 @@ const Page = () => {
               {...register('workExperience', {
                 required: t('This field is required'),
                 minLength: {
-                  value: 4,
+                  value: 1,
                   message: `${t('Minimum number of characters')} 4`,
                 },
                 maxLength: {
@@ -352,9 +360,7 @@ const Page = () => {
             )}
           </div>
           <Select
-            onValueChange={(value) =>
-              handleChangeExperienceLevel({ target: { value } })
-            }
+            onValueChange={(value) => handleChangeExperienceLevel(value)}
             value={selectedExperienceLevel}
           >
             <SelectTrigger className="mt-6 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -369,7 +375,7 @@ const Page = () => {
             </SelectContent>
           </Select>
           <Select
-            onValueChange={(value) => handleChangeRole({ target: { value } })}
+            onValueChange={(value) => handleChangeRole(value)}
             value={selectedRoles}
           >
             <SelectTrigger className="mt-6 w-full rounded-md border border-gray-300 bg-transparent px-5 py-3 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -491,6 +497,7 @@ const Page = () => {
         </div>
 
         <div className="mt-3 min-h-[200px]">
+          <div className="mb-2 font-bold">About me</div>
           <QuillEditor
             placeholder="About me"
             value={aboutMe}

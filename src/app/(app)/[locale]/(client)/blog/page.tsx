@@ -15,7 +15,7 @@ interface Category {
 
 interface Author {
   id: string
-  username: string
+  label: string
 }
 
 interface ApiResponse {
@@ -44,6 +44,8 @@ export default async function Page(props: {
     searchParams.filters,
     searchParams.authors,
   )
+
+  console.log('post.authors', post.authors)
 
   return (
     <div className="mx-auto max-w-[1442px] px-[24px]">
