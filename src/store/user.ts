@@ -2,8 +2,8 @@ import { create } from 'zustand'
 import { getUser } from '@/server/users/get-user.server'
 
 interface StoreState {
-  user: any
-  fetchUser: (session: any) => Promise<void>
+  user: IUser
+  fetchUser: (email: string) => Promise<void>
   saveUser: (newUser: Partial<IUser>) => void
   updateUser: (newUser: Partial<IUser>) => void
   clearUser: () => void
@@ -11,6 +11,7 @@ interface StoreState {
 
 export const useStore = create<StoreState>((set) => ({
   user: {
+    _id: '',
     createdAt: '',
     email: '',
     isAdmin: false,
@@ -20,29 +21,29 @@ export const useStore = create<StoreState>((set) => ({
     password: '',
     rating: 0,
     role: '',
-    userLogo: '',
     transactions: [],
     updatedAt: '',
     username: '',
-    _id: '',
     aboutMe: '',
     gitHubLink: '',
     contactLink: '',
     workExperience: 0,
     portfolioLinks: [],
     technologies: [],
+    userLogo: null,
     linkedinLink: '',
     isPublic: false,
     resume: '',
+    experienceLevel: '',
   },
   fetchUser: async (email: string) => {
     const response = await getUser(email)
 
     if (response.success) {
       const user: IUser = {
-        id: response.user._id,
-        image: response.user.userLogo,
-        name: response.user.username,
+        _id: response.user._id,
+        userLogo: response.user.userLogo,
+        username: response.user.username,
         createdAt: response.user.createdAt,
         email: response.user.email,
         isAdmin: response.user.isAdmin,
@@ -54,15 +55,12 @@ export const useStore = create<StoreState>((set) => ({
         role: response.user.role,
         transactions: response.user.transactions,
         updatedAt: response.user.updatedAt,
-        username: response.user.username,
-        _id: response.user._id,
         aboutMe: response.user.aboutMe,
         gitHubLink: response.user.gitHubLink,
         contactLink: response.user.contactLink,
         workExperience: response.user.workExperience,
         portfolioLinks: response.user.portfolioLinks,
         technologies: response.user.technologies,
-        userLogo: response.user.userLogo,
         linkedinLink: response.user.linkedinLink,
         isPublic: response.user.isPublic,
         resume: response.user.resume,
@@ -79,9 +77,9 @@ export const useStore = create<StoreState>((set) => ({
   clearUser: () =>
     set({
       user: {
+        _id: '',
         createdAt: '',
         email: '',
-        userLogo: '',
         isAdmin: false,
         isBlocked: false,
         isEmailVerified: false,
@@ -92,16 +90,17 @@ export const useStore = create<StoreState>((set) => ({
         transactions: [],
         updatedAt: '',
         username: '',
-        _id: '',
         aboutMe: '',
         gitHubLink: '',
         contactLink: '',
         workExperience: 0,
         portfolioLinks: [],
         technologies: [],
+        userLogo: null,
         linkedinLink: '',
         isPublic: false,
         resume: '',
+        experienceLevel: '',
       },
     }),
 }))

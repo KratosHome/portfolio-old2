@@ -6,6 +6,16 @@ interface ICommentPost {
   text: string
 }
 
+interface ILike {
+  userId: string
+  timestamp: Date | string
+}
+
+interface IDizLike {
+  userId: string
+  timestamp: Date | string
+}
+
 interface IPost {
   _id: string
   postId: string
@@ -20,8 +30,8 @@ interface IPost {
   keyWords: string[]
   isPublished: boolean
   read: number
-  likes: any[]
-  dizLikes: any[]
+  likes: ILike[]
+  dizLikes: IDizLike[]
   comments: ICommentPost[]
   createdAt: Date | string
   updatedAt?: Date

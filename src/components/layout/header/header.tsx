@@ -1,6 +1,5 @@
 'use client'
 import './header.scss'
-import ThemeChange from '@/components/theme-change/theme-change'
 import Link from 'next/link'
 import Image from 'next/image'
 import { menuData } from '@/data/menuData'
@@ -11,12 +10,12 @@ import { gsap } from 'gsap'
 import { useLocale } from 'use-intl'
 import { useTranslations } from 'next-intl'
 import { useGSAP } from '@gsap/react'
-import { useSession } from 'next-auth/react'
 import { useStore } from '@/store/user'
 import { projectStore } from '@/store/project'
 import { useTheme } from 'next-themes'
 import { MobileMenu } from '@/components/layout/header/mobile-menu'
 import LanguageChange from '@/components/features/language-change/language-change'
+import ThemeChange from '@/components/UI/theme-change/theme-change'
 
 interface IMenuProps {
   userInfo?: ReactNode
