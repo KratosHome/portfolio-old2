@@ -3,6 +3,17 @@ import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/user-schema.server'
 import { Project } from '@/server/project/project-scheme.server' // Додано імпорт Project
 
+interface IFormattedData {
+  id: string
+  label: string
+}
+
+interface IUserQuery {
+  isPublic: boolean
+  technologies?: { $in: string[] }
+  workExperience?: { $in: string[] }
+}
+
 export const getUserClient = async (
   isPublic: boolean,
   page = 1,
@@ -17,25 +28,29 @@ export const getUserClient = async (
     const uniqueTechnologies = await User.distinct('technologies')
     const uniqueWorkExperience = await User.distinct('workExperience')
 
-    const formattedWorkExperience = uniqueWorkExperience.map((exp: any) => ({
-      id: exp,
-      label:
-        typeof exp === 'string'
-          ? `${exp.charAt(0).toUpperCase() + exp.slice(1)}`
-          : String(exp),
-    }))
+    const formattedWorkExperience: IFormattedData[] = uniqueWorkExperience.map(
+      (exp) => ({
+        id: exp,
+        label:
+          typeof exp === 'string'
+            ? `${exp.charAt(0).toUpperCase() + exp.slice(1)}`
+            : String(exp),
+      }),
+    )
 
-    const formattedTechnologies = uniqueTechnologies.map((tech: any) => ({
-      id: tech,
-      label:
-        typeof tech === 'string'
-          ? `${tech.charAt(0).toUpperCase() + tech.slice(1)}`
-          : String(tech),
-    }))
+    const formattedTechnologies: IFormattedData[] = uniqueTechnologies.map(
+      (tech) => ({
+        id: tech,
+        label:
+          typeof tech === 'string'
+            ? `${tech.charAt(0).toUpperCase() + tech.slice(1)}`
+            : String(tech),
+      }),
+    )
 
     const skip = (page - 1) * limit
 
-    let query: any = { isPublic }
+    const query: IUserQuery = { isPublic }
 
     if (technologies.length > 0) {
       const resultFilters = technologies.split(',')
@@ -73,7 +88,16 @@ export const getUserClient = async (
       perPage: limit,
     }
   } catch (err) {
-    console.error('Помилка:', err)
-    return { success: false }
+    return {
+      success: false,
+      message: err,
+      technologies: [],
+      workExperience: [],
+      users: [],
+      totalUsers: 0,
+      totalPages: 0,
+      currentPage: 0,
+      perPage: 0,
+    }
   }
 }

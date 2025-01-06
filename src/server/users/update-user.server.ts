@@ -3,7 +3,7 @@ import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/user-schema.server'
 import cloudinary from '@/server/cloudinaryConfig'
 
-export const updateUser = async (id: string, sendData: any) => {
+export const updateUser = async (id: string, sendData: IUser) => {
   try {
     await connectToDb()
 
