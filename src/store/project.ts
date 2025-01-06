@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { getProject } from '@/server/project/get-project.server'
 
 interface StoreState {
-  projects: any[]
+  projects: IProject[]
   fetchProjects: (id: string) => Promise<void>
   clearProjects: () => void
 }

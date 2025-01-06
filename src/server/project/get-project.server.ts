@@ -7,14 +7,16 @@ export const getProject = async (userId: string) => {
   noStore()
   try {
     await connectToDb()
-    const projects = await Project.find({ 'teams.userId': userId }).lean()
+
+    const projects = await Project.find({ 'teams.userId': userId }).lean<
+      IProject[]
+    >()
 
     return {
       success: true,
       projects,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, projects: [], error: err }
   }
 }
