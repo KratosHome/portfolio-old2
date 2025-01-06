@@ -1,8 +1,9 @@
-interface IUserSession {
-  email: string
-  id: string
-  image: string
-  name: string
+interface ISession {
+  user: {
+    email: string
+    name: string
+    image?: string
+  }
 }
 
 interface IUserSession {

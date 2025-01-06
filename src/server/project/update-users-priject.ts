@@ -2,10 +2,17 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 
+interface UpdateProjectUserData {
+  teams: {
+    rating: number
+    percentageWorkProject: number
+  }
+}
+
 export const updateProjectUser = async (
   userId: string,
   projectId: string,
-  data: any,
+  data: UpdateProjectUserData,
 ) => {
   try {
     await connectToDb()
@@ -26,7 +33,6 @@ export const updateProjectUser = async (
 
     return { success: true, updatedProject }
   } catch (error) {
-    console.error(error)
-    return { success: false, message: '' }
+    return { success: false, message: error, updatedProject: null }
   }
 }

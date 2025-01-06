@@ -2,7 +2,16 @@
 import TelegramBot from 'node-telegram-bot-api'
 import { formatDate } from '@/utils/formatDate'
 
-export async function messageMe(formData: any) {
+interface FormData {
+  locale: string
+  type: string
+  name: string
+  email: string
+  number: string
+  message: string
+}
+
+export async function messageMe(formData: FormData) {
   try {
     const formattedDate = formatDate(new Date())
     const bot = new TelegramBot(`${process.env.TELEGRAM_BOT_TOKEN}`, {
@@ -24,7 +33,7 @@ export async function messageMe(formData: any) {
     `,
     )
     return { success: true }
-  } catch (error) {
-    return { success: false }
+  } catch (err) {
+    return { success: false, error: err }
   }
 }

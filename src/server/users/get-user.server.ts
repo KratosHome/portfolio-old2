@@ -15,6 +15,6 @@ export const getUser = async (id: string) => {
       user,
     }
   } catch (err) {
-    return { success: false }
+    return { success: false, error: err }
   }
 }

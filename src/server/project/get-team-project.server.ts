@@ -17,8 +17,6 @@ export const getTeamProject = async (userId: string) => {
 
     const projectsWithUsers = await Promise.all(
       projects.map(async (project: any) => {
-        console.log('project.newUsers ', project)
-
         const userIds = project.teams.map(
           (teamMember: any) => teamMember.userId,
         )
@@ -59,7 +57,6 @@ export const getTeamProject = async (userId: string) => {
       team: projectsWithUsers,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err, team: [] }
   }
 }

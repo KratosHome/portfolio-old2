@@ -2,7 +2,7 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 
-export const updateProject = async (id: any, data: any) => {
+export const updateProject = async (id: string, data: IUser) => {
   try {
     await connectToDb()
 
@@ -11,6 +11,6 @@ export const updateProject = async (id: any, data: any) => {
 
     return { success: true }
   } catch (error) {
-    return { success: false }
+    return { success: false, message: error }
   }
 }

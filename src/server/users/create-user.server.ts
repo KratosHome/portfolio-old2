@@ -2,7 +2,7 @@
 import { connectToDb } from '@/server/connectToDb'
 import { User } from '@/server/users/user-schema.server'
 
-export const createUsers = async (session: any) => {
+export const createUsers = async (session: ISession) => {
   'use server'
   try {
     await connectToDb()
@@ -20,7 +20,6 @@ export const createUsers = async (session: any) => {
       return { success: true }
     }
   } catch (err) {
-    console.log('err createUsers', err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

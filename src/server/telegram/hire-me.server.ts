@@ -2,7 +2,14 @@
 import TelegramBot from 'node-telegram-bot-api'
 import { formatDate } from '@/utils/formatDate'
 
-export async function telegramAction(formData: any) {
+interface FormData {
+  name: string
+  email: string
+  number: string
+  message: string
+}
+
+export async function telegramAction(formData: FormData) {
   const formattedDate = formatDate(new Date())
   const bot = new TelegramBot(`${process.env.TELEGRAM_BOT_TOKEN}`, {
     polling: true,

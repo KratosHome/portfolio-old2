@@ -3,7 +3,14 @@ import TelegramBot from 'node-telegram-bot-api'
 import { Reviews } from '@/server/reviws/reviewsSchema'
 import { connectToDb } from '@/server/connectToDb'
 
-export const createReviewAction = async (formData: any) => {
+interface formData {
+  userName: string
+  email: string
+  company: string
+  reviews: string
+}
+
+export const createReviewAction = async (formData: formData) => {
   try {
     const chatId = `${process.env.TELEGRAM_BOT_CHAT_ID}`
     const bot = new TelegramBot(`${process.env.TELEGRAM_BOT_TOKEN}`, {
@@ -30,6 +37,6 @@ export const createReviewAction = async (formData: any) => {
       `,
     )
   } catch (error) {
-    throw new Error('createReviewAction')
+    throw new Error(`createReviewAction ${error}`)
   }
 }
