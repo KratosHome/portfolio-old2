@@ -9,29 +9,27 @@ export const getTeamProject = async (userId: string) => {
   try {
     await connectToDb()
 
-    const projects: any = await Project.find({
+    const projects = await Project.find({
       teams: {
         $elemMatch: { userId: userId },
       },
-    }).lean()
+    }).lean<IProject[]>()
 
     const projectsWithUsers = await Promise.all(
-      projects.map(async (project: any) => {
-        const userIds = project.teams.map(
-          (teamMember: any) => teamMember.userId,
-        )
+      projects.map(async (project: IProject) => {
+        const userIds = project.teams.map((teamMember) => teamMember.userId)
 
-        const teamUsers: any = await User.find({ _id: { $in: userIds } })
+        const teamUsers = await User.find({ _id: { $in: userIds } })
           .select('-password -isEmailVerifiedToken -isEmailVerified -isAdmin')
-          .lean()
+          .lean<IUser[]>()
 
         const newUsersList = await User.find({ _id: { $in: project.newUsers } })
           .select('-password -isEmailVerifiedToken -isEmailVerified -isAdmin')
           .lean()
 
-        const teamUsersWithRoles = teamUsers.map((user: any) => {
+        const teamUsersWithRoles = teamUsers.map((user) => {
           const teamInfo = project.teams.find(
-            (teamMember: any) => teamMember.userId === user._id.toString(),
+            (teamMember) => teamMember.userId === user._id.toString(),
           )
           return {
             ...user,
