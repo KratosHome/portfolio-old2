@@ -3,11 +3,17 @@ import { connectToDb } from '@/server/connectToDb'
 import { Project } from '@/server/project/project-scheme.server'
 import { User } from '@/server/users/user-schema.server'
 
+interface IProjectsQuery {
+  isPublic: boolean
+  technologies?: { $in: string[] }
+  workExperience?: { $in: string[] }
+}
+
 export const getProjects = async (
   page: number = 1,
   limit: number = 10,
   isPublic: boolean = true,
-  technologies: any = [],
+  technologies: string[] | string = [],
 ) => {
   'use server'
   noStore()
@@ -23,7 +29,7 @@ export const getProjects = async (
       }),
     )
 
-    let query: any = { isPublic }
+    const query: IProjectsQuery = { isPublic }
 
     if (technologies.length > 0) {
       let resultFilters: string[] = []
@@ -47,13 +53,13 @@ export const getProjects = async (
       .limit(limit)
 
     const updatedProjects = await Promise.all(
-      projects.map(async (project: any) => {
+      projects.map(async (project) => {
         if (!project.teams || !Array.isArray(project.teams)) {
           project.teams = []
         }
 
-        const updatedTeams = await Promise.all(
-          project.teams.map(async (team: any) => {
+        project.teams = await Promise.all(
+          project.teams.map(async (team: ITeamMember) => {
             if (team.userId) {
               const user = await User.findOne({ _id: team.userId }).lean()
               return { ...team, user }
@@ -61,7 +67,7 @@ export const getProjects = async (
             return team
           }),
         )
-        project.teams = updatedTeams
+
         return project
       }),
     )
@@ -74,7 +80,13 @@ export const getProjects = async (
       totalPages: totalPages,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return {
+      success: false,
+      message: err,
+      projects: [],
+      currentPage: page,
+      technologies: [],
+      totalPages: 0,
+    }
   }
 }
