@@ -16,7 +16,6 @@ export const rejectUserProject = async (projectId: string, userId: string) => {
 
     return { success: true }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

@@ -8,9 +8,14 @@ export async function verifyCaptcha(token: string | null) {
     },
   )
   const data = await response.json()
+
   if (data.success) {
-    return console.log('Captcha Success')
+    return {
+      success: true,
+    }
   } else {
-    return console.log('Captcha Failed')
+    return {
+      success: false,
+    }
   }
 }

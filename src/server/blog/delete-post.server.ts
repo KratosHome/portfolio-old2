@@ -2,13 +2,11 @@
 import { connectToDb } from '@/server/connectToDb'
 import { Post } from '@/server/blog/blog-schema'
 
-export const deletePostServer = async (postId: any) => {
-  // Виправлено назву функції
+export const deletePostServer = async (postId: string) => {
   try {
     await connectToDb()
 
     const post = await Post.findById(postId)
-    console.log(post)
 
     if (!post) {
       return { success: false, message: 'Post not found' }
@@ -18,7 +16,6 @@ export const deletePostServer = async (postId: any) => {
 
     return { success: true }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

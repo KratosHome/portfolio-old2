@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { v4 as uuidv4 } from 'uuid'
 import cloudinary from '@/server/cloudinaryConfig'
 
-export const createPostServer = async ({ data, image }: any) => {
+export const createPostServer = async (data: IPost, image: string) => {
   'use server'
 
   try {
@@ -22,25 +22,21 @@ export const createPostServer = async ({ data, image }: any) => {
     }
 
     const savedPosts = await Promise.all(
-      Object.entries(data).map(
-        async ([locale, localizedData]: [string, any]) => {
-          if (typeof localizedData !== 'object' || localizedData === null) {
-            throw new Error(`Invalid data for locale ${locale}`)
-          }
+      Object.entries(data).map(async ([locale, localizedData]) => {
+        if (typeof localizedData !== 'object' || localizedData === null) {
+          throw new Error(`Invalid data for locale ${locale}`)
+        }
 
-          const newPost = {
-            ...localizedData,
-            postId,
-            img: imageUrl,
-          }
-          console.log('newPost', newPost)
+        const newPost = {
+          ...localizedData,
+          postId,
+          img: imageUrl,
+        }
 
-          const savedPost = await new Post(newPost).save()
-          console.log('savedPost', savedPost)
+        const savedPost = await new Post(newPost).save()
 
-          return savedPost
-        },
-      ),
+        return savedPost
+      }),
     )
 
     if (savedPosts.length === Object.keys(data).length) {
@@ -50,7 +46,6 @@ export const createPostServer = async ({ data, image }: any) => {
 
     return { success: true }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

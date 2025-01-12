@@ -12,6 +12,12 @@
         "endOfLine": "auto",
         "plugins": ["prettier-plugin-tailwindcss"]
       }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["error", "warn"]
+      }
     ]
   }
 }

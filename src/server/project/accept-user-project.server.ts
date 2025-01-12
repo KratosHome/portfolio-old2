@@ -13,7 +13,7 @@ export const acceptUserProject = async (projectId: string, userId: string) => {
 
     project.newUsers = project.newUsers.filter((id: string) => id !== userId)
 
-    if (!project.teams.some((team: any) => team.userId === userId)) {
+    if (!project.teams.some((team: IProject) => team._id === userId)) {
       project.teams.push({
         userId: userId,
         role: 'member',
@@ -26,7 +26,6 @@ export const acceptUserProject = async (projectId: string, userId: string) => {
 
     return { success: true }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

@@ -28,7 +28,6 @@ export const getAllPosts = async (locale: string) => {
       posts: postsWithUserDetails,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

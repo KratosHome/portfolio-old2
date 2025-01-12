@@ -7,26 +7,27 @@ import bcrypt from 'bcryptjs'
 import { AdapterUser } from '@auth/core/adapters'
 import Google from '@auth/core/providers/google'
 
-const login = async (credentials: any) => {
+const login = async (email: string, password: string) => {
   'use server'
   try {
     await connectToDb()
-    const user = await User.findOne({ email: credentials.email }).select(
-      '-resume',
-    )
+    const user = await User.findOne({ email: email }).select('-resume')
 
-    if (!user) throw new Error('Wrong credentials!')
+    if (!user) return { success: false, message: 'User not found' }
 
     const isPasswordCorrect = await bcrypt.compare(
-      credentials.password as string,
+      password as string,
       user.password,
     )
 
-    if (!isPasswordCorrect) throw new Error('Wrong credentials!')
+    if (!isPasswordCorrect) return { success: false, message: 'Wrong password' }
     return user
   } catch (err) {
-    console.log(err)
-    throw new Error('Failed to login!')
+    return {
+      success: false,
+      message: err,
+      user: null,
+    }
   }
 }
 
@@ -44,22 +45,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     CredentialsProvider({
       async authorize(credentials) {
         try {
-          return await login(credentials)
+          return await login(
+            credentials.email as string,
+            credentials.password as string,
+          )
         } catch (err) {
-          return null
+          return {
+            success: false,
+            message: err,
+            user: null,
+          }
         }
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn() {
       return true
     },
-    async session({ session, token, user, trigger }) {
+    async session({ session, token }) {
       session.user = token.user as AdapterUser
       return session
     },
-    async jwt({ token, user, account, trigger }) {
+    async jwt({ token, user }) {
       if (user) {
         token.user = user
       }

@@ -38,7 +38,7 @@ export const getPosts = async (
       label: author.username,
     }))
 
-    let query: QueryType = { local: local, isPublished }
+    const query: QueryType = { local: local, isPublished }
 
     if (filters && filters.length > 0) {
       const resultFilters = Array.isArray(filters)
@@ -91,7 +91,7 @@ export const getPosts = async (
       currentPage: 1,
       totalPages: 0,
       authors: [],
-      error: 'Error while fetching posts',
+      error: err,
     }
   }
 }

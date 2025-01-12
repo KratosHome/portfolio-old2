@@ -17,7 +17,7 @@ const locales = [
 ]
 
 export default getRequestConfig(async ({ locale }) => {
-  if (!locales.includes(locale as any)) notFound()
+  if (!locales.includes(locale as ILocale)) notFound()
 
   return {
     messages: (await import(`../localization/${locale}.json`)).default,

@@ -17,7 +17,6 @@ export const getPostsById = async (postId: string) => {
       user,
     }
   } catch (err) {
-    console.log(err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }

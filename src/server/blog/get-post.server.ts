@@ -6,7 +6,6 @@ export const getPost = async (url: string, local: string) => {
   try {
     await connectToDb()
 
-    // Знаходимо пост
     const post = await Post.findOne({ url: `${url}-${local}`, local: local })
     if (!post) {
       return { success: false, message: 'Post not found' }
@@ -34,7 +33,7 @@ export const getPost = async (url: string, local: string) => {
 
     return {
       success: true,
-      post: postContent as any,
+      post: postContent,
       user,
       comments: allComments,
     }
@@ -44,7 +43,7 @@ export const getPost = async (url: string, local: string) => {
       post: null,
       user: null,
       comments: [],
-      message: 'Unexpected error',
+      message: err,
     }
   }
 }

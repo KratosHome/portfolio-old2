@@ -3,7 +3,16 @@ import TelegramBot from 'node-telegram-bot-api'
 import { Post } from '@/server/blog/blog-schema'
 import { revalidatePath } from 'next/cache'
 
-export async function addComments(formData: any) {
+interface CommentFormData {
+  postId: string
+  locale: string
+  userId: string
+  author: string
+  message: string
+  userLogo?: string
+}
+
+export async function addComments(formData: CommentFormData) {
   'use server'
   try {
     const post = await Post.findOne({
@@ -44,6 +53,6 @@ export async function addComments(formData: any) {
 
     return { success: true }
   } catch (error) {
-    return { success: false }
+    return { success: false, message: error }
   }
 }

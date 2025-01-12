@@ -16,7 +16,7 @@ export const loginAction = async (data: {
       success: true,
       error: false,
     }
-  } catch (e) {
-    return { error: true, success: false }
+  } catch (err) {
+    return { error: true, success: false, message: err }
   }
 }

@@ -13,11 +13,8 @@ export const confirmEmailToken = async (
   try {
     await connectToDb()
     const user = await User.findById(id)
-    console.log('user', user)
     if (!user) return { success: false, message: 'User not found' }
 
-    console.log('user.isEmailVerifiedToken', user.isEmailVerifiedToken)
-    console.log('user.isEmailVerifiedToken', token)
     if (user.isEmailVerifiedToken !== token)
       return { success: false, message: 'Invalid token' }
 
@@ -26,12 +23,17 @@ export const confirmEmailToken = async (
 
     return { success: true }
   } catch (err) {
-    console.log('err confirmEmailServer', err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }
 
-export const sendEmailTokenServer = async (data: any) => {
+interface SendEmailTokenResponse {
+  id: string
+  success: boolean
+  message?: string
+}
+
+export const sendEmailTokenServer = async (data: SendEmailTokenResponse) => {
   try {
     const resetToken = uuidv4()
     await connectToDb()
@@ -60,7 +62,6 @@ export const sendEmailTokenServer = async (data: any) => {
 
     return { success: true }
   } catch (err) {
-    console.log('err sendEmailTokenServer', err)
-    return { success: false }
+    return { success: false, message: err }
   }
 }
