@@ -79,7 +79,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                   {t('WE NEED')}:
                 </div>
                 <div className="ml-[16px] flex flex-wrap group-hover:text-black dark:group-hover:text-[#0B66F5]">
-                  {project.lookingInTeam?.map((item: any, index: number) => (
+                  {project.lookingInTeam?.map((item: string, index: number) => (
                     <div key={item} className="mr-[12px] text-[#0B66F5]">
                       {item}
                       {index < project.lookingInTeam!.length - 1 && ','}
@@ -180,16 +180,18 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
                       {t('WE NEED')}:
                     </div>
                     <div className="ml-[42px] flex flex-wrap">
-                      {project.lookingInTeam.map((item: any, index: number) => (
-                        <div
-                          key={item}
-                          className="mr-[12px] text-[#0B66F5] group-hover:text-black dark:group-hover:text-[#0B66F5]"
-                        >
-                          {item}
-                          {index < (project.lookingInTeam?.length ?? 0) - 1 &&
-                            ','}
-                        </div>
-                      ))}
+                      {project.lookingInTeam.map(
+                        (item: string, index: number) => (
+                          <div
+                            key={item}
+                            className="mr-[12px] text-[#0B66F5] group-hover:text-black dark:group-hover:text-[#0B66F5]"
+                          >
+                            {item}
+                            {index < (project.lookingInTeam?.length ?? 0) - 1 &&
+                              ','}
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 )}
@@ -276,8 +278,8 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               {t('development phases')}
             </div>
             <div className="w-full">
-              {project.workPlan.map((item: any, index: number) => (
-                <div key={item.id} className="mb-[4px] flex items-center">
+              {project.workPlan.map((item: IWorkPlanItem) => (
+                <div key={item.text} className="mb-[4px] flex items-center">
                   <div
                     className={cn(
                       'mr-[12px] size-[24px] min-w-[24px] rounded-full border border-white bg-transparent',
@@ -306,13 +308,13 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               {t('project team')}
             </div>
             <div className="flex w-full flex-wrap gap-[12px]">
-              {project.teams.map((itemTeam: any) => (
-                <div key={itemTeam._id}>
+              {project.teams.map((itemTeam: ITeamMember) => (
+                <div key={itemTeam.userId}>
                   <div className="flex w-[372px] rounded-full border border-stone-500/30 bg-gradient-to-br from-[rgba(255,255,255,0.12)] to-[rgba(255,255,255,0)] px-[24px] py-[12px] text-[24px] font-bold capitalize backdrop-blur-[12.5px]">
                     <div className="mr-[18px] cursor-pointer text-[#0B66F5] hover:underline">
-                      {itemTeam.user.username}
+                      {itemTeam.user?.username}
                     </div>
-                    <div>{itemTeam.user.role}</div>
+                    <div>{itemTeam.user?.role}</div>
                   </div>
                   <div className="mr-3 text-right">
                     {t('project involvement')} {itemTeam.percentageWorkProject}{' '}
@@ -328,7 +330,7 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, index }) => {
               {t('WE NEED')}:
             </div>
             <div className="ml-[16px] flex flex-wrap group-hover:text-black dark:group-hover:text-[#0B66F5]">
-              {project.lookingInTeam?.map((item: any, index: number) => (
+              {project.lookingInTeam?.map((item: string, index: number) => (
                 <div key={item} className="mr-[12px] text-[#0B66F5]">
                   {item}
                   {index < project.lookingInTeam!.length - 1 && ','}

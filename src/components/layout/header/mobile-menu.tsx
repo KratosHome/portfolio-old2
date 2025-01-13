@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, FC, MouseEvent } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { useLocale } from 'use-intl'
 import Link from 'next/link'
 import LanguageChange from '@/components/features/language-change/language-change'

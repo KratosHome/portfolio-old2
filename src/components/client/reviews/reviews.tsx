@@ -15,7 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const Reviews = () => {
-  const projectsRefs = useRef<HTMLDivElement[]>([])
+  const reviewRefs = useRef<HTMLDivElement[]>([])
 
   const t = useTranslations('home-page.reviews')
   const { contextSafe } = useGSAP()
@@ -69,7 +69,7 @@ const Reviews = () => {
   })
 
   const handleMouseEnter = contextSafe((index: number) => {
-    const serviceRef = projectsRefs.current[index]
+    const serviceRef = reviewRefs.current[index]
 
     gsap.to(serviceRef, {
       height: 'auto',
@@ -79,7 +79,7 @@ const Reviews = () => {
   })
 
   const handleMouseLeave = contextSafe((index: number) => {
-    const serviceRef = projectsRefs.current[index]
+    const serviceRef = reviewRefs.current[index]
 
     gsap.to(serviceRef, {
       height: '420px',
@@ -116,18 +116,20 @@ const Reviews = () => {
             }}
             className="custom-swiper-grid"
           >
-            {data.map((project, index) => (
-              <SwiperSlide key={project._id}>
-                <a href={project.link} target="_blank">
+            {data.map((review, index) => (
+              <SwiperSlide key={review._id}>
+                <a href={review.link} target="_blank">
                   <div
-                    ref={(el: any) => (projectsRefs.current[index] = el!)}
+                    ref={(el) => {
+                      if (el) reviewRefs.current[index] = el
+                    }}
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={() => handleMouseLeave(index)}
                     className="reviews-card group relative z-30 m-4 flex h-[420px] w-[420px] flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between"
                   >
                     <div className="overflow-hidden">
                       <div className="text-[20px] font-light">
-                        {project.reviews}
+                        {review.reviews}
                       </div>
                     </div>
                     <div className="border-t-[1px] border-amber-50">
@@ -138,16 +140,16 @@ const Reviews = () => {
                         <div className="mt-[16px] flex flex-col items-end">
                           <Image
                             className="size-[32px] rounded-full object-cover"
-                            src={project.icon}
+                            src={review.icon}
                             alt={t('arrow-link')}
                           />
                           <div className="mt-[12px] text-[20px] text-[#0B66F5]/50 duration-300 group-hover:text-white">
-                            {project.position}
+                            {review.position}
                           </div>
                         </div>
                       </div>
                       <div className="text-[32px] font-bold uppercase text-[#0B66F5]">
-                        {project.userName}
+                        {review.userName}
                       </div>
                     </div>
                   </div>
@@ -189,15 +191,15 @@ const Reviews = () => {
               setMobActiveSlide(swiper.realIndex)
             }}
           >
-            {data.map((project: any, index: number) => (
-              <SwiperSlide key={project._id}>
-                <a href={project.link} target="_blank">
+            {data.map((review: IReview, index: number) => (
+              <SwiperSlide key={review._id}>
+                <a href={review.link} target="_blank">
                   <div
                     className={`reviews-card group relative z-10 m-4 flex !w-full flex-col justify-end gap-[21px] rounded-lg bg-gradient-to-r from-white/20 to-transparent px-[16px] py-[24px] backdrop-blur-[12.5px] duration-700 hover:justify-between lg:w-[310px] ${mobActiveSlide === index ? 'reviews-mob-wrapper' : 'reviews-mob-wrapper-hidden'}`}
                   >
                     <div className="overflow-hidden">
                       <div className="text-[20px] font-light">
-                        {project.reviews}
+                        {review.reviews}
                       </div>
                     </div>
                     <div className="border-t-[1px] border-amber-50">
@@ -208,16 +210,16 @@ const Reviews = () => {
                         <div className="mt-[16px] flex flex-col items-end">
                           <Image
                             className="size-[32px] rounded-full object-cover"
-                            src={project.icon}
+                            src={review.icon}
                             alt={t('arrow-link')}
                           />
                           <div className="mt-[12px] text-end text-[20px] text-[#0B66F5]/50">
-                            {project.position}
+                            {review.position}
                           </div>
                         </div>
                       </div>
                       <div className="text-[32px] font-bold uppercase text-[#0B66F5]">
-                        {project.userName}
+                        {review.userName}
                       </div>
                     </div>
                   </div>

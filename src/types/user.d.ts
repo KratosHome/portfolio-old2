@@ -23,6 +23,7 @@ interface IUser {
   isPublic: boolean
   resume: string
   experienceLevel: string
+  projects?: IProject[]
 }
 
 interface ITransaction {

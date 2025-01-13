@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react'
 import { getProject } from '@/server/project/get-project.server'
 
-const useFetchProject = (userData: any) => {
-  const [projectData, setProjectData] = useState<any>(null)
+const useFetchProject = (id: string) => {
+  const [projectData, setProjectData] = useState<IProject[] | null>(null)
 
   useEffect(() => {
-    console.log('userData', userData)
-    if (userData?.user._id) {
-      const fetchData = async () => {
-        const data = await getProject(userData?.user._id)
-        setProjectData(data)
-      }
-      fetchData()
+    const fetchData = async () => {
+      const data = await getProject(id)
+      setProjectData(data.projects)
     }
-  }, [userData])
+    fetchData()
+  }, [id])
 
   return projectData
 }

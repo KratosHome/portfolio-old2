@@ -12,7 +12,19 @@ import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
 import { Button } from '@/components/UI/buttom/button'
 
-export const HireMe: FC<any> = ({ title, modalTitle }) => {
+interface HireMeProps {
+  title: string
+  modalTitle: string
+}
+
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  message?: string
+}
+
+export const HireMe: FC<HireMeProps> = ({ title, modalTitle }) => {
   const locale = useLocale()
   const t = useTranslations('home-page.HireMe')
 
@@ -22,7 +34,7 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
     reset,
     control,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<FormData>()
 
   const [open, setClose] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean | undefined>(false)
@@ -35,16 +47,18 @@ export const HireMe: FC<any> = ({ title, modalTitle }) => {
       .catch(() => setIsVerified(false))
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
+
     const sendData = {
       type: 'hire',
       locale: locale,
       name: data.name,
       email: data.email,
       number: data.phone,
-      message: data.message,
+      message: data.message || '',
     }
+
     if (isVerified) {
       const result = await messageMe(sendData)
       if (result?.success) {

@@ -10,6 +10,7 @@ interface ITeamMember {
   percentageWorkProject?: number
   isDeleted?: boolean
   deletedAt?: Date
+  user?: IUser
 }
 
 interface IProject {

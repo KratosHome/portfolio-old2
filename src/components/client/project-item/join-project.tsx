@@ -16,6 +16,13 @@ interface JoinProjectProps {
   setClose: (value: boolean) => void
 }
 
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  message: string
+}
+
 export const JoinProject: FC<JoinProjectProps> = ({ open, setClose }) => {
   const locale = useLocale()
   const t = useTranslations('home-page.HireMe')
@@ -26,7 +33,7 @@ export const JoinProject: FC<JoinProjectProps> = ({ open, setClose }) => {
     reset,
     control,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<FormData>()
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
   const [isVerified, setIsVerified] = useState<boolean>(false)
@@ -38,8 +45,9 @@ export const JoinProject: FC<JoinProjectProps> = ({ open, setClose }) => {
       .catch(() => setIsVerified(false))
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
+
     const sendData = {
       type: 'hire',
       locale: locale,

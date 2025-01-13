@@ -14,14 +14,14 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/UI/buttom/button'
 
 interface MembersItemProps {
-  item: any
+  item: IUser
 }
 
 const MembersItem: FC<MembersItemProps> = ({ item }) => {
   const t = useTranslations('projects-client')
   const { theme } = useTheme()
 
-  const truncateText = (text: any, maxLength: number) => {
+  const truncateText = (text: string, maxLength: number) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + '...'
     }
@@ -39,8 +39,6 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       toast.error('Файл PDF не вибрано')
     }
   }
-
-  console.log(item)
 
   return (
     <div className="background-item-no-hover relative mb-[24px] overflow-hidden rounded-2xl border border-stone-500/30 px-[24px] py-[12px]">
@@ -143,7 +141,7 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       <div className="my-[23px] flex w-full">
         <div className="mr-[24px] w-[170px] text-[#0B66F5]">Technologies</div>
         <div className="flex flex-wrap gap-2">
-          {item.technologies.map((tech: any, index: number) => (
+          {item.technologies.map((tech: string, index: number) => (
             <div key={tech}>
               {tech}
               {index < item.technologies.length - 1 && ','}
@@ -156,9 +154,9 @@ const MembersItem: FC<MembersItemProps> = ({ item }) => {
       <div className="mb-[24px] mt-[60px] flex w-full justify-between">
         <div className="w-[200px] text-[20px] text-[#0B66F5]">Projects</div>
         <div className="flex w-full flex-wrap gap-[12px]">
-          {item.projects.map((project: any) => {
+          {item.projects?.map((project) => {
             const filteredTeam = project.teams.find(
-              (team: any) => team.userId === item._id,
+              (team) => team.userId === item._id,
             )
 
             return (

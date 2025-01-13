@@ -9,7 +9,7 @@ export const getProject = async (userId: string) => {
     await connectToDb()
 
     const projects = await Project.find({ 'teams.userId': userId }).lean<
-      IProject[]
+      IProject[] | null
     >()
 
     return {
