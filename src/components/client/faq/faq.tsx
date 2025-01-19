@@ -25,8 +25,8 @@ const Faq = ({ data }: FaqProps) => {
   const [activeItem, setActiveItem] = useState<number | null>(null)
 
   useGSAP(() => {
-    const elements = gsap.utils.toArray('.faq-item')
-    elements.forEach((el: any) => {
+    const elements = gsap.utils.toArray('.faq-item') as HTMLElement[]
+    elements.forEach((el: HTMLElement) => {
       gsap.fromTo(
         el,
         { opacity: 0, y: 50 },

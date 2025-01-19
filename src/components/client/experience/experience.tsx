@@ -75,8 +75,8 @@ const Experience = ({ experience }: { experience: ExperienceItem[] }) => {
   })
 
   useGSAP(() => {
-    const items = gsap.utils.toArray('.experience-item')
-    items.forEach((item: any, index: number) => {
+    const items = gsap.utils.toArray('.experience-item') as HTMLElement[]
+    items.forEach((item: HTMLElement) => {
       gsap.fromTo(
         item,
         {

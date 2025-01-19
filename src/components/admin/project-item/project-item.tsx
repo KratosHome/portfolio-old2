@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { convertToBase64 } from '@/utils/convertToBase64'
@@ -19,8 +19,17 @@ interface PlanItem {
 }
 
 interface ProjectItemProps {
-  project: IProject | any
+  project: IProject
   isCrate?: boolean
+}
+
+interface FormData {
+  name: string
+  percentageProjectCompletion: number
+  deployLink: string
+  contactGroupLink: string
+  gitHubLink: string
+  designLink: string
 }
 
 export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
@@ -33,9 +42,15 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<FormData>()
 
-  const status = ['new', 'in progress', 'deploy', 'completed', 'archived']
+  const status: IProjectStatus[] = [
+    'new',
+    'in progress',
+    'deploy',
+    'completed',
+    'archived',
+  ]
   const isSuperAdmin = user.isAdmin
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
@@ -54,7 +69,9 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     { text: 'міавмва', completed: false },
   ])
 
-  const [selectedStatus, setSelectedStatus] = useState(status[0])
+  const [selectedStatus, setSelectedStatus] = useState<IProjectStatus>(
+    status[0],
+  )
 
   useEffect(() => {
     reset({
@@ -73,15 +90,20 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     // eslint-disable-next-line
   }, [project])
 
-  const handleLogoChange = (e: any) => {
-    const file = e.target.files[0]
-    if (file && file.type.startsWith('image/')) {
-      setImage(file)
-    } else {
-      toast.error(t('Only image files are allowed'))
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ''
+  const handleLogoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (files && files[0]) {
+      const file = files[0]
+      if (file.type.startsWith('image/')) {
+        setImage(file)
+      } else {
+        toast.error(t('Only image files are allowed'))
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ''
+        }
       }
+    } else {
+      toast.error(t('No file selected'))
     }
   }
 
@@ -131,23 +153,25 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
     setLookingInTeam(updatedTeam)
   }
 
-  const handleChangeStatus = (event: any) => {
-    setSelectedStatus(event.target.value)
+  const handleChangeStatus = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStatus(e.target.value as IProjectStatus)
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any, event: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
-    const action = event.nativeEvent.submitter.name
+
+    const action = 'create'
+
     const id = project._id
     const userId = user._id
     const adminId = `${process.env.NEXT_PUBLIC_ADMIN_ID}`
 
-    let imageBase64 = null
+    let imageBase64: string | undefined = undefined
     if (image) {
       imageBase64 = await convertToBase64(image)
     }
 
-    const sendData = {
+    const sendData: IProject = {
       name: data.name,
       description: description,
       technologies: technologies,
@@ -162,10 +186,11 @@ export const ProjectItem: FC<ProjectItemProps> = ({ project, isCrate }) => {
       isPublic: isSuperAdmin,
       logo: imageBase64,
     }
+
     let result
     if (action === 'create') {
       result = await createProject(userId, adminId, sendData)
-    } else if (action === 'update') {
+    } else if (action === 'update' && id) {
       result = await updateProject(id, sendData)
     }
     if (result?.success) {

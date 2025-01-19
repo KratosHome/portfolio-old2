@@ -19,7 +19,7 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm<ForgotPasswordValues>()
 
-  const onSubmit: SubmitHandler<ForgotPasswordValues> = (data) => {}
+  const onSubmit: SubmitHandler<ForgotPasswordValues> = () => {}
   return (
     <div>
       <div className="animate-scale-in-out absolute left-[75vw] top-[805px] -z-20 hidden size-[200px] -translate-x-1/2 bg-group-pattern opacity-[0.1] lg:-bottom-[220px] lg:right-0 lg:block lg:size-[300px]" />

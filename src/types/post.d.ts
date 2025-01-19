@@ -37,3 +37,9 @@ interface IPost {
   updatedAt?: Date
   authorUsername: string
 }
+
+interface IPostWithUserDetails extends IPost {
+  authorId?: string
+  authorUsername?: string
+  authorUserLogo?: string
+}

@@ -12,7 +12,32 @@ import { Loader } from '@/components/UI/client/loader/loader'
 import { Input } from '@/components/UI/client/input/input'
 import { AdminButton } from '@/components/UI/client/admin-button/admin-button'
 
-export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
+interface TeamItemProps {
+  projectId: string
+  item: TeamMember
+  isNewUser: boolean
+}
+
+interface TeamMember {
+  _id: string
+  username: string
+  role: string
+  contactLink: string
+  email: string
+  gitHubLink: string
+  aboutMe: string
+  technologies: string[]
+  portfolioLinks: string[]
+  percentageWorkProject: number
+  rating2: string
+}
+
+interface FormData {
+  percentageProjectCompletion: number
+  rating: string
+}
+
+export const TeamItem: FC<TeamItemProps> = ({ projectId, item, isNewUser }) => {
   const { fetchProjects } = projectStore()
   const t = useTranslations('footer')
 
@@ -23,7 +48,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<any>()
+  } = useForm<FormData>()
 
   useEffect(() => {
     reset({
@@ -52,12 +77,12 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
     }
   }
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true)
     const sendData = {
       teams: {
         userId: item._id,
-        rating: data.rating,
+        rating: parseFloat(data.rating),
         percentageWorkProject: data.percentageProjectCompletion,
       },
     }
@@ -102,7 +127,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
           <div className="grid grid-cols-1 gap-2">
             <div className="font-semibold">Технології:</div>
             <div className="flex flex-wrap gap-2">
-              {item.technologies.map((tech: any) => (
+              {item.technologies.map((tech) => (
                 <span
                   key={tech}
                   className="rounded-md bg-blue-100 px-2 py-1 text-blue-800"
@@ -115,7 +140,7 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
           <div className="mt-2 grid grid-cols-1 gap-2">
             <div className="font-semibold">Портфоліо:</div>
             <div className="flex flex-wrap gap-2">
-              {item.portfolioLinks.map((link: any) => (
+              {item.portfolioLinks.map((link) => (
                 <a
                   key={link}
                   href={link}
@@ -160,12 +185,14 @@ export const TeamItem: FC<any> = ({ projectId, item, isNewUser }) => {
                     ...register('rating', {
                       required: `${t('This field is required')}`,
                       validate: {
-                        isDecimal: (value) =>
-                          !isNaN(value) &&
-                          parseFloat(value) >= 1 &&
-                          parseFloat(value) <= 5
+                        isDecimal: (value) => {
+                          const numericValue = parseFloat(value)
+                          return !isNaN(numericValue) &&
+                            numericValue >= 1 &&
+                            numericValue <= 5
                             ? true
-                            : `${t('Please enter a valid rating between 1 and 5')}`,
+                            : `${t('Please enter a valid rating between 1 and 5')}`
+                        },
                       },
                     }),
                   }}

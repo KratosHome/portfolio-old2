@@ -7,15 +7,17 @@ export const getAllPosts = async (locale: string) => {
   try {
     await connectToDb()
 
-    const posts = await Post.find({ local: locale }).sort({ isPublished: 1 })
+    const posts = await Post.find({ local: locale })
+      .sort({ isPublished: 1 })
+      .lean<IPost[]>()
 
-    const postsWithUserDetails = await Promise.all(
+    const postsWithUserDetails = await Promise<IPostWithUserDetails>.all(
       posts.map(async (post) => {
         const user = await User.findById(post.authorId).select(
           'username userLogo',
         )
         return {
-          ...post.toObject(),
+          ...post,
           authorId: user?._id,
           authorUsername: user?.username,
           authorUserLogo: user?.userLogo,

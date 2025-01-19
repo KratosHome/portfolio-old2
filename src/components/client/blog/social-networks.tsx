@@ -1,9 +1,15 @@
 'use client'
 import { useTheme } from 'next-themes'
 import { FC } from 'react'
-import Link from 'next/link'
 
-export const SocialNetworks: FC<any> = ({ userContent }) => {
+interface UserContent {
+  userContent: {
+    gitHubLink: string
+    linkedinLink: string
+  }
+}
+
+export const SocialNetworks: FC<UserContent> = ({ userContent }) => {
   const { theme } = useTheme()
   return (
     <div className="z-20 mt-[15px] flex items-center justify-end gap-[16px]">

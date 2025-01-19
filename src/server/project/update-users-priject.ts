@@ -4,6 +4,7 @@ import { Project } from '@/server/project/project-scheme.server'
 
 interface UpdateProjectUserData {
   teams: {
+    userId: string
     rating: number
     percentageWorkProject: number
   }

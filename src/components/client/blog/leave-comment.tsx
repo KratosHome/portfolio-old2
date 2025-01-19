@@ -14,18 +14,21 @@ import { Modal } from '@/components/UI/client/modal/modal'
 import { Input } from '@/components/UI/client/input/input'
 import { Button } from '@/components/UI/buttom/button'
 
+interface CommentFormData {
+  postId: string
+  locale: string
+  userId: string
+  author: string
+  message: string
+  userLogo?: string
+}
+
 interface CommentForm {
   message: string
 }
 
 interface LeaveCommentProps {
   postId: string
-}
-
-interface User {
-  _id: string
-  username: string
-  userLogo: string
 }
 
 export const LeaveComment: FC<LeaveCommentProps> = ({ postId }) => {
@@ -62,14 +65,16 @@ export const LeaveComment: FC<LeaveCommentProps> = ({ postId }) => {
 
   const onSubmit: SubmitHandler<CommentForm> = async (data) => {
     setLoading(true)
-    const sendData = {
-      userId: user?._id,
+
+    const sendData: CommentFormData = {
       postId: postId,
-      author: user?.username,
-      userLogo: user?.userLogo,
       locale: locale,
+      userId: user?._id,
+      author: user?.username,
       message: data.message,
+      userLogo: user?.userLogo ?? undefined,
     }
+
     if (isVerified) {
       const result = await addComments(sendData)
       if (result?.success) {

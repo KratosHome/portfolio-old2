@@ -90,7 +90,7 @@ export const Technologies = () => {
   }, [isMobile])
 
   const containerRef = useRef<HTMLDivElement>(null)
-  const iconRefs = useRef<HTMLDivElement[]>([])
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useGSAP(() => {
     const container = containerRef.current
@@ -159,7 +159,9 @@ export const Technologies = () => {
         {currentTechnologies.map((tech, index) => (
           <div
             key={index}
-            ref={(el: any) => (iconRefs.current[index] = el)}
+            ref={(el) => {
+              iconRefs.current[index] = el
+            }}
             className="absolute -m-5 flex size-[30px] flex-col items-center justify-center rounded-full opacity-0 lg:size-[100px]"
           >
             <Image

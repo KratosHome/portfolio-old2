@@ -32,7 +32,9 @@ const Login = () => {
 
   const [loading, setLoading] = useState<boolean | undefined>(false)
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async (data: any) => {
+  const onSubmit: SubmitHandler<LoginFormValues> = async (
+    data: LoginFormValues,
+  ) => {
     setLoading(true)
     const result = await loginAction(data)
     setLoading(false)

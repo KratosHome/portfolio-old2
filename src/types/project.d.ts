@@ -13,8 +13,15 @@ interface ITeamMember {
   user?: IUser
 }
 
+type IProjectStatus =
+  | 'new'
+  | 'in progress'
+  | 'deploy'
+  | 'completed'
+  | 'archived'
+
 interface IProject {
-  _id: string
+  _id?: string
   name: string
   description: string
   technologies: string[]
@@ -26,8 +33,8 @@ interface IProject {
   gitHubLink?: string
   designLink?: string
   contactGroupLink?: string
-  teams: ITeamMember[]
-  status?: 'new' | 'in progress' | 'deploy' | 'completed' | 'archived'
+  teams?: ITeamMember[]
+  status: IProjectStatus
   logo?: string
   newUsers?: string[]
   resetPasswordToken?: string

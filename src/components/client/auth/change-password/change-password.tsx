@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useLocale } from 'use-intl'
 import { Input } from '@/components/UI/client/input/input'
+import { Loader } from '@/components/UI/client/loader/loader'
 
 interface changePasswordFormValues {
   password: string
@@ -56,10 +57,8 @@ const ChangePassword = () => {
           setSubmitSuccess(true)
         }
       })
-      .catch((error) => {
-        console.log('error', error)
+      .catch(() => {
         setSubmitSuccess(false)
-        //  serError(true);
       })
       .finally(() => {
         setIsLoading(false)
@@ -77,6 +76,8 @@ const ChangePassword = () => {
 
   return (
     <div>
+      {loading && <Loader />}
+      {errorAction && <div>{errorAction}</div>}
       <div>
         <h1>{t('forgotPassword')}</h1>
         <form onSubmit={handleSubmit(onSubmit)}>

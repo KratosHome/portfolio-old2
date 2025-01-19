@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes'
 import { addDizLikeServer } from '@/server/blog/add-diz-like.server'
 import { Loader } from '@/components/UI/client/loader/loader'
 import { Modal } from '@/components/UI/client/modal/modal'
+import { toast } from 'react-toastify'
 
 interface AddLikeProps {
   postContent: IPost
@@ -23,10 +24,11 @@ export const AddLike: FC<AddLikeProps> = ({ postContent }) => {
 
   useEffect(() => {
     if (user) {
-      console.log('user', postContent.likes)
-      setIsAddLike(postContent.likes.some((like) => like === user._id))
+      setIsAddLike(postContent.likes.some((like) => like.userId === user._id))
 
-      setIsAddDiz(postContent.dizLikes.some((dizLike) => dizLike === user._id))
+      setIsAddDiz(
+        postContent.dizLikes.some((dizLike) => dizLike.userId === user._id),
+      )
     }
   }, [user, postContent.likes, postContent.dizLikes])
 
@@ -35,9 +37,9 @@ export const AddLike: FC<AddLikeProps> = ({ postContent }) => {
       setLoader(true)
       const result = await addLikeServer(user._id, postContent._id)
       if (result.success) {
-        console.log('like added')
+        toast('Лайк додано')
       } else {
-        console.log('error')
+        toast.error('Помилка')
       }
     } else {
       setModal(true)
@@ -50,9 +52,9 @@ export const AddLike: FC<AddLikeProps> = ({ postContent }) => {
       const result = await addDizLikeServer(user._id, postContent._id)
       setLoader(true)
       if (result.success) {
-        console.log('like added')
+        toast('Дизлайк додано')
       } else {
-        console.log('error')
+        toast.error('Помилка')
       }
     } else {
       setModal(true)

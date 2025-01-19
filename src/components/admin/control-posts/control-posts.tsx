@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '@/server/blog/get-all-post-server'
 import { publicPost } from '@/server/blog/public-post.server'
@@ -12,7 +11,7 @@ import { Loader } from '@/components/UI/client/loader/loader'
 
 export const ControlPosts = () => {
   const locale = useLocale()
-  const [posts, setPosts] = useState<any>([])
+  const [posts, setPosts] = useState<IPostWithUserDetails[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -54,7 +53,7 @@ export const ControlPosts = () => {
   return (
     <div className="p-4">
       {loading && <Loader />}
-      {posts.map((post: any) => (
+      {posts.map((post) => (
         <div
           key={post.postId}
           className="mb-6 max-w-max rounded-lg bg-white p-6 text-gray-600 shadow-md"
