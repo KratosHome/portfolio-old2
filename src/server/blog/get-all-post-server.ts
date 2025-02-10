@@ -11,14 +11,15 @@ export const getAllPosts = async (locale: string) => {
       .sort({ isPublished: 1 })
       .lean<IPost[]>()
 
-    const postsWithUserDetails = await Promise<IPostWithUserDetails>.all(
+    const postsWithUserDetails: IPostWithUserDetails[] = await Promise.all(
       posts.map(async (post) => {
         const user = await User.findById(post.authorId).select(
           'username userLogo',
         )
+
         return {
           ...post,
-          authorId: user?._id,
+          authorId: user?._id?.toString(),
           authorUsername: user?.username,
           authorUserLogo: user?.userLogo,
         }

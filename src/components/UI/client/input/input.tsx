@@ -1,29 +1,34 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC, useState, ChangeEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import eyesClose from '@/assets/icons/eyes-close.svg'
 import eyesOpen from '@/assets/icons/eyes-open.svg'
 import Image from 'next/image'
 import MaskedInput from 'react-text-mask'
 import { cn } from '@/utils/cn'
-import { Controller } from 'react-hook-form'
+import {
+  Controller,
+  RegisterOptions,
+  Control,
+  FieldValues,
+} from 'react-hook-form'
 
 interface myInputProps {
   label?: string
   type: 'text' | 'password' | 'email' | 'phone' | 'number' | 'textarea'
   placeholder: string
   name?: string
-  register?: ReturnType<typeof useForm>['register'] | any
-  error?: string | any
+  register?: ReturnType<typeof useForm>['register']
+  error?: string
   value?: string | number | boolean
-  onChange?: (e: any) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   disabled?: boolean
   password?: string
   className?: string
   min?: number
-  control?: any
+  control?: Control<FieldValues>
   max?: number
-  rules?: any
+  rules?: RegisterOptions
 }
 
 export const Input: FC<myInputProps> = ({
@@ -134,7 +139,7 @@ export const Input: FC<myInputProps> = ({
             )}
             name={name}
             placeholder={placeholder}
-            value={value}
+            value={value as string}
             onChange={onChange}
             disabled={disabled}
             {...register}
@@ -150,7 +155,7 @@ export const Input: FC<myInputProps> = ({
             name={name}
             type={inputType}
             placeholder={placeholder}
-            value={value}
+            value={value as string}
             onChange={onChange}
             disabled={disabled}
             {...register}

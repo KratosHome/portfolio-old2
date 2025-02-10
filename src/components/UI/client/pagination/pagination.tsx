@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState, MouseEvent, JSX } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
@@ -26,25 +26,27 @@ export const Pagination: FC<PaginationControlProps> = ({ totalPages }) => {
     setCurrentSrc(theme === 'dark' ? arrow : arrowLight)
   }, [theme])
 
-  const goToPage = contextSafe((event: any, newPage: number) => {
-    const button = event.currentTarget
-    const queryParams = new URLSearchParams(searchParams?.toString())
+  const goToPage = contextSafe(
+    (event: MouseEvent<HTMLButtonElement>, newPage: number) => {
+      const button = event.currentTarget
+      const queryParams = new URLSearchParams(searchParams?.toString())
 
-    queryParams.set('page', newPage.toString())
+      queryParams.set('page', newPage.toString())
 
-    gsap.to(button, {
-      scale: 2.5,
-      duration: 0.2,
-      ease: 'power1.out',
-      onComplete: () => {
-        gsap.to(button, { scale: 1, duration: 0.1 })
-        router.push(`?${queryParams.toString()}`)
-      },
-    })
-  })
+      gsap.to(button, {
+        scale: 2.5,
+        duration: 0.2,
+        ease: 'power1.out',
+        onComplete: () => {
+          gsap.to(button, { scale: 1, duration: 0.1 })
+          router.push(`?${queryParams.toString()}`)
+        },
+      })
+    },
+  )
 
   const renderPaginationButtons = () => {
-    let buttons = []
+    const buttons: JSX.Element[] = []
 
     buttons.push(
       <button
