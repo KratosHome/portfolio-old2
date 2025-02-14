@@ -9,13 +9,17 @@ import {
   Transition,
 } from '@headlessui/react'
 import { Fragment } from 'react'
-import theme from 'tailwindcss/defaultTheme'
 import { useTheme } from 'next-themes'
+
+interface Filter {
+  id: string
+  label: string
+}
 
 interface FilterItemsProps {
   title: string
   url: string
-  filters: any
+  filters: Filter[]
 }
 
 export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
@@ -74,7 +78,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
             {selectedFilters.length > 0
               ? selectedFilters.map((filterId: string) => (
                   <span key={filterId} className="mr-2">
-                    {filters.find((f: any) => f.id === filterId)?.label}
+                    {filters.find((f) => f.id === filterId)?.label}
                   </span>
                 ))
               : `#${title}`}
@@ -95,7 +99,7 @@ export const FilterItems: FC<FilterItemsProps> = ({ filters, title, url }) => {
             className="rounded-lg border border-black border-stone-500/30 bg-[#0B66F5] backdrop-blur-[12.5px] dark:bg-transparent dark:bg-gradient-to-br dark:from-[rgba(255,255,255,0.4)] dark:to-[rgba(255,255,255,0)]"
           >
             <div className="grid grid-cols-2 gap-4 p-4 lg:grid-cols-3">
-              {filters.map((filter: any) => (
+              {filters.map((filter) => (
                 <MenuItem key={filter.id}>
                   <label
                     className={`relative flex cursor-pointer items-center justify-between gap-4 rounded-lg border-b-[1px] px-[12px] py-[8px] ${

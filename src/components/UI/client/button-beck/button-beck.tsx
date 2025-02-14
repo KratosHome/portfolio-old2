@@ -3,7 +3,6 @@ import arrow from '@/assets/icons/arrow-left.svg'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Button } from '@/components/UI/buttom/button'
 
 export const ButtonBeck = () => {
   const router = useRouter()
